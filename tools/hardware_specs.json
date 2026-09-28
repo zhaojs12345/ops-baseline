@@ -1,6 +1,6 @@
 {
-  "_source": "厂商带宽和算力汇总.xlsx",
-  "_note": "由 tools/extract_hardware_xlsx.py 自动生成,勿手改。缺失值 null:保密(○)/不具备(/)/测试失败(Err)。>= 下界值已取下界数值。单位:显存 GiB,带宽 GB/s,浮点 TFLOPS,INT8 TOPS。",
+  "_source": "厂商带宽和算力汇总 - 基础规格表.csv",
+  "_note": "数据按 CSV《基础规格表》全量对齐。缺失值 null:保密(○)/不具备(/)/测试失败(Err/❌)/表中留空。>= 下界值已取下界数值(如 P900 的 >=350 取 350)。单位:显存 GiB,带宽 GB/s,浮点 TFLOPS,INT8 TOPS。",
   "chips": [
     {
       "vendor": "英伟达",
@@ -11,10 +11,10 @@
         "tensor": {
           "bf16": 989.0,
           "fp16": 989.0,
-          "fp32": null,
+          "fp32": 66.9,
           "tf32": 494.5,
           "int8": 1979.0,
-          "fp64": 67.0,
+          "fp64": 1.0,
           "fp8": 1979.0
         },
         "vector": {
@@ -22,28 +22,28 @@
           "fp16": 134.0,
           "fp32": 67.0,
           "int8": null,
-          "fp64": 34.0,
+          "fp64": 1.0,
           "fp8": null
         }
       },
       "measured": {
-        "memory_gib": 80.0,
-        "bandwidth_gbps": 3052.75,
+        "memory_gib": 79.171,
+        "bandwidth_gbps": 3230.0,
         "tensor": {
-          "bf16": 942.69,
-          "fp16": 886.87,
-          "fp32": 48.58,
-          "tf32": 492.71,
-          "int8": null,
-          "fp64": null,
-          "fp8": 1786.95
+          "bf16": 958.73,
+          "fp16": 896.77,
+          "fp32": 48.6,
+          "tf32": 498.43,
+          "int8": 1931.85,
+          "fp64": 1.05,
+          "fp8": 1778.93
         },
         "vector": {
-          "bf16": null,
-          "fp16": null,
-          "fp32": 65.854,
-          "int8": null,
-          "fp64": null,
+          "bf16": 66.727,
+          "fp16": 66.726,
+          "fp32": 66.383,
+          "int8": 133.453,
+          "fp64": 1.045,
           "fp8": null
         }
       }
@@ -499,11 +499,11 @@
           "fp8": null
         },
         "vector": {
-          "bf16": null,
-          "fp16": null,
-          "fp32": null,
-          "int8": null,
-          "fp64": null,
+          "bf16": 7.337,
+          "fp16": 30.337,
+          "fp32": 15.194,
+          "int8": 15.226,
+          "fp64": 15.14,
           "fp8": null
         }
       }
@@ -545,10 +545,10 @@
           "fp8": null
         },
         "vector": {
-          "bf16": null,
-          "fp16": null,
-          "fp32": null,
-          "int8": null,
+          "bf16": 30.778,
+          "fp16": 31.319,
+          "fp32": 15.316,
+          "int8": 15.997,
           "fp64": null,
           "fp8": null
         }
