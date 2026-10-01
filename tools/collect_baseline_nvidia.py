@@ -938,6 +938,118 @@ def _spawn_op_worker(op_name, ncu_enabled, report_dir, device, op_timeout):
     return entry, ok
 
 
+def _describe_callable(op):
+    """给一个 native callable 生成人类可读的调用来源串。
+
+    优先 "<__module__>.<__qualname__>"（真函数/方法）；拿不到就退回 repr
+    （torch.ops.* 的 OpOverloadPacket 等用 repr 已足够辨识），再退回类型名。
+    """
+    mod = getattr(op, "__module__", None)
+    qn = getattr(op, "__qualname__", None) or getattr(op, "__name__", None)
+    if mod and qn:
+        return f"{mod}.{qn}"
+    try:
+        return repr(op)
+    except Exception:  # noqa: BLE001
+        return type(op).__name__
+
+
+def _check_one_op(op_module, device=None):
+    """试调一个 ops 模块的 native 接口一次，返回检查结果 dict。
+
+    用第一组 shape（grid()[0]）× 第一个 dtype（DTYPES[0]）在 GPU 上真实调用一次
+    并 synchronize，捕获所有异常。不采集任何性能数据，只判断「接口能否被正确调用」。
+
+    返回 {status, op_name, call, shape, dtype, detail}：
+      status: "ok" 成功 / "fail" 调用抛错 / "skip" native() 返回 None（有意跳过
+              或解析不到）。
+      call:   native callable 的调用来源串（native() is None 时为 "ops.<模块名>"）。
+      shape/dtype: 实际试调用的主键 shape 与 dtype（skip 时为 None）。
+      detail: 失败原因/跳过说明（成功时为空串）。
+    """
+    op_name = op_module.OP_NAME
+    mod_name = op_module.__name__
+    result = {"status": "skip", "op_name": op_name,
+              "call": f"ops.{mod_name}", "shape": None, "dtype": None,
+              "detail": ""}
+
+    try:
+        op = op_module.native()
+    except Exception as e:  # noqa: BLE001 - native() 自身抛错也算无法调用
+        result["status"] = "fail"
+        result["detail"] = f"native() 抛错: {type(e).__name__}: {e}"
+        return result
+    if op is None:
+        result["detail"] = "native() 返回 None（有意跳过或解析不到 callable）"
+        return result
+
+    result["call"] = _describe_callable(op)
+
+    try:
+        binding = op_module.grid()[0]
+        dtype = op_module.DTYPES[0]
+        result["shape"] = op_module.key_shape(binding)
+        result["dtype"] = str(dtype)
+        args, kwargs = op_module.build_inputs(binding, dtype, "cuda")
+    except Exception as e:  # noqa: BLE001 - 构造实参失败也算无法调用
+        result["status"] = "fail"
+        result["detail"] = f"输入构造失败: {type(e).__name__}: {e}"
+        return result
+
+    try:
+        op(*args, **kwargs)
+        torch.cuda.synchronize()
+    except Exception as e:  # noqa: BLE001 - NotImplementedError/shape/CUDA 等
+        result["status"] = "fail"
+        result["detail"] = f"{type(e).__name__}: {str(e)[:200]}"
+        return result
+
+    result["status"] = "ok"
+    return result
+
+
+def check_ops(device=None, only=None, whitelist=None, blacklist=None):
+    """--check 入口：逐算子试调一次，打印调用方式与成功/失败，不采集、不写 JSON。
+
+    复用 _discover_ops()/_select_ops()，故可配合 --ops/--whitelist/--blacklist/
+    --device 一起用。每个算子用第一组 shape×第一个 dtype 真实在 GPU 上调一次。
+    返回失败算子数（供退出码判断：有失败则非 0）。
+    """
+    if device is not None:
+        os.environ["CUDA_VISIBLE_DEVICES"] = str(device)
+    if not torch.cuda.is_available():
+        raise RuntimeError("需要 CUDA 设备")
+    device_name = torch.cuda.get_device_name()
+
+    ops_modules = _discover_ops()
+    ops_modules = _select_ops(ops_modules, only=only,
+                              whitelist=whitelist, blacklist=blacklist)
+
+    print(f"检查设备: {device_name}")
+    print("算子检查（--check）: 逐算子试调一次（第一组 shape × 第一个 dtype）\n")
+    if not ops_modules:
+        print("警告: 名单过滤后没有可检查的算子")
+        return 0
+
+    _mark = {"ok": "✓", "fail": "✗", "skip": "—"}
+    _word = {"ok": "成功", "fail": "失败", "skip": "跳过"}
+    counts = {"ok": 0, "fail": 0, "skip": 0}
+    for op_name, op_module in ops_modules:
+        r = _check_one_op(op_module, device=device)
+        counts[r["status"]] += 1
+        sig = r["call"]
+        if r["shape"] is not None:
+            sig += f"  {r['shape']} {r['dtype']}"
+        line = f"  {_mark[r['status']]} {r['op_name']}  →  {sig}  [{_word[r['status']]}]"
+        if r["detail"]:
+            line += f": {r['detail']}"
+        print(line)
+
+    print(f"\n汇总: 成功 {counts['ok']} / 失败 {counts['fail']} / "
+          f"跳过 {counts['skip']}  （共 {len(ops_modules)} 个算子）")
+    return counts["fail"]
+
+
 def collect_baseline(output_path, ncu_enabled=True,
                      report_dir=None, device=None,
                      only=None, whitelist=None, blacklist=None,
@@ -1058,10 +1170,21 @@ if __name__ == "__main__":
                         help=f"折算系数的分母（基准）芯片，即 baseline 采集所在的卡；"
                              f"须为 hardware_specs.json 中的 chip 名，"
                              f"缺省 {DEFAULT_REFERENCE_CHIP}")
+    parser.add_argument("--check", action="store_true",
+                        help="只检查每个算子的 native 接口能否被正确调用（用第一组 "
+                             "shape×第一个 dtype 真实在 GPU 上试调一次），打印调用方式"
+                             "与成功/失败，不采集性能、不写 JSON。可配合 "
+                             "--ops/--whitelist/--blacklist/--device 过滤")
     parser.add_argument("--_worker", action="store_true",
                         help="内部使用：子进程直采模式，在本进程内采集选中算子、"
                              "不再 spawn（由编排模式自动传入，勿手动使用）")
     args = parser.parse_args()
+    if args.check:
+        n_fail = check_ops(device=args.device,
+                           only=_parse_name_list(args.ops),
+                           whitelist=_parse_name_list(args.whitelist),
+                           blacklist=_parse_name_list(args.blacklist))
+        sys.exit(1 if n_fail else 0)
     collect_baseline(args.output,
                      ncu_enabled=not args.no_ncu, report_dir=args.report_dir,
                      device=args.device,
