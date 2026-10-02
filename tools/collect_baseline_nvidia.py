@@ -846,15 +846,20 @@ def _collect_one_op_ops(op_module, ncu_enabled, report_dir,
     dtypes = op_module.DTYPES
     bindings = op_module.grid()
 
-    # 预检：callable 可能只注册了 schema、没有 CUDA kernel，真调才暴露
-    # NotImplementedError。用第一个 shape/dtype 试调一次，没实现就整体跳过。
-    probe_args, probe_kwargs = op_module.build_inputs(
-        bindings[0], dtypes[0], "cuda")
+    # 预检：用第一个 shape/dtype 试调一次，跑不通就整算子跳过（不毒死整轮）。
+    # 跑不通的常见原因：①callable 只注册了 schema、没有 CUDA kernel
+    # （NotImplementedError）；②环境缺依赖，如 DeepGEMM JIT 需 nvcc 却不在 PATH
+    # （RuntimeError: nvcc_path not exists）；③input 构造本身依赖缺失的运行时
+    # （build_inputs 内即抛错）。故 build_inputs 与试调都纳入预检，捕获任意异常
+    # 并 return None 优雅跳过——与子进程隔离一致，让采集器继续采后面的算子。
     try:
+        probe_args, probe_kwargs = op_module.build_inputs(
+            bindings[0], dtypes[0], "cuda")
         op(*probe_args, **probe_kwargs)
         torch.cuda.synchronize()
-    except NotImplementedError as e:
-        print(f"\n跳过算子 {op_name}: native 无 CUDA 实现（{str(e)[:80]}）")
+    except Exception as e:  # noqa: BLE001 - 任何异常都视作本机无法采集，整算子跳过
+        print(f"\n跳过算子 {op_name}: 预检失败，本机无法采集"
+              f"（{type(e).__name__}: {str(e)[:120]}）")
         return None
 
     shapes = {}

@@ -102,7 +102,11 @@ def build_inputs(binding, dtype, device):
     max_pages_per_seq = _cdiv(seqlen, pbs) + 4
     total_pages = batch * max_pages_per_seq
 
-    q = torch.randn(batch, 1, h_q, d_qk, dtype=dtype, device=device) / 10
+    # w8a8_fp8 kernel 要求 q 为 fp8_e4m3fn（运行日志报错
+    # Expected q.dtype() == Float8_e4m3fn）；先 bf16 构造再量化存储。
+    q = (torch.randn(batch, 1, h_q, d_qk, dtype=torch.float16, device=device) / 10).to(
+        torch.float8_e4m3fn
+    )
     # fp8 KV cache 近似：稠密 fp8_e4m3fn，head 维 =1（对齐后端 unsqueeze(-2)）
     k_cache = (
         torch.randn(total_pages, pbs, h_kv, d_qk, dtype=torch.float16, device=device)
@@ -137,7 +141,8 @@ def config(binding, dtype):
     total_pages = batch * max_pages_per_seq
     return {
         "inputs": {
-            "q": {"shape": [batch, 1, h_q, d_qk], "dtype": str(dtype)},
+            "q": {"shape": [batch, 1, h_q, d_qk],
+                  "dtype": "torch.float8_e4m3fn"},
             "k_cache": {
                 "shape": [total_pages, pbs, h_kv, d_qk],
                 "dtype": "torch.float8_e4m3fn",

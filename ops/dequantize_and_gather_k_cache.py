@@ -129,8 +129,13 @@ def build_inputs(binding, dtype, device):
     rd = binding["rope_dim"]
     block_stride = _block_stride(nd, rd)
     num_blocks = _num_blocks(b, s)
+    # 每 token 的 uint8 字节数：block_stride 为整块(block_size 个 token)字节数，
+    # 除以 block_size 得单 token 字节数（= token_data_size + scale_slots）。
+    per_token = block_stride // _BLOCK_SIZE
     out = torch.empty((b, g, d), dtype=torch.bfloat16, device=device)
-    k_cache = torch.zeros((num_blocks, block_stride), dtype=torch.uint8,
+    # kernel 要求 k_cache 为 3D [num_blocks, block_size, per_token]（见运行日志
+    # 报错 expected ndim=3，Tensor([n2, 64, 584])），非扁平 2D。
+    k_cache = torch.zeros((num_blocks, _BLOCK_SIZE, per_token), dtype=torch.uint8,
                           device=device)
     seq_lens = torch.full((b,), s, dtype=torch.int32, device=device)
     gather_lens = torch.full((b,), g, dtype=torch.int32, device=device)
@@ -167,7 +172,8 @@ def config(binding, dtype):
         "inputs": {
             "out": {"shape": [b, g, d], "dtype": "torch.bfloat16",
                     "note": "原地写回"},
-            "k_cache": {"shape": [num_blocks, block_stride],
+            "k_cache": {"shape": [num_blocks, _BLOCK_SIZE,
+                                  block_stride // _BLOCK_SIZE],
                         "dtype": "torch.uint8"},
             "seq_lens": {"shape": [b], "dtype": "torch.int32"},
             "gather_lens": {"shape": [b], "dtype": "torch.int32"},

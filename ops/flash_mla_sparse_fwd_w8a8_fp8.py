@@ -77,12 +77,14 @@ def build_inputs(binding, dtype, device):
     s_q, topk, h_q, h_kv = _S_Q, _TOPK, _H_Q, _H_KV
     d_qk = _D_QK
 
-    # Q/KV 逻辑张量（w8a8_fp8 以 fp8_e4m3fn 近似量化存储）
-    q = (torch.randn(s_q, h_q, d_qk, dtype=torch.float16, device=device) / 10).to(
-        torch.float8_e4m3fn
+    # 解析到的 flash_mla_sparse_fwd 要求 q/kv 为 bf16（运行日志报错
+    # “q must have dtype torch::kBFloat16”）——该 callable 为稠密/稀疏通用 bf16
+    # 入口，并不接受 fp8 存储。沿用 benchmark 的 bf16 张量，不做 fp8 近似。
+    q = (torch.randn(s_q, h_q, d_qk, dtype=torch.bfloat16, device=device) / 10).clamp(
+        -10, 10
     )
-    kv = (torch.randn(s_kv, h_kv, d_qk, dtype=torch.float16, device=device) / 10).to(
-        torch.float8_e4m3fn
+    kv = (torch.randn(s_kv, h_kv, d_qk, dtype=torch.bfloat16, device=device) / 10).clamp(
+        -10, 10
     )
     # 稀疏下标：每 query 采样 topk 个 [0, s_kv) 的位置（randint 近似、可重复）
     indices = torch.randint(
@@ -103,8 +105,8 @@ def config(binding, dtype):
     s_kv = binding["s_kv"]
     return {
         "inputs": {
-            "q": {"shape": [_S_Q, _H_Q, _D_QK], "dtype": "torch.float8_e4m3fn"},
-            "kv": {"shape": [s_kv, _H_KV, _D_QK], "dtype": "torch.float8_e4m3fn"},
+            "q": {"shape": [_S_Q, _H_Q, _D_QK], "dtype": "torch.bfloat16"},
+            "kv": {"shape": [s_kv, _H_KV, _D_QK], "dtype": "torch.bfloat16"},
             "indices": {"shape": [_S_Q, _H_KV, _TOPK], "dtype": "torch.int32"},
             "sm_scale": _SM_SCALE,
             "d_v": _D_V,
