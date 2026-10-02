@@ -48,26 +48,25 @@ _SYMBOL = "fused_marlin_moe"
 _GROUP_SIZE = 128
 
 # benchmark set_shapes：(num_tokens, num_experts, hidden, intermediate, topk)
+# 注意：本算子逐专家用纯 Python marlin_quantize（marlin_utils_test）打包，耗时随
+# num_experts 线性增长且与 num_tokens 无关——同一 (e,h,i) 的 4 个 token 档会把相同
+# 权重重复量化 4 次。大 E（256/512）全档会使单算子子进程 >1800s 超时（实测，整算子
+# 丢数据）。故大 E 架构只保留 t∈{1,256}（decode / 较大 batch 两端代表档），E=8 的
+# Mixtral（量化便宜）保留全部 4 档。mxfp4 变体走 C++ ops 量化、无此问题故保留全档。
 _SHAPES = [
-    # Mixtral-8x7B
+    # Mixtral-8x7B（E=8，量化便宜，保留 4 个 token 档）
     (1, 8, 4096, 14336, 2),
     (16, 8, 4096, 14336, 2),
     (64, 8, 4096, 14336, 2),
     (256, 8, 4096, 14336, 2),
-    # DeepSeek-V3 (TP=8 shard)
+    # DeepSeek-V3 (TP=8 shard)（E=256，仅两端档）
     (1, 256, 7168, 2048, 8),
-    (16, 256, 7168, 2048, 8),
-    (64, 256, 7168, 2048, 8),
     (256, 256, 7168, 2048, 8),
-    # Qwen3-5-397B-A17B
+    # Qwen3-5-397B-A17B（E=512，仅两端档）
     (1, 512, 4096, 1024, 10),
-    (16, 512, 4096, 1024, 10),
-    (64, 512, 4096, 1024, 10),
     (256, 512, 4096, 1024, 10),
-    # DeepSeek-V4-Flash
+    # DeepSeek-V4-Flash（E=256，仅两端档）
     (1, 256, 4096, 2048, 6),
-    (16, 256, 4096, 2048, 6),
-    (64, 256, 4096, 2048, 6),
     (256, 256, 4096, 2048, 6),
 ]
 

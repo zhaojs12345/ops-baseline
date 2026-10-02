@@ -57,3 +57,17 @@ python tools/collect_baseline_nvidia.py --blacklist flash_mla,megamoe
 | `config` | 复杂算子的真实输入输出 shape | — |
 
 另含一组同值冗余的兼容旧字段（`flops_*`、`util_*`、`bottleneck` 等）。
+
+## 环境依赖与配置（H800 全量采集）
+
+要在 H800 上尽可能跑全所有算子，除基础依赖（CUDA GPU、`vllm`、`triton`、`ncu`）外，还需配置以下项，否则对应算子会被跳过或 NCU 采不到数据：
+
+| 依赖 / 配置 | 影响的算子 | 不配置的后果 | 如何配置 |
+|---|---|---|---|
+| **`nvcc` 在 `PATH` 中**（CUDA toolkit） | `fp8_einsum`、`fp8_fp4_mqa_logits`、`fp8_fp4_paged_mqa_logits` | DeepGEMM JIT 编译失败（`std::filesystem::exists(nvcc_path)` 断言），这些算子被整体跳过 | 安装 CUDA toolkit 并把 `nvcc` 加入 `PATH`（如 `export PATH=/usr/local/cuda/bin:$PATH`）；确认 `which nvcc` 有输出 |
+| **MoE / FP8 的 device-specific 调优配置 json** | `fused_experts_impl`、`fused_marlin_moe_*`、`w8a8_block_fp8_matmul` | 仅告警 `Using default MoE config`，走默认配置，**不影响采集**（性能可能非最优） | 可选：放置 `vllm/model_executor/layers/fused_moe/configs/E=*,N=*,device_name=NVIDIA_H800.json` 等 |
+| **`flash-linear-attention`（FLA）** | `chunk_gated_delta_rule_fwd`、`chunk_kda` 等 FLA 系算子 | `native()` 解析不到，算子被跳过 | 安装对应 vllm 版本依赖的 FLA；注意 import 路径随 vllm 版本不同（`vllm.third_party.flash_linear_attention...` 或 `vllm.model_executor.layers.fla...`） |
+| **足够显存（大 E MoE）** | `fused_experts_impl`、`fused_marlin_moe_*` 的 e256/e512 大档 | 采集器已在 NCU 前释放主进程实参，单份权重（~22GB）可过；若显存更小仍可能 OOM | 用 `--op-timeout` 调整超时；必要时 `--blacklist` 跳过超大档 |
+| **昇腾 / 海光等国产后端专属算子** | `group_list_cumsum`、`indexer_epilogue`、`lightning_indexer`、`kv_rmsnorm_rope_cache`、`sparse_attn_sharedkv`、`int8_einsum`、`fused_inv_rope_int8_quant` 等 | H800 **无对应 NV 原生 kernel**，`native()` 如实返回 None 跳过 | 无法在 H800 采集，属预期跳过（这些算子的验收数据来自昇腾/海光） |
+
+说明：被跳过的算子不影响其余算子采集（每个算子独立子进程）。`fused_marlin_moe_w4a16_int4` 因逐专家纯 Python 量化很慢，已将大 E 档位裁剪到两端 token 档以避免子进程超时。

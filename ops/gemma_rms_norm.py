@@ -14,22 +14,28 @@
 
 """gemma_rms_norm baseline（方案 B）。
 
-native：CustomOp 入口 GemmaRMSNorm（vllm/model_executor/layers/layernorm.py#L132，
-    @CustomOp.register("gemma_rms_norm")）。它是 nn.Module/CustomOp 子类，不是纯
-    函数，且 __init__(hidden_size, eps=1e-6)（layernorm.py#L142）持有一个大小为
-    hidden_size 的 weight 参数——因此每个 hidden 档位需各自的实例。调用实例走
-    CustomOp.forward -> forward_cuda（layernorm.py#L162），后者转 forward_native
-    （L151），对 residual=None 走 ir.ops.rms_norm(x, weight, eps)，否则走
-    ir.ops.fused_add_rms_norm(...)。语义：x * (1 + w) / sqrt(E[x^2]+eps)。
-    native() 返回一个闭包：按输入张量最后一维 hidden 惰性构造并缓存
-    GemmaRMSNorm(hidden)，再以实例调用触发 kernel；构造只在每个新 hidden 发生一次
-    并缓存，重复采集点只跑 kernel。解析不到 vllm/GemmaRMSNorm 时返回 None。
+native：vllm.ir.ops.rms_norm（已回源码核对：
+    /Users/zjs-office/all_code/vllm/vllm/ir/ops/layernorm.py#L10
+    def rms_norm(x, weight, epsilon, variance_size=None) -> Tensor）。
+    这正是 GemmaRMSNorm.forward_native（layernorm.py#L148-157）在 NVIDIA 上
+    （forward_cuda 直接转 forward_native）实际调用的函数——Gemma 的差异只是
+    weight 用 (1 + w)、以及 (x*w).to(orig_dtype) 的乘序。本模块直接解析该 IrOp 并
+    传入已 +1 的权重，等价复刻 Gemma 路径，且**不构造 GemmaRMSNorm CustomOp**。
 
-输入构造：本算子在 FlagGems-vllm 无独立 benchmark（core_shapes.yaml 无专属键），
-    故 shape 为 vllm 源码推断，非 FlagGems-vllm 基准。按 RMSNorm 常见用法取
-    (num_tokens, hidden) 二维网格，hidden 覆盖 Gemma 常见隐藏维档位。
-    forward 输入为单张量 x（residual=None，走 rms_norm 路径）；weight 由实例内部
-    持有（__init__ 初始化为 zeros，(1+w) 即恒等权重，满足延迟基准所需）。
+    为何不走 GemmaRMSNorm 模块：它是 CustomOp 子类，__init__ 经 super().__init__()
+    依赖 vllm 运行时 compilation_config，离开模型上下文构造易静默失败（上一版 native
+    闭包据此 try/except 吞异常并返回 None，导致被采样调用其实是空操作——延迟恒为
+    ~0.003ms、NCU 采不到 kernel）。直接调 ir.ops.rms_norm 无此依赖，稳定触发 kernel。
+
+    注意：当前 vllm 版本 ir.ops.rms_norm 在 NVIDIA 上为 eager PyTorch 实现
+    （pow/mean/rsqrt/mul 若干小 kernel），FlagGems-vllm 的 gemma_rms_norm NV 侧
+    本就无专用融合 CUDA kernel（test_gemma_rms_norm.py 的 baseline 仅
+    ascend/mthreads/iluvatar/hygon 厂商实现，无 nvidia 分支）。故此基准测的是
+    vLLM 在 NV 上实际走的 RMSNorm eager 路径。
+
+输入构造：本算子在 FlagGems-vllm 无 NV 专用 benchmark，shape 为 vllm 源码推断
+    （非 FlagGems-vllm 基准）。按 RMSNorm 常见用法取 (num_tokens, hidden) 二维网格，
+    hidden 覆盖 Gemma 常见隐藏维；weight 以 (1 + randn) 预置（对齐 Gemma 的 1+w 语义）。
 """
 
 import importlib
@@ -38,7 +44,7 @@ import torch
 
 OP_NAME = "gemma_rms_norm"
 DTYPES = [torch.bfloat16, torch.float16, torch.float32]
-IS_INPLACE = False  # 返回归一化后的张量
+IS_INPLACE = False  # 返回归一化后的新张量
 
 _EPS = 1.0e-6
 
@@ -59,28 +65,22 @@ _SHAPES = [
 
 
 def native():
-    """返回按 hidden 惰性构造并缓存 GemmaRMSNorm 的闭包；不可用时返回 None。"""
+    """返回按 (x, weight, eps) 调 ir.ops.rms_norm 的薄封装；不可用时返回 None。
+
+    weight 由 build_inputs 预置为 Gemma 的 (1 + w)，故此处直接透传，等价
+    GemmaRMSNorm.forward_native 的 `weight = self.weight.float() + 1.0` 后再调
+    rms_norm 的效果。
+    """
     try:
-        mod = importlib.import_module("vllm.model_executor.layers.layernorm")
+        mod = importlib.import_module("vllm.ir.ops")
     except ImportError:
         return None
-    cls = getattr(mod, "GemmaRMSNorm", None)
-    if cls is None:
+    rms_norm = getattr(mod, "rms_norm", None)
+    if rms_norm is None or not callable(rms_norm):
         return None
 
-    cache: dict[tuple, object] = {}
-
-    def _run(x, residual=None):
-        hidden = x.shape[-1]
-        key = (hidden, x.dtype, x.device)
-        inst = cache.get(key)
-        if inst is None:
-            try:
-                inst = cls(hidden, _EPS).to(device=x.device, dtype=x.dtype)
-            except Exception:  # noqa: BLE001 — 无运行时上下文时放弃
-                return None
-            cache[key] = inst
-        return inst(x, residual)
+    def _run(x, weight, eps):
+        return rms_norm(x, weight, eps)
 
     return _run
 
@@ -92,8 +92,10 @@ def grid():
 def build_inputs(binding, dtype, device):
     t, h = binding["num_tokens"], binding["hidden"]
     x = torch.randn(t, h, dtype=dtype, device=device)
-    # residual 缺省 None，走 ir.ops.rms_norm 单张量路径。
-    return (x,), {}
+    # Gemma 语义：等效权重为 (1 + w)。这里直接给出 (1 + randn) 作为传入权重，
+    # 省去模块内部的 +1（数值等价，便于直调 ir.ops.rms_norm）。
+    weight = 1.0 + torch.randn(h, dtype=dtype, device=device)
+    return (x, weight, _EPS), {}
 
 
 def key_shape(binding):
@@ -106,7 +108,7 @@ def config(binding, dtype):
     return {
         "inputs": {
             "x": {"shape": [t, h], "dtype": dt},
-            "weight": {"shape": [h], "dtype": dt, "note": "实例内部持有 (1+w)"},
+            "weight": {"shape": [h], "dtype": dt, "note": "Gemma 等效权重 (1+w)"},
             "eps": {"scalar": _EPS},
         },
         "outputs": {
@@ -114,4 +116,6 @@ def config(binding, dtype):
         },
         "dims": {"num_tokens": t, "hidden": h},
         "shape_source": "vllm 源码推断，非 FlagGems-vllm 基准",
+        "note": "native 为 vllm.ir.ops.rms_norm（Gemma NV 路径为 eager 实现，"
+                "无专用融合 CUDA kernel）",
     }

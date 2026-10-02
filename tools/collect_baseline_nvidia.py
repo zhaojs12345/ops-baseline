@@ -877,6 +877,12 @@ def _collect_one_op_ops(op_module, ncu_enabled, report_dir,
             latency_ms = triton.testing.do_bench(
                 lambda: op(*args, **kwargs), warmup=25, rep=100)
             if ncu_enabled:
+                # NCU 子进程会用 build_inputs 再分配一份实参。大 E MoE（如
+                # e256_h7168 权重单份就 ~22GB）主、子进程两份叠加会超显存，导致
+                # NCU 子进程 build_inputs OOM（latency 阶段只有一份故能过）。
+                # 故启动 NCU 前先释放主进程这份实参并清空缓存，把显存让给子进程。
+                del args, kwargs
+                torch.cuda.empty_cache()
                 script = _build_profile_script_ops(
                     OPS_DIR, mod_name, binding, dtype_str, warmup=3)
                 ncu = profile_with_ncu(op_name, script, shape, dtype_str,
