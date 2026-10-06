@@ -14,8 +14,11 @@
 
 """chunk_kda baseline（方案 B）——FLA KDA 分块前向。
 
-native：vllm.third_party.flash_linear_attention.ops.kda.chunk_kda
-    （src: kda.py#L1506）。签名（已回源核对）：
+native：chunk_kda（FLA）。本地 vllm 落点为
+    vllm.model_executor.layers.fla.ops.kda.chunk_kda（已回源核对：
+    /Users/zjs-office/all_code/vllm/vllm/model_executor/layers/fla/ops/kda.py#L1458）；
+    旧布局 vllm.third_party.flash_linear_attention.ops.kda 作为回退。
+    签名（已回源核对）：
         chunk_kda(q, k, v, g, beta, scale=None, initial_state=None,
             output_final_state=False, use_qk_l2norm_in_kernel=False,
             cu_seqlens=None, **kwargs)
@@ -65,15 +68,23 @@ def _l2norm_lastdim(x):
 
 
 def native():
-    """解析 FLA kda.chunk_kda；解析不到返回 None。"""
-    try:
-        mod = importlib.import_module(
-            "vllm.third_party.flash_linear_attention.ops.kda"
-        )
-    except ImportError:
-        return None
-    op = getattr(mod, "chunk_kda", None)
-    return op if callable(op) else None
+    """解析 FLA chunk_kda；解析不到返回 None。
+
+    不同 vllm 版本 FLA 落点不同，依次尝试新布局（model_executor.layers.fla）
+    与旧布局（third_party.flash_linear_attention）。
+    """
+    for module in (
+        "vllm.model_executor.layers.fla.ops.kda",
+        "vllm.third_party.flash_linear_attention.ops.kda",
+    ):
+        try:
+            mod = importlib.import_module(module)
+        except ImportError:
+            continue
+        op = getattr(mod, "chunk_kda", None)
+        if callable(op):
+            return op
+    return None
 
 
 def grid():

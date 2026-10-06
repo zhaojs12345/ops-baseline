@@ -68,6 +68,8 @@ python tools/collect_baseline_nvidia.py --blacklist flash_mla,megamoe
 | **MoE / FP8 的 device-specific 调优配置 json** | `fused_experts_impl`、`fused_marlin_moe_*`、`w8a8_block_fp8_matmul` | 仅告警 `Using default MoE config`，走默认配置，**不影响采集**（性能可能非最优） | 可选：放置 `vllm/model_executor/layers/fused_moe/configs/E=*,N=*,device_name=NVIDIA_H800.json` 等 |
 | **`flash-linear-attention`（FLA）** | `chunk_gated_delta_rule_fwd`、`chunk_kda` 等 FLA 系算子 | `native()` 解析不到，算子被跳过 | 安装对应 vllm 版本依赖的 FLA；注意 import 路径随 vllm 版本不同（`vllm.third_party.flash_linear_attention...` 或 `vllm.model_executor.layers.fla...`） |
 | **足够显存（大 E MoE）** | `fused_experts_impl`、`fused_marlin_moe_*` 的 e256/e512 大档 | 采集器已在 NCU 前释放主进程实参，单份权重（~22GB）可过；若显存更小仍可能 OOM | 用 `--op-timeout` 调整超时；必要时 `--blacklist` 跳过超大档 |
+| **`tilelang`** | `mhc_pre`、`mhc_post` | `vllm.model_executor.layers.mhc` 的 `HAS_TILELANG_MHC` 门控为 False，`native()` 返回 None 跳过 | 安装 `tilelang`（vLLM 的 MHC kernel 依赖）；否则属预期跳过 |
+| **DeepSeek-V4 / qwen4_exp 等模型子树完整** | `qsa_pre_indexer`、`qsa_select_paged_decode`、`qsa_select_paged_prefill`（`vllm.models.qwen4_exp.*`）、`compressor` | 对应 vllm 模型子树不存在或需引擎上下文，`native()` 解析不到 | qsa 系需 vllm 带 `qwen4_exp` 子树；`compressor` 为 nn.Module 需引擎 VllmConfig，无法脱离引擎单采 |
 | **昇腾 / 海光等国产后端专属算子** | `group_list_cumsum`、`indexer_epilogue`、`lightning_indexer`、`kv_rmsnorm_rope_cache`、`sparse_attn_sharedkv`、`int8_einsum`、`fused_inv_rope_int8_quant` 等 | H800 **无对应 NV 原生 kernel**，`native()` 如实返回 None 跳过 | 无法在 H800 采集，属预期跳过（这些算子的验收数据来自昇腾/海光） |
 
-说明：被跳过的算子不影响其余算子采集（每个算子独立子进程）。`fused_marlin_moe_w4a16_int4` 因逐专家纯 Python 量化很慢，已将大 E 档位裁剪到两端 token 档以避免子进程超时。
+说明：被跳过的算子不影响其余算子采集（每个算子独立子进程）。`fused_marlin_moe_w4a16_int4` 因逐专家纯 Python 量化很慢，已将大 E 档位裁剪到两端 token 档以避免子进程超时。FLA 系算子（`chunk_gated_delta_rule_fwd`、`chunk_kda`）与 `fused_q_kv_rmsnorm` 的 `native()` 已改为多候选路径回退，兼容 `vllm.model_executor.layers.fla` / `vllm.third_party.flash_linear_attention` 等不同 vllm 布局。

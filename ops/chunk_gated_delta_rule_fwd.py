@@ -14,8 +14,11 @@
 
 """chunk_gated_delta_rule_fwd baseline（方案 B）——FLA 门控 delta rule 分块前向。
 
-native：vllm.third_party.flash_linear_attention.ops.chunk.chunk_gated_delta_rule_fwd
-    （src: chunk.py#L23）。签名（已回源核对）：
+native：chunk_gated_delta_rule_fwd（FLA）。本地 vllm 落点为
+    vllm.model_executor.layers.fla.ops.chunk.chunk_gated_delta_rule_fwd
+    （已回源核对：/Users/zjs-office/all_code/vllm/vllm/model_executor/layers/fla/
+    ops/chunk.py#L23）；旧布局 vllm.third_party.flash_linear_attention.ops.chunk
+    作为回退。签名（已回源核对）：
         chunk_gated_delta_rule_fwd(q, k, v, g, beta, scale, initial_state,
             output_final_state, cu_seqlens=None, chunk_indices=None,
             chunk_offsets=None, core_attn_out=None)
@@ -51,15 +54,25 @@ _SHAPES = [
 
 
 def native():
-    """解析 FLA chunk.chunk_gated_delta_rule_fwd；解析不到返回 None。"""
-    try:
-        mod = importlib.import_module(
-            "vllm.third_party.flash_linear_attention.ops.chunk"
-        )
-    except ImportError:
-        return None
-    op = getattr(mod, "chunk_gated_delta_rule_fwd", None)
-    return op if callable(op) else None
+    """解析 FLA chunk_gated_delta_rule_fwd；解析不到返回 None。
+
+    不同 vllm 版本 FLA 落点不同，依次尝试：
+      - vllm.model_executor.layers.fla.ops.chunk（新布局，已回源核对：
+        /Users/zjs-office/all_code/vllm/vllm/model_executor/layers/fla/ops/chunk.py#L23）
+      - vllm.third_party.flash_linear_attention.ops.chunk（旧布局 / 另一发行）
+    """
+    for module in (
+        "vllm.model_executor.layers.fla.ops.chunk",
+        "vllm.third_party.flash_linear_attention.ops.chunk",
+    ):
+        try:
+            mod = importlib.import_module(module)
+        except ImportError:
+            continue
+        op = getattr(mod, "chunk_gated_delta_rule_fwd", None)
+        if callable(op):
+            return op
+    return None
 
 
 def grid():

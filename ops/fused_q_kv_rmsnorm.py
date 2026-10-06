@@ -15,17 +15,17 @@
 """fused_q_kv_rmsnorm baseline（方案 B）。
 
 native：DeepseekV4 融合 Q/KV RMSNorm 的 Triton wrapper。
-    - benchmark 记载的公开入口是
-      vllm.v1.attention.ops.deepseek_v4_ops.fused_q_kv_rmsnorm；
-      本地 vllm 检出（76ba32160a）里 **不存在** 该模块。
-    - 实际符号在
-      vllm/models/common/ops/fused_qk_rmsnorm.py#L63
+    - 本地 vllm 实际符号在
+      vllm/models/deepseek_v4/common/ops/fused_qk_rmsnorm.py#L57
       def fused_q_kv_rmsnorm(qr, kv, q_weight, kv_weight, eps)
           -> tuple[Tensor, Tensor]
+      （亦经 common/ops/__init__.py 再导出为
+      vllm.models.deepseek_v4.common.ops.fused_q_kv_rmsnorm）。
       内部启动 _fused_q_kv_rmsnorm_kernel[(num_tokens, 2)]，非原地（新分配
       qr_out/kv_out 两个输出），全程 fp32 归约后单次 cast 落回。
-    native() 先试 benchmark 记载的公开路径，取不到再回落到实际源码路径；
-    两处都取不到返回 None（采集器优雅跳过）。
+    - 另有旧布局/另一发行的回退路径
+      vllm.v1.attention.ops.deepseek_v4_ops / vllm.models.common.ops.fused_qk_rmsnorm。
+    native() 依次尝试上述路径，均取不到返回 None（采集器优雅跳过）。
 
 输入构造复刻
 FlagGems-vllm/benchmark/test_deepseek_v4_attention_fused_q_kv_rmsnorm.py 的
@@ -49,8 +49,13 @@ IS_INPLACE = False  # 新分配 qr_out/kv_out，返回 (qr_out, kv_out)
 
 _EPS = 1e-6
 
-# (public benchmark path, actual source path) — 依次尝试。
+# (module path, symbol) — 依次尝试。本地 vllm 实际落点为
+# vllm.models.deepseek_v4.common.ops.fused_qk_rmsnorm.fused_q_kv_rmsnorm（已回源核对：
+# /Users/zjs-office/all_code/vllm/vllm/models/deepseek_v4/common/ops/fused_qk_rmsnorm.py#L57，
+# 亦经 common/ops/__init__.py 再导出）；其余为旧布局/另一发行的回退路径。
 _CANDIDATES = [
+    ("vllm.models.deepseek_v4.common.ops.fused_qk_rmsnorm", "fused_q_kv_rmsnorm"),
+    ("vllm.models.deepseek_v4.common.ops", "fused_q_kv_rmsnorm"),
     ("vllm.v1.attention.ops.deepseek_v4_ops", "fused_q_kv_rmsnorm"),
     ("vllm.models.common.ops.fused_qk_rmsnorm", "fused_q_kv_rmsnorm"),
 ]
