@@ -20,8 +20,9 @@ native：vllm.model_executor.layers.fused_moe.experts.marlin_moe.fused_marlin_mo
     （marlin_moe.py#L297-304 的 assert 列表含 scalar_types.float8_e4m3fn）。
     src: vllm/model_executor/layers/fused_moe/experts/marlin_moe.py#L235
 
-shape 为 vllm 源码推断 + 复用 int8/int4 benchmark 的 MoE 架构档，非 FlagGems-vllm 基准：
-    CSV 明确「未找到对应 benchmark，仅有 w8a16_int8 版本」。这里沿用 int8 benchmark 的
+shape 为 vllm 源码推断 + 复用 int8 benchmark 的 MoE 架构档，非 FlagGems-vllm 专属基准：
+    CSV 明确「未找到对应 benchmark，仅有 w8a16_int8 版本」。这里**完全沿用**
+    test_fused_marlin_moe_w8a16_int8.py::set_shapes 的 28 组
     (num_tokens, num_experts, hidden, intermediate, topk) 生产档，量化换成 FP8。
 
 FP8 Marlin 权重打包用 vllm marlin_utils_fp8.marlin_quant_fp8_torch（#L612）：逐专家
@@ -44,17 +45,19 @@ _MODULE = "vllm.model_executor.layers.fused_moe.experts.marlin_moe"
 _SYMBOL = "fused_marlin_moe"
 _GROUP_SIZE = 128
 
-# shape 源码推断：复用 int8 benchmark 的生产 MoE 架构档。
+# shape 源码推断：复用 w8a16_int8 benchmark 的生产 MoE 架构档（无 fp8 专属 benchmark）。
+# 与 test_fused_marlin_moe_w8a16_int8.py::set_shapes 完全对齐：
+# 4 个 MoE 架构 (experts,hidden,intermediate,topk) × 7 个 token 档，共 28 组。
 # (num_tokens, num_experts, hidden, intermediate, topk)
 _SHAPES = [
-    # Mixtral-8x7B-like
-    (1, 8, 4096, 14336, 2),
-    (16, 8, 4096, 14336, 2),
-    (64, 8, 4096, 14336, 2),
-    # DeepSeek-V3-like (TP=8 shard)
-    (1, 256, 7168, 2048, 8),
-    (16, 256, 7168, 2048, 8),
-    (64, 256, 7168, 2048, 8),
+    (tokens, experts, hidden, intermediate, topk)
+    for (experts, hidden, intermediate, topk) in (
+        (8, 4096, 14336, 2),    # Mixtral-8x7B
+        (256, 7168, 2048, 8),   # DeepSeek-V3 (TP=8)
+        (512, 4096, 1024, 10),  # Qwen3.5-397B-A17B
+        (256, 4096, 2048, 6),   # DeepSeek-V4-Flash
+    )
+    for tokens in (1, 16, 64, 256, 1024, 4096, 16384)
 ]
 
 

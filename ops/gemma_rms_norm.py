@@ -33,12 +33,24 @@ native：vllm.ir.ops.rms_norm（已回源码核对：
     ascend/mthreads/iluvatar/hygon 厂商实现，无 nvidia 分支）。故此基准测的是
     vLLM 在 NV 上实际走的 RMSNorm eager 路径。
 
-输入构造：本算子在 FlagGems-vllm 无 NV 专用 benchmark，shape 为 vllm 源码推断
-    （非 FlagGems-vllm 基准）。按 RMSNorm 常见用法取 (num_tokens, hidden) 二维网格，
-    hidden 覆盖 Gemma 常见隐藏维；weight 以 (1 + randn) 预置（对齐 Gemma 的 1+w 语义）。
+输入构造复刻 FlagGems-vllm/benchmark/test_gemma_rms_norm.py 的
+GemmaRmsNormBenchmark.get_input_iter（shape=(M, N)）：
+    x = randn(M, N); w = randn(N); eps = 1e-5
+    （benchmark 的 x,w,eps 直接喂 gems_op/baseline；本模块 native 走
+    vllm.ir.ops.rms_norm，weight 以 (1 + w) 预置对齐 Gemma 的 1+w 语义。）
+
+shape 来源：benchmark GemmaRmsNormBenchmark 用 set_shapes 硬编码（跳过 yaml）：
+    _gemma_rms_norm_ms = [1, 256, 1024]
+    _gemma_rms_norm_ns = [128, 256, 1024, 16384, 1152, 2048, 2560, 3072, 3584,
+                          3840, 4608, 5376]
+    shapes = product(ms, ns)（共 36 个 (M, N)）。
+注：benchmark eps=1e-5；本模块沿用 1e-6（RMSNorm eps 差异对基准 shape 无影响，保留原值）。
+存疑：benchmark dtypes 仅 [float16]，本模块 DTYPES 仍保留 bf16/fp16/fp32 三档
+（dtype 非 shape，未改）。
 """
 
 import importlib
+from itertools import product
 
 import torch
 
@@ -48,20 +60,10 @@ IS_INPLACE = False  # 返回归一化后的新张量
 
 _EPS = 1.0e-6
 
-# shape 为 vllm 源码推断，非 FlagGems-vllm 基准。
-# (num_tokens, hidden)；hidden 取 Gemma 常见隐藏维（2048/3072/3584/4096）。
-_SHAPES = [
-    (1, 2048),
-    (16, 2048),
-    (256, 2048),
-    (4096, 2048),
-    (256, 3072),
-    (4096, 3072),
-    (256, 3584),
-    (4096, 3584),
-    (256, 4096),
-    (4096, 4096),
-]
+# benchmark GemmaRmsNormBenchmark.set_shapes：product(ms, ns)，(M=num_tokens, N=hidden)。
+_GEMMA_MS = [1, 256, 1024]
+_GEMMA_NS = [128, 256, 1024, 16384, 1152, 2048, 2560, 3072, 3584, 3840, 4608, 5376]
+_SHAPES = [(m, n) for m, n in product(_GEMMA_MS, _GEMMA_NS)]
 
 
 def native():
@@ -115,7 +117,8 @@ def config(binding, dtype):
             "out": {"shape": [t, h], "dtype": dt},
         },
         "dims": {"num_tokens": t, "hidden": h},
-        "shape_source": "vllm 源码推断，非 FlagGems-vllm 基准",
+        "shape_source": "test_gemma_rms_norm.py GemmaRmsNormBenchmark.set_shapes "
+                        "(product(ms,ns))",
         "note": "native 为 vllm.ir.ops.rms_norm（Gemma NV 路径为 eager 实现，"
                 "无专用融合 CUDA kernel）",
     }

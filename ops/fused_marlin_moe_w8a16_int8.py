@@ -21,7 +21,9 @@ native：vllm.model_executor.layers.fused_moe.experts.marlin_moe.fused_marlin_mo
 
 输入构造复刻 FlagGems-vllm/benchmark/test_fused_marlin_moe_w8a16_int8.py：
     与 int4 版同构，仅量化类型换成 uint8b128（marlin_quantize 逐专家打包）。
-    shape 来源：benchmark set_shapes（Mixtral / DeepSeek-V3 两组，token 档 1/16/64）。
+    shape 来源：benchmark set_shapes（4 个 MoE 架构 Mixtral / DeepSeek-V3 /
+    Qwen3.5-397B-A17B / DeepSeek-V4-Flash × token 档 1/16/64/256/1024/4096/16384，
+    共 28 组，与 benchmark 完全一致）。
 
 离线（无 vllm 的 stub）无法做 Marlin 打包，build_inputs 走占位回退；native() 此时
 返回 None，采集器会跳过。
@@ -39,16 +41,18 @@ _MODULE = "vllm.model_executor.layers.fused_moe.experts.marlin_moe"
 _SYMBOL = "fused_marlin_moe"
 _GROUP_SIZE = 128
 
-# benchmark set_shapes：(num_tokens, num_experts, hidden, intermediate, topk)
+# benchmark set_shapes：4 个 MoE 架构 (experts,hidden,intermediate,topk) × 7 个 token
+# 档 (1/16/64/256/1024/4096/16384) 的笛卡尔积，共 28 组。
+# (num_tokens, num_experts, hidden, intermediate, topk)
 _SHAPES = [
-    # Mixtral-8x7B-like
-    (1, 8, 4096, 14336, 2),
-    (16, 8, 4096, 14336, 2),
-    (64, 8, 4096, 14336, 2),
-    # DeepSeek-V3-like (TP=8 shard)
-    (1, 256, 7168, 2048, 8),
-    (16, 256, 7168, 2048, 8),
-    (64, 256, 7168, 2048, 8),
+    (tokens, experts, hidden, intermediate, topk)
+    for (experts, hidden, intermediate, topk) in (
+        (8, 4096, 14336, 2),    # Mixtral-8x7B
+        (256, 7168, 2048, 8),   # DeepSeek-V3 (TP=8)
+        (512, 4096, 1024, 10),  # Qwen3.5-397B-A17B
+        (256, 4096, 2048, 6),   # DeepSeek-V4-Flash
+    )
+    for tokens in (1, 16, 64, 256, 1024, 4096, 16384)
 ]
 
 

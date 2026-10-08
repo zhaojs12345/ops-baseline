@@ -46,10 +46,11 @@ FusedDeepseekV4QnormRopeKVRopeQuantInsertBenchmark.make_input：
   2. cos_sin_cache 用 randn 占位（真实值应为 make_cos_sin_cache 的 cos/sin 拼接），
      仅供 NCU 计时基准，不做数值正确性校验；离线冒烟 stub 也不支持 einsum/cos。
 
-shape 来自 benchmark get_performance_test_params：
+shape 来自 benchmark get_performance_test_params（与 benchmark 完全一致，全量 22 档）：
     num_tokens ∈ {1,4,17,64,1024,2048,8192,32768,65536,98304,131072}，num_heads ∈ {64,128}。
-    大档（num_tokens>=32768）单个 q 张量达数 GB（131072*128*512*2B≈17GB），
-    未纳入默认网格以免采集时 OOM；需要时可在 _SHAPES 追加或用 --ops 单独跑。
+    注意：大档（num_tokens>=32768）单个 q 张量达数 GB（131072*128*512*2B≈17GB），
+    真卡采集时可能 OOM；此处按「与 benchmark 一致」要求保留全部档位，实跑若遇显存
+    不足可用 --ops 单独跑或临时裁剪。
 """
 
 import importlib
@@ -69,16 +70,11 @@ _BLOCK_SIZE = 64
 _MAX_POS = 4096
 _EPS = 1e-6
 
-# benchmark 网格的中小档（避开数 GB 大档）：(num_tokens, num_heads)
-_SHAPES = [
-    (1, 64), (1, 128),
-    (4, 64), (4, 128),
-    (17, 64), (17, 128),
-    (64, 64), (64, 128),
-    (1024, 64), (1024, 128),
-    (2048, 64), (2048, 128),
-    (8192, 64), (8192, 128),
-]
+# benchmark get_performance_test_params 全量网格：num_tokens × num_heads
+# num_tokens ∈ {1,4,17,64,1024,2048,8192,32768,65536,98304,131072}, num_heads ∈ {64,128}
+_NUM_TOKENS = [1, 4, 17, 64, 1024, 2048, 8192, 32768, 65536, 98304, 131072]
+_NUM_HEADS = [64, 128]
+_SHAPES = [(t, h) for t in _NUM_TOKENS for h in _NUM_HEADS]
 
 
 def native():

@@ -32,7 +32,7 @@ OP_NAME = "pack_seq_triton"
 DTYPES = [torch.float16, torch.float32, torch.bfloat16]
 IS_INPLACE = False
 
-# benchmark PACK_BENCH_SHAPES：(N, D, B, lengths_list)。
+# benchmark PACK_BENCH_SHAPES（test_pack_seq.py#L71）：(N, D, B, lengths_list)。
 _SHAPES = [
     (512, 64, 5, [64, 128, 64, 128, 128]),
     (4096, 128, 4, [1024, 1024, 1024, 1024]),
@@ -40,6 +40,9 @@ _SHAPES = [
     (2048, 512, 4, [512, 512, 512, 512]),
     (16384, 64, 8, [2048] * 8),
     (1024, 1024, 4, [256] * 4),
+    (2048, 2048, 512, [4] * 512),
+    (4094, 1024, 1024, [4] * 1024),
+    (8192, 1024, 1024, [8] * 1024),
 ]
 
 

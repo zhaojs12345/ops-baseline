@@ -25,7 +25,7 @@ native：vllm.vllm_flash_attn.flash_attn_interface.flash_attn_varlen_func(
     src: vllm/vllm_flash_attn/flash_attn_interface.py#L176
 
 输入构造复刻 FlagGems-vllm/benchmark/test_flash_attn_varlen_func.py 的
-flash_attn_varlen_input_fn（Qwen3-1.7B 采样档）：
+flash_attn_varlen_input_fn（Qwen3.6-35B-A3B 采样档：6 组 TP1 + 6 组 TP4）：
     query      = randn(cu_query_lens[-1], num_query_heads, head_size)
     key_cache  = randn(num_blocks, block_size, num_kv_heads, head_size)
     value_cache= randn_like(key_cache)
@@ -36,8 +36,10 @@ flash_attn_varlen_input_fn（Qwen3-1.7B 采样档）：
     out           = empty_like(query)
     scale = head_size**-0.5, causal=True, window_size=(-1,-1)
 调用位置参数顺序与 benchmark 完全一致（20 个位置参数 + 一组尾部 kwargs）。
-num_heads=16, num_heads_k=8, head_dim=128, block_size=16, num_blocks=2000。
-shape 网格取 benchmark set_shapes 里的 4 组 (cu_seq_lens_q, seqused_k) 采样档。
+每档的 (num_heads, num_heads_k)、block_size、num_blocks 随档位变化（见 _ALL_* 列表）；
+head_dim 固定 256，alibi=False，soft_cap=None（→ softcap 0）。
+shape 网格取 benchmark set_shapes 里的 12 组采样档（TP1 6 组 head=(16,2)/block=32/
+blocks=73920；TP4 6 组 head=(4,1)/block=16，num_blocks 见 _ALL_NUM_BLOCKS）。
 """
 
 import importlib
@@ -48,38 +50,47 @@ OP_NAME = "flash_attn_varlen_func"
 DTYPES = [torch.float16, torch.bfloat16]
 IS_INPLACE = False  # 主输出返回；out 张量同时被写（paged 路径）
 
-_NUM_HEADS = 16
-_NUM_HEADS_K = 8
-_HEAD_DIM = 128
-_BLOCK_SIZE = 16
-_NUM_BLOCKS = 2000
+_HEAD_DIM = 256
 
-# 复刻 set_shapes：每档 (cu_seq_lens_q, seqused_k)。
+# 复刻 set_shapes（Qwen3.6-35B-A3B）：每档 cu_seq_lens_q。
 _ALL_CU_SEQ_LENS_Q = [
-    (0, 512),
-    (0, 1, 2, 72),
-    tuple(range(0, 45))
-    + (105, 121, 137, 153, 169, 185, 201, 217, 233, 249, 265),
-    tuple(range(0, 196)) + (211, 226, 240, 253, 265),
+    # TP1
+    (0, 1035),
+    tuple(range(257)),
+    (0, 1, 2, 3, 4, 46, 4152, 8258, 12364, 16384),
+    (0, 12, 16384),
+    (0, 1, 2, 3, 67),
+    (0, 16384),
+    # TP4
+    (0, 1036),
+    tuple(range(513)),
+    tuple(range(17))
+    + (182, 1217, 2253, 3287, 4321, 5355, 6390, 7424, 8458, 9494, 10528,
+       11562, 12596, 13631, 14667, 15702, 16384),
+    (0, 12, 16384),
+    (0, 12),
+    (0, 16384),
 ]
 _ALL_SEQUSED_K = [
-    (512,),
-    (1, 1, 70),
-    (515,) + (514,) * 20 + (513,) * 20 + (512,) * 14,
-    (2333,)
-    + (2331,) * 20
-    + (2330,) * 20
-    + (2329,) * 14
-    + (2328,) * 18
-    + (2327,) * 15
-    + (2326,) * 17
-    + (2325,) * 18
-    + (2324,) * 21
-    + (2323,) * 22
-    + (2322,) * 24
-    + (2321,) * 5
-    + (2320, 2319, 2318, 2317, 2316),
+    (1035,),
+    (1,) * 256,
+    (4110, 4108, 4107, 4107, 4106, 4106, 4106, 4106, 4020),
+    (32780, 16372),
+    (65560, 65555, 65550, 65546),
+    (65536,),
+    (1036,),
+    (32,) * 512,
+    (1038, 1035, 1035, 1037, 1035, 1035, 1035, 1035, 1035, 1035, 1036, 1035,
+     1037, 1035, 1035, 1035, 1034, 1035, 1036, 1034, 1034, 1034, 1035, 1034,
+     1034, 1036, 1034, 1034, 1034, 1035, 1036, 1035, 682),
+    (65548, 16372),
+    (32780,),
+    (65536,),
 ]
+# 每档 (num_heads, num_heads_k)、block_size、num_blocks。
+_ALL_NUM_HEADS = [(16, 2)] * 6 + [(4, 1)] * 6
+_ALL_BLOCK_SIZES = [32] * 6 + [16] * 6
+_ALL_NUM_BLOCKS = [73920] * 6 + [605550, 16896] + [605550] * 4
 
 
 def native():
@@ -95,10 +106,7 @@ def native():
 
 
 def grid():
-    out = []
-    for idx, (cu_q, seq_k) in enumerate(zip(_ALL_CU_SEQ_LENS_Q, _ALL_SEQUSED_K)):
-        out.append({"shape_idx": idx})
-    return out
+    return [{"shape_idx": idx} for idx in range(len(_ALL_CU_SEQ_LENS_Q))]
 
 
 def _config(binding):
@@ -106,8 +114,15 @@ def _config(binding):
     return _ALL_CU_SEQ_LENS_Q[idx], _ALL_SEQUSED_K[idx]
 
 
+def _dims(binding):
+    idx = binding["shape_idx"]
+    num_heads, num_heads_k = _ALL_NUM_HEADS[idx]
+    return num_heads, num_heads_k, _ALL_BLOCK_SIZES[idx], _ALL_NUM_BLOCKS[idx]
+
+
 def build_inputs(binding, dtype, device):
     cu_query_lens, seqused_k = _config(binding)
+    num_heads, num_heads_k, block_size, num_blocks = _dims(binding)
 
     num_seqs = len(cu_query_lens) - 1
     max_query_len = max(
@@ -118,20 +133,20 @@ def build_inputs(binding, dtype, device):
     scale = _HEAD_DIM ** -0.5
 
     query = torch.randn(
-        cu_query_lens[-1], _NUM_HEADS, _HEAD_DIM, dtype=dtype, device=device
+        cu_query_lens[-1], num_heads, _HEAD_DIM, dtype=dtype, device=device
     )
     out = torch.empty_like(query)
     key_cache = torch.randn(
-        _NUM_BLOCKS, _BLOCK_SIZE, _NUM_HEADS_K, _HEAD_DIM,
+        num_blocks, block_size, num_heads_k, _HEAD_DIM,
         dtype=dtype, device=device,
     )
     value_cache = torch.randn_like(key_cache)
     cu_query_lens_t = torch.tensor(cu_query_lens, dtype=torch.int32, device=device)
     seqused_k_t = torch.tensor(seqused_k, dtype=torch.int32, device=device)
 
-    max_num_blocks_per_seq = (max_kv_len + _BLOCK_SIZE - 1) // _BLOCK_SIZE
+    max_num_blocks_per_seq = (max_kv_len + block_size - 1) // block_size
     block_tables = torch.randint(
-        0, _NUM_BLOCKS, (num_seqs, max_num_blocks_per_seq),
+        0, num_blocks, (num_seqs, max_num_blocks_per_seq),
         dtype=torch.int32, device=device,
     )
 
@@ -179,23 +194,25 @@ def build_inputs(binding, dtype, device):
 
 def key_shape(binding):
     cu_query_lens, seqused_k = _config(binding)
+    num_heads, _num_heads_k, _bs, _nb = _dims(binding)
     num_seqs = len(cu_query_lens) - 1
-    return [cu_query_lens[-1], num_seqs, _NUM_HEADS, _HEAD_DIM, max(seqused_k)]
+    return [cu_query_lens[-1], num_seqs, num_heads, _HEAD_DIM, max(seqused_k)]
 
 
 def config(binding, dtype):
     cu_query_lens, seqused_k = _config(binding)
+    num_heads, num_heads_k, block_size, num_blocks = _dims(binding)
     num_seqs = len(cu_query_lens) - 1
     total_q = cu_query_lens[-1]
     max_kv_len = max(seqused_k)
-    max_num_blocks_per_seq = (max_kv_len + _BLOCK_SIZE - 1) // _BLOCK_SIZE
+    max_num_blocks_per_seq = (max_kv_len + block_size - 1) // block_size
     dt = str(dtype)
     return {
         "inputs": {
-            "q": {"shape": [total_q, _NUM_HEADS, _HEAD_DIM], "dtype": dt},
-            "k": {"shape": [_NUM_BLOCKS, _BLOCK_SIZE, _NUM_HEADS_K, _HEAD_DIM],
+            "q": {"shape": [total_q, num_heads, _HEAD_DIM], "dtype": dt},
+            "k": {"shape": [num_blocks, block_size, num_heads_k, _HEAD_DIM],
                   "dtype": dt, "note": "paged KV cache"},
-            "v": {"shape": [_NUM_BLOCKS, _BLOCK_SIZE, _NUM_HEADS_K, _HEAD_DIM],
+            "v": {"shape": [num_blocks, block_size, num_heads_k, _HEAD_DIM],
                   "dtype": dt, "note": "paged KV cache"},
             "cu_seqlens_q": {"shape": [num_seqs + 1], "dtype": "torch.int32"},
             "seqused_k": {"shape": [num_seqs], "dtype": "torch.int32"},
@@ -209,16 +226,16 @@ def config(binding, dtype):
             "window_size": {"scalar": [-1, -1]},
         },
         "outputs": {
-            "out": {"shape": [total_q, _NUM_HEADS, _HEAD_DIM], "dtype": dt},
+            "out": {"shape": [total_q, num_heads, _HEAD_DIM], "dtype": dt},
         },
         "dims": {
             "total_q": total_q,
             "num_seqs": num_seqs,
-            "num_heads": _NUM_HEADS,
-            "num_heads_k": _NUM_HEADS_K,
+            "num_heads": num_heads,
+            "num_heads_k": num_heads_k,
             "head_dim": _HEAD_DIM,
-            "block_size": _BLOCK_SIZE,
-            "num_blocks": _NUM_BLOCKS,
+            "block_size": block_size,
+            "num_blocks": num_blocks,
             "max_kv_len": max_kv_len,
         },
     }

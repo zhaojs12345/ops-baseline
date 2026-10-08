@@ -18,16 +18,21 @@ native：vllm._custom_ops.fused_add_rms_norm(input, residual, weight, eps)
     input/residual 原地写回，返回 None。
 
 输入构造复刻 FlagGems-vllm/benchmark/test_fused_add_rms_norm.py 的 _input_fn：
-    input    = randn(M, N)
-    residual = randn(M, N)
-    weight   = randn(N)
+    input    = randn(shape)
+    residual = randn(shape)
+    weight   = randn(shape[-1])
     eps      = 1e-5
 注意 native 签名不含 benchmark 里的 layer_shape 参数（那是 FlagGems 顶层包装层
 的入参）；native 直接吃 (input, residual, weight, eps)。
+
+shape 来源：benchmark 的 FusedAddRmsNormBenchmark 继承 GenericBenchmarkExcluse1D，
+op_name "fused_add_rms_norm" 不在 core_shapes.yaml，按 MRO 命中类名键
+「GenericBenchmarkExcluse1D」（core_shapes.yaml#L234）：
+    [64,64] [1024,1024] [4096,4096] [64,512,512] [1024,1024,1024]
+（含 2D/3D；native 支持任意前导维，weight 对齐 shape[-1]）。
 """
 
 import importlib
-import itertools
 
 import torch
 
@@ -35,11 +40,15 @@ OP_NAME = "fused_add_rms_norm"
 DTYPES = [torch.bfloat16, torch.float16]
 IS_INPLACE = True
 
-# 采集维度网格：M（token 数）遍历，N（hidden）取常见档位。
-_GRID = {
-    "M": [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192],
-    "N": [256, 512],
-}
+# core_shapes.yaml「GenericBenchmarkExcluse1D」键（test_fused_add_rms_norm.py 的
+# FusedAddRmsNormBenchmark 走该键）。
+_SHAPES = [
+    (64, 64),
+    (1024, 1024),
+    (4096, 4096),
+    (64, 512, 512),
+    (1024, 1024, 1024),
+]
 
 _EPS = 1.0e-5
 
@@ -55,22 +64,21 @@ def native():
 
 
 def grid():
-    dims = list(_GRID)
-    return [dict(zip(dims, combo))
-            for combo in itertools.product(*(_GRID[d] for d in dims))]
+    return [{"shape": list(s)} for s in _SHAPES]
 
 
 def build_inputs(binding, dtype, device):
-    M, N = binding["M"], binding["N"]
-    inp = torch.randn(M, N, dtype=dtype, device=device)
-    residual = torch.randn(M, N, dtype=dtype, device=device)
+    shape = list(binding["shape"])
+    N = shape[-1]
+    inp = torch.randn(shape, dtype=dtype, device=device)
+    residual = torch.randn(shape, dtype=dtype, device=device)
     weight = torch.randn(N, dtype=dtype, device=device)
     args = (inp, residual, weight, _EPS)
     return args, {}
 
 
 def key_shape(binding):
-    return [binding["M"], binding["N"]]
+    return list(binding["shape"])
 
 
 def config(binding, dtype):
@@ -78,18 +86,19 @@ def config(binding, dtype):
 
     input/residual 原地写回，既是输入也是输出。
     """
-    M, N = binding["M"], binding["N"]
+    shape = list(binding["shape"])
+    N = shape[-1]
     dt = str(dtype)
     return {
         "inputs": {
-            "input": {"shape": [M, N], "dtype": dt, "note": "原地写回"},
-            "residual": {"shape": [M, N], "dtype": dt, "note": "原地写回"},
+            "input": {"shape": shape, "dtype": dt, "note": "原地写回"},
+            "residual": {"shape": shape, "dtype": dt, "note": "原地写回"},
             "weight": {"shape": [N], "dtype": dt},
             "eps": {"scalar": _EPS},
         },
         "outputs": {
-            "input": {"shape": [M, N], "dtype": dt},
-            "residual": {"shape": [M, N], "dtype": dt},
+            "input": {"shape": shape, "dtype": dt},
+            "residual": {"shape": shape, "dtype": dt},
         },
-        "dims": {"M": M, "N": N},
+        "dims": {"N": N, "shape": shape},
     }

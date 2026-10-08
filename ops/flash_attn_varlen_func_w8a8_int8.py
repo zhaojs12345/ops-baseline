@@ -41,7 +41,8 @@ from itertools import accumulate
 import torch
 
 OP_NAME = "flash_attn_varlen_func_w8a8_int8"
-DTYPES = [torch.float16, torch.bfloat16]
+# 与 benchmark 一致：test_flash_attn_varlen_func_w8a8_int8.py#L196 dtypes=[bfloat16]。
+DTYPES = [torch.bfloat16]
 IS_INPLACE = False
 
 _NUM_HEADS = 32

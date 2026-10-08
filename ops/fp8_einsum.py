@@ -14,54 +14,48 @@
 
 """fp8_einsum baseline（方案 B）。
 
-native：vllm.utils.deep_gemm.fp8_einsum(*args, **kwargs) -> ...
-    deep_gemm 惰性绑定的 wrapper：调用时先 _lazy_init()，若 _fp8_einsum_impl
-    仍为 None（deep_gemm 未加载/该版本无 fp8_einsum）则走 _missing 抛错，
-    否则转调 _fp8_einsum_impl。native() 只负责 import 并返回该 wrapper；
-    是否可真正执行取决于运行环境是否装了 deep_gemm——未加载时采集器会在调用处
-    捕获异常并跳过（符合契约）。
-    src: vllm/utils/deep_gemm.py#L467
+native：vllm.utils.deep_gemm.fp8_einsum(subscripts, (x_data, x_scale),
+        (y_data, y_scale), out, recipe=...) -> out。deep_gemm 惰性绑定 wrapper，
+        调用时 _lazy_init()；deep_gemm 未加载/该版本无 fp8_einsum 时抛错（采集器会在
+        调用处捕获并跳过）。native() 只负责 import 并返回 wrapper。
+        src: vllm/utils/deep_gemm.py#L467
 
-无对应 benchmark（FlagGems-vllm/benchmark 下无用例）。
-**shape 为 vllm 源码推断，非 FlagGems-vllm 基准**。
-推断依据：唯一调用点 vllm/models/deepseek_v4/nvidia/ops/o_proj.py#L66
-    fp8_einsum("bhr,hdr->bhd", (o_fp8, o_scale), (wo_a.weight, weight_scale),
-               z, recipe=einsum_recipe)
-其中（见同文件 fused_inv_rope_fp8_quant / deep_gemm_fp8_o_proj）：
-    o_fp8   : [T, G, D]        float8_e4m3fn      D = heads_per_group*head_dim
-    wo_a.weight : [G, o_lora_rank, D]  float8_e4m3fn
-    z (out) : [T, G, o_lora_rank]      bfloat16
-    recipe  : (1, 128, 128) (SM90) / (1, 1, 128) (SM100)
-    o_scale / weight_scale 为 block scale（fp32 或 INT32-packed UE8M0，随 arch）
-这里取 SM90 语义（recipe=(1,128,128)、fp32 scale）构造一组占位输入。
-注意：scale 张量的精确 packed 布局是 deep_gemm 内部约定，此处按 block 粒度给出
-fp32 近似占位；真机若 deep_gemm 已加载但拒绝该布局，采集器会跳过该点。
+输入构造复刻 FlagGems-vllm/benchmark/test_fp8_einsum.py 的
+FP8EinsumBenchmark.get_input_iter + _make_fp8_einsum_inputs（einsum "bhr,hdr->bhd"，
+block_shape=(block_n, block_k)=(128,128)）：
+    x = randn(b, h, r) bf16  ->  x_data (b, h, r) fp8_e4m3,
+                                 x_scale (b, h, ceil(r/block_k)) fp32  （per-token）
+    y = randn(h, d, r) bf16  ->  y_data (h, d, r) fp8_e4m3,
+                                 y_scale (h, ceil(d/block_n), ceil(r/block_k)) fp32 （per-block）
+    out = empty(b, h, d) bf16
+    调用 fp8_einsum("bhr,hdr->bhd", (x_data,x_scale), (y_data,y_scale), out,
+                    recipe=(1,128,128))
+注：benchmark 用 per_token_cast_to_fp8 / per_block_cast_to_fp8 算 UE8M0 scale（含
+位运算），采集只需形状/dtype 正确的实参，故此处 scale 用同形状 fp32 随机占位
+（真机若 deep_gemm 拒绝该布局，采集器会跳过该点）。
+
+shape 来源：benchmark 的 self.shapes = core_shapes.yaml「fp8_einsum」键（b,h,r,d，
+8 档）∪ set_more_shapes()（batches × {flash(8,4096,1024), pro(16,7168,1024)}），
+后者为前者超集，合并去重后共 22 档。shape_desc = "b, h, r, d"。
 """
 
 import importlib
+import math
 
 import torch
 
 OP_NAME = "fp8_einsum"
-DTYPES = [torch.bfloat16]  # 输出 z 的 dtype；operands 为 fp8（在 build_inputs 固定）
-IS_INPLACE = True  # 结果写入 out(z)
+DTYPES = [torch.bfloat16]  # 输出 out 的 dtype；operands 为 fp8（build_inputs 固定）
+IS_INPLACE = True  # 结果写入 out
 
 _FP8_DTYPE = getattr(torch, "float8_e4m3fn", None)
+_BLOCK_SHAPE = (128, 128)  # (block_n, block_k)，benchmark DEFAULT_BLOCK_SHAPE
+_RECIPE = (1, 128, 128)    # benchmark 固定 recipe
 
-# 源码推断维度（DeepSeek-V4 o_proj 语义）：
-#   head_dim = nope_dim(448) + rope_dim(64) = 512
-#   D = heads_per_group * head_dim
-_HEAD_DIM = 512
-_QUANT_BLOCK = 128
-_RECIPE = (1, 128, 128)  # SM90 语义
-
-# (T, G, heads_per_group, o_lora_rank)
-_SHAPES = [
-    (1, 1, 8, 2048),
-    (16, 1, 8, 2048),
-    (64, 1, 8, 2048),
-    (128, 1, 8, 2048),
-]
+# benchmark set_more_shapes()：batches × hrd_groups（flash/pro）；(b, h, r, d)。
+_BATCHES = (1, 4, 8, 16, 32, 64, 128, 4096, 8192, 16384, 32768)
+_HRD_GROUPS = ((8, 4096, 1024), (16, 7168, 1024))  # flash, pro
+_SHAPES = [(b, h, r, d) for (h, r, d) in _HRD_GROUPS for b in _BATCHES]
 
 
 def native():
@@ -78,10 +72,7 @@ def native():
 
 
 def grid():
-    return [
-        {"T": t, "G": g, "heads_per_group": hpg, "o_lora_rank": r}
-        for (t, g, hpg, r) in _SHAPES
-    ]
+    return [{"b": b, "h": h, "r": r, "d": d} for (b, h, r, d) in _SHAPES]
 
 
 def _fp8(shape, device):
@@ -93,57 +84,46 @@ def _fp8(shape, device):
 
 
 def build_inputs(binding, dtype, device):
-    T = binding["T"]
-    G = binding["G"]
-    hpg = binding["heads_per_group"]
-    r = binding["o_lora_rank"]
-    D = hpg * _HEAD_DIM
+    b, h, r, d = binding["b"], binding["h"], binding["r"], binding["d"]
+    block_n, block_k = _BLOCK_SHAPE
+    rk = math.ceil(r / block_k)
+    dn = math.ceil(d / block_n)
 
-    o_fp8 = _fp8((T, G, D), device)
-    wo_weight = _fp8((G, r, D), device)
-    # block scale（fp32 占位，block 粒度 = quant_group=128）
-    o_scale = torch.randn(T, G, D // _QUANT_BLOCK, dtype=torch.float32, device=device)
-    weight_scale = torch.randn(
-        G, r // _QUANT_BLOCK, D // _QUANT_BLOCK, dtype=torch.float32, device=device
-    )
-    z = torch.empty(T, G, r, dtype=torch.bfloat16, device=device)
+    x_data = _fp8((b, h, r), device)
+    x_scale = torch.randn(b, h, rk, dtype=torch.float32, device=device)
+    y_data = _fp8((h, d, r), device)
+    y_scale = torch.randn(h, dn, rk, dtype=torch.float32, device=device)
+    out = torch.empty(b, h, d, dtype=torch.bfloat16, device=device)
 
-    args = ("bhr,hdr->bhd", (o_fp8, o_scale), (wo_weight, weight_scale), z)
+    args = ("bhr,hdr->bhd", (x_data, x_scale), (y_data, y_scale), out)
     return args, {"recipe": _RECIPE}
 
 
 def key_shape(binding):
-    return [
-        binding["T"],
-        binding["G"],
-        binding["heads_per_group"],
-        binding["o_lora_rank"],
-    ]
+    return [binding["b"], binding["h"], binding["r"], binding["d"]]
 
 
 def config(binding, dtype):
-    T = binding["T"]
-    G = binding["G"]
-    hpg = binding["heads_per_group"]
-    r = binding["o_lora_rank"]
-    D = hpg * _HEAD_DIM
+    b, h, r, d = binding["b"], binding["h"], binding["r"], binding["d"]
+    block_n, block_k = _BLOCK_SHAPE
+    rk = math.ceil(r / block_k)
+    dn = math.ceil(d / block_n)
     fp8 = str(_FP8_DTYPE)
     return {
         "inputs": {
             "subscripts": {"scalar": "bhr,hdr->bhd"},
-            "o_fp8": {"shape": [T, G, D], "dtype": fp8},
-            "o_scale": {"shape": [T, G, D // _QUANT_BLOCK], "dtype": "torch.float32",
-                        "note": "block scale 占位（真布局为 deep_gemm 内部约定）"},
-            "wo_weight": {"shape": [G, r, D], "dtype": fp8},
-            "weight_scale": {"shape": [G, r // _QUANT_BLOCK, D // _QUANT_BLOCK],
-                             "dtype": "torch.float32"},
-            "out": {"shape": [T, G, r], "dtype": "torch.bfloat16", "note": "原地写"},
+            "x_data": {"shape": [b, h, r], "dtype": fp8},
+            "x_scale": {"shape": [b, h, rk], "dtype": "torch.float32",
+                        "note": "per-token block scale 占位"},
+            "y_data": {"shape": [h, d, r], "dtype": fp8},
+            "y_scale": {"shape": [h, dn, rk], "dtype": "torch.float32",
+                        "note": "per-block scale 占位"},
+            "out": {"shape": [b, h, d], "dtype": "torch.bfloat16", "note": "原地写"},
             "recipe": {"scalar": list(_RECIPE)},
         },
         "outputs": {
-            "out": {"shape": [T, G, r], "dtype": "torch.bfloat16"},
+            "out": {"shape": [b, h, d], "dtype": "torch.bfloat16"},
         },
-        "dims": {"T": T, "G": G, "heads_per_group": hpg,
-                 "head_dim": _HEAD_DIM, "D": D, "o_lora_rank": r},
-        "note": "shape 为 vllm 源码推断，非 FlagGems-vllm 基准",
+        "dims": {"b": b, "h": h, "r": r, "d": d,
+                 "block_n": block_n, "block_k": block_k},
     }

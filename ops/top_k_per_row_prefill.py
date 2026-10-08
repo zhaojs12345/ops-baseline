@@ -21,19 +21,19 @@ native：torch.ops._C.top_k_per_row_prefill(logits, rowStarts, rowEnds, indices,
     需先 import vllm._custom_ops 触发 torch.ops._C 命名空间注册。
 
 输入构造复刻 FlagGems-vllm/benchmark/test_top_k_per_row_prefill.py 的
-TopKPerRowPrefillBenchmark.get_input_iter（全 vocab 区间，row_starts=0,
-row_ends=vocab_size 的常见情形）：
-    logits      = randn(num_rows, vocab_size) fp32
-    row_starts  = zeros(num_rows) int32
-    row_ends    = full((num_rows,), vocab_size) int32
-    indices     = empty(num_rows, top_k) int32          （输出，原地写）
-    num_rows, stride0, stride1, top_k 为标量
-    stride0/stride1 取连续张量的 stride：contiguous 时 stride0=vocab_size,
-    stride1=1（此处直接按维度算，不调 .stride() 以兼容离线冒烟 stub）。
+TopKPerRowPrefillBenchmark.get_input_iter（shape=(num_rows, vocab_size, top_k,
+stride0, stride1)）：
+    buf        = randn((num_rows-1)*stride0 + (vocab_size-1)*stride1 + 1) fp32
+    logits     = as_strided(buf, (num_rows, vocab_size), (stride0, stride1))
+    row_starts = zeros(num_rows) int32
+    row_ends   = full((num_rows,), vocab_size) int32
+    indices    = empty(num_rows, top_k) int32            （输出，原地写）
+    调用 (logits, row_starts, row_ends, indices, num_rows, stride0, stride1, top_k)
+    注：部分 shape 的 stride0 > vocab_size（行间有间隔，logits 非连续），故用
+    buf.as_strided(...) 忠实复刻带 stride 的内存布局（方法式调用兼容离线 stub）。
 
-shape 来自 benchmark set_shapes：DeepSeek V4 生产配置 vocab_size=129280,
-top_k=1024，num_rows ∈ {1(decode 单 token), 32(典型 prefill 微批),
-64(较大批), 2048(最大序列)}。
+shape 来自 benchmark set_shapes：DeepSeek V4 全 vocab (64,129280,1024,129280,1)
++ DeepSeek-V4-Flash 6 档（含非连续 stride0）。
 """
 
 import importlib
@@ -44,12 +44,15 @@ OP_NAME = "top_k_per_row_prefill"
 DTYPES = [torch.float32]
 IS_INPLACE = True  # indices 原地写
 
-# benchmark set_shapes：(num_rows, vocab_size, top_k)
+# benchmark set_shapes：(num_rows, vocab_size, top_k, stride0, stride1)
 _SHAPES = [
-    (1, 129280, 1024),
-    (32, 129280, 1024),
-    (64, 129280, 1024),
-    (2048, 129280, 1024),
+    (64, 129280, 1024, 129280, 1),
+    (4, 8193, 512, 8456, 1),
+    (16383, 4095, 512, 4352, 1),
+    (4, 16385, 512, 16648, 1),
+    (12961, 4100, 512, 4360, 1),
+    (16380, 5115, 512, 5376, 1),
+    (4100, 1025, 512, 1288, 1),
 ]
 
 
@@ -67,19 +70,26 @@ def native():
 
 
 def grid():
-    return [{"num_rows": r, "vocab_size": v, "top_k": k}
-            for (r, v, k) in _SHAPES]
+    return [
+        {"num_rows": r, "vocab_size": v, "top_k": k,
+         "stride0": s0, "stride1": s1}
+        for (r, v, k, s0, s1) in _SHAPES
+    ]
 
 
 def build_inputs(binding, dtype, device):
-    r, v, k = binding["num_rows"], binding["vocab_size"], binding["top_k"]
-    logits = torch.randn(r, v, dtype=torch.float32, device=device)
+    r = binding["num_rows"]
+    v = binding["vocab_size"]
+    k = binding["top_k"]
+    s0 = binding["stride0"]
+    s1 = binding["stride1"]
+    buf = torch.randn((r - 1) * s0 + (v - 1) * s1 + 1,
+                      dtype=torch.float32, device=device)
+    logits = buf.as_strided((r, v), (s0, s1))
     row_starts = torch.zeros(r, dtype=torch.int32, device=device)
     row_ends = torch.full((r,), v, dtype=torch.int32, device=device)
     indices = torch.empty((r, k), dtype=torch.int32, device=device)
-    # contiguous logits：stride0=vocab_size, stride1=1
-    stride0, stride1 = v, 1
-    return (logits, row_starts, row_ends, indices, r, stride0, stride1, k), {}
+    return (logits, row_starts, row_ends, indices, r, s0, s1, k), {}
 
 
 def key_shape(binding):
@@ -87,10 +97,13 @@ def key_shape(binding):
 
 
 def config(binding, dtype):
-    r, v, k = binding["num_rows"], binding["vocab_size"], binding["top_k"]
+    r = binding["num_rows"]
+    v = binding["vocab_size"]
+    k = binding["top_k"]
     return {
         "inputs": {
-            "logits": {"shape": [r, v], "dtype": "torch.float32"},
+            "logits": {"shape": [r, v], "dtype": "torch.float32",
+                       "note": "as_strided，stride=(stride0, stride1)"},
             "row_starts": {"shape": [r], "dtype": "torch.int32",
                            "note": "每行有效区间起点，全 vocab 时为 0"},
             "row_ends": {"shape": [r], "dtype": "torch.int32",
@@ -98,12 +111,13 @@ def config(binding, dtype):
             "indices": {"shape": [r, k], "dtype": "torch.int32",
                         "note": "原地写回 top-k 索引"},
             "num_rows": {"scalar": r},
-            "stride0": {"scalar": v},
-            "stride1": {"scalar": 1},
+            "stride0": {"scalar": binding["stride0"]},
+            "stride1": {"scalar": binding["stride1"]},
             "top_k": {"scalar": k},
         },
         "outputs": {
             "indices": {"shape": [r, k], "dtype": "torch.int32"},
         },
-        "dims": {"num_rows": r, "vocab_size": v, "top_k": k},
+        "dims": {"num_rows": r, "vocab_size": v, "top_k": k,
+                 "stride0": binding["stride0"], "stride1": binding["stride1"]},
     }

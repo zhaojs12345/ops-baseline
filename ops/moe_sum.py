@@ -22,9 +22,11 @@ native：vllm._custom_ops.moe_sum(input, output, topk_ids=None, expert_map=None)
 输入构造复刻 FlagGems-vllm/benchmark/test_moe_sum.py 的 _input_fn：
     input  = randn(num_tokens, topk, hidden)
     output = empty(num_tokens, hidden)
-benchmark 用 GenericBenchmarkExcluse1D + 默认 shapes（consts.DEFAULT_SHAPES 里的
-2D/3D 项），2D 项 (M, N) 会被 _input_fn 补成 (M, 1, N)。这里直接给出等价的
-(num_tokens, topk, hidden) 网格。
+benchmark 用 GenericBenchmarkExcluse1D，op_name "moe_sum" 不在 core_shapes.yaml，
+按 MRO 命中类名键「GenericBenchmarkExcluse1D」（core_shapes.yaml#L234）：
+    [64,64] [1024,1024] [4096,4096] [64,512,512] [1024,1024,1024]
+_input_fn 把 2D (M,N) 补成 (M,1,N)，3D (num_tokens,topk,hidden) 原样用。
+这里按该规则逐一映射为 (num_tokens, topk, hidden)。
 """
 
 import importlib
@@ -35,15 +37,14 @@ OP_NAME = "moe_sum"
 DTYPES = [torch.float16, torch.float32, torch.bfloat16]
 IS_INPLACE = True  # 原地写 output
 
-# 复刻默认 shapes：2D (64,64)/(4096,4096) 视作 topk=1；3D (64,512,512) 直接用；
-# 另补常见 MoE topk 档位。语义：(num_tokens, topk, hidden)。
+# core_shapes.yaml「GenericBenchmarkExcluse1D」键，经 _input_fn 规则映射：
+#   2D (M,N) -> (M, 1, N)；3D 原样 (num_tokens, topk, hidden)。
 _SHAPES = [
-    (64, 1, 64),
-    (4096, 1, 4096),
-    (64, 512, 512),
-    (1024, 1, 1024),
-    (128, 8, 4096),
-    (512, 8, 4096),
+    (64, 1, 64),          # [64, 64]
+    (1024, 1, 1024),      # [1024, 1024]
+    (4096, 1, 4096),      # [4096, 4096]
+    (64, 512, 512),       # [64, 512, 512]
+    (1024, 1024, 1024),   # [1024, 1024, 1024]
 ]
 
 
