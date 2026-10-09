@@ -1,13 +1,15 @@
 # ops 模块生成契约（fork 必读）
 
-给 vllm-baseline 的 ops/ 目录新增算子基准模块。每个算子一个文件 `ops/<OP_NAME>.py`。
+给 vllm-baseline 的 ops/ 目录新增算子基准模块。算子按 repo 分目录：`ops/<repo>/`
+（如 `ops/vllm`、`ops/sglang`），每个算子一个文件 `ops/<repo>/<OP_NAME>.py`。采集时用
+`--repo <name>`（缺省 vllm）选择目录。下文示例路径以 vllm repo 为例。
 
 ## 必须遵守
 1. **只写你被分配的文件名**，不要碰 ops/ 下别的文件、不要改 CSV、不要改采集器、不要改 tools/ 里已有文件。
 2. 每个模块导出契约字段：`OP_NAME`(str)、`DTYPES`(list[torch.dtype])、`IS_INPLACE`(bool)、
    `native()->callable|None`、`grid()->list[dict]`、`build_inputs(binding,dtype,device)->(args,kwargs)`、
    `key_shape(binding)->list|str`；复杂算子再加 `config(binding,dtype)->dict`。
-3. 文件顶部放和 ops/moe_sum.py 一样的 Apache License 头 + 模块 docstring，docstring 里写清 native 调用坐标、
+3. 文件顶部放和 ops/vllm/moe_sum.py 一样的 Apache License 头 + 模块 docstring，docstring 里写清 native 调用坐标、
    输入构造来源（哪个 benchmark 的 input_fn）、以及 shape 来源。
 4. **native() 必须回源码核对**：去 `/Users/baai/Downloads/baai_repo/vllm` 确认 import 路径与符号真实存在、
    签名与调用参数一致。解析不到就让 native() 返回 None（采集器会优雅跳过）。禁止编造不存在的符号。
@@ -24,8 +26,8 @@
    不要为了“能跑”而编造假接口。
 
 ## 参考已完成模块（同款风格）
-ops/moe_sum.py, ops/moe_align_block_size.py, ops/topk_softplus_sqrt.py,
-ops/persistent_topk.py, ops/grouped_topk.py, ops/per_token_group_quant_fp8.py
+ops/vllm/moe_sum.py, ops/vllm/moe_align_block_size.py, ops/vllm/topk_softplus_sqrt.py,
+ops/vllm/persistent_topk.py, ops/vllm/grouped_topk.py, ops/vllm/per_token_group_quant_fp8.py
 
 ## 报告
 完成后回一条消息：每个算子一行——OP_NAME | native 是否核实到源码(文件#行) | shape 来源(benchmark 名 / 源码推断) |

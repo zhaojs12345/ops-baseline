@@ -49,11 +49,11 @@ _SYMBOL = "fused_marlin_moe"
 _GROUP_SIZE = 128
 
 # benchmark set_shapes：(num_tokens, num_experts, hidden, intermediate, topk)
+# 与 benchmark 完全一致：4 个生产 MoE 架构 × token 档 {1,4,8,16,32,64,128,256}，共 32 组。
 # 注意：本算子逐专家用纯 Python marlin_quantize（marlin_utils_test）打包，耗时随
-# num_experts 线性增长且与 num_tokens 无关——同一 (e,h,i) 的 4 个 token 档会把相同
-# 权重重复量化 4 次。大 E（256/512）全档会使单算子子进程 >1800s 超时（实测，整算子
-# 丢数据）。故大 E 架构只保留 t∈{1,256}（decode / 较大 batch 两端代表档），E=8 的
-# Mixtral（量化便宜）保留全部 4 档。mxfp4 变体走 C++ ops 量化、无此问题故保留全档。
+# num_experts 线性增长且与 num_tokens 无关（同一 (e,h,i) 的多个 token 档会把相同权重
+# 重复量化多次）。大 E（256/512）全档在单算子子进程里可能逼近 --op-timeout（缺省
+# 1800s）；实跑若超时，用 --op-timeout 调大或 --blacklist 跳过最大档单独处理。
 _SHAPES = [
     # Mixtral-8x7B
     (1, 8, 4096, 14336, 2),

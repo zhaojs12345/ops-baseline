@@ -69,9 +69,20 @@ _BYTE_UNIT_MULT = {
 CONFIG_PATH = Path(__file__).with_name("baseline_shape.yaml")
 
 # 方案B（自定义 ops）：每个算子一个 Python 模块，自带 native()/grid()/
-# build_inputs()/key_shape()（契约见 ops/__init__.py）。采集全部走此目录，
+# build_inputs()/key_shape()（契约见 ops/vllm/__init__.py）。采集按 repo 分目录：
+# ops/<repo>/（如 ops/vllm、ops/sglang），由 --repo 选择，缺省 vllm。
 # 复杂算子（元组入参、前置 metadata、量化预处理、约束张量等）用 Python 表达。
-OPS_DIR = Path(__file__).resolve().parent.parent / "ops"
+OPS_ROOT = Path(__file__).resolve().parent.parent / "ops"
+DEFAULT_REPO = "vllm"
+
+
+def ops_dir_for(repo=DEFAULT_REPO):
+    """返回某个 repo 的 ops 目录（ops/<repo>）。"""
+    return OPS_ROOT / repo
+
+
+# 向后兼容：缺省 repo 的 ops 目录。老代码/外部引用仍可用 OPS_DIR。
+OPS_DIR = ops_dir_for(DEFAULT_REPO)
 
 # 各厂商芯片规格（由 extract_hardware_xlsx.py 从《厂商带宽和算力汇总.xlsx》转出，
 # 见 hardware_specs.json）。用于把「本机采集芯片（H800）」的峰值当分母，算出其余
@@ -831,11 +842,15 @@ def _select_ops(discovered, only=None, whitelist=None, blacklist=None):
 
 
 def _collect_one_op_ops(op_module, ncu_enabled, report_dir,
-                        results=None, output_path=None):
+                        results=None, output_path=None, ops_dir=None):
     """采集单个方案B（自定义 ops）算子；native 解析不到则返回 None（跳过）。
 
     results/output_path 均给出时，每采完一个 shape 就把 results（含本算子已完成
-    的 shape）原子落盘一次，实现增量续写。"""
+    的 shape）原子落盘一次，实现增量续写。
+    ops_dir 为该算子所属 repo 的 ops 目录（NCU 子进程脚本按此目录 import 模块）；
+    缺省回落到 OPS_DIR（兼容老调用）。"""
+    if ops_dir is None:
+        ops_dir = OPS_DIR
     op_name = op_module.OP_NAME
     mod_name = op_module.__name__
     op = op_module.native()
@@ -884,7 +899,7 @@ def _collect_one_op_ops(op_module, ncu_enabled, report_dir,
                 del args, kwargs
                 torch.cuda.empty_cache()
                 script = _build_profile_script_ops(
-                    OPS_DIR, mod_name, binding, dtype_str, warmup=3)
+                    ops_dir, mod_name, binding, dtype_str, warmup=3)
                 ncu = profile_with_ncu(op_name, script, shape, dtype_str,
                                        report_dir=report_dir)
             else:
@@ -907,7 +922,8 @@ def _collect_one_op_ops(op_module, ncu_enabled, report_dir,
     return entry
 
 
-def _spawn_op_worker(op_name, ncu_enabled, report_dir, device, op_timeout):
+def _spawn_op_worker(op_name, ncu_enabled, report_dir, device, op_timeout,
+                     repo=DEFAULT_REPO):
     """在独立子进程里采集单个算子，返回 (entry_or_None, ok)。
 
     子进程崩溃（如 CUDA 非法访存污染 context）只会杀死它自己，不波及主进程与其余
@@ -917,7 +933,7 @@ def _spawn_op_worker(op_name, ncu_enabled, report_dir, device, op_timeout):
     fd, tmp = tempfile.mkstemp(prefix=f"baseline_{op_name}_", suffix=".json")
     os.close(fd)
     cmd = [sys.executable, __file__, "--_worker", "--ops", op_name,
-           "--output", tmp, "--report-dir", str(report_dir)]
+           "--repo", repo, "--output", tmp, "--report-dir", str(report_dir)]
     if not ncu_enabled:
         cmd.append("--no-ncu")
     if device is not None:
@@ -1019,7 +1035,8 @@ def _check_one_op(op_module, device=None):
     return result
 
 
-def check_ops(device=None, only=None, whitelist=None, blacklist=None):
+def check_ops(device=None, only=None, whitelist=None, blacklist=None,
+              repo=DEFAULT_REPO):
     """--check 入口：逐算子试调一次，打印调用方式与成功/失败，不采集、不写 JSON。
 
     复用 _discover_ops()/_select_ops()，故可配合 --ops/--whitelist/--blacklist/
@@ -1032,11 +1049,15 @@ def check_ops(device=None, only=None, whitelist=None, blacklist=None):
         raise RuntimeError("需要 CUDA 设备")
     device_name = torch.cuda.get_device_name()
 
-    ops_modules = _discover_ops()
+    ops_dir = ops_dir_for(repo)
+    if not ops_dir.is_dir():
+        raise RuntimeError(
+            f"ops 目录不存在: {ops_dir}（--repo {repo} 无对应 ops/<repo> 目录）")
+    ops_modules = _discover_ops(ops_dir)
     ops_modules = _select_ops(ops_modules, only=only,
                               whitelist=whitelist, blacklist=blacklist)
 
-    print(f"检查设备: {device_name}")
+    print(f"检查设备: {device_name}  (repo={repo}, ops 目录={ops_dir})")
     print("算子检查（--check）: 逐算子试调一次（第一组 shape × 第一个 dtype）\n")
     if not ops_modules:
         print("警告: 名单过滤后没有可检查的算子")
@@ -1065,7 +1086,8 @@ def collect_baseline(output_path, ncu_enabled=True,
                      report_dir=None, device=None,
                      only=None, whitelist=None, blacklist=None,
                      worker=False, op_timeout=1800,
-                     reference_chip=DEFAULT_REFERENCE_CHIP):
+                     reference_chip=DEFAULT_REFERENCE_CHIP,
+                     repo=DEFAULT_REPO):
     """采集 baseline 数据并写入 JSON。
 
     采集全部走方案B（ops/ 下的自定义算子模块）。yaml 声明式路径（baseline_shape.yaml
@@ -1103,7 +1125,11 @@ def collect_baseline(output_path, ncu_enabled=True,
     results = {}
     output_path = Path(output_path)
 
-    ops_modules = _discover_ops()
+    ops_dir = ops_dir_for(repo)
+    if not ops_dir.is_dir():
+        raise RuntimeError(
+            f"ops 目录不存在: {ops_dir}（--repo {repo} 无对应 ops/<repo> 目录）")
+    ops_modules = _discover_ops(ops_dir)
     ops_modules = _select_ops(ops_modules, only=only,
                               whitelist=whitelist, blacklist=blacklist)
 
@@ -1111,12 +1137,13 @@ def collect_baseline(output_path, ncu_enabled=True,
         # 子进程/直采路径：在本进程内直接采集，每采完一个 shape 增量落盘。
         for op_name, op_module in ops_modules:
             _collect_one_op_ops(op_module, ncu_enabled, report_dir,
-                                results=results, output_path=output_path)
+                                results=results, output_path=output_path,
+                                ops_dir=ops_dir)
         _flush_results(results, output_path)
         return
 
     # 编排路径：每个算子一个隔离子进程。
-    print(f"采集设备: {device_name}")
+    print(f"采集设备: {device_name}  (repo={repo}, ops 目录={ops_dir})")
     # 折算系数每次必写：先挂进 results，好让每个算子结束后的增量落盘都带上它
     # （下划线前缀键不与算子名冲突；仅主进程写，worker 子进程的结果按算子名读回）。
     sf = build_scaling_factors(reference_chip=reference_chip)
@@ -1134,7 +1161,7 @@ def collect_baseline(output_path, ncu_enabled=True,
     failed = []
     for op_name, _ in ops_modules:
         entry, ok = _spawn_op_worker(op_name, ncu_enabled, report_dir,
-                                     device, op_timeout)
+                                     device, op_timeout, repo=repo)
         if entry is not None:
             results[op_name] = entry
         if not ok:
@@ -1165,6 +1192,9 @@ if __name__ == "__main__":
                         help="指定跑在哪张卡上（物理卡号，如 0 或 3）。经 "
                              "CUDA_VISIBLE_DEVICES 生效，主进程与 NCU 子进程一致；"
                              "缺省用默认设备")
+    parser.add_argument("--repo", default=DEFAULT_REPO,
+                        help=f"算子来源 repo，决定扫描 ops/<repo>/ 下哪个目录的算子"
+                             f"（如 vllm、sglang）；缺省 {DEFAULT_REPO}")
     parser.add_argument("--ops", default=None,
                         help="只跑指定算子（逗号分隔，如 moe_sum,grouped_topk），"
                              "或指向一个每行一个算子名的文件；缺省跑全部")
@@ -1194,7 +1224,8 @@ if __name__ == "__main__":
         n_fail = check_ops(device=args.device,
                            only=_parse_name_list(args.ops),
                            whitelist=_parse_name_list(args.whitelist),
-                           blacklist=_parse_name_list(args.blacklist))
+                           blacklist=_parse_name_list(args.blacklist),
+                           repo=args.repo)
         sys.exit(1 if n_fail else 0)
     collect_baseline(args.output,
                      ncu_enabled=not args.no_ncu, report_dir=args.report_dir,
@@ -1204,4 +1235,5 @@ if __name__ == "__main__":
                      blacklist=_parse_name_list(args.blacklist),
                      worker=getattr(args, "_worker"),
                      op_timeout=args.op_timeout,
-                     reference_chip=args.reference_chip)
+                     reference_chip=args.reference_chip,
+                     repo=args.repo)

@@ -13,7 +13,8 @@ import sys
 import types
 from pathlib import Path
 
-OPS_DIR = Path(__file__).resolve().parent.parent / "ops"
+OPS_ROOT = Path(__file__).resolve().parent.parent / "ops"
+DEFAULT_REPO = "vllm"
 
 
 # ---- 最小 torch stub：够 build_inputs 构造“张量占位”并读 dtype/属性即可 ----
@@ -150,12 +151,25 @@ def _make_torch_stub():
 
 
 def main(argv):
+    # 可选 --repo <name>（缺省 vllm），选择 ops/<repo> 子目录。
+    repo = DEFAULT_REPO
+    if argv and argv[0] == "--repo":
+        if len(argv) < 2:
+            print("用法: _smoke_ops.py [--repo <name>] [op_name ...]")
+            return 2
+        repo = argv[1]
+        argv = argv[2:]
+    ops_dir = OPS_ROOT / repo
+    if not ops_dir.is_dir():
+        print(f"ops 目录不存在: {ops_dir}（--repo {repo}）")
+        return 2
+
     sys.modules["torch"] = _make_torch_stub()
-    sys.path.insert(0, str(OPS_DIR))
+    sys.path.insert(0, str(ops_dir))
 
     required = ("OP_NAME", "DTYPES", "IS_INPLACE",
                 "native", "grid", "build_inputs", "key_shape")
-    targets = argv or sorted(p.stem for p in OPS_DIR.glob("*.py")
+    targets = argv or sorted(p.stem for p in ops_dir.glob("*.py")
                              if p.stem != "__init__")
     import importlib
 

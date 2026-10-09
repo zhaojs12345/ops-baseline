@@ -10,7 +10,7 @@
 |---|---|
 | `tools/collect_baseline_nvidia.py` | 采集主程序：测 latency + 用 Nsight Compute（ncu）抓计算量/访存量/利用率 |
 | `tools/baseline_shape.yaml` | 声明式算子的 shape 配置（简单算子，纯位置参数） |
-| `ops/` | 自定义算子模块（复杂算子：多张量、约束张量、量化等），每个算子一个文件 |
+| `ops/<repo>/` | 按来源 repo 分目录的自定义算子模块（`ops/vllm`、`ops/sglang` 等），每个算子一个文件，由 `--repo` 选择（缺省 `vllm`） |
 | `tools/hardware_specs.py` | 硬件峰值算力/带宽参数 |
 
 ## 运行
@@ -25,6 +25,10 @@ python tools/collect_baseline_nvidia.py --no-ncu
 # 指定 ncu 报告目录（.ncu-rep 可用 ncu-ui 打开）
 python tools/collect_baseline_nvidia.py --report-dir ncu_reports
 
+# 选择算子来源 repo：扫描 ops/<repo>/（缺省 vllm）
+python tools/collect_baseline_nvidia.py --repo vllm
+python tools/collect_baseline_nvidia.py --repo sglang
+
 # 只跑指定的一到多个算子（逗号分隔）
 python tools/collect_baseline_nvidia.py --ops moe_sum,add_rms_norm
 
@@ -32,15 +36,18 @@ python tools/collect_baseline_nvidia.py --ops moe_sum,add_rms_norm
 # 名单可以是逗号分隔字符串，也可以是文件路径（每行一个算子名，# 开头为注释）
 python tools/collect_baseline_nvidia.py --whitelist ops_whitelist.txt
 python tools/collect_baseline_nvidia.py --blacklist flash_mla,megamoe
+
+# 只校验每个算子的 native() 能否被调用（不采集、不写 JSON）
+python tools/collect_baseline_nvidia.py --check --repo vllm
 ```
 
-依赖：CUDA GPU、`vllm`、`triton`、`ncu`(Nsight Compute)。采集器优先扫描 `ops/`，其余算子回落到 `baseline_shape.yaml`；两者同名时以 `ops/` 为准。
+依赖：CUDA GPU、`vllm`、`triton`、`ncu`(Nsight Compute)。采集器扫描 `ops/<repo>/`（由 `--repo` 选择，缺省 `vllm`），其余算子回落到 `baseline_shape.yaml`；两者同名时以算子模块为准。
 
-`--ops` / `--whitelist` / `--blacklist` 可组合使用：算子被保留需同时满足「在 `--ops` 内（若指定）」「在白名单内（若指定）」「不在黑名单内」。名单中的未知算子名会打印告警但不报错。
+`--repo` 决定去 `ops/` 下哪个子目录找算子（`vllm` / `sglang` …），缺省 `vllm`。`--ops` / `--whitelist` / `--blacklist` 可组合使用：算子被保留需同时满足「在 `--ops` 内（若指定）」「在白名单内（若指定）」「不在黑名单内」。名单中的未知算子名会打印告警但不报错。
 
 ## 新增算子
 
-在 `ops/` 下新建一个模块，导出契约字段（`OP_NAME` / `DTYPES` / `IS_INPLACE` / `native()` / `grid()` / `build_inputs()` / `key_shape()`，复杂算子可选 `config()`）。完整契约见 `ops/__init__.py`，可参考 `ops/fused_add_rms_norm.py`、`ops/grouped_topk.py`。
+在 `ops/<repo>/` 下新建一个模块（如 `ops/vllm/`，sglang 算子放 `ops/sglang/`），导出契约字段（`OP_NAME` / `DTYPES` / `IS_INPLACE` / `native()` / `grid()` / `build_inputs()` / `key_shape()`，复杂算子可选 `config()`）。完整契约见 `ops/vllm/__init__.py`，可参考 `ops/vllm/fused_add_rms_norm.py`、`ops/vllm/grouped_topk.py`。采集时用对应的 `--repo` 指向该目录。
 
 ## 输出格式
 
@@ -72,4 +79,4 @@ python tools/collect_baseline_nvidia.py --blacklist flash_mla,megamoe
 | **DeepSeek-V4 / qwen4_exp 等模型子树完整** | `qsa_pre_indexer`、`qsa_select_paged_decode`、`qsa_select_paged_prefill`（`vllm.models.qwen4_exp.*`）、`compressor` | 对应 vllm 模型子树不存在或需引擎上下文，`native()` 解析不到 | qsa 系需 vllm 带 `qwen4_exp` 子树；`compressor` 为 nn.Module 需引擎 VllmConfig，无法脱离引擎单采 |
 | **昇腾 / 海光等国产后端专属算子** | `group_list_cumsum`、`indexer_epilogue`、`lightning_indexer`、`kv_rmsnorm_rope_cache`、`sparse_attn_sharedkv`、`int8_einsum`、`fused_inv_rope_int8_quant` 等 | H800 **无对应 NV 原生 kernel**，`native()` 如实返回 None 跳过 | 无法在 H800 采集，属预期跳过（这些算子的验收数据来自昇腾/海光） |
 
-说明：被跳过的算子不影响其余算子采集（每个算子独立子进程）。`fused_marlin_moe_w4a16_int4` 因逐专家纯 Python 量化很慢，已将大 E 档位裁剪到两端 token 档以避免子进程超时。FLA 系算子（`chunk_gated_delta_rule_fwd`、`chunk_kda`）与 `fused_q_kv_rmsnorm` 的 `native()` 已改为多候选路径回退，兼容 `vllm.model_executor.layers.fla` / `vllm.third_party.flash_linear_attention` 等不同 vllm 布局。
+说明：被跳过的算子不影响其余算子采集（每个算子独立子进程）。`fused_marlin_moe_w4a16_int4` 因逐专家纯 Python 量化很慢，但其 shape 已与 benchmark 完全对齐（全 32 组档位），大 E 架构可能逼近 `--op-timeout`（缺省 1800s）；实跑若子进程超时，用 `--op-timeout` 调大或 `--blacklist` 跳过最大档单独处理。FLA 系算子（`chunk_gated_delta_rule_fwd`、`chunk_kda`）与 `fused_q_kv_rmsnorm` 的 `native()` 已改为多候选路径回退，兼容 `vllm.model_executor.layers.fla` / `vllm.third_party.flash_linear_attention` 等不同 vllm 布局。

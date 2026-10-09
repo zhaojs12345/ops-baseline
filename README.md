@@ -10,7 +10,7 @@ Collects performance baselines for NVIDIA native operators (vLLM / CUDA kernels)
 |---|---|
 | `tools/collect_baseline_nvidia.py` | Collector: measures latency + captures FLOPs/bytes/utilization via Nsight Compute (ncu) |
 | `tools/baseline_shape.yaml` | Shape config for declarative ops (simple, positional args only) |
-| `ops/` | Custom op modules (complex ops: multi-tensor, constraint tensors, quantization…), one file per op |
+| `ops/<repo>/` | Custom op modules grouped by source repo (`ops/vllm`, `ops/sglang`, …), one file per op. Selected with `--repo` (default `vllm`) |
 | `tools/hardware_specs.py` | Hardware peak FLOPS / bandwidth specs |
 
 ## Run
@@ -24,13 +24,23 @@ python tools/collect_baseline_nvidia.py --no-ncu
 
 # Custom ncu report dir (.ncu-rep opens in ncu-ui)
 python tools/collect_baseline_nvidia.py --report-dir ncu_reports
+
+# Select the op source repo: scans ops/<repo>/ (default vllm)
+python tools/collect_baseline_nvidia.py --repo vllm
+python tools/collect_baseline_nvidia.py --repo sglang
+
+# Only run specific ops (comma-separated, or a file of op names)
+python tools/collect_baseline_nvidia.py --ops moe_sum,add_rms_norm
+
+# Dry-run check: can each op's native() be called? (no collection, no JSON)
+python tools/collect_baseline_nvidia.py --check --repo vllm
 ```
 
-Requires: CUDA GPU, `vllm`, `triton`, `ncu` (Nsight Compute). The collector scans `ops/` first, falling back to `baseline_shape.yaml`; on name clashes, `ops/` wins.
+Requires: CUDA GPU, `vllm`, `triton`, `ncu` (Nsight Compute). The collector scans `ops/<repo>/` (chosen by `--repo`, default `vllm`), falling back to `baseline_shape.yaml`; on name clashes, the op module wins.
 
 ## Adding an operator
 
-Create a module under `ops/` exporting the contract fields (`OP_NAME` / `DTYPES` / `IS_INPLACE` / `native()` / `grid()` / `build_inputs()` / `key_shape()`, plus optional `config()` for complex ops). See `ops/__init__.py` for the full contract, and `ops/fused_add_rms_norm.py` / `ops/grouped_topk.py` as references.
+Create a module under `ops/<repo>/` (e.g. `ops/vllm/`, or `ops/sglang/` for sglang ops) exporting the contract fields (`OP_NAME` / `DTYPES` / `IS_INPLACE` / `native()` / `grid()` / `build_inputs()` / `key_shape()`, plus optional `config()` for complex ops). See `ops/vllm/__init__.py` for the full contract, and `ops/vllm/fused_add_rms_norm.py` / `ops/vllm/grouped_topk.py` as references. Collect it with the matching `--repo`.
 
 ## Output format
 
@@ -62,4 +72,4 @@ To run as many operators as possible on H800, beyond the base dependencies (CUDA
 | **Complete model subtrees (DeepSeek-V4 / qwen4_exp)** | `qsa_pre_indexer`, `qsa_select_paged_decode`, `qsa_select_paged_prefill` (`vllm.models.qwen4_exp.*`), `compressor` | The corresponding vllm model subtree is absent or requires engine context; `native()` cannot resolve | qsa ops need a vllm build with the `qwen4_exp` subtree; `compressor` is an nn.Module needing an engine `VllmConfig` and cannot be collected standalone |
 | **Ascend / Hygon vendor-specific ops** | `group_list_cumsum`, `indexer_epilogue`, `lightning_indexer`, `kv_rmsnorm_rope_cache`, `sparse_attn_sharedkv`, `int8_einsum`, `fused_inv_rope_int8_quant`, etc. | No NV-native kernel exists on H800; `native()` honestly returns None and the op is skipped | Cannot be collected on H800 — expected skip (their acceptance data comes from Ascend/Hygon) |
 
-Note: skipped operators do not affect the rest (each op runs in an isolated subprocess). `fused_marlin_moe_w4a16_int4` quantizes per-expert in pure Python (slow), so its large-E shapes were trimmed to the two end token counts to avoid subprocess timeout. The FLA ops (`chunk_gated_delta_rule_fwd`, `chunk_kda`) and `fused_q_kv_rmsnorm` now resolve `native()` via multi-candidate fallback, compatible with different vllm layouts (`vllm.model_executor.layers.fla` / `vllm.third_party.flash_linear_attention`).
+Note: skipped operators do not affect the rest (each op runs in an isolated subprocess). `fused_marlin_moe_w4a16_int4` quantizes per-expert in pure Python (slow); it keeps the full 32-shape grid matching the benchmark, so large-E architectures may approach `--op-timeout` (default 1800s) — raise it or `--blacklist` the largest shapes if a subprocess times out. The FLA ops (`chunk_gated_delta_rule_fwd`, `chunk_kda`) and `fused_q_kv_rmsnorm` resolve `native()` via multi-candidate fallback, compatible with different vllm layouts (`vllm.model_executor.layers.fla` / `vllm.third_party.flash_linear_attention`).
