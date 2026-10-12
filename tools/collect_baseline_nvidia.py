@@ -22,11 +22,6 @@ from pathlib import Path
 import torch
 import triton
 
-try:
-    from .collection_environment import collect_environment
-except ImportError:
-    from collection_environment import collect_environment
-
 # ---- NCU metric 名（H800/Hopper 已核对，换架构前用 `ncu --query-metrics` 复核）----
 
 # CUDA Core 计算量 F_c：FP 指令计数，ffma/hfma 每条计 2 FLOP。
@@ -1146,20 +1141,6 @@ def collect_baseline(output_path, ncu_enabled=True,
                                 ops_dir=ops_dir)
         _flush_results(results, output_path)
         return
-
-    results["_environment"] = collect_environment(torch, {
-        "repo": repo, "device": device, "ncu_enabled": ncu_enabled,
-        "report_dir": str(report_dir) if report_dir is not None else None,
-        "output_path": str(output_path), "op_timeout_seconds": op_timeout,
-        "reference_chip": reference_chip,
-        "only": sorted(only) if only is not None else None,
-        "whitelist": sorted(whitelist) if whitelist is not None else None,
-        "blacklist": sorted(blacklist) if blacklist is not None else None,
-        "selected_ops": [name for name, _ in ops_modules],
-        "latency_warmup_ms": 25, "latency_rep_ms": 100,
-        "ncu_warmup_calls": 3,
-    })
-    _flush_results(results, output_path)
 
     # 编排路径：每个算子一个隔离子进程。
     print(f"采集设备: {device_name}  (repo={repo}, ops 目录={ops_dir})")

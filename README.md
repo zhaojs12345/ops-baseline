@@ -58,11 +58,6 @@ Create a module under `ops/<repo>/` (e.g. `ops/vllm/`, or `ops/sglang/` for sgla
 
 Plus a set of redundant legacy-compatible fields (`flops_*`, `util_*`, `bottleneck`, …) with identical values.
 
-
-The top-level `_environment` object records the actual GPU name, UUID, memory in bytes, compute capability, SM count, logical CUDA device index and driver; CPU information; OS, Python, Torch/Triton/vLLM/SGLang, Torch build CUDA, nvcc and NCU versions; UTC collection time; collector Git commit, branch and dirty status; and effective run settings and selected operators. Only `CUDA_VISIBLE_DEVICES` and `CUDA_DEVICE_ORDER` environment variables are captured. Unavailable fields are `null`; probe failures do not interrupt collection.
-
-Metadata is saved before the first operator and preserved by incremental writes. Internal workers do not repeat probes. `_scaling_factors.reference_chip` is the configured scaling reference; the actual device is under `_environment.hardware.gpu`. Consumers should skip all top-level keys starting with `_` when iterating operators. CPU fields include model, architecture, sockets, physical cores, logical CPUs, threads per core, NUMA nodes, process CPU affinity count, and hypervisor vendor. Topology reflects the OS-visible system, not necessarily physical host topology in a VM; affinity count does not represent cgroup CPU quota. Missing lscpu fields are null. Driver lookup normalizes bare Torch UUIDs and falls back only to a consistent host-wide driver version. Triton uses the imported runtime version first, including pytorch-triton/FlagTree installations.
-
 ## Environment & configuration (full H800 collection)
 
 To run as many operators as possible on H800, beyond the base dependencies (CUDA GPU, `vllm`, `triton`, `ncu`) you also need the following; otherwise the corresponding operators are skipped or NCU captures nothing:

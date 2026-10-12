@@ -65,11 +65,6 @@ python tools/collect_baseline_nvidia.py --check --repo vllm
 
 另含一组同值冗余的兼容旧字段（`flops_*`、`util_*`、`bottleneck` 等）。
 
-
-输出 JSON 顶层的 `_environment` 保存本次采集的环境信息：实际 GPU 型号、UUID、显存字节数、计算能力、SM 数、CUDA 逻辑设备编号和驱动版本；CPU 信息；操作系统、Python、Torch/Triton/vLLM/SGLang、Torch 构建 CUDA、nvcc 和 NCU 版本；UTC 时间、采集器 Git commit/分支/工作区状态，以及筛选后算子列表与运行参数。`CUDA_VISIBLE_DEVICES` 和 `CUDA_DEVICE_ORDER` 也会记录。无法获取的字段为 `null`，不会因此中断采集。
-
-元数据在首个算子运行前写入，后续增量落盘保留；内部 worker 不重复采集环境。`_scaling_factors.reference_chip` 是配置中的折算基准，实际运行 GPU 请看 `_environment.hardware.gpu`。下游遍历算子时应跳过所有以下划线开头的顶层键。CPU 记录具体型号、架构、插槽数、物理核心数、逻辑 CPU 数、每核心线程数、NUMA 节点数、进程 CPU 亲和性允许的 CPU 数及虚拟化厂商；拓扑是操作系统可见值，虚拟机中不代表宿主机物理配置，亲和性计数不代表 cgroup CPU 配额。缺少 lscpu 时对应字段为空。驱动兼容 Torch 的裸 UUID，设备查询失败时仅接受全机一致的驱动版本；Triton 优先记录实际导入模块的版本，兼容 pytorch-triton/FlagTree 提供的安装。
-
 ## 环境依赖与配置（H800 全量采集）
 
 要在 H800 上尽可能跑全所有算子，除基础依赖（CUDA GPU、`vllm`、`triton`、`ncu`）外，还需配置以下项，否则对应算子会被跳过或 NCU 采不到数据：
