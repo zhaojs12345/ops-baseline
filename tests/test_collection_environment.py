@@ -58,6 +58,43 @@ class EnvironmentTests(unittest.TestCase):
                 self.assertIsNone(env._command(['missing']))
                 self.assertEqual(run.call_args.kwargs['timeout'], 5)
 
+    def test_driver_normalizes_bare_uuid(self):
+        bare = 'e4dd7baa-1129-83da-c435-9dfb30c5a2bd'
+        with patch.object(env, '_command', return_value='595.45.04') as command:
+            self.assertEqual(env._driver_version(bare), '595.45.04')
+        self.assertEqual(command.call_args.args[0][2], 'GPU-' + bare)
+
+    def test_driver_fallback_requires_consistent_versions(self):
+        with patch.object(env, '_command', side_effect=[None, '595.45.04\n595.45.04']):
+            self.assertEqual(env._driver_version('MIG-example'), '595.45.04')
+        with patch.object(env, '_command', return_value='595.45.04\n580.0'):
+            self.assertIsNone(env._driver_version(None))
+
+    def test_triton_uses_imported_runtime_not_distribution(self):
+        with patch.object(env.importlib, 'import_module', return_value=SimpleNamespace(__version__='3.6.0')), \
+             patch.object(env.metadata, 'version', return_value='wrapper-version'):
+            self.assertEqual(env._version('triton'), '3.6.0')
+        with patch.object(env.importlib, 'import_module', side_effect=ImportError), \
+             patch.object(env.metadata, 'version', return_value='3.5.0'):
+            self.assertEqual(env._version('triton'), '3.5.0')
+
+    def test_cpu_topology_and_affinity(self):
+        data = {'lscpu': [{'field': 'Model name:', 'data': 'Test CPU', 'children': [
+            {'field': 'Socket(s):', 'data': '2'},
+            {'field': 'Core(s) per socket:', 'data': '60'},
+            {'field': 'Thread(s) per core:', 'data': '2'},
+            {'field': 'NUMA node(s):', 'data': '2'}]}]}
+        with patch.object(env, '_command', return_value=json.dumps(data)), \
+             patch.object(env.os, 'sched_getaffinity', return_value={0, 1}), \
+             patch.object(env.os, 'cpu_count', return_value=240):
+            cpu = env._cpu_info()
+        self.assertEqual(cpu['cpu_model'], 'Test CPU')
+        self.assertEqual(cpu['physical_cpu_core_count'], 120)
+        self.assertEqual(cpu['logical_cpu_count'], 240)
+        self.assertEqual(cpu['process_cpu_affinity_count'], 2)
+        with patch.object(env, '_command', return_value='invalid json'):
+            self.assertIsNone(env._cpu_info()['cpu_model'])
+
     def test_environment_survives_worker_merge_and_empty_run(self):
         # Import without loading CUDA libraries; the orchestration itself is real.
         with patch.dict(sys.modules, {'torch': self.torch(), 'triton': SimpleNamespace()}):

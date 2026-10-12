@@ -13,7 +13,14 @@
         "driver_version": null
       },
       "cpu_model": null,
-      "logical_cpu_count": null
+      "cpu_architecture": "x86_64",
+      "cpu_socket_count": null,
+      "physical_cpu_core_count": null,
+      "logical_cpu_count": null,
+      "cpu_threads_per_core": null,
+      "numa_node_count": null,
+      "process_cpu_affinity_count": null,
+      "hypervisor_vendor": null
     },
     "software": {
       "os": "Linux",

@@ -2,11 +2,13 @@
 
 from datetime import datetime, timezone
 from importlib import metadata
+import importlib
 import json
 import os
 from pathlib import Path
 import platform
 import subprocess
+import uuid
 
 
 def _command(args, cwd=None):
@@ -19,10 +21,74 @@ def _command(args, cwd=None):
 
 
 def _version(name):
+    # NVIDIA images may provide triton via pytorch-triton or flagtree. The
+    # imported module identifies the code actually used, not the wrapper package.
+    if name == "triton":
+        try:
+            version = getattr(importlib.import_module(name), "__version__", None)
+            if version:
+                return str(version)
+        except Exception:
+            pass
     try:
         return metadata.version(name)
     except Exception:
         return None
+
+
+def _driver_version(device_uuid):
+    if device_uuid:
+        # Some Torch builds return the bare UUID; nvidia-smi requires GPU-.
+        try:
+            device_uuid = "GPU-" + str(uuid.UUID(device_uuid))
+        except (ValueError, AttributeError):
+            pass  # Preserve GPU-/MIG- identifiers verbatim.
+        value = _command(["nvidia-smi", "--id", device_uuid,
+                          "--query-gpu=driver_version", "--format=csv,noheader"])
+        if value:
+            return value
+    # Driver version is shared by the host's NVIDIA devices. Only use an
+    # unambiguous result, also covering Torch without UUID support and MIG.
+    values = _command(["nvidia-smi", "--query-gpu=driver_version",
+                       "--format=csv,noheader"])
+    versions = {v.strip() for v in (values or "").splitlines() if v.strip()}
+    return next(iter(versions)) if len(versions) == 1 else None
+
+
+def _cpu_info():
+    fields = {}
+    try:
+        data = json.loads(_command(["env", "LC_ALL=C", "lscpu", "--json"]) or "{}")
+        def visit(rows):
+            for row in rows:
+                fields[row["field"].rstrip(":")] = row.get("data")
+                visit(row.get("children", []))
+        visit(data.get("lscpu", []))
+    except (ValueError, TypeError, KeyError, AttributeError):
+        pass
+
+    def integer(key):
+        try:
+            return int(fields[key])
+        except (KeyError, ValueError, TypeError):
+            return None
+
+    sockets, cores = integer("Socket(s)"), integer("Core(s) per socket")
+    try:
+        affinity_count = len(os.sched_getaffinity(0))
+    except (AttributeError, OSError):
+        affinity_count = None
+    return {
+        "cpu_model": fields.get("Model name"),
+        "cpu_architecture": platform.machine(),
+        "cpu_socket_count": sockets,
+        "physical_cpu_core_count": sockets * cores if sockets and cores else None,
+        "logical_cpu_count": os.cpu_count(),
+        "cpu_threads_per_core": integer("Thread(s) per core"),
+        "numa_node_count": integer("NUMA node(s)"),
+        "process_cpu_affinity_count": affinity_count,
+        "hypervisor_vendor": fields.get("Hypervisor vendor"),
+    }
 
 
 def collect_environment(torch, run):
@@ -49,16 +115,12 @@ def collect_environment(torch, run):
         pass
     # UUID selection respects CUDA_VISIBLE_DEVICES remapping. Never use a CUDA
     # logical ordinal as an nvidia-smi physical index (including on MIG systems).
-    if gpu["uuid"]:
-        driver = _command(["nvidia-smi", "--id", gpu["uuid"],
-                           "--query-gpu=driver_version", "--format=csv,noheader"])
-        gpu["driver_version"] = driver or None
+    gpu["driver_version"] = _driver_version(gpu["uuid"])
     status = _command(["git", "status", "--porcelain", "--untracked-files=normal"], root)
     return {
         "schema_version": 1,
         "collected_at_utc": datetime.now(timezone.utc).isoformat(),
-        "hardware": {"gpu": gpu, "cpu_model": platform.processor() or None,
-                     "logical_cpu_count": os.cpu_count()},
+        "hardware": {"gpu": gpu, **_cpu_info()},
         "software": {
             "os": platform.system(), "os_release": platform.release(),
             "machine": platform.machine(), "python": platform.python_version(),
