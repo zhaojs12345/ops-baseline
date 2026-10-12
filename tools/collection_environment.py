@@ -99,12 +99,14 @@ def collect_environment(torch, run):
     """
     root = Path(__file__).resolve().parent.parent
     gpu = {"name": None, "uuid": None, "total_memory_bytes": None,
+           "total_memory_gib": None,
            "compute_capability": None, "multiprocessor_count": None,
            "cuda_device_index": None, "driver_version": None}
     try:
         index = torch.cuda.current_device()
         props = torch.cuda.get_device_properties(index)
         gpu.update(name=props.name, total_memory_bytes=props.total_memory,
+                   total_memory_gib=round(props.total_memory / (1024 ** 3), 2),
                    compute_capability=f"{props.major}.{props.minor}",
                    multiprocessor_count=props.multi_processor_count,
                    cuda_device_index=index)
