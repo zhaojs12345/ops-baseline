@@ -1,0 +1,8 @@
+
+采集算子: torch_add_comparison  (ops 模块 torch_add_comparison)
+  [1048576] torch.float32: 0.0095 ms  瓶颈=memory_bw (33.6%)
+采集设备: NVIDIA H20-3e  (repo=/tmp/ops-baseline-comparison-20261012/after/ops/comparison, ops 目录=/tmp/ops-baseline-comparison-20261012/after/ops/comparison)
+折算系数: 参考芯片 H800，覆盖 15 颗芯片
+待采集算子（1）: torch_add_comparison
+
+✓ Baseline 数据已写入: /tmp/ops-baseline-memory-gib-20261012/baseline.json  (共 1 个算子)
