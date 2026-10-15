@@ -140,16 +140,27 @@ def config(binding, dtype):
     T_total = sum(seq_lens)
     N = len(seq_lens)
     dt = str(dtype)
+    # inputs 的张量集合必须与对标 benchmark（test_chunk_kda.py _build_inputs）
+    # record_shapes 收集到的张量「多重集合」一致，否则 consts._match_by_signature
+    # 的签名回退对不上（直查又因 key 是复合键 [1,T,H,D,N] 必然 miss）→ [vs Base][未匹配]。
+    # benchmark 的 gems_op 走 use_gate_in_kernel，kwargs 额外带 A_log[H]、dt_bias[H,D]，
+    # N>1 时还带 cu_seqlens[N+1]；native 侧不需要这些，但为对齐匹配签名在此登记。
+    inputs = {
+        "q": {"shape": [1, T_total, H, D], "dtype": dt},
+        "k": {"shape": [1, T_total, H, D], "dtype": dt},
+        "v": {"shape": [1, T_total, H, D], "dtype": dt},
+        "g": {"shape": [1, T_total, H, D], "dtype": dt},
+        "beta": {"shape": [1, T_total, H], "dtype": dt},
+        "initial_state": {"shape": [N, H, D, D], "dtype": dt},
+        # benchmark gems 接口侧张量（仅为对齐 record_shapes 签名；native 不消费）
+        "A_log": {"shape": [H], "dtype": "torch.float32"},
+        "dt_bias": {"shape": [H, D], "dtype": "torch.float32"},
+        "scale": 1.0 / math.sqrt(D),
+    }
+    if N > 1:
+        inputs["cu_seqlens"] = {"shape": [N + 1], "dtype": "torch.int64"}
     return {
-        "inputs": {
-            "q": {"shape": [1, T_total, H, D], "dtype": dt},
-            "k": {"shape": [1, T_total, H, D], "dtype": dt},
-            "v": {"shape": [1, T_total, H, D], "dtype": dt},
-            "g": {"shape": [1, T_total, H, D], "dtype": dt},
-            "beta": {"shape": [1, T_total, H], "dtype": dt},
-            "initial_state": {"shape": [N, H, D, D], "dtype": dt},
-            "scale": 1.0 / math.sqrt(D),
-        },
+        "inputs": inputs,
         "outputs": {
             "o": {"shape": [1, T_total, H, D], "dtype": dt},
             "final_state": {"shape": [N, H, D, D], "note": "output_final_state=True"},
