@@ -13,6 +13,7 @@ import importlib
 import io
 import itertools
 import json
+import math
 import os
 import subprocess
 import sys
@@ -39,7 +40,7 @@ FLOP_CUDA_CORE = {
     "smsp__sass_thread_inst_executed_op_hfma_pred_on.sum": 2,
 }
 
-# Tensor Core 计算量 F_t：counter 名随源 dtype 而变，按 dtype 取（未知则记 0）。
+# Tensor Core 计算量 F_t：counter 名随源 dtype 而变，未知 dtype 不请求该项。
 FLOP_TENSOR_CORE = {
     "torch.float16": "sm__ops_path_tensor_src_fp16.sum",
     "torch.bfloat16": "sm__ops_path_tensor_src_bf16_dst_fp32.sum",
@@ -230,8 +231,16 @@ def _key_shape(op_cfg, binding):
     raise ValueError("算子缺少 tensor 输入且未指定 key_dims，无法确定主键 shape")
 
 
-def _empty_result(report_path=None):
-    """NCU 不可用/失败时的占位结果，字段与成功时一致。
+def _metric_validity(record):
+    """Numeric zero is measured only when a counter actually supplied it."""
+    return {key: ('unavailable' if value is None else 'measured')
+            for key, value in record.items()
+            if key not in ('name', 'per_kernel', 'report_path', 'bottleneck',
+                           'bottle_neck_unit', 'dur_frac', 'metric_validity')}
+
+
+def _empty_result(report_path=None, *, status='failed', reason='unknown', diagnostic=None):
+    """NCU 不可用时用 null 表示缺失，保留明确的状态与原因。
 
     字段命名对齐《算子后端缺失性能基准方案参考.md》的符号列表：
       F_cuda / F_tensor  实际计算量 (FLOP)
@@ -240,19 +249,23 @@ def _empty_result(report_path=None):
       bottle_neck_unit   瓶颈单元（cuda / tensor / mem / null）
     kernel 运行时间 T_us 由 do_bench 在采集侧填入（此处不含）。
     """
-    return {
+    result = {
         # —— 文档口径字段 ——
-        "F_cuda": 0.0, "F_tensor": 0.0, "B_mem": 0.0,
-        "U_cuda": 0.0, "U_tensor": 0.0, "U_mem": 0.0,
-        "U_bottle_neck": 0.0, "bottle_neck_unit": None,
-        "num_kernels": 0, "per_kernel": [],
+        "F_cuda": None, "F_tensor": None, "B_mem": None,
+        "U_cuda": None, "U_tensor": None, "U_mem": None,
+        "U_bottle_neck": None, "bottle_neck_unit": None,
+        "num_kernels": 0 if status == 'no_kernel' else None, "per_kernel": [],
         # —— 兼容旧字段（同值冗余，供既有下游读取） ——
-        "flops_cuda_core": 0.0, "flops_tensor_core": 0.0, "memory_bytes": 0.0,
-        "util_cuda_core": 0.0, "util_tensor_core": 0.0, "util_memory_bw": 0.0,
-        "bottleneck": None, "bottleneck_util": 0.0,
-        "cuda_flops": 0.0, "sm_utilization": 0.0,
+        "flops_cuda_core": None, "flops_tensor_core": None, "memory_bytes": None,
+        "util_cuda_core": None, "util_tensor_core": None, "util_memory_bw": None,
+        "bottleneck": None, "bottleneck_util": None,
+        "cuda_flops": None, "sm_utilization": None,
         "report_path": report_path,
     }
+    result['metric_validity'] = _metric_validity(result)
+    result.update(ncu_status=status, ncu_reason=reason, ncu_diagnostic=diagnostic,
+                  ncu_scope='nvtx:kiro_target')
+    return result
 
 
 def _build_profile_script(module, symbol, resolved_inputs, warmup):
@@ -375,6 +388,8 @@ def _parse_ncu_csv(csv_text, wanted):
     header = rows[0]
     col = {m: header.index(m) for m in wanted if m in header}
     name_idx = header.index(KERNEL_NAME_COL) if KERNEL_NAME_COL in header else None
+    if name_idx is None:
+        return {}
 
     # ncu raw CSV 在表头下紧跟一行“单位行”：各数值列写单位串（byte/Kbyte/us/
     # %/inst…），Kernel Name 列为空。它不是真实 kernel——若当成 kernel，会在
@@ -404,16 +419,18 @@ def _parse_ncu_csv(csv_text, wanted):
                 continue
         else:
             name = ""
-        # 数值单元无法解析为数字（空格等）时记 0，保持各 metric 列表与 kernel
+        # 数值单元无法解析或为非有限数时记 None，保持 metric 列表与 kernel
         # 行数严格对齐——per_kernel 按下标取值依赖这个对齐。按单位乘子归一。
         for m, idx in col.items():
-            val = 0.0
+            val = None
             if idx < len(row):
                 cell = row[idx].replace(",", "").strip()
                 try:
                     val = float(cell) * mult[m]
+                    if not math.isfinite(val):
+                        val = None
                 except ValueError:
-                    val = 0.0
+                    pass
             out[m].append(val)
         names.append(name)
     out[KERNEL_NAME_COL] = names
@@ -435,12 +452,12 @@ def _build_per_kernel(agg, tensor_metric):
 
     def col(m):
         vals = agg.get(m, [])
-        return [vals[i] if i < len(vals) else 0.0 for i in range(n)]
+        return [vals[i] if i < len(vals) else None for i in range(n)]
 
     dur = col(DURATION)
-    dur_sum = sum(dur)
+    dur_sum = sum(dur) if all(v is not None for v in dur) else None
     cuda_cols = {m: col(m) for m in FLOP_CUDA_CORE}
-    tensor_col = col(tensor_metric) if tensor_metric else [0.0] * n
+    tensor_col = col(tensor_metric)
     mem_col = col(MEMORY_BYTES)
     ucuda_col = col(UTIL["cuda_core"])
     utensor_col = col(UTIL["tensor_core"])
@@ -448,8 +465,9 @@ def _build_per_kernel(agg, tensor_metric):
 
     per_kernel = []
     for i in range(n):
-        f_cuda = sum(w * cuda_cols[m][i] for m, w in FLOP_CUDA_CORE.items())
-        per_kernel.append({
+        f_cuda = (sum(w * cuda_cols[m][i] for m, w in FLOP_CUDA_CORE.items())
+                  if all(cuda_cols[m][i] is not None for m in FLOP_CUDA_CORE) else None)
+        record = {
             "name": names[i],
             "F_cuda": f_cuda,
             "F_tensor": tensor_col[i],
@@ -457,22 +475,28 @@ def _build_per_kernel(agg, tensor_metric):
             "U_cuda": ucuda_col[i],      # 已是 % of peak（0-100）
             "U_tensor": utensor_col[i],
             "U_mem": umem_col[i],
-            "dur_frac": (dur[i] / dur_sum) if dur_sum else 0.0,
-        })
+            "dur_frac": 1.0 if n == 1 else ((dur[i] / dur_sum) if dur_sum else None),
+        }
+        record['metric_validity'] = _metric_validity(record)
+        if tensor_metric is None:
+            record['metric_validity']['F_tensor'] = 'not_collected'
+        per_kernel.append(record)
     return per_kernel
 
 
 def profile_with_ncu(op_name, profile_script, shape, dtype_str,
-                     report_dir=None):
+                     report_dir=None, ncu_timeout=600):
     """NCU 分析目标算子，返回三维工作量/利用率/瓶颈。
 
     先 `ncu --export` 存 .ncu-rep（可用 ncu-ui 核对），再 `ncu --import --csv`
-    解析。返回字段见 _empty_result；NCU 不可用或失败时各值为 0。
+    解析。返回字段见 _empty_result；未测得的指标为 None，并记录有效性状态。
     profile_script 是自包含的临时脚本文本（yaml 路径由 _build_profile_script、
     ops 路径由 _build_profile_script_ops 生成），把目标调用圈进 NVTX range
     "kiro_target" 供精确采样。shape/dtype_str 仅用于命名报告与选 Tensor Core
     metric。
     """
+    if not math.isfinite(ncu_timeout) or ncu_timeout <= 0:
+        raise ValueError('--ncu-timeout must be finite and positive')
     tensor_metric = FLOP_TENSOR_CORE.get(dtype_str)
     metrics = list(FLOP_CUDA_CORE) + [MEMORY_BYTES, *UTIL.values(), SM_UTIL,
                                       DURATION]
@@ -489,8 +513,8 @@ def profile_with_ncu(op_name, profile_script, shape, dtype_str,
     report_base = report_dir / tag
 
     def _err_msg(cp):
-        # ncu 的 ==ERROR== 常写到 stdout；stderr 为空时回退取 stdout，避免空报错。
-        return ((cp.stderr or "").strip() or (cp.stdout or "").strip())[:300]
+        # Preserve both streams: NCU diagnostics are often written to stdout.
+        return '\n'.join(s.strip() for s in (cp.stdout, cp.stderr) if s)[:2000]
 
     try:
         # 用 NVTX range 锁定目标调用，不再靠全局 launch 序号（randn 等辅助 kernel
@@ -503,96 +527,146 @@ def profile_with_ncu(op_name, profile_script, shape, dtype_str,
         ]
         try:
             proc = subprocess.run(export_cmd, capture_output=True, text=True,
-                                  timeout=600)
+                                  timeout=ncu_timeout)
         except FileNotFoundError:
             print("  ✗ 未找到 ncu 命令，跳过 NCU profiling")
-            return _empty_result()
+            return _empty_result(reason='ncu_not_found')
         except subprocess.TimeoutExpired:
             print(f"  ✗ NCU 超时: {shape} {dtype_str}")
-            return _empty_result()
-        if proc.returncode != 0:
+            return _empty_result(reason='export_timeout')
+        except OSError as exc:
+            return _empty_result(reason='export_failed', diagnostic=str(exc))
+        diagnostic = _err_msg(proc)
+        if proc.returncode != 0 or '==ERROR==' in (proc.stdout or '') + (proc.stderr or ''):
             print(f"  ✗ NCU profiling 失败 (code={proc.returncode}): "
                   f"{_err_msg(proc)}")
-            return _empty_result()
+            return _empty_result(reason='export_failed', diagnostic=diagnostic)
+
+        if 'no kernels were profiled' in ((proc.stdout or '') + (proc.stderr or '')).lower():
+            # This only describes the selected NVTX scope, not the whole process.
+            return _empty_result(status='no_kernel', reason='no_kernels_profiled',
+                                 diagnostic=diagnostic)
 
         # ncu 版本不同后缀不同（.ncu-rep 或压缩的 .ncu-repz），取实际生成的文件。
         candidates = sorted(report_dir.glob(f"{tag}.ncu-rep*"),
                             key=lambda p: p.stat().st_mtime, reverse=True)
         if not candidates:
             print(f"  ✗ NCU 未生成报告文件: {report_base}.ncu-rep[z]")
-            return _empty_result()
+            return _empty_result(reason='missing_report', diagnostic=diagnostic)
         report_path = str(candidates[0])
 
-        imp = subprocess.run(
-            ["ncu", "--import", report_path, "--csv", "--page", "raw"],
-            capture_output=True, text=True, timeout=120)
-        if imp.returncode != 0:
+        try:
+            imp = subprocess.run(
+                ["ncu", "--import", report_path, "--csv", "--page", "raw"],
+                capture_output=True, text=True, timeout=120)
+        except subprocess.TimeoutExpired:
+            return _empty_result(report_path, reason='import_timeout')
+        except OSError as exc:
+            return _empty_result(report_path, reason='import_failed', diagnostic=str(exc))
+        if imp.returncode != 0 or '==ERROR==' in (imp.stdout or '') + (imp.stderr or ''):
             print(f"  ✗ NCU import 失败 (code={imp.returncode}): "
                   f"{_err_msg(imp)}")
-            return _empty_result(report_path)
+            return _empty_result(report_path, reason='import_failed', diagnostic=_err_msg(imp))
 
-        agg = _parse_ncu_csv(imp.stdout, metrics)
-
-        def total(m):
-            return sum(agg.get(m, []))
-
-        def mean_pct(m):
-            vals = agg.get(m, [])
-            return sum(vals) / len(vals) / 100.0 if vals else 0.0
-
-        flops_cuda = sum(w * total(m) for m, w in FLOP_CUDA_CORE.items())
-        flops_tensor = total(tensor_metric) if tensor_metric else 0.0
-        mem_bytes = total(MEMORY_BYTES)
-        # util：0-1 口径（旧字段沿用）；bottleneck 取三维最大者。
-        util = {dim: mean_pct(name) for dim, name in UTIL.items()}
-        bottleneck = max(util, key=util.get)
-        if util[bottleneck] == 0.0:  # 三维全 0（解析失败/metric 不匹配）
-            bottleneck = None
-
-        # 文档口径：U_* 用百分比（0-100），瓶颈单元名映射为 cuda/tensor/mem。
-        _unit = {"cuda_core": "cuda", "tensor_core": "tensor",
-                 "memory_bw": "mem"}
-        U_cuda = util["cuda_core"] * 100.0
-        U_tensor = util["tensor_core"] * 100.0
-        U_mem = util["memory_bw"] * 100.0
-        U_bottle = util[bottleneck] * 100.0 if bottleneck else 0.0
-
-        # per_kernel 明细：一次 native 调用可能启动多个 kernel（MoE 的
-        # gather/gemm/scatter 等）。汇总口径下 bottle_neck_unit 会被便宜的小
-        # kernel 带偏，故逐 kernel 保留 F/B/U，便于按耗时加权或逐 kernel 判瓶颈。
-        # T_us 由采集侧的 do_bench 端到端测得后按 GPU duration 比例拆到各 kernel。
-        per_kernel = _build_per_kernel(agg, tensor_metric)
-
-        return {
-            # —— 文档口径字段（对齐 参考.md 符号列表）——
-            "F_cuda": flops_cuda,            # F_cuda  (FLOP)
-            "F_tensor": flops_tensor,        # F_tensor(FLOP)
-            "B_mem": mem_bytes,              # B_mem   (Byte)
-            "U_cuda": U_cuda,                # U_cuda  (%)
-            "U_tensor": U_tensor,            # U_tensor(%)
-            "U_mem": U_mem,                  # U_mem   (%)
-            "U_bottle_neck": U_bottle,       # U_bottle_neck (%)
-            "bottle_neck_unit": _unit.get(bottleneck),  # cuda/tensor/mem/None
-            "num_kernels": len(per_kernel),  # NVTX range 内 kernel 数
-            "per_kernel": per_kernel,        # 逐 kernel 明细（多 kernel 算子）
-            # —— 兼容旧字段（同值冗余）——
-            "flops_cuda_core": flops_cuda,
-            "flops_tensor_core": flops_tensor,
-            "memory_bytes": mem_bytes,
-            "util_cuda_core": util["cuda_core"],
-            "util_tensor_core": util["tensor_core"],
-            "util_memory_bw": util["memory_bw"],
-            "bottleneck": bottleneck,
-            "bottleneck_util": util[bottleneck] if bottleneck else 0.0,
-            "cuda_flops": flops_cuda,
-            "sm_utilization": mean_pct(SM_UTIL),
-            "report_path": report_path,
-        }
+        return parse_ncu_report(imp.stdout, dtype_str, report_path)
     finally:
         try:
             Path(script_path).unlink()
         except OSError:
             pass
+
+
+def parse_ncu_report(csv_text, dtype_str, report_path):
+    """Parse an offline NCU import without executing the target workload."""
+    tensor_metric = FLOP_TENSOR_CORE.get(dtype_str)
+    metrics = list(FLOP_CUDA_CORE) + [MEMORY_BYTES, *UTIL.values(), SM_UTIL, DURATION]
+    if tensor_metric:
+        metrics.append(tensor_metric)
+    agg = _parse_ncu_csv(csv_text, metrics)
+    num_kernels = len(agg.get(KERNEL_NAME_COL, []))
+    if not num_kernels:
+        return _empty_result(report_path, reason='no_kernel_rows', diagnostic=csv_text[:2000])
+
+    def complete(m):
+        vals = agg.get(m, [])
+        return len(vals) == num_kernels and all(v is not None for v in vals)
+
+    def total(m):
+        return sum(agg[m]) if complete(m) else None
+
+    def mean_pct(m):
+        vals = agg.get(m, [])
+        return sum(vals) / len(vals) / 100.0 if complete(m) else None
+
+    flops_cuda = (sum(w * total(m) for m, w in FLOP_CUDA_CORE.items())
+                  if all(complete(m) for m in FLOP_CUDA_CORE) else None)
+    flops_tensor = total(tensor_metric)
+    mem_bytes = total(MEMORY_BYTES)
+    # util：0-1 口径（旧字段沿用）；bottleneck 取三维最大者。
+    util = {dim: mean_pct(name) for dim, name in UTIL.items()}
+    # A missing utilization dimension prevents a reliable maximum comparison.
+    bottleneck = (max(util, key=util.get)
+                  if all(v is not None for v in util.values()) else None)
+    if bottleneck and util[bottleneck] == 0.0:
+        bottleneck = None
+
+    # 文档口径：U_* 用百分比（0-100），瓶颈单元名映射为 cuda/tensor/mem。
+    _unit = {"cuda_core": "cuda", "tensor_core": "tensor",
+             "memory_bw": "mem"}
+    def pct(value):
+        return value * 100.0 if value is not None else None
+
+    U_cuda = pct(util["cuda_core"])
+    U_tensor = pct(util["tensor_core"])
+    U_mem = pct(util["memory_bw"])
+    bottle_util = (max(util.values()) if all(v is not None for v in util.values())
+                   else None)
+    U_bottle = pct(bottle_util)
+
+    # per_kernel 明细：一次 native 调用可能启动多个 kernel（MoE 的
+    # gather/gemm/scatter 等）。汇总口径下 bottle_neck_unit 会被便宜的小
+    # kernel 带偏，故逐 kernel 保留 F/B/U，便于按耗时加权或逐 kernel 判瓶颈。
+    # T_us 由采集侧的 do_bench 端到端测得后按 GPU duration 比例拆到各 kernel。
+    per_kernel = _build_per_kernel(agg, tensor_metric)
+
+    result = {
+        # —— 文档口径字段（对齐 参考.md 符号列表）——
+        "F_cuda": flops_cuda,            # F_cuda  (FLOP)
+        "F_tensor": flops_tensor,        # F_tensor(FLOP)
+        "B_mem": mem_bytes,              # B_mem   (Byte)
+        "U_cuda": U_cuda,                # U_cuda  (%)
+        "U_tensor": U_tensor,            # U_tensor(%)
+        "U_mem": U_mem,                  # U_mem   (%)
+        "U_bottle_neck": U_bottle,       # U_bottle_neck (%)
+        "bottle_neck_unit": _unit.get(bottleneck),  # cuda/tensor/mem/None
+        "num_kernels": len(per_kernel),  # NVTX range 内 kernel 数
+        "per_kernel": per_kernel,        # 逐 kernel 明细（多 kernel 算子）
+        # —— 兼容旧字段（同值冗余）——
+        "flops_cuda_core": flops_cuda,
+        "flops_tensor_core": flops_tensor,
+        "memory_bytes": mem_bytes,
+        "util_cuda_core": util["cuda_core"],
+        "util_tensor_core": util["tensor_core"],
+        "util_memory_bw": util["memory_bw"],
+        "bottleneck": bottleneck,
+        "bottleneck_util": bottle_util,
+        "cuda_flops": flops_cuda,
+        "sm_utilization": mean_pct(SM_UTIL),
+        "report_path": report_path,
+    }
+    result['metric_validity'] = _metric_validity(result)
+    for field in ('U_bottle_neck', 'bottleneck_util'):
+        if result[field] is not None:
+            result['metric_validity'][field] = 'derived'
+    if tensor_metric is None:
+        for field in ('F_tensor', 'flops_tensor_core'):
+            result['metric_validity'][field] = 'not_collected'
+    missing = [m for m in metrics if not complete(m)]
+    result.update(ncu_status='partial' if missing else 'collected',
+                  ncu_reason='missing_metrics' if missing else None,
+                  ncu_diagnostic=('Missing/non-numeric metrics: ' + ', '.join(missing)) if missing else None,
+                  ncu_scope='nvtx:kiro_target')
+    return result
 
 
 def _finalize_record(latency_ms, ncu, config=None):
@@ -601,13 +675,12 @@ def _finalize_record(latency_ms, ncu, config=None):
     （复杂算子的真实输入输出 shape 描述）。ncu 为 profile_with_ncu 的返回。"""
     T_us = latency_ms * 1000.0
 
-    # 把端到端 T 按 dur_frac 拆到各 kernel（多 kernel 算子）；dur_frac 缺省则
-    # 均分。就地补上每 kernel 的 T_us，并移除中间量 dur_frac。
+    # 按可用 duration 权重分摊；缺失权重时保留 null，不凭空均分。
     per_kernel = ncu.get("per_kernel", [])
-    n = len(per_kernel)
     for k in per_kernel:
-        frac = k.pop("dur_frac", (1.0 / n) if n else 0.0)
-        k["T_us"] = T_us * frac
+        frac = k.pop("dur_frac", None)
+        k["T_us"] = T_us * frac if frac is not None else None
+        k.setdefault('metric_validity', {})['T_us'] = ('estimated' if frac is not None else 'unavailable')
 
     record = {}
     if config is not None:
@@ -615,6 +688,7 @@ def _finalize_record(latency_ms, ncu, config=None):
     record["T_us"] = T_us
     record["latency_ms"] = latency_ms
     record.update(ncu)
+    record.setdefault('metric_validity', {}).update(T_us='measured', latency_ms='measured')
     return record
 
 
@@ -702,7 +776,7 @@ def _flush_results(results, output_path):
 
 
 def _collect_one_op(op_name, op_cfg, ncu_enabled, report_dir,
-                    results=None, output_path=None):
+                    results=None, output_path=None, ncu_timeout=600):
     """按 yaml 配置采集单个算子；native 解析不到则返回 None（跳过）。
 
     results/output_path 均给出时，每采完一个 shape 就把 results（含本算子已完成
@@ -748,9 +822,9 @@ def _collect_one_op(op_name, op_cfg, ncu_enabled, report_dir,
                 script = _build_profile_script(module, symbol, resolved,
                                                warmup=3)
                 ncu = profile_with_ncu(op_name, script, shape, dtype_str,
-                                       report_dir=report_dir)
+                                       report_dir=report_dir, ncu_timeout=ncu_timeout)
             else:
-                ncu = _empty_result()
+                ncu = _empty_result(status="disabled", reason="not_requested")
             per_dtype[dtype_str] = _finalize_record(latency_ms, ncu)
 
             bn = ncu["bottleneck"]
@@ -847,7 +921,7 @@ def _select_ops(discovered, only=None, whitelist=None, blacklist=None):
 
 
 def _collect_one_op_ops(op_module, ncu_enabled, report_dir,
-                        results=None, output_path=None, ops_dir=None):
+                        results=None, output_path=None, ops_dir=None, ncu_timeout=600):
     """采集单个方案B（自定义 ops）算子；native 解析不到则返回 None（跳过）。
 
     results/output_path 均给出时，每采完一个 shape 就把 results（含本算子已完成
@@ -906,9 +980,9 @@ def _collect_one_op_ops(op_module, ncu_enabled, report_dir,
                 script = _build_profile_script_ops(
                     ops_dir, mod_name, binding, dtype_str, warmup=3)
                 ncu = profile_with_ncu(op_name, script, shape, dtype_str,
-                                       report_dir=report_dir)
+                                       report_dir=report_dir, ncu_timeout=ncu_timeout)
             else:
-                ncu = _empty_result()
+                ncu = _empty_result(status="disabled", reason="not_requested")
             # config：复杂算子可选导出 config(binding, dtype) 描述真实输入输出
             # shape；未导出则不写该字段（简单算子 shape 键已够表达）。
             cfg = None
@@ -928,7 +1002,7 @@ def _collect_one_op_ops(op_module, ncu_enabled, report_dir,
 
 
 def _spawn_op_worker(op_name, ncu_enabled, report_dir, device, op_timeout,
-                     repo=DEFAULT_REPO):
+                     repo=DEFAULT_REPO, ncu_timeout=600):
     """在独立子进程里采集单个算子，返回 (entry_or_None, ok)。
 
     子进程崩溃（如 CUDA 非法访存污染 context）只会杀死它自己，不波及主进程与其余
@@ -938,7 +1012,8 @@ def _spawn_op_worker(op_name, ncu_enabled, report_dir, device, op_timeout,
     fd, tmp = tempfile.mkstemp(prefix=f"baseline_{op_name}_", suffix=".json")
     os.close(fd)
     cmd = [sys.executable, __file__, "--_worker", "--ops", op_name,
-           "--repo", repo, "--output", tmp, "--report-dir", str(report_dir)]
+           "--repo", repo, "--output", tmp, "--report-dir", str(report_dir),
+           "--ncu-timeout", str(ncu_timeout)]
     if not ncu_enabled:
         cmd.append("--no-ncu")
     if device is not None:
@@ -1092,7 +1167,7 @@ def collect_baseline(output_path, ncu_enabled=True,
                      only=None, whitelist=None, blacklist=None,
                      worker=False, op_timeout=1800,
                      reference_chip=DEFAULT_REFERENCE_CHIP,
-                     repo=DEFAULT_REPO):
+                     repo=DEFAULT_REPO, ncu_timeout=600):
     """采集 baseline 数据并写入 JSON。
 
     采集全部走方案B（ops/ 下的自定义算子模块）。yaml 声明式路径（baseline_shape.yaml
@@ -1143,7 +1218,7 @@ def collect_baseline(output_path, ncu_enabled=True,
         for op_name, op_module in ops_modules:
             _collect_one_op_ops(op_module, ncu_enabled, report_dir,
                                 results=results, output_path=output_path,
-                                ops_dir=ops_dir)
+                                ops_dir=ops_dir, ncu_timeout=ncu_timeout)
         _flush_results(results, output_path)
         return
 
@@ -1157,7 +1232,7 @@ def collect_baseline(output_path, ncu_enabled=True,
         "blacklist": sorted(blacklist) if blacklist is not None else None,
         "selected_ops": [name for name, _ in ops_modules],
         "latency_warmup_ms": 25, "latency_rep_ms": 100,
-        "ncu_warmup_calls": 3,
+        "ncu_warmup_calls": 3, "ncu_timeout_seconds": ncu_timeout,
     })
     _flush_results(results, output_path)
 
@@ -1180,7 +1255,7 @@ def collect_baseline(output_path, ncu_enabled=True,
     failed = []
     for op_name, _ in ops_modules:
         entry, ok = _spawn_op_worker(op_name, ncu_enabled, report_dir,
-                                     device, op_timeout, repo=repo)
+                                     device, op_timeout, repo=repo, ncu_timeout=ncu_timeout)
         if entry is not None:
             results[op_name] = entry
         if not ok:
@@ -1196,6 +1271,7 @@ def collect_baseline(output_path, ncu_enabled=True,
     if failed:
         print(f"⚠ {len(failed)} 个算子子进程异常（已跳过，部分结果若有则保留）: "
               f"{', '.join(failed)}")
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":
@@ -1205,12 +1281,15 @@ if __name__ == "__main__":
                         help="输出文件路径")
     parser.add_argument("--no-ncu", action="store_true",
                         help="跳过 NCU profiling（只测 latency）")
-    parser.add_argument("--report-dir", default="ncu_reports",
+    parser.add_argument("--report-dir", default=None,
                         help="NCU .ncu-rep 报告存放目录（可用 ncu-ui 打开）")
-    parser.add_argument("--device", default=None,
+    device_group = parser.add_mutually_exclusive_group()
+    device_group.add_argument("--device", default=None,
                         help="指定跑在哪张卡上（物理卡号，如 0 或 3）。经 "
                              "CUDA_VISIBLE_DEVICES 生效，主进程与 NCU 子进程一致；"
                              "缺省用默认设备")
+    device_group.add_argument("--devices", help="多卡动态队列，例如 0,1,2,3；与 --device 互斥")
+    parser.add_argument("--resume", action="store_true", help="续跑多卡采集，跳过已完成算子")
     parser.add_argument("--repo", default=DEFAULT_REPO,
                         help=f"算子来源 repo，决定扫描 ops/<repo>/ 下哪个目录的算子"
                              f"（如 vllm、sglang）；缺省 {DEFAULT_REPO}")
@@ -1226,6 +1305,8 @@ if __name__ == "__main__":
     parser.add_argument("--op-timeout", type=float, default=1800,
                         help="编排模式下每个算子子进程的超时秒数（防 CUDA 挂起，"
                              "缺省 1800）")
+    parser.add_argument("--ncu-timeout", type=float, default=600,
+                        help="NCU export timeout per shape/dtype, seconds (default 600)")
     parser.add_argument("--reference-chip", default=DEFAULT_REFERENCE_CHIP,
                         help=f"折算系数的分母（基准）芯片，即 baseline 采集所在的卡；"
                              f"须为 hardware_specs.json 中的 chip 名，"
@@ -1239,6 +1320,20 @@ if __name__ == "__main__":
                         help="内部使用：子进程直采模式，在本进程内采集选中算子、"
                              "不再 spawn（由编排模式自动传入，勿手动使用）")
     args = parser.parse_args()
+    if not math.isfinite(args.ncu_timeout) or args.ncu_timeout <= 0:
+        parser.error("--ncu-timeout must be finite and positive")
+    if args.devices is not None:
+        if args.check or args._worker:
+            parser.error("--devices cannot be combined with --check or --_worker")
+        if args.op_timeout <= 0:
+            parser.error("--op-timeout must be positive")
+        from collect_baseline_multi_gpu import collect
+        try:
+            sys.exit(collect(args))
+        except ValueError as exc:
+            parser.error(str(exc))
+    if args.resume:
+        parser.error("--resume requires --devices")
     if args.check:
         n_fail = check_ops(device=args.device,
                            only=_parse_name_list(args.ops),
@@ -1246,8 +1341,8 @@ if __name__ == "__main__":
                            blacklist=_parse_name_list(args.blacklist),
                            repo=args.repo)
         sys.exit(1 if n_fail else 0)
-    collect_baseline(args.output,
-                     ncu_enabled=not args.no_ncu, report_dir=args.report_dir,
+    exit_code = collect_baseline(args.output,
+                     ncu_enabled=not args.no_ncu, report_dir=args.report_dir or "ncu_reports",
                      device=args.device,
                      only=_parse_name_list(args.ops),
                      whitelist=_parse_name_list(args.whitelist),
@@ -1255,4 +1350,6 @@ if __name__ == "__main__":
                      worker=getattr(args, "_worker"),
                      op_timeout=args.op_timeout,
                      reference_chip=args.reference_chip,
-                     repo=args.repo)
+                     repo=args.repo, ncu_timeout=args.ncu_timeout)
+
+    sys.exit(exit_code or 0)
