@@ -64,7 +64,7 @@ Plus a set of redundant legacy-compatible fields (`flops_*`, `util_*`, `bottlene
 
 The top-level `_environment` object records the actual GPU name, UUID, memory in bytes, compute capability, SM count, logical CUDA device index and driver; CPU information; OS, Python, Torch/Triton/vLLM/SGLang, Torch build CUDA, nvcc and NCU versions; UTC collection time; collector Git commit, branch and dirty status; and effective run settings and selected operators. Only `CUDA_VISIBLE_DEVICES` and `CUDA_DEVICE_ORDER` environment variables are captured. Unavailable fields are `null`; probe failures do not interrupt collection.
 
-Metadata is saved before the first operator and preserved by incremental writes. Internal workers do not repeat probes. `_scaling_factors.reference_chip` is the configured scaling reference; the actual device is under `_environment.hardware.gpu`. Consumers should skip all top-level keys starting with `_` when iterating operators. CPU fields include model, architecture, sockets, physical cores, logical CPUs, threads per core, NUMA nodes, process CPU affinity count, and hypervisor vendor. Topology reflects the OS-visible system, not necessarily physical host topology in a VM; affinity count does not represent cgroup CPU quota. Missing lscpu fields are null. Driver lookup normalizes bare Torch UUIDs and falls back only to a consistent host-wide driver version. Triton uses the imported runtime version first, including pytorch-triton/FlagTree installations.
+Metadata is saved before the first operator and preserved by incremental writes. Internal workers do not repeat probes. `_scaling_factors.reference_chip` is the configured scaling reference; the actual device is under `_environment.hardware.gpu`. Consumers should identify operator entries by their `shapes` object; real operator names can start with `_`. CPU fields include model, architecture, sockets, physical cores, logical CPUs, threads per core, NUMA nodes, process CPU affinity count, and hypervisor vendor. Topology reflects the OS-visible system, not necessarily physical host topology in a VM; affinity count does not represent cgroup CPU quota. Missing lscpu fields are null. Driver lookup normalizes bare Torch UUIDs and falls back only to a consistent host-wide driver version. Triton uses the imported runtime version first, including pytorch-triton/FlagTree installations.
 
 ## Environment & configuration (full H800 collection)
 
@@ -81,25 +81,3 @@ To run as many operators as possible on H800, beyond the base dependencies (CUDA
 | **Ascend / Hygon vendor-specific ops** | `group_list_cumsum`, `indexer_epilogue`, `lightning_indexer`, `kv_rmsnorm_rope_cache`, `sparse_attn_sharedkv`, `int8_einsum`, `fused_inv_rope_int8_quant`, etc. | No NV-native kernel exists on H800; `native()` honestly returns None and the op is skipped | Cannot be collected on H800 — expected skip (their acceptance data comes from Ascend/Hygon) |
 
 Note: skipped operators do not affect the rest (each op runs in an isolated subprocess). `fused_marlin_moe_w4a16_int4` quantizes per-expert in pure Python (slow); it keeps the full 32-shape grid matching the benchmark, so large-E architectures may approach `--op-timeout` (default 1800s) — raise it or `--blacklist` the largest shapes if a subprocess times out. The FLA ops (`chunk_gated_delta_rule_fwd`, `chunk_kda`) and `fused_q_kv_rmsnorm` resolve `native()` via multi-candidate fallback, compatible with different vllm layouts (`vllm.model_executor.layers.fla` / `vllm.third_party.flash_linear_attention`).
-
-## H800 PyTorch measurement dataset (draft)
-
-[`op_pytorch_h800_perf_baseline.json`](op_pytorch_h800_perf_baseline.json) contains
-812 operator entries / 14,710 shape-dtype latency records from the H800 full run.
-This is the **pre-supplement snapshot**: original task outcomes are 786 completed,
-11 profiling-incomplete and 15 timed out. A targeted 19-operator retry is pending;
-the data PR stays draft until its final merge is validated.
-
-The artifact records 14,638 usable NCU profiles, 41 unknown legacy outcomes and
-31 explicit NCU failures. Missing counters and aliases are null, not measured
-zeros; inspect each field's `metric_validity` independently from latency. Original
-collection history, per-GPU environments and source metadata are preserved.
-Identify operators by their `shapes` object: names can start with `_`.
-
-Norm parameters such as infinity use reversible JSON tags (`{"__float__":"inf"}`
-and `{"__float__":"-inf"}`); decode these to Python floats when reconstructing
-literal input parameters. Do not treat them as absent performance metrics.
-Collector/annotation implementation is reviewed separately in [PR #14](https://github.com/zhaojs12345/ops-baseline/pull/14).
-The data branch contains no collector code changes. The file is compacted without
-changing JSON content (74,700,767 bytes), SHA256:
-`3012df554eef1970652886740f6edbd4008cec4666f20fe09189818cb0043247`.
