@@ -329,6 +329,59 @@ print(json.dumps(result))
                 self.assertEqual(kwargs["dtype"], target)
                 self.assertNotEqual(args[0].dtype, target)
 
+    def test_sparse_mask_replay_matches_recorded_identity_and_native_values(self):
+        import hashlib
+
+        module = self.modules["sparse_mask"]
+        binding = module.grid()[0]
+        state = torch.random.get_rng_state().clone()
+        first = module._mask(binding["shape"])
+        self.assertTrue(torch.equal(state, torch.random.get_rng_state()))
+        second = module._mask(binding["shape"])
+        self.assertTrue(torch.equal(first.indices(), second.indices()))
+        config = module.config(binding, torch.float32)["mask"]
+        self.assertEqual(first._nnz(), config["nnz"])
+        self.assertEqual(hashlib.sha256(first.indices().numpy().tobytes()).hexdigest(),
+                         config["indices_sha256"])
+        args, kwargs = module.build_inputs(binding, torch.float32, "cpu")
+        output = module.native()(*args, **kwargs).coalesce()
+        self.assertTrue(torch.equal(output.indices(), first.indices()))
+        torch.testing.assert_close(output.values(), args[0][tuple(first.indices())])
+
+    def test_sparse_mask_rejects_changed_recorded_identity(self):
+        from unittest.mock import patch
+
+        module = self.modules["sparse_mask"]
+        binding = module.grid()[0]
+        for field, changed in (("nnz", -1), ("indices_sha256", "0" * 64)):
+            config = module.config(binding, torch.float32)
+            config["mask"][field] = changed
+            with self.subTest(field=field), patch.object(module, "config", return_value=config):
+                with self.assertRaisesRegex(ValueError, "Sparse mask replay differs"):
+                    module.build_inputs(binding, torch.float32, "cpu")
+
+    def test_sparse_mask_identity_replays_across_processes(self):
+        script = """
+import sys, json, hashlib, torch
+sys.path.insert(0, sys.argv[1])
+import sparse_mask
+# Ambient RNG differs between the latency and NCU-style child processes.
+torch.manual_seed(int(sys.argv[2]))
+result = []
+for binding in sparse_mask.grid():
+    mask = sparse_mask._mask(binding["shape"])
+    result.append([mask._nnz(), hashlib.sha256(mask.indices().numpy().tobytes()).hexdigest()])
+print(json.dumps(result))
+"""
+        outputs = [subprocess.check_output(
+            [sys.executable, "-c", script, str(OPS), str(seed)], text=True
+        ) for seed in (123, 456)]
+        self.assertEqual(outputs[0], outputs[1])
+        expected = [self.modules["sparse_mask"].config(b, torch.float32)["mask"]
+                    for b in self.modules["sparse_mask"].grid()]
+        self.assertEqual(json.loads(outputs[0]),
+                         [[row["nnz"], row["indices_sha256"]] for row in expected])
+
     def test_unpack_matches_upstream_keyword_convention(self):
         value = torch.ones(2)
         args, kwargs = unpack_inputs((value, 1, {"keepdim": True}))

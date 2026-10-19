@@ -25,7 +25,7 @@ PyTorch 官方算子（`torch.*` / `torch.nn.functional.*` / `torch.ops.aten.*`�
 
 ## kernelgen-dev 扩充集合
 
-固定来源：[FlagGems kernelgen-dev `9d57a23b4386bd669152a935fe88a96db907da7c`](https://github.com/flagos-ai/FlagGems/tree/9d57a23b4386bd669152a935fe88a96db907da7c)。新增 811 个模块，加上原有 `silu` 共 812 个模块（FP16 FFT 单列）。来源涵盖 pointwise、reduction、BLAS、索引、归一化、池化、卷积、RNN、FFT、linalg、部分稀疏接口和明确的原生 backward API。
+固定来源：[FlagGems kernelgen-dev `9d57a23b4386bd669152a935fe88a96db907da7c`](https://github.com/flagos-ai/FlagGems/tree/9d57a23b4386bd669152a935fe88a96db907da7c)。新增 813 个模块，加上原有 `silu` 共 814 个模块（FP16 FFT 单列）。来源涵盖 pointwise、reduction、BLAS、索引、归一化、池化、卷积、RNN、FFT、linalg、部分稀疏接口和明确的原生 backward API。
 
 - `_kernelgen/manifest.json` 逐算子记录原生表达式、benchmark 测试函数/行号、shape 来源、dtype 和采集点数量。
 - `_kernelgen/cases.json` 保存从源输入构造枚举出的描述符、调用变体和各 dtype 的输入元数据，不保存张量数据。
@@ -91,3 +91,18 @@ FLAGGEMS_SOURCE_REPO=/path/to/FlagGems \
 ```
 
 `--ops topk,ger` 可缩小比较范围。发现任何差异或构造错误时退出码为 1，不会静默放过已知适配。全目录仍有 10 个模块的有意差异：7 个随机标量参数固定的模块、weight-norm FP16 saved-norm 的 meta/CUDA dtype 对齐，以及 `_cast_Int` / `conj_physical` 的 no-op 类型排除。具体说明见 `coverage.json.source_adaptations`。因此不将全目录描述为与来源完全一致；结构相同也不代表全部 case 已完成数值或 CUDA/NCU 验证。
+
+### cuDNN grid sampler 与稀疏 mask
+
+`cudnn_grid_sampler` 保留来源的 6 组 input/grid 描述符与 FP32/FP16/FP64。
+`sparse_mask` 保留 4 个方阵、FP16/FP32/BF16，以及小尺寸 10%、大尺寸 2% 的
+Bernoulli 非零概率；实际 nnz 并不等于概率乘元素数。为保证 latency 与 NCU
+子进程处理同一个稀疏工作负载，mask 使用独立 CPU generator，seed 为
+`20261019 + rows`，不修改全局 RNG。`config.mask` 保存实际 nnz、COO 索引
+SHA256、seed 和布局；重建发现 RNG/版本导致索引变化时明确报错，不复用旧身份。
+稀疏索引在计时前搬到目标设备，计时仍只调用原生 ATen 算子。
+
+该 mask 是来源分布的一份固定样本，不代表已有 FlagGems 随机 case 的精确输入。
+跨后端比较必须重放同一索引并核对完整 shape/dtype/layout/config；这里没有增加
+FlagGems adapter 或跨机正确性 golden。采集文件的 `_environment` 标识实际 GPU，
+H20 验证数据不能当作 H800 数据。

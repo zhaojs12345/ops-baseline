@@ -9,16 +9,16 @@
     "named_benchmark_constructors": 1805,
     "unique_benchmark_names": 1694,
     "operator_config_ids": 1443,
-    "added_operators": 811,
+    "added_operators": 813,
     "existing_silu": 1,
-    "added_descriptors": 5219,
-    "pending_records": 1087,
+    "added_descriptors": 5229,
+    "pending_records": 1085,
     "pending_categories": {
-      "custom_input_or_state": 394,
+      "custom_input_or_state": 393,
       "host_or_no_kernel": 96,
       "meta_enumeration_unavailable": 20,
       "manual_input_review": 105,
-      "external_dependency": 74,
+      "external_dependency": 73,
       "variant_identity": 21,
       "fresh_input_timing": 261,
       "native_cuda_unavailable": 5,
@@ -2623,15 +2623,6 @@
       "native": "_cudnn_attn_fwd_aten",
       "reason": "empty source shapes",
       "category": "manual_input_review"
-    },
-    {
-      "op": "cudnn_grid_sampler",
-      "source_file": "benchmark/test_cudnn_grid_sampler.py",
-      "source_test": "test_cudnn_grid_sampler",
-      "line": 80,
-      "native": "torch.ops.aten.cudnn_grid_sampler",
-      "reason": "external dependency: flag_gems",
-      "category": "external_dependency"
     },
     {
       "op": "cudnn_is_acceptable",
@@ -7530,15 +7521,6 @@
       "category": "manual_input_review"
     },
     {
-      "op": "sparse_mask",
-      "source_file": "benchmark/test_sparse_mask.py",
-      "source_test": "test_sparse_mask",
-      "line": 82,
-      "native": "torch.ops.aten.sparse_mask",
-      "reason": "aten::_to_sparse: attempted to run this operator with Meta tensors, but there was no fake impl or Meta kernel registered. You may have run into this message while using an operator with PT2 compilation APIs (torch.compile/torch.export); in order to use this operator with those APIs you'll need to add a fake impl. Please see the following for next steps:  https://pytorch.org/tutorials/advanced/custom_ops_landing_page.html",
-      "category": "custom_input_or_state"
-    },
-    {
       "op": "sparse_mla_fwd_interface",
       "source_file": "benchmark/test_sparse_mla_fwd_interface.py",
       "source_test": "test_sparse_mla_fwd_interface",
@@ -10589,5 +10571,19 @@
     "weight_norm_differentiable_backward": "FP16 meta saved_norms cast to float32 to match Torch 2.8 actual CUDA input metadata.",
     "_cast_Int": "int32 source lane excluded because it emits no CUDA compute kernel.",
     "conj_physical": "Non-complex source lanes excluded: conjugation is a no-op and emits no CUDA compute kernel."
-  }
+  },
+  "manual_adaptations": [
+    {
+      "op": "cudnn_grid_sampler",
+      "source_commit": "9d57a23b4386bd669152a935fe88a96db907da7c",
+      "scope": "core",
+      "note": "Native cuDNN input/grid descriptors"
+    },
+    {
+      "op": "sparse_mask",
+      "source_commit": "9d57a23b4386bd669152a935fe88a96db907da7c",
+      "scope": "core",
+      "note": "Native CUDA recipe; sparse_mask fixes the sampled mask with explicit replay identity"
+    }
+  ]
 }

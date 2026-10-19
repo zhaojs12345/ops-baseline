@@ -12168,6 +12168,36 @@
       ],
       "adaptation": "Separate FP16 grid preserves the source power-of-two transform filter; combined modules cover NVIDIA source dtypes.",
       "source_backend": "nvidia"
+    },
+    "cudnn_grid_sampler": {
+      "source_file": "benchmark/test_cudnn_grid_sampler.py",
+      "source_test": "test_cudnn_grid_sampler",
+      "line": 80,
+      "native": "torch.ops.aten.cudnn_grid_sampler",
+      "dtype_expression": "_DTYPES",
+      "shape_source": "explicit operator descriptors",
+      "family": "OperatorBenchmark",
+      "cases": 6,
+      "dtypes": [
+        "torch.float32",
+        "torch.float16",
+        "torch.float64"
+      ]
+    },
+    "sparse_mask": {
+      "source_file": "benchmark/test_sparse_mask.py",
+      "source_test": "test_sparse_mask",
+      "line": 82,
+      "native": "torch.ops.aten.sparse_mask",
+      "dtype_expression": "consts.FLOAT_DTYPES",
+      "shape_source": "explicit operator descriptors",
+      "family": "OperatorBenchmark",
+      "cases": 4,
+      "dtypes": [
+        "torch.float16",
+        "torch.float32",
+        "torch.bfloat16"
+      ]
     }
   },
   "validation": {
