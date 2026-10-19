@@ -88,3 +88,12 @@ PyTorch 算子集合来自固定版本的 FlagGems kernelgen-dev，覆盖范围�
 | **昇腾 / 海光等国产后端专属算子** | `group_list_cumsum`、`indexer_epilogue`、`lightning_indexer`、`kv_rmsnorm_rope_cache`、`sparse_attn_sharedkv`、`int8_einsum`、`fused_inv_rope_int8_quant` 等 | H800 **无对应 NV 原生 kernel**，`native()` 如实返回 None 跳过 | 无法在 H800 采集，属预期跳过（这些算子的验收数据来自昇腾/海光） |
 
 说明：被跳过的算子不影响其余算子采集（每个算子独立子进程）。`fused_marlin_moe_w4a16_int4` 因逐专家纯 Python 量化很慢，但其 shape 已与 benchmark 完全对齐（全 32 组档位），大 E 架构可能逼近 `--op-timeout`（缺省 1800s）；实跑若子进程超时，用 `--op-timeout` 调大或 `--blacklist` 跳过最大档单独处理。FLA 系算子（`chunk_gated_delta_rule_fwd`、`chunk_kda`）与 `fused_q_kv_rmsnorm` 的 `native()` 已改为多候选路径回退，兼容 `vllm.model_executor.layers.fla` / `vllm.third_party.flash_linear_attention` 等不同 vllm 布局。
+
+## H800 PyTorch 性能数据（草稿）
+
+[`op_pytorch_h800_perf_baseline.json`](op_pytorch_h800_perf_baseline.json) 保存 H800 全量采集的 812 个算子、14,710 条 shape/dtype 延迟记录。当前为**补采前快照**：原任务 786 个完成、11 个 NCU 不完整、15 个超时；19 算子定向补采及最终合并尚未完成，因此数据 PR 保持草稿。
+
+其中 14,638 条有有效 NCU 指标、41 条历史原因未知、31 条明确采集失败。缺失指标及旧别名为 null，不能当作实测零；按字段 `metric_validity` 判断有效性，延迟独立使用。原任务历史、每卡环境和来源信息保留。按 `shapes` 对象识别算子，不能一律跳过下划线开头名称。
+
+范数的正负无穷参数编码为可还原的 `{"__float__":"inf"}` / `{"__float__":"-inf"}`；重建 literal 参数时还原成 Python float。这些不是缺失指标。采集及后处理代码另见 [PR #14](https://github.com/zhaojs12345/ops-baseline/pull/14)，本数据分支不包含采集器代码改动。JSON 仅压缩空白，语义不变，大小 74,700,767 字节；SHA256：
+`3012df554eef1970652886740f6edbd4008cec4666f20fe09189818cb0043247`。
