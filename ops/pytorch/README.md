@@ -109,10 +109,20 @@ H20 验证数据不能当作 H800 数据。
 
 2026-10-20 在 H800 上重新采集了这两个算子的全部 30 个配置：
 `cudnn_grid_sampler` 18 条、`sparse_mask` 12 条，均有延迟与 NCU profiling。
-数据保存在 [`op_pytorch_h800_supplement_perf_baseline.json`](../../op_pytorch_h800_supplement_perf_baseline.json)。
+这 30 条记录已合入 [`op_pytorch_h800_perf_baseline.json`](../../op_pytorch_h800_perf_baseline.json)，
+不再单独保留 H800 supplement 文件。
 采集使用 H800 物理卡 4/5、Torch NV25.05、CUDA 12.9、Triton 3.6.0，
 干净源码版本为 `54fe7631c69c3d5216dc9c258a961ca4d13f8ce8`；各卡 UUID、软件版本和
 采集参数保留在 JSON 中。全部 shape/dtype/config 与 H20 文件一致，包括稀疏索引身份。
 H20 数据保留为独立记录。FlagGems 已有的静态基线对接可通过
-`FLAGGEMS_NV_BASELINE=/absolute/path/to/op_pytorch_h800_supplement_perf_baseline.json`
+`FLAGGEMS_NV_BASELINE=/absolute/path/to/op_pytorch_h800_perf_baseline.json`
 选择这份 H800 数据，无需修改采集器或算子测试代码。
+
+合并后的 GPU 主文件包含 814 个算子、15,147 条配置记录；原有失败及 NCU
+不完整状态保持原样。主机计时仍单独保存在 `op_flaggems_h800_host_baseline.json`。
+GPU 主文件是只读发布快照（`_collection.kind = consolidated_snapshot`），不能用于
+`--resume`；各批次的原始配置、输入文件 SHA256 和历史 Git 版本保存在 `_consolidation.inputs`。
+按算子的 `_collection.tasks[operator].device` 查找 `_environments`，不要用根级
+`_environment` 代表所有记录。补采任务使用实际 GPU UUID 作为环境索引，原始卡号
+保存在 `source_device`，避免覆盖之前同卡号的采集环境。
+原有 `_metric_validity_migration` 和 `_supplemental_merge` 仍描述其原始批次。
