@@ -23,6 +23,11 @@ import torch
 import triton
 
 try:
+    from .collection_process import run_with_cleanup
+except ImportError:
+    from collection_process import run_with_cleanup
+
+try:
     from .collection_environment import collect_environment
 except ImportError:
     from collection_environment import collect_environment
@@ -502,7 +507,7 @@ def profile_with_ncu(op_name, profile_script, shape, dtype_str,
             sys.executable, script_path,
         ]
         try:
-            proc = subprocess.run(export_cmd, capture_output=True, text=True,
+            proc = run_with_cleanup(export_cmd, capture_output=True, text=True,
                                   timeout=600)
         except FileNotFoundError:
             print("  ✗ 未找到 ncu 命令，跳过 NCU profiling")
@@ -523,7 +528,7 @@ def profile_with_ncu(op_name, profile_script, shape, dtype_str,
             return _empty_result()
         report_path = str(candidates[0])
 
-        imp = subprocess.run(
+        imp = run_with_cleanup(
             ["ncu", "--import", report_path, "--csv", "--page", "raw"],
             capture_output=True, text=True, timeout=120)
         if imp.returncode != 0:
@@ -946,7 +951,7 @@ def _spawn_op_worker(op_name, ncu_enabled, report_dir, device, op_timeout,
 
     ok = True
     try:
-        proc = subprocess.run(cmd, timeout=op_timeout)
+        proc = run_with_cleanup(cmd, timeout=op_timeout)
         ok = proc.returncode == 0
         if not ok:
             print(f"  ✗ 算子 {op_name} 子进程异常退出 (code={proc.returncode})，"
