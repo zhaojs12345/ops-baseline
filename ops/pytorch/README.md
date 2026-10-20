@@ -106,3 +106,13 @@ SHA256、seed 和布局；重建发现 RNG/版本导致索引变化时明确报�
 跨后端比较必须重放同一索引并核对完整 shape/dtype/layout/config；这里没有增加
 FlagGems adapter 或跨机正确性 golden。采集文件的 `_environment` 标识实际 GPU，
 H20 验证数据不能当作 H800 数据。
+
+2026-10-20 在 H800 上重新采集了这两个算子的全部 30 个配置：
+`cudnn_grid_sampler` 18 条、`sparse_mask` 12 条，均有延迟与 NCU profiling。
+数据保存在 [`op_pytorch_h800_supplement_perf_baseline.json`](../../op_pytorch_h800_supplement_perf_baseline.json)。
+采集使用 H800 物理卡 4/5、Torch NV25.05、CUDA 12.9、Triton 3.6.0，
+干净源码版本为 `54fe7631c69c3d5216dc9c258a961ca4d13f8ce8`；各卡 UUID、软件版本和
+采集参数保留在 JSON 中。全部 shape/dtype/config 与 H20 文件一致，包括稀疏索引身份。
+H20 数据保留为独立记录。FlagGems 已有的静态基线对接可通过
+`FLAGGEMS_NV_BASELINE=/absolute/path/to/op_pytorch_h800_supplement_perf_baseline.json`
+选择这份 H800 数据，无需修改采集器或算子测试代码。
