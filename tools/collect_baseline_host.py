@@ -208,6 +208,8 @@ def main(argv=None):
         ]
 
         def execute(argv, suffix):
+            if git_info(source) != source_info:
+                raise ValueError("FlagGems source changed during collection")
             with (work / f"{operator}.{suffix}.log").open("w") as log:
                 run = subprocess.Popen(
                     argv,
@@ -218,7 +220,7 @@ def main(argv=None):
                     start_new_session=True,
                 )
                 try:
-                    return run.wait(timeout=args.op_timeout)
+                    code = run.wait(timeout=args.op_timeout)
                 except subprocess.TimeoutExpired:
                     os.killpg(run.pid, signal.SIGTERM)
                     try:
@@ -226,20 +228,23 @@ def main(argv=None):
                     except subprocess.TimeoutExpired:
                         os.killpg(run.pid, signal.SIGKILL)
                         run.wait()
-                    return 124
+                    code = 124
+            if git_info(source) != source_info:
+                raise ValueError("FlagGems source changed during collection")
+            return code
 
-        code = execute(catalog_command, "catalog")
         expected_ids = None
         catalog_error = None
-        if code == 0:
-            try:
+        try:
+            code = execute(catalog_command, "catalog")
+            if code == 0:
                 expected_ids = validate_catalog(
                     json.loads(catalog_path.read_text()), operator
                 )
                 code = execute(command, "reference")
-            except (ValueError, OSError, KeyError) as error:
-                code = 1
-                catalog_error = str(error)
+        except (ValueError, OSError, KeyError) as error:
+            code = 1
+            catalog_error = str(error)
         task = {
             "returncode": code,
             "status": "failed",

@@ -1,6 +1,7 @@
 import contextlib
 import importlib.util
 import io
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -15,6 +16,42 @@ spec.loader.exec_module(host)
 
 
 class HostReportTests(unittest.TestCase):
+    def test_source_change_during_catalog_cannot_complete_a_task(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            source = root / "flaggems"
+            (source / "benchmark").mkdir(parents=True)
+            for name in ("base.py", "test__use_cudnn_ctc_loss.py"):
+                (source / "benchmark" / name).touch()
+            output = root / "run/host.json"
+            clean = {"commit": "a" * 40, "dirty": False}
+            dirty = {"commit": "a" * 40, "dirty": True}
+            with (
+                patch.object(
+                    host, "git_info", side_effect=[clean, clean, clean, dirty]
+                ),
+                patch.object(host.subprocess, "Popen") as launch,
+                contextlib.redirect_stdout(io.StringIO()),
+            ):
+                launch.return_value.wait.return_value = 0
+                code = host.main(
+                    [
+                        "--flaggems",
+                        str(source),
+                        "--output",
+                        str(output),
+                        "--operators",
+                        "_use_cudnn_ctc_loss",
+                    ]
+                )
+            self.assertEqual(code, 1)
+            self.assertEqual(launch.call_count, 1)
+            data = json.loads(output.read_text())
+            self.assertFalse(data["operators"])
+            task = data["_tasks"]["_use_cudnn_ctc_loss"]
+            self.assertEqual(task["status"], "failed")
+            self.assertIn("source changed", task["error"])
+
     def test_unreplayable_source_is_rejected_before_allocating_run(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
