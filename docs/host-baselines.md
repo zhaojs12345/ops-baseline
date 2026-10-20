@@ -27,6 +27,8 @@ replaces only reference timing, without editing the FlagGems checkout. Inputs
 and packed weights are built before timing. CPU wall-clock samples are repeated
 and the median is reported in milliseconds; CPU architecture/model, Torch,
 thread count, native API, input contract and source revision are retained.
+Input preparation uses four CPU threads by default (`--input-threads`); the
+timer separately applies `--threads` (one by default) inside every measured region.
 Collection errors and missing/duplicate catalog records are failures, not zero
 latency. An operator timeout terminates its process group. Use a fresh output
 path for each run; this collector does not resume or overwrite an existing run.

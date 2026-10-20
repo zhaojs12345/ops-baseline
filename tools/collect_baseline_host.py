@@ -87,6 +87,12 @@ def main(argv=None):
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--operators", nargs="+", choices=OPERATORS, default=OPERATORS)
     parser.add_argument("--threads", type=int, default=1)
+    parser.add_argument(
+        "--input-threads",
+        type=int,
+        default=4,
+        help="CPU threads for untimed input preparation; --threads controls timing",
+    )
     parser.add_argument("--seed", type=int, default=20261020)
     parser.add_argument("--min-run-time", type=float, default=0.05)
     parser.add_argument(
@@ -99,6 +105,7 @@ def main(argv=None):
     args = parser.parse_args(argv)
     if (
         args.threads < 1
+        or args.input_threads < 1
         or args.device < 0
         or not math.isfinite(args.min_run_time)
         or args.min_run_time <= 0
@@ -140,8 +147,8 @@ def main(argv=None):
     env.update(
         DNN_VENDOR="nvidia",
         CUDA_VISIBLE_DEVICES=str(args.device),
-        OMP_NUM_THREADS=str(args.threads),
-        MKL_NUM_THREADS=str(args.threads),
+        OMP_NUM_THREADS=str(args.input_threads),
+        MKL_NUM_THREADS=str(args.input_threads),
         HOST_BASELINE_THREADS=str(args.threads),
         HOST_BASELINE_SEED=str(args.seed),
         HOST_BASELINE_MIN_TIME=str(args.min_run_time),
@@ -165,6 +172,7 @@ def main(argv=None):
         "_measurement": {
             "seed": args.seed,
             "threads": args.threads,
+            "input_threads": args.input_threads,
             "min_run_time_seconds": args.min_run_time,
             "not_a_gpu_kernel_baseline": True,
             "not_a_correctness_golden": True,

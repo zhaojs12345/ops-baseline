@@ -187,6 +187,7 @@ def pytest_collection_modifyitems(config, items):
                 "architecture": platform.machine(),
                 "torch": str(torch.__version__),
                 "threads": 1,
+                "input_threads": torch.get_num_threads(),
                 "cpu_info": cpu_info,
                 "synchronized_accelerator": operator == "_to_sparse_semi_structured",
                 "timer": "torch.utils.benchmark.Timer(perf_counter)",
@@ -211,6 +212,8 @@ def pytest_collection_modifyitems(config, items):
                         r
                         for r in base.Config.reference_records
                         if r.get("operator") == operator
+                        and r.get("nodeid") == base.Config.current_nodeid
+                        and "failure" not in r
                         and r.get("status") == "FAILED"
                         and r.get("stage") == "benchmark_reference"
                     ]

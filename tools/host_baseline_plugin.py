@@ -78,6 +78,7 @@ def pytest_collection_modifyitems(config, items):
         "cpu_info": cpu_info,
         "torch": str(torch.__version__),
         "threads": threads,
+        "input_threads": torch.get_num_threads(),
         "python": platform.python_version(),
         "os": platform.platform(),
         "cuda": torch.version.cuda,
@@ -121,6 +122,8 @@ def pytest_collection_modifyitems(config, items):
             r
             for r in base.Config.reference_records
             if r.get("operator") == operator
+            and r.get("nodeid") == base.Config.current_nodeid
+            and "failure" not in r
             and r.get("status") == "FAILED"
             and r.get("stage") == "benchmark_reference"
         ]
