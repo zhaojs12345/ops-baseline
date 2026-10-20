@@ -4,6 +4,7 @@
 This deliberately produces a separate host artifact. It does not collect NCU
 metrics or pretend that CPU dispatch and CUDA-transfer time are GPU kernel time.
 """
+
 import argparse
 import hashlib
 import json
@@ -23,6 +24,24 @@ OPERATORS = (
     "q_per_channel_scales",
     "q_per_channel_zero_points",
 )
+
+
+def git_info(path):
+    try:
+        commit = subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], cwd=path, text=True, stderr=subprocess.DEVNULL
+        ).strip()
+        dirty = bool(
+            subprocess.check_output(
+                ["git", "status", "--porcelain"],
+                cwd=path,
+                text=True,
+                stderr=subprocess.DEVNULL,
+            ).strip()
+        )
+        return {"commit": commit, "dirty": dirty}
+    except (subprocess.CalledProcessError, OSError):
+        return {"commit": None, "dirty": None}
 
 
 def validate_report(report, operator, expected_ids=None):
@@ -90,7 +109,18 @@ def main(argv=None):
     source = args.flaggems.resolve(strict=True)
     if not (source / "benchmark/base.py").is_file():
         parser.error("--flaggems must point to a FlagGems checkout")
+    source_info = git_info(source)
+    commit = source_info["commit"]
+    if (
+        source_info["dirty"] is not False
+        or not isinstance(commit, str)
+        or len(commit) != 40
+        or any(c not in "0123456789abcdef" for c in commit)
+    ):
+        parser.error("--flaggems requires a clean Git checkout with a full commit ID")
     output = args.output.resolve()
+    if source == output or source in output.parents:
+        parser.error("--output must be outside the FlagGems checkout")
     output.parent.mkdir(parents=True, exist_ok=True)
     if output.exists():
         parser.error("output already exists; choose a fresh run path")
@@ -120,32 +150,12 @@ def main(argv=None):
         ),
     )
 
-    def git_info(path):
-        try:
-            commit = subprocess.check_output(
-                ["git", "rev-parse", "HEAD"],
-                cwd=path,
-                text=True,
-                stderr=subprocess.DEVNULL,
-            ).strip()
-            dirty = bool(
-                subprocess.check_output(
-                    ["git", "status", "--porcelain"],
-                    cwd=path,
-                    text=True,
-                    stderr=subprocess.DEVNULL,
-                ).strip()
-            )
-            return {"commit": commit, "dirty": dirty}
-        except (subprocess.CalledProcessError, OSError):
-            return {"commit": None, "dirty": None}
-
     result = {
         "_format": "flaggems_native_host_v1",
         "_tasks": {},
         "operators": {},
         "_source": {
-            "flaggems": git_info(source),
+            "flaggems": source_info,
             "collector": git_info(Path(__file__).parent),
             "collector_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
             "plugin_sha256": hashlib.sha256(

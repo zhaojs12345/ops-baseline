@@ -12,7 +12,8 @@ with NCU kernel timings or apply GPU peak-throughput scaling to it.
 | `_use_cudnn_ctc_loss` | CUDA-dispatch host capability predicate; this is not CTC computation |
 
 Collect with the existing Torch/FlagGems runtime on an NVIDIA host. The FlagGems
-checkout must include the CPU-quantized-input accessor builders. The collector
+checkout must be clean, identify a Git commit, and include the CPU-quantized-input
+accessor builders. Put the output outside that checkout to keep it clean. The collector
 uses the original complete `core` catalog, not a new shape grid:
 
 ```sh

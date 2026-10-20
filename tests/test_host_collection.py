@@ -1,6 +1,10 @@
+import contextlib
 import importlib.util
+import io
+import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 spec = importlib.util.spec_from_file_location(
     "host_collector",
@@ -11,6 +15,29 @@ spec.loader.exec_module(host)
 
 
 class HostReportTests(unittest.TestCase):
+    def test_unreplayable_source_is_rejected_before_allocating_run(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            source = root / "flaggems"
+            (source / "benchmark").mkdir(parents=True)
+            (source / "benchmark/base.py").touch()
+            for info, output in [
+                ({"commit": "a" * 40, "dirty": True}, root / "runs/dirty.json"),
+                ({"commit": None, "dirty": None}, root / "runs/unknown.json"),
+                ({"commit": "a" * 40, "dirty": False}, source / "runs/inside.json"),
+            ]:
+                with (
+                    self.subTest(info=info, output=output),
+                    patch.object(host, "git_info", return_value=info),
+                    patch.object(host.subprocess, "Popen") as launch,
+                    contextlib.redirect_stderr(io.StringIO()),
+                    self.assertRaises(SystemExit) as error,
+                ):
+                    host.main(["--flaggems", str(source), "--output", str(output)])
+                self.assertEqual(error.exception.code, 2)
+                launch.assert_not_called()
+                self.assertFalse(output.parent.exists())
+
     def report(self):
         return {
             "status": "PASSED",
