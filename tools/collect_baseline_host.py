@@ -16,6 +16,11 @@ import sys
 import time
 from pathlib import Path
 
+NESTED_METADATA_OPERATORS = (
+    "_nested_tensor_storage_offsets",
+    "_nested_tensor_strides",
+)
+
 OPERATORS = (
     "_to_sparse_semi_structured",
     "_use_cudnn_ctc_loss",
@@ -23,6 +28,7 @@ OPERATORS = (
     "fbgemm_linear_quantize_weight",
     "q_per_channel_scales",
     "q_per_channel_zero_points",
+    *NESTED_METADATA_OPERATORS,
 )
 
 
@@ -99,7 +105,7 @@ def main(argv=None):
         "--device",
         type=int,
         default=0,
-        help="CUDA source device for the two CUDA-dispatch host APIs",
+        help="CUDA source device for CUDA-dispatch host APIs",
     )
     parser.add_argument("--op-timeout", type=float, default=3600)
     args = parser.parse_args(argv)
@@ -187,6 +193,8 @@ def main(argv=None):
             "-m",
             "pytest",
             str(module),
+            "-m",
+            "underscore" + operator if operator.startswith("_") else operator,
             "-q",
             "--tb=short",
             "--level",
@@ -206,6 +214,8 @@ def main(argv=None):
             "-m",
             "pytest",
             str(module),
+            "-m",
+            "underscore" + operator if operator.startswith("_") else operator,
             "-q",
             "--tb=short",
             "--level",
