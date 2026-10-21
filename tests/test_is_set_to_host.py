@@ -89,6 +89,7 @@ class IsSetToHostTests(unittest.TestCase):
                 "is_set_to": {
                     "status": "completed",
                     "returncode": 0,
+                    "scope": "explicit_core_selection",
                     "selected_case_ids": ["source-index-7"],
                     "catalog_case_ids": ["source-index-0", "source-index-7"],
                 }
@@ -186,6 +187,23 @@ class IsSetToHostTests(unittest.TestCase):
                     self.assertRaises(ValueError),
                 ):
                     self.lookup(data, actual, args)
+
+    def test_full_scope_cannot_claim_a_partial_catalog(self):
+        x = torch.empty(2, 3)
+        args = (x, x)
+        data = self.artifact(args)
+        actual = data["operators"]["is_set_to"][0]["host_measurement"]["inputs"]
+        task = data["_tasks"]["is_set_to"]
+        for invalid in (None, "unknown", "full_core_catalog"):
+            task["scope"] = invalid
+            with self.subTest(scope=invalid), self.assertRaises(ValueError):
+                self.lookup(data, actual, args)
+        del task["scope"]
+        with self.assertRaises(ValueError):
+            self.lookup(data, actual, args)
+        task["scope"] = "full_core_catalog"
+        task["catalog_case_ids"] = task["selected_case_ids"][:]
+        self.assertEqual(self.lookup(data, actual, args)[0], 0.002)
 
     def test_selection_cli_rejects_duplicate_operator_keys_before_execution(self):
         with tempfile.TemporaryDirectory() as tmp:

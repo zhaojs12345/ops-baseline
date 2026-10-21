@@ -110,6 +110,12 @@ class HostArtifact:
                 len(ids) != len(set(ids))
                 or set(ids) != set(task["selected_case_ids"])
                 or not set(ids) <= set(task["catalog_case_ids"])
+                or task.get("scope")
+                not in {"full_core_catalog", "explicit_core_selection"}
+                or (
+                    task["scope"] == "full_core_catalog"
+                    and set(ids) != set(task["catalog_case_ids"])
+                )
             ):
                 raise ValueError(
                     "is_set_to source records do not complete the declared collection scope"
