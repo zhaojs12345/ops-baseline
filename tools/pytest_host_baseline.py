@@ -1,4 +1,4 @@
-"""Opt-in host-baseline replay for the six documented FlagGems operators.
+"""Opt-in host-baseline replay for the documented FlagGems host operators.
 
 Usage: PYTHONPATH=/path/to/ops-baseline/tools:$PYTHONPATH pytest ... \
     -p pytest_host_baseline --host-baseline /path/to/host.json --mode operator
