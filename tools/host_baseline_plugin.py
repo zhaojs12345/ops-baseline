@@ -4,10 +4,21 @@ Patches only the throwaway collector process; the FlagGems checkout is unmodifie
 """
 
 import hashlib
+import importlib.util
 import os
 import platform
 import time
 from pathlib import Path
+from functools import lru_cache
+
+
+@lru_cache(maxsize=1)
+def is_set_to_module():
+    path = Path(__file__).resolve().parents[1] / "ops/pytorch/is_set_to.py"
+    spec = importlib.util.spec_from_file_location("_is_set_to_host_contract", path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
 
 
 def describe_inputs(value):
@@ -46,6 +57,8 @@ def input_contract(operator, args, kwargs):
     import torch
 
     config = describe_inputs({"args": args, "kwargs": kwargs})
+    if operator == "is_set_to":
+        config["storage_view"] = is_set_to_module().view_contract(args, kwargs)
     # Sparse packing depends on actual retained slots and values. CTC's tensor
     # lengths also affect eligibility; shape/dtype alone do not identify them.
     indices = (
@@ -99,6 +112,11 @@ def pytest_collection_modifyitems(config, items):
             raise ValueError(
                 "Host collection only accepts the original native reference"
             )
+        native_validation = (
+            is_set_to_module().validate_native(op, args, kwargs)
+            if operator == "is_set_to"
+            else None
+        )
         # Packing is host work reached through CUDA dispatch, including its
         # internal D2H/H2D transfers. The CTC predicate launches no computation:
         # a CUDA synchronization there would measure unrelated device work.
@@ -134,7 +152,7 @@ def pytest_collection_modifyitems(config, items):
             if synchronize
             else (
                 "cuda_dispatch_host_predicate"
-                if operator == "_use_cudnn_ctc_loss"
+                if operator in ("_use_cudnn_ctc_loss", "is_set_to")
                 else "native_cpu"
             )
         )
@@ -153,6 +171,8 @@ def pytest_collection_modifyitems(config, items):
                 else None
             ),
         }
+        if operator == "is_set_to":
+            active[0]["host_measurement"]["native_validation"] = native_validation
         return measurement.median * 1000
 
     # Operator-local classes may override get_latency. Instrument those too,
@@ -165,3 +185,8 @@ def pytest_collection_modifyitems(config, items):
                 and issubclass(value, base.Benchmark)
             ):
                 value.get_latency = host_latency
+    # The original is_set_to file instantiates GenericBenchmark directly. This
+    # is a single-operator throwaway collector process, so instrument that
+    # class here without editing the clean FlagGems source or its builders.
+    if operator == "is_set_to":
+        base.GenericBenchmark.get_latency = host_latency

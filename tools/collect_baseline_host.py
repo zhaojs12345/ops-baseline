@@ -23,6 +23,7 @@ OPERATORS = (
     "fbgemm_linear_quantize_weight",
     "q_per_channel_scales",
     "q_per_channel_zero_points",
+    "is_set_to",
 )
 
 
@@ -94,6 +95,11 @@ def main(argv=None):
         help="CPU threads for untimed input preparation; --threads controls timing",
     )
     parser.add_argument("--seed", type=int, default=20261020)
+    parser.add_argument(
+        "--case-selection",
+        type=Path,
+        help="Explicit JSON mapping operator to source case IDs; other operators retain their full core catalog",
+    )
     parser.add_argument("--min-run-time", type=float, default=0.05)
     parser.add_argument(
         "--device",
@@ -103,6 +109,27 @@ def main(argv=None):
     )
     parser.add_argument("--op-timeout", type=float, default=3600)
     args = parser.parse_args(argv)
+    selection = None
+    if args.case_selection is not None:
+        selection = json.loads(args.case_selection.read_text())
+        if (
+            not isinstance(selection, dict)
+            or not selection
+            or not set(selection) <= set(args.operators)
+        ):
+            parser.error(
+                "case selection must map requested operators to nonempty unique case-ID lists"
+            )
+        for ids in selection.values():
+            if (
+                not isinstance(ids, list)
+                or not ids
+                or not all(isinstance(x, str) and x for x in ids)
+                or len(ids) != len(set(ids))
+            ):
+                parser.error(
+                    "case selection must map requested operators to nonempty unique case-ID lists"
+                )
     if (
         args.threads < 1
         or args.input_threads < 1
@@ -177,6 +204,7 @@ def main(argv=None):
             "not_a_gpu_kernel_baseline": True,
             "not_a_correctness_golden": True,
         },
+        "_selection": selection,
     }
     for operator in dict.fromkeys(args.operators):
         module = source / "benchmark" / f"test_{operator}.py"
@@ -214,6 +242,9 @@ def main(argv=None):
             "--output",
             str(catalog_path),
         ]
+        if operator == "is_set_to":
+            command.extend(["-m", "is_set_to"])
+            catalog_command.extend(["-m", "is_set_to"])
 
         def execute(argv, suffix):
             if git_info(source) != source_info:
@@ -242,6 +273,7 @@ def main(argv=None):
             return code
 
         expected_ids = None
+        available_ids = None
         catalog_error = None
         try:
             code = execute(catalog_command, "catalog")
@@ -249,6 +281,16 @@ def main(argv=None):
                 expected_ids = validate_catalog(
                     json.loads(catalog_path.read_text()), operator
                 )
+                available_ids = list(expected_ids)
+                if selection is not None and operator in selection:
+                    requested = selection[operator]
+                    if not set(requested) <= set(available_ids):
+                        raise ValueError(
+                            "case selection contains IDs absent from the native source catalog"
+                        )
+                    expected_ids = [x for x in available_ids if x in set(requested)]
+                    for case_id in expected_ids:
+                        command.extend(["--case-id", case_id])
                 code = execute(command, "reference")
         except (ValueError, OSError, KeyError) as error:
             code = 1
@@ -259,6 +301,13 @@ def main(argv=None):
             "seconds": time.monotonic() - started,
             "benchmark": str(module.relative_to(source)),
             "benchmark_sha256": hashlib.sha256(module.read_bytes()).hexdigest(),
+            "scope": (
+                "explicit_core_selection"
+                if selection is not None and operator in selection
+                else "full_core_catalog"
+            ),
+            "catalog_case_ids": available_ids,
+            "selected_case_ids": expected_ids,
         }
         if catalog_error:
             task["error"] = catalog_error

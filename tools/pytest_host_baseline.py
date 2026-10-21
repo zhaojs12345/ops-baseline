@@ -18,7 +18,7 @@ from functools import cached_property
 from pathlib import Path
 
 from collect_baseline_host import OPERATORS
-from host_baseline_plugin import input_contract
+from host_baseline_plugin import input_contract, is_set_to_module
 
 
 def pytest_addoption(parser):
@@ -78,7 +78,7 @@ class HostArtifact:
             raise ValueError("Host baseline requires a traceable clean source revision")
         return data, hashlib.sha256(raw).hexdigest()
 
-    def lookup(self, operator, case_id, args, kwargs):
+    def lookup(self, operator, case_id, args, kwargs, *, params=None):
         data, digest = self.payload
         task = data["_tasks"][operator]
         if (
@@ -87,7 +87,32 @@ class HostArtifact:
             or task["returncode"] != 0
         ):
             raise ValueError("Native host baseline task did not complete")
-        matches = [r for r in data["operators"][operator] if r["case_id"] == case_id]
+        actual = input_contract(operator, args, kwargs)
+        if operator == "is_set_to":
+            if not isinstance(params, dict) or set(params) != {"relation"}:
+                raise ValueError(
+                    "is_set_to import requires the original relation parameter"
+                )
+            records = data["operators"][operator]
+            ids = [r["case_id"] for r in records]
+            if (
+                len(ids) != len(set(ids))
+                or set(ids) != set(task["selected_case_ids"])
+                or not set(ids) <= set(task["catalog_case_ids"])
+            ):
+                raise ValueError(
+                    "is_set_to source records do not complete the declared collection scope"
+                )
+            matches = [
+                r
+                for r in data["operators"][operator]
+                if r.get("params") == params
+                and _canonical(r["host_measurement"]["inputs"]) == _canonical(actual)
+            ]
+        else:
+            matches = [
+                r for r in data["operators"][operator] if r["case_id"] == case_id
+            ]
         if len(matches) != 1:
             raise ValueError("Expected exactly one matching native host case ID")
         record = matches[0]
@@ -97,7 +122,7 @@ class HostArtifact:
             if operator == "_to_sparse_semi_structured"
             else (
                 "cuda_dispatch_host_predicate"
-                if operator == "_use_cudnn_ctc_loss"
+                if operator in ("_use_cudnn_ctc_loss", "is_set_to")
                 else "native_cpu"
             )
         )
@@ -126,7 +151,11 @@ class HostArtifact:
             operator == "_to_sparse_semi_structured"
         ):
             raise ValueError("Host baseline synchronization scope is inconsistent")
-        if operator in {"_to_sparse_semi_structured", "_use_cudnn_ctc_loss"}:
+        if operator in {
+            "_to_sparse_semi_structured",
+            "_use_cudnn_ctc_loss",
+            "is_set_to",
+        }:
             gpu = measurement["environment"]["cuda_device"]
             if (
                 not isinstance(gpu, str)
@@ -136,7 +165,26 @@ class HostArtifact:
                 raise ValueError(
                     "CUDA-dispatch host baseline lacks its actual NVIDIA environment"
                 )
-        actual = input_contract(operator, args, kwargs)
+        if operator == "is_set_to":
+            collector = data["_source"]["collector"]
+            if (
+                not gpu.startswith("NVIDIA H800")
+                or collector.get("dirty") is not False
+                or not isinstance(collector.get("commit"), str)
+                or len(collector["commit"]) != 40
+                or any(c not in "0123456789abcdef" for c in collector["commit"])
+                or type(measurement.get("native_validation")) is not bool
+                or measurement["native_validation"]
+                is not is_set_to_module().expected_result(args, kwargs)
+                or not all(
+                    x["device"].split(":")[0] == "cuda"
+                    for x in measurement["inputs"]["args"]
+                )
+                or record["dtype"] != str(args[0].dtype)
+            ):
+                raise ValueError(
+                    "is_set_to requires validated native CUDA inputs on a clean H800 source"
+                )
         if _canonical(actual) != _canonical(measurement["inputs"]):
             raise ValueError(
                 "Host baseline input configuration differs from actual operands"
@@ -149,7 +197,7 @@ class HostArtifact:
             or latency <= 0
         ):
             raise ValueError("Host baseline latency must be finite and positive")
-        return latency, {
+        provenance = {
             "kind": "external_host",
             "artifact": str(self.path.resolve()),
             "artifact_sha256": digest,
@@ -158,6 +206,13 @@ class HostArtifact:
             "source_measurement": measurement,
             "ratio": "raw source host latency / target host latency; no GPU normalization",
         }
+        if operator == "is_set_to":
+            provenance.update(
+                source_case_id=record["case_id"],
+                target_case_id=case_id,
+                source_params=record["params"],
+            )
+        return latency, provenance
 
 
 def pytest_collection_modifyitems(config, items):
@@ -223,7 +278,15 @@ def pytest_collection_modifyitems(config, items):
                         )
                     case_id = active[0]["case_id"]
                 result, self._host_imported = artifact.lookup(
-                    operator, case_id, args, kwargs
+                    operator,
+                    case_id,
+                    args,
+                    kwargs,
+                    params=(
+                        active[0]["params"]
+                        if active is not None
+                        else getattr(self, "_host_case_params", None)
+                    ),
                 )
                 self._host_imported["target_environment"] = target_source()
                 if active is not None:
@@ -261,6 +324,11 @@ def pytest_collection_modifyitems(config, items):
                     "External host baseline supports forward operator latency only"
                 )
             self._host_case_id = case_id
+            if operator == "is_set_to":
+                plans = {case.case_id: case for case in self._collect_cases()}
+                if case_id not in plans:
+                    raise ValueError("Unknown target is_set_to case")
+                self._host_case_params = plans[case_id].params
             self._host_imported = None
             self._host_source = target_source()
             self._host_native_pending = "latency_base" in self.to_bench_metrics
