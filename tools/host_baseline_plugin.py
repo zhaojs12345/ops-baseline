@@ -9,11 +9,32 @@ import platform
 import time
 from pathlib import Path
 
+from collect_baseline_host import NESTED_METADATA_OPERATORS
+
 
 def describe_inputs(value):
     import torch
 
     if isinstance(value, torch.Tensor):
+        if value.is_nested:
+            # Shape/stride on a NestedTensor are not ordinary dense APIs. Use
+            # each dense component, preserving empty shapes and global offsets.
+            return {
+                "is_nested": True,
+                "layout": str(value.layout),
+                "dtype": str(value.dtype),
+                "device": str(value.device),
+                "requires_grad": value.requires_grad,
+                "components": [
+                    {
+                        "shape": list(part.shape),
+                        "stride": list(part.stride()),
+                        "storage_offset": part.storage_offset(),
+                    }
+                    for part in value.unbind()
+                ],
+                "storage_elements": value.values().numel(),
+            }
         result = {
             "shape": list(value.shape),
             "stride": list(value.stride()),
@@ -135,7 +156,11 @@ def pytest_collection_modifyitems(config, items):
             else (
                 "cuda_dispatch_host_predicate"
                 if operator == "_use_cudnn_ctc_loss"
-                else "native_cpu"
+                else (
+                    "cuda_dispatch_host_metadata"
+                    if operator in NESTED_METADATA_OPERATORS
+                    else "native_cpu"
+                )
             )
         )
         active[0]["host_measurement"] = {

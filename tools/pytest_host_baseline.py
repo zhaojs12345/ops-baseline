@@ -17,7 +17,7 @@ from dataclasses import asdict, dataclass
 from functools import cached_property
 from pathlib import Path
 
-from collect_baseline_host import OPERATORS
+from collect_baseline_host import OPERATORS, NESTED_METADATA_OPERATORS
 from host_baseline_plugin import input_contract
 
 
@@ -98,7 +98,11 @@ class HostArtifact:
             else (
                 "cuda_dispatch_host_predicate"
                 if operator == "_use_cudnn_ctc_loss"
-                else "native_cpu"
+                else (
+                    "cuda_dispatch_host_metadata"
+                    if operator in NESTED_METADATA_OPERATORS
+                    else "native_cpu"
+                )
             )
         )
         if (
@@ -126,7 +130,11 @@ class HostArtifact:
             operator == "_to_sparse_semi_structured"
         ):
             raise ValueError("Host baseline synchronization scope is inconsistent")
-        if operator in {"_to_sparse_semi_structured", "_use_cudnn_ctc_loss"}:
+        if operator in {
+            "_to_sparse_semi_structured",
+            "_use_cudnn_ctc_loss",
+            *NESTED_METADATA_OPERATORS,
+        }:
             gpu = measurement["environment"]["cuda_device"]
             if (
                 not isinstance(gpu, str)
