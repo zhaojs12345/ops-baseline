@@ -1,4 +1,4 @@
-"""Opt-in host-baseline replay for the six documented FlagGems operators.
+"""Opt-in host-baseline replay for the documented FlagGems operators.
 
 Usage: PYTHONPATH=/path/to/ops-baseline/tools:$PYTHONPATH pytest ... \
     -p pytest_host_baseline --host-baseline /path/to/host.json --mode operator
@@ -95,6 +95,17 @@ class HostArtifact:
                 )
             records = data["operators"][operator]
             ids = [r["case_id"] for r in records]
+            for key in ("selected_case_ids", "catalog_case_ids"):
+                declared = task[key]
+                if (
+                    not isinstance(declared, list)
+                    or not declared
+                    or not all(isinstance(value, str) and value for value in declared)
+                    or len(declared) != len(set(declared))
+                ):
+                    raise ValueError(
+                        f"is_set_to {key} must be a nonempty unique case-ID list"
+                    )
             if (
                 len(ids) != len(set(ids))
                 or set(ids) != set(task["selected_case_ids"])

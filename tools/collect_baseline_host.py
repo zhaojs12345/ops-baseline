@@ -111,7 +111,21 @@ def main(argv=None):
     args = parser.parse_args(argv)
     selection = None
     if args.case_selection is not None:
-        selection = json.loads(args.case_selection.read_text())
+
+        def unique_selection(pairs):
+            result = {}
+            for key, value in pairs:
+                if key in result:
+                    raise ValueError(f"duplicate case selection key: {key}")
+                result[key] = value
+            return result
+
+        try:
+            selection = json.loads(
+                args.case_selection.read_text(), object_pairs_hook=unique_selection
+            )
+        except ValueError as exc:
+            parser.error(str(exc))
         if (
             not isinstance(selection, dict)
             or not selection

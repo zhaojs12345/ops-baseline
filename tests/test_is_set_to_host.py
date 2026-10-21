@@ -164,6 +164,50 @@ class IsSetToHostTests(unittest.TestCase):
             with self.subTest(mutation=mutate), self.assertRaises(ValueError):
                 self.lookup(data, actual, args)
 
+    def test_declared_scope_rejects_duplicate_and_malformed_ids(self):
+        x = torch.empty(2, 3)
+        args = (x, x)
+        original = self.artifact(args)
+        actual = original["operators"]["is_set_to"][0]["host_measurement"]["inputs"]
+        for key in ("selected_case_ids", "catalog_case_ids"):
+            valid = original["_tasks"]["is_set_to"][key]
+            for invalid in (
+                valid + [valid[-1]],
+                [],
+                "source-index-7",
+                [None],
+                [1],
+                [""],
+            ):
+                data = copy.deepcopy(original)
+                data["_tasks"]["is_set_to"][key] = invalid
+                with (
+                    self.subTest(key=key, invalid=invalid),
+                    self.assertRaises(ValueError),
+                ):
+                    self.lookup(data, actual, args)
+
+    def test_selection_cli_rejects_duplicate_operator_keys_before_execution(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            selection = Path(tmp) / "selection.json"
+            selection.write_text('{"is_set_to":["source-a"],"is_set_to":["source-b"]}')
+            with patch.object(collector.subprocess, "Popen") as launch:
+                with self.assertRaises(SystemExit) as exc:
+                    collector.main(
+                        [
+                            "--flaggems",
+                            tmp,
+                            "--output",
+                            str(Path(tmp) / "result.json"),
+                            "--operators",
+                            "is_set_to",
+                            "--case-selection",
+                            str(selection),
+                        ]
+                    )
+                self.assertEqual(exc.exception.code, 2)
+                launch.assert_not_called()
+
     def collect(self, selection, available=("source-0", "source-7")):
         with tempfile.TemporaryDirectory() as tmp:
             r = Path(tmp)
