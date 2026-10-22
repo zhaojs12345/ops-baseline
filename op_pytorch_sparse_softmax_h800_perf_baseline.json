@@ -1,0 +1,3995 @@
+{
+  "_collection": {
+    "configuration": {
+      "repo": "pytorch",
+      "operators": [
+        "_sparse_softmax",
+        "_sparse_softmax_backward_data"
+      ],
+      "devices": [
+        "7"
+      ],
+      "ncu_enabled": false,
+      "op_timeout": 1800.0,
+      "reference_chip": "H800",
+      "source_sha256": "da11637f26407247c94934c5087fdaf876b4a8f45a7854671dc5cb1ab0bbd632",
+      "report_dir": null
+    },
+    "started_at_utc": "2026-10-22T14:06:28.138725+00:00",
+    "tasks": {
+      "_sparse_softmax": {
+        "status": "completed",
+        "device": "7",
+        "returncode": 0,
+        "log": "/data/tj/workspace/ops-baseline-softmax-run-v4-20261022/h800.json.work/_sparse_softmax/d5e00ef0e1ff418ab03a6daed69f6efb/collector.log",
+        "result": "/data/tj/workspace/ops-baseline-softmax-run-v4-20261022/h800.json.work/_sparse_softmax/d5e00ef0e1ff418ab03a6daed69f6efb/result.json"
+      },
+      "_sparse_softmax_backward_data": {
+        "status": "completed",
+        "device": "7",
+        "returncode": 0,
+        "log": "/data/tj/workspace/ops-baseline-softmax-run-v4-20261022/h800.json.work/_sparse_softmax_backward_data/ea18805d11ce4f6fa35910e59cd9b236/collector.log",
+        "result": "/data/tj/workspace/ops-baseline-softmax-run-v4-20261022/h800.json.work/_sparse_softmax_backward_data/ea18805d11ce4f6fa35910e59cd9b236/result.json"
+      }
+    },
+    "interrupted": false,
+    "attempt_started_at_utc": "2026-10-22T14:06:28.138810+00:00",
+    "finished_at_utc": "2026-10-22T14:07:45.202258+00:00"
+  },
+  "_environments": {
+    "7": {
+      "schema_version": 1,
+      "collected_at_utc": "2026-10-22T14:07:22.931041+00:00",
+      "hardware": {
+        "gpu": {
+          "name": "NVIDIA H800",
+          "uuid": "555633f8-c39c-bb8a-d549-791cb8451f44",
+          "total_memory_bytes": 85017624576,
+          "total_memory_gib": 79.18,
+          "compute_capability": "9.0",
+          "multiprocessor_count": 132,
+          "cuda_device_index": 0,
+          "driver_version": "580.105.08"
+        },
+        "cpu_model": "Intel(R) Xeon(R) Platinum 8468V",
+        "cpu_architecture": "x86_64",
+        "cpu_socket_count": 2,
+        "physical_cpu_core_count": 96,
+        "logical_cpu_count": 192,
+        "cpu_threads_per_core": 2,
+        "numa_node_count": 2,
+        "process_cpu_affinity_count": 192,
+        "hypervisor_vendor": null
+      },
+      "software": {
+        "os": "Linux",
+        "os_release": "5.15.0-78-generic",
+        "machine": "x86_64",
+        "python": "3.12.3",
+        "packages": {
+          "torch": "2.8.0a0+5228986c39.nv25.5",
+          "triton": "3.6.0",
+          "vllm": null,
+          "sglang": null
+        },
+        "torch_cuda_version": "12.9",
+        "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Apr__9_19:24:57_PDT_2025\nCuda compilation tools, release 12.9, V12.9.41\nBuild cuda_12.9.r12.9/compiler.35813241_0",
+        "ncu_version": "NVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2025 NVIDIA Corporation\nVersion 2025.2.0.0 (build 35613519) (public-release)"
+      },
+      "source": {
+        "git_commit": "0567cbffdb05aa7987650c55e47738c8183444a7",
+        "git_branch": "HEAD",
+        "git_dirty": false
+      },
+      "run": {
+        "repo": "pytorch",
+        "device": null,
+        "ncu_enabled": false,
+        "report_dir": "/data/tj/workspace/ops-baseline-softmax-run-v4-20261022/h800.json.work/_sparse_softmax_backward_data/ea18805d11ce4f6fa35910e59cd9b236/ncu_reports",
+        "output_path": "/data/tj/workspace/ops-baseline-softmax-run-v4-20261022/h800.json.work/_sparse_softmax_backward_data/ea18805d11ce4f6fa35910e59cd9b236/result.json",
+        "op_timeout_seconds": 1800.0,
+        "reference_chip": "H800",
+        "only": [
+          "_sparse_softmax_backward_data"
+        ],
+        "whitelist": null,
+        "blacklist": null,
+        "selected_ops": [
+          "_sparse_softmax_backward_data"
+        ],
+        "latency_warmup_ms": 25,
+        "latency_rep_ms": 100,
+        "ncu_warmup_calls": 3
+      },
+      "environment_variables": {
+        "CUDA_VISIBLE_DEVICES": "7",
+        "CUDA_DEVICE_ORDER": null
+      }
+    }
+  },
+  "_sparse_softmax": {
+    "native_api": "ops._sparse_softmax",
+    "shapes": {
+      "coo_1024x1024_nnz_0_sd_2_dim_1": {
+        "torch.float32": {
+          "config": {
+            "native_expression": "torch.ops.aten._sparse_softmax.default",
+            "case_source_commit": "38fd6d1ba0374f40f9c60b6291d951e24e52a4c0",
+            "benchmark": "benchmark/test__sparse_softmax.py",
+            "benchmark_sha256": "f44a7b4388513d8e3279183f9b2c6b92f8fc5b76321887ad3786b43aa4d10a88",
+            "scope": "core",
+            "case_id": "benchmark/test__sparse_softmax.py::test__sparse_softmax::core::float32::0",
+            "recipe": "coo-softmax-pcg64-native-width-compact-v1",
+            "seed_hex": "d3c0c3a50ea7ded6",
+            "requested_nnz": 0,
+            "sparse_dim": 2,
+            "dim": 1,
+            "half_to_float": false,
+            "input_device_role": "target",
+            "inputs": {
+              "tensors": {
+                "input": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    1024,
+                    1024
+                  ],
+                  "dtype": "torch.float32",
+                  "sparse_dim": 2,
+                  "dense_dim": 0,
+                  "nnz": 0,
+                  "is_coalesced": true,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      2,
+                      0
+                    ],
+                    "stride": [
+                      1,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 0,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                  },
+                  "values": {
+                    "dtype": "torch.float32",
+                    "shape": [
+                      0
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 0,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                  }
+                }
+              },
+              "component_storage_aliases": {
+                "input.indices|input.values": false
+              }
+            }
+          },
+          "T_us": 25.844363693260785,
+          "latency_ms": 0.025844363693260784,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float64": {
+          "config": {
+            "native_expression": "torch.ops.aten._sparse_softmax.default",
+            "case_source_commit": "38fd6d1ba0374f40f9c60b6291d951e24e52a4c0",
+            "benchmark": "benchmark/test__sparse_softmax.py",
+            "benchmark_sha256": "f44a7b4388513d8e3279183f9b2c6b92f8fc5b76321887ad3786b43aa4d10a88",
+            "scope": "core",
+            "case_id": "benchmark/test__sparse_softmax.py::test__sparse_softmax::core::float64::0",
+            "recipe": "coo-softmax-pcg64-native-width-compact-v1",
+            "seed_hex": "6b9df33342ad53cd",
+            "requested_nnz": 0,
+            "sparse_dim": 2,
+            "dim": 1,
+            "half_to_float": false,
+            "input_device_role": "target",
+            "inputs": {
+              "tensors": {
+                "input": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    1024,
+                    1024
+                  ],
+                  "dtype": "torch.float64",
+                  "sparse_dim": 2,
+                  "dense_dim": 0,
+                  "nnz": 0,
+                  "is_coalesced": true,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      2,
+                      0
+                    ],
+                    "stride": [
+                      1,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 0,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                  },
+                  "values": {
+                    "dtype": "torch.float64",
+                    "shape": [
+                      0
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 0,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                  }
+                }
+              },
+              "component_storage_aliases": {
+                "input.indices|input.values": false
+              }
+            }
+          },
+          "T_us": 25.617008700804867,
+          "latency_ms": 0.025617008700804866,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "coo_1024x1024_nnz_262144_sd_2_dim_1": {
+        "torch.float32": {
+          "config": {
+            "native_expression": "torch.ops.aten._sparse_softmax.default",
+            "case_source_commit": "38fd6d1ba0374f40f9c60b6291d951e24e52a4c0",
+            "benchmark": "benchmark/test__sparse_softmax.py",
+            "benchmark_sha256": "f44a7b4388513d8e3279183f9b2c6b92f8fc5b76321887ad3786b43aa4d10a88",
+            "scope": "core",
+            "case_id": "benchmark/test__sparse_softmax.py::test__sparse_softmax::core::float32::1",
+            "recipe": "coo-softmax-pcg64-native-width-compact-v1",
+            "seed_hex": "1912a44d49027d74",
+            "requested_nnz": 262144,
+            "sparse_dim": 2,
+            "dim": 1,
+            "half_to_float": false,
+            "input_device_role": "target",
+            "inputs": {
+              "tensors": {
+                "input": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    1024,
+                    1024
+                  ],
+                  "dtype": "torch.float32",
+                  "sparse_dim": 2,
+                  "dense_dim": 0,
+                  "nnz": 231872,
+                  "is_coalesced": true,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      2,
+                      231872
+                    ],
+                    "stride": [
+                      231872,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 3709952,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "d1d2bcc9db501723df18a3c363eba83b5a12414a5767ac03ed3eae49fcee1600"
+                  },
+                  "values": {
+                    "dtype": "torch.float32",
+                    "shape": [
+                      231872
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 927488,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "dd9915d8289f61e93111cb2d5c417af23523512ec51f67ebc63b980017a15d1a"
+                  }
+                }
+              },
+              "component_storage_aliases": {
+                "input.indices|input.values": false
+              }
+            }
+          },
+          "T_us": 866.3803092562235,
+          "latency_ms": 0.8663803092562236,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float64": {
+          "config": {
+            "native_expression": "torch.ops.aten._sparse_softmax.default",
+            "case_source_commit": "38fd6d1ba0374f40f9c60b6291d951e24e52a4c0",
+            "benchmark": "benchmark/test__sparse_softmax.py",
+            "benchmark_sha256": "f44a7b4388513d8e3279183f9b2c6b92f8fc5b76321887ad3786b43aa4d10a88",
+            "scope": "core",
+            "case_id": "benchmark/test__sparse_softmax.py::test__sparse_softmax::core::float64::1",
+            "recipe": "coo-softmax-pcg64-native-width-compact-v1",
+            "seed_hex": "ffbb969495bb2440",
+            "requested_nnz": 262144,
+            "sparse_dim": 2,
+            "dim": 1,
+            "half_to_float": false,
+            "input_device_role": "target",
+            "inputs": {
+              "tensors": {
+                "input": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    1024,
+                    1024
+                  ],
+                  "dtype": "torch.float64",
+                  "sparse_dim": 2,
+                  "dense_dim": 0,
+                  "nnz": 232056,
+                  "is_coalesced": true,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      2,
+                      232056
+                    ],
+                    "stride": [
+                      232056,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 3712896,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "bf5fd6a5860750af1e8eb369f76e4592b011eac289124cc5d6544aff95077d01"
+                  },
+                  "values": {
+                    "dtype": "torch.float64",
+                    "shape": [
+                      232056
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 1856448,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "08c74fa275f2f9ddd96b381e0fcafabebb4ad03ed9577b2fc714fe9009e27865"
+                  }
+                }
+              },
+              "component_storage_aliases": {
+                "input.indices|input.values": false
+              }
+            }
+          },
+          "T_us": 1303.578229414092,
+          "latency_ms": 1.303578229414092,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "coo_1024x1024_nnz_1048576_sd_2_dim_1": {
+        "torch.float32": {
+          "config": {
+            "native_expression": "torch.ops.aten._sparse_softmax.default",
+            "case_source_commit": "38fd6d1ba0374f40f9c60b6291d951e24e52a4c0",
+            "benchmark": "benchmark/test__sparse_softmax.py",
+            "benchmark_sha256": "f44a7b4388513d8e3279183f9b2c6b92f8fc5b76321887ad3786b43aa4d10a88",
+            "scope": "core",
+            "case_id": "benchmark/test__sparse_softmax.py::test__sparse_softmax::core::float32::2",
+            "recipe": "coo-softmax-pcg64-native-width-compact-v1",
+            "seed_hex": "353ddcee394fda0c",
+            "requested_nnz": 1048576,
+            "sparse_dim": 2,
+            "dim": 1,
+            "half_to_float": false,
+            "input_device_role": "target",
+            "inputs": {
+              "tensors": {
+                "input": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    1024,
+                    1024
+                  ],
+                  "dtype": "torch.float32",
+                  "sparse_dim": 2,
+                  "dense_dim": 0,
+                  "nnz": 662159,
+                  "is_coalesced": true,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      2,
+                      662159
+                    ],
+                    "stride": [
+                      662159,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 10594544,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "2fa039a9ec4ecb402d548adfb0f5b8a72a4cffe23b066cedfb1f5f4fab65916e"
+                  },
+                  "values": {
+                    "dtype": "torch.float32",
+                    "shape": [
+                      662159
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 2648636,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "3c8293acde3ff2e6cad35543104916e5c4160a0f3dd110c0e05f7c8eeca051d1"
+                  }
+                }
+              },
+              "component_storage_aliases": {
+                "input.indices|input.values": false
+              }
+            }
+          },
+          "T_us": 2112.088171641032,
+          "latency_ms": 2.112088171641032,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float64": {
+          "config": {
+            "native_expression": "torch.ops.aten._sparse_softmax.default",
+            "case_source_commit": "38fd6d1ba0374f40f9c60b6291d951e24e52a4c0",
+            "benchmark": "benchmark/test__sparse_softmax.py",
+            "benchmark_sha256": "f44a7b4388513d8e3279183f9b2c6b92f8fc5b76321887ad3786b43aa4d10a88",
+            "scope": "core",
+            "case_id": "benchmark/test__sparse_softmax.py::test__sparse_softmax::core::float64::2",
+            "recipe": "coo-softmax-pcg64-native-width-compact-v1",
+            "seed_hex": "7c1dda6f3a1d57d3",
+            "requested_nnz": 1048576,
+            "sparse_dim": 2,
+            "dim": 1,
+            "half_to_float": false,
+            "input_device_role": "target",
+            "inputs": {
+              "tensors": {
+                "input": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    1024,
+                    1024
+                  ],
+                  "dtype": "torch.float64",
+                  "sparse_dim": 2,
+                  "dense_dim": 0,
+                  "nnz": 662844,
+                  "is_coalesced": true,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      2,
+                      662844
+                    ],
+                    "stride": [
+                      662844,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 10605504,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "511c4693677e1c67a33483a3025a947ed43ddd5ff5c911879f678cc1a3905720"
+                  },
+                  "values": {
+                    "dtype": "torch.float64",
+                    "shape": [
+                      662844
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 5302752,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "40866960906a3071deb923ac2c516c7ef744f8958320c1b34a4fedda76d270fb"
+                  }
+                }
+              },
+              "component_storage_aliases": {
+                "input.indices|input.values": false
+              }
+            }
+          },
+          "T_us": 3268.311171696104,
+          "latency_ms": 3.2683111716961037,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "coo_4096x4096_nnz_1048576_sd_2_dim_1": {
+        "torch.float32": {
+          "config": {
+            "native_expression": "torch.ops.aten._sparse_softmax.default",
+            "case_source_commit": "38fd6d1ba0374f40f9c60b6291d951e24e52a4c0",
+            "benchmark": "benchmark/test__sparse_softmax.py",
+            "benchmark_sha256": "f44a7b4388513d8e3279183f9b2c6b92f8fc5b76321887ad3786b43aa4d10a88",
+            "scope": "core",
+            "case_id": "benchmark/test__sparse_softmax.py::test__sparse_softmax::core::float32::3",
+            "recipe": "coo-softmax-pcg64-native-width-compact-v1",
+            "seed_hex": "9684119fe2860487",
+            "requested_nnz": 1048576,
+            "sparse_dim": 2,
+            "dim": 1,
+            "half_to_float": false,
+            "input_device_role": "target",
+            "inputs": {
+              "tensors": {
+                "input": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    4096,
+                    4096
+                  ],
+                  "dtype": "torch.float32",
+                  "sparse_dim": 2,
+                  "dense_dim": 0,
+                  "nnz": 1016443,
+                  "is_coalesced": true,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      2,
+                      1016443
+                    ],
+                    "stride": [
+                      1016443,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 16263088,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "37bff66bf1f7c3833fb344cfe3d8534b369b9a56647460ccd448b6e6f0f4fbc2"
+                  },
+                  "values": {
+                    "dtype": "torch.float32",
+                    "shape": [
+                      1016443
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 4065772,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "0d38c923a7c90bd39d715f7bb9c88115ae70aaef8fdb36e75adb44ae7d0ce604"
+                  }
+                }
+              },
+              "component_storage_aliases": {
+                "input.indices|input.values": false
+              }
+            }
+          },
+          "T_us": 1088.0941180621876,
+          "latency_ms": 1.0880941180621877,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float64": {
+          "config": {
+            "native_expression": "torch.ops.aten._sparse_softmax.default",
+            "case_source_commit": "38fd6d1ba0374f40f9c60b6291d951e24e52a4c0",
+            "benchmark": "benchmark/test__sparse_softmax.py",
+            "benchmark_sha256": "f44a7b4388513d8e3279183f9b2c6b92f8fc5b76321887ad3786b43aa4d10a88",
+            "scope": "core",
+            "case_id": "benchmark/test__sparse_softmax.py::test__sparse_softmax::core::float64::3",
+            "recipe": "coo-softmax-pcg64-native-width-compact-v1",
+            "seed_hex": "0c871f37ca4d46dd",
+            "requested_nnz": 1048576,
+            "sparse_dim": 2,
+            "dim": 1,
+            "half_to_float": false,
+            "input_device_role": "target",
+            "inputs": {
+              "tensors": {
+                "input": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    4096,
+                    4096
+                  ],
+                  "dtype": "torch.float64",
+                  "sparse_dim": 2,
+                  "dense_dim": 0,
+                  "nnz": 1016658,
+                  "is_coalesced": true,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      2,
+                      1016658
+                    ],
+                    "stride": [
+                      1016658,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 16266528,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "1ed39bf8f63cb933f8c4c60d67d20fb8dbaf9e753a1eaf94b0c4626b242b8eb1"
+                  },
+                  "values": {
+                    "dtype": "torch.float64",
+                    "shape": [
+                      1016658
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 8133264,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "bd4476200c7b94fd71e1964646e19566b31763b7b3070446e4671c651b6fa139"
+                  }
+                }
+              },
+              "component_storage_aliases": {
+                "input.indices|input.values": false
+              }
+            }
+          },
+          "T_us": 1581.3573400179546,
+          "latency_ms": 1.5813573400179546,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "coo_2048x2048x64_nnz_1048576_sd_3_dim_2": {
+        "torch.float32": {
+          "config": {
+            "native_expression": "torch.ops.aten._sparse_softmax.default",
+            "case_source_commit": "38fd6d1ba0374f40f9c60b6291d951e24e52a4c0",
+            "benchmark": "benchmark/test__sparse_softmax.py",
+            "benchmark_sha256": "f44a7b4388513d8e3279183f9b2c6b92f8fc5b76321887ad3786b43aa4d10a88",
+            "scope": "core",
+            "case_id": "benchmark/test__sparse_softmax.py::test__sparse_softmax::core::float32::4",
+            "recipe": "coo-softmax-pcg64-native-width-compact-v1",
+            "seed_hex": "9b2b5ffcf7211987",
+            "requested_nnz": 1048576,
+            "sparse_dim": 3,
+            "dim": 2,
+            "half_to_float": false,
+            "input_device_role": "target",
+            "inputs": {
+              "tensors": {
+                "input": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    2048,
+                    2048,
+                    64
+                  ],
+                  "dtype": "torch.float32",
+                  "sparse_dim": 3,
+                  "dense_dim": 0,
+                  "nnz": 1046504,
+                  "is_coalesced": true,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      3,
+                      1046504
+                    ],
+                    "stride": [
+                      1046504,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 25116096,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "c93fb98105e0d02ce03c7cde147a284817d47d0092fd16dc85098b4a1b7ca912"
+                  },
+                  "values": {
+                    "dtype": "torch.float32",
+                    "shape": [
+                      1046504
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 4186016,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "dffc03fc5e82b423db29f57c1db693dff8dc528fdd4b54bc62dc84ad1bf29d9a"
+                  }
+                }
+              },
+              "component_storage_aliases": {
+                "input.indices|input.values": false
+              }
+            }
+          },
+          "T_us": 413.3224004507065,
+          "latency_ms": 0.4133224004507065,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float64": {
+          "config": {
+            "native_expression": "torch.ops.aten._sparse_softmax.default",
+            "case_source_commit": "38fd6d1ba0374f40f9c60b6291d951e24e52a4c0",
+            "benchmark": "benchmark/test__sparse_softmax.py",
+            "benchmark_sha256": "f44a7b4388513d8e3279183f9b2c6b92f8fc5b76321887ad3786b43aa4d10a88",
+            "scope": "core",
+            "case_id": "benchmark/test__sparse_softmax.py::test__sparse_softmax::core::float64::4",
+            "recipe": "coo-softmax-pcg64-native-width-compact-v1",
+            "seed_hex": "74cff745e29f46f0",
+            "requested_nnz": 1048576,
+            "sparse_dim": 3,
+            "dim": 2,
+            "half_to_float": false,
+            "input_device_role": "target",
+            "inputs": {
+              "tensors": {
+                "input": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    2048,
+                    2048,
+                    64
+                  ],
+                  "dtype": "torch.float64",
+                  "sparse_dim": 3,
+                  "dense_dim": 0,
+                  "nnz": 1046557,
+                  "is_coalesced": true,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      3,
+                      1046557
+                    ],
+                    "stride": [
+                      1046557,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 25117368,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "dd625e35a36acb05dc4e672575db3d8f0a15b5ec46132e595049202fb3c7398c"
+                  },
+                  "values": {
+                    "dtype": "torch.float64",
+                    "shape": [
+                      1046557
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 8372456,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "5bf3902555846f96c8f33d80c068738f9bf91a2141bd095859a5de23f7fe9f02"
+                  }
+                }
+              },
+              "component_storage_aliases": {
+                "input.indices|input.values": false
+              }
+            }
+          },
+          "T_us": 513.2591785436654,
+          "latency_ms": 0.5132591785436653,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "coo_256x256x256_nnz_1048576_sd_3_dim_2": {
+        "torch.float32": {
+          "config": {
+            "native_expression": "torch.ops.aten._sparse_softmax.default",
+            "case_source_commit": "38fd6d1ba0374f40f9c60b6291d951e24e52a4c0",
+            "benchmark": "benchmark/test__sparse_softmax.py",
+            "benchmark_sha256": "f44a7b4388513d8e3279183f9b2c6b92f8fc5b76321887ad3786b43aa4d10a88",
+            "scope": "core",
+            "case_id": "benchmark/test__sparse_softmax.py::test__sparse_softmax::core::float32::5",
+            "recipe": "coo-softmax-pcg64-native-width-compact-v1",
+            "seed_hex": "3c068bad050e3fed",
+            "requested_nnz": 1048576,
+            "sparse_dim": 3,
+            "dim": 2,
+            "half_to_float": false,
+            "input_device_role": "target",
+            "inputs": {
+              "tensors": {
+                "input": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    256,
+                    256,
+                    256
+                  ],
+                  "dtype": "torch.float32",
+                  "sparse_dim": 3,
+                  "dense_dim": 0,
+                  "nnz": 1016559,
+                  "is_coalesced": true,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      3,
+                      1016559
+                    ],
+                    "stride": [
+                      1016559,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 24397416,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "93a1dbdac09ea69a729cde6f967ec04e0251b22742c3d114e1f87e79fa0ed6b1"
+                  },
+                  "values": {
+                    "dtype": "torch.float32",
+                    "shape": [
+                      1016559
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 4066236,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "7be63799749d3b8d3b046c0dad3038202203c41a2048f7bdf4b2226667818836"
+                  }
+                }
+              },
+              "component_storage_aliases": {
+                "input.indices|input.values": false
+              }
+            }
+          },
+          "T_us": 430.328373464278,
+          "latency_ms": 0.430328373464278,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float64": {
+          "config": {
+            "native_expression": "torch.ops.aten._sparse_softmax.default",
+            "case_source_commit": "38fd6d1ba0374f40f9c60b6291d951e24e52a4c0",
+            "benchmark": "benchmark/test__sparse_softmax.py",
+            "benchmark_sha256": "f44a7b4388513d8e3279183f9b2c6b92f8fc5b76321887ad3786b43aa4d10a88",
+            "scope": "core",
+            "case_id": "benchmark/test__sparse_softmax.py::test__sparse_softmax::core::float64::5",
+            "recipe": "coo-softmax-pcg64-native-width-compact-v1",
+            "seed_hex": "f23a721057afc348",
+            "requested_nnz": 1048576,
+            "sparse_dim": 3,
+            "dim": 2,
+            "half_to_float": false,
+            "input_device_role": "target",
+            "inputs": {
+              "tensors": {
+                "input": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    256,
+                    256,
+                    256
+                  ],
+                  "dtype": "torch.float64",
+                  "sparse_dim": 3,
+                  "dense_dim": 0,
+                  "nnz": 1016676,
+                  "is_coalesced": true,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      3,
+                      1016676
+                    ],
+                    "stride": [
+                      1016676,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 24400224,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "c236ee457c45a78b534da693ff0985c32f51eda4e8036d7dbd08e08430eb8a14"
+                  },
+                  "values": {
+                    "dtype": "torch.float64",
+                    "shape": [
+                      1016676
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 8133408,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "a0bce8a6df83beb53b03b034c092295a329122af8a440c5e4291efc3954f3cd6"
+                  }
+                }
+              },
+              "component_storage_aliases": {
+                "input.indices|input.values": false
+              }
+            }
+          },
+          "T_us": 476.91371868559196,
+          "latency_ms": 0.47691371868559196,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      }
+    }
+  },
+  "_environment": {
+    "schema_version": 1,
+    "collected_at_utc": "2026-10-22T14:06:42.908468+00:00",
+    "hardware": {
+      "gpu": {
+        "name": "NVIDIA H800",
+        "uuid": "555633f8-c39c-bb8a-d549-791cb8451f44",
+        "total_memory_bytes": 85017624576,
+        "total_memory_gib": 79.18,
+        "compute_capability": "9.0",
+        "multiprocessor_count": 132,
+        "cuda_device_index": 0,
+        "driver_version": "580.105.08"
+      },
+      "cpu_model": "Intel(R) Xeon(R) Platinum 8468V",
+      "cpu_architecture": "x86_64",
+      "cpu_socket_count": 2,
+      "physical_cpu_core_count": 96,
+      "logical_cpu_count": 192,
+      "cpu_threads_per_core": 2,
+      "numa_node_count": 2,
+      "process_cpu_affinity_count": 192,
+      "hypervisor_vendor": null
+    },
+    "software": {
+      "os": "Linux",
+      "os_release": "5.15.0-78-generic",
+      "machine": "x86_64",
+      "python": "3.12.3",
+      "packages": {
+        "torch": "2.8.0a0+5228986c39.nv25.5",
+        "triton": "3.6.0",
+        "vllm": null,
+        "sglang": null
+      },
+      "torch_cuda_version": "12.9",
+      "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Apr__9_19:24:57_PDT_2025\nCuda compilation tools, release 12.9, V12.9.41\nBuild cuda_12.9.r12.9/compiler.35813241_0",
+      "ncu_version": "NVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2025 NVIDIA Corporation\nVersion 2025.2.0.0 (build 35613519) (public-release)"
+    },
+    "source": {
+      "git_commit": "0567cbffdb05aa7987650c55e47738c8183444a7",
+      "git_branch": "HEAD",
+      "git_dirty": false
+    },
+    "run": {
+      "repo": "pytorch",
+      "device": null,
+      "ncu_enabled": false,
+      "report_dir": "/data/tj/workspace/ops-baseline-softmax-run-v4-20261022/h800.json.work/_sparse_softmax/d5e00ef0e1ff418ab03a6daed69f6efb/ncu_reports",
+      "output_path": "/data/tj/workspace/ops-baseline-softmax-run-v4-20261022/h800.json.work/_sparse_softmax/d5e00ef0e1ff418ab03a6daed69f6efb/result.json",
+      "op_timeout_seconds": 1800.0,
+      "reference_chip": "H800",
+      "only": [
+        "_sparse_softmax"
+      ],
+      "whitelist": null,
+      "blacklist": null,
+      "selected_ops": [
+        "_sparse_softmax"
+      ],
+      "latency_warmup_ms": 25,
+      "latency_rep_ms": 100,
+      "ncu_warmup_calls": 3
+    },
+    "environment_variables": {
+      "CUDA_VISIBLE_DEVICES": "7",
+      "CUDA_DEVICE_ORDER": null
+    }
+  },
+  "_scaling_factors": {
+    "_note": "factor = vendor_peak / H800_peak；null 表示分子或分母缺失；nominal/measured 各一套。供 flaggems-vllm 跨芯片归一化对比使用。",
+    "reference_chip": "H800",
+    "source_specs": "hardware_specs.json",
+    "chips": [
+      {
+        "vendor": "nvidia",
+        "vendor_zh": "英伟达",
+        "chip": "H800",
+        "nominal": {
+          "bandwidth_gbps": 1.0,
+          "tensor": {
+            "bf16": 1.0,
+            "fp16": 1.0,
+            "fp32": 1.0,
+            "tf32": 1.0,
+            "int8": 1.0,
+            "fp64": 1.0,
+            "fp8": 1.0
+          },
+          "vector": {
+            "bf16": 1.0,
+            "fp16": 1.0,
+            "fp32": 1.0,
+            "int8": null,
+            "fp64": 1.0,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 1.0,
+          "tensor": {
+            "bf16": 1.0,
+            "fp16": 1.0,
+            "fp32": 1.0,
+            "tf32": 1.0,
+            "int8": 1.0,
+            "fp64": 1.0,
+            "fp8": 1.0
+          },
+          "vector": {
+            "bf16": 1.0,
+            "fp16": 1.0,
+            "fp32": 1.0,
+            "int8": 1.0,
+            "fp64": 1.0,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "nvidia",
+        "vendor_zh": "英伟达",
+        "chip": "H100",
+        "nominal": {
+          "bandwidth_gbps": 1.0,
+          "tensor": {
+            "bf16": 1.000404,
+            "fp16": 1.000404,
+            "fp32": 1.0,
+            "tf32": 1.000404,
+            "int8": 0.999949,
+            "fp64": 66.9,
+            "fp8": 0.999949
+          },
+          "vector": {
+            "bf16": 0.998507,
+            "fp16": 0.998507,
+            "fp32": 0.998507,
+            "int8": null,
+            "fp64": 33.5,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 1.0,
+          "tensor": {
+            "bf16": 0.992845,
+            "fp16": 1.043176,
+            "fp32": 0.999938,
+            "tf32": 0.964256,
+            "int8": 0.988143,
+            "fp64": 58.895238,
+            "fp8": 1.048244
+          },
+          "vector": {
+            "bf16": 0.999955,
+            "fp16": 0.99997,
+            "fp32": 0.992604,
+            "int8": 1.0003,
+            "fp64": 29.44689,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "t-head",
+        "vendor_zh": "平头哥",
+        "chip": "PPU-ZW810E",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.662759,
+          "tensor": {
+            "bf16": 0.058651,
+            "fp16": 0.062691,
+            "fp32": 0.538868,
+            "tf32": 0.075912,
+            "int8": 0.027883,
+            "fp64": 6.597143,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": 0.828975,
+            "fp16": 0.828837,
+            "fp32": 0.416839,
+            "int8": 0.206073,
+            "fp64": 6.120574,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "t-head",
+        "vendor_zh": "平头哥",
+        "chip": "m890",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.781483,
+          "tensor": {
+            "bf16": 0.281445,
+            "fp16": 0.300869,
+            "fp32": 0.257819,
+            "tf32": 0.161166,
+            "int8": null,
+            "fp64": null,
+            "fp8": 0.042014
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": 0.194236,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "enflame",
+        "vendor_zh": "燧原",
+        "chip": "S60",
+        "nominal": {
+          "bandwidth_gbps": 0.200597,
+          "tensor": {
+            "bf16": 0.132457,
+            "fp16": 0.132457,
+            "fp32": 0.478326,
+            "tf32": null,
+            "int8": 0.13239,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.150325,
+          "tensor": {
+            "bf16": 0.135388,
+            "fp16": 0.144762,
+            "fp32": 0.672654,
+            "tf32": null,
+            "int8": 0.134391,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": 0.026166,
+            "fp16": 0.026197,
+            "fp32": 0.029496,
+            "int8": 0.013308,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "ascend",
+        "vendor_zh": "华为",
+        "chip": "Atlas 800T A3",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": 0.760364,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.951084,
+          "tensor": {
+            "bf16": 0.761695,
+            "fp16": 0.839078,
+            "fp32": 4.098971,
+            "tf32": null,
+            "int8": 0.756027,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "metax",
+        "vendor_zh": "沐曦",
+        "chip": "C550",
+        "nominal": {
+          "bandwidth_gbps": 0.537313,
+          "tensor": {
+            "bf16": 0.323559,
+            "fp16": 0.323559,
+            "fp32": 0.597907,
+            "tf32": 0.323559,
+            "int8": 0.323396,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.472532,
+          "tensor": {
+            "bf16": 0.285784,
+            "fp16": 0.298125,
+            "fp32": 0.816461,
+            "tf32": 0.265815,
+            "int8": 0.291016,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": 0.136079,
+            "fp32": 0.541991,
+            "int8": 0.068039,
+            "fp64": 2.166507,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "kunlunxin",
+        "vendor_zh": "昆仑芯",
+        "chip": "P900",
+        "nominal": {
+          "bandwidth_gbps": 0.776119,
+          "tensor": {
+            "bf16": 0.353893,
+            "fp16": 0.353893,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.791,
+          "tensor": {
+            "bf16": 0.357504,
+            "fp16": 0.389264,
+            "fp32": 2.853909,
+            "tf32": 0.278234,
+            "int8": 0.33308,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "kunlunxin",
+        "vendor_zh": "昆仑芯",
+        "chip": "P800",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": 0.032261,
+            "fp16": 0.03449,
+            "fp32": null,
+            "tf32": 0.062035,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "mthreads",
+        "vendor_zh": "摩尔",
+        "chip": "MTT-S5000",
+        "nominal": {
+          "bandwidth_gbps": 0.477612,
+          "tensor": {
+            "bf16": 0.434783,
+            "fp16": 0.434783,
+            "fp32": 0.433483,
+            "tf32": 0.434783,
+            "int8": 0.434563,
+            "fp64": 14.5,
+            "fp8": 0.434563
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.423867,
+          "tensor": {
+            "bf16": 0.46863,
+            "fp16": 0.499849,
+            "fp32": 0.585391,
+            "tf32": 0.449552,
+            "int8": 0.463452,
+            "fp64": 13.533333,
+            "fp8": 0.504517
+          },
+          "vector": {
+            "bf16": 0.285102,
+            "fp16": 0.284926,
+            "fp32": 0.255336,
+            "int8": 0.095037,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "hygon",
+        "vendor_zh": "海光",
+        "chip": "BW1000",
+        "nominal": {
+          "bandwidth_gbps": 0.537313,
+          "tensor": {
+            "bf16": 0.485339,
+            "fp16": 0.485339,
+            "fp32": 0.896861,
+            "tf32": 0.485339,
+            "int8": 0.485093,
+            "fp64": 30.0,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.47352,
+          "tensor": {
+            "bf16": 0.494279,
+            "fp16": 0.526445,
+            "fp32": 1.253704,
+            "tf32": 0.475373,
+            "int8": 0.490587,
+            "fp64": 29.009524,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": 0.109955,
+            "fp16": 0.45465,
+            "fp32": 0.228884,
+            "int8": 0.114093,
+            "fp64": 14.488038,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "iluvatar",
+        "vendor_zh": "天数",
+        "chip": "BI-V150",
+        "nominal": {
+          "bandwidth_gbps": 0.477612,
+          "tensor": {
+            "bf16": 0.258847,
+            "fp16": 0.258847,
+            "fp32": 0.956652,
+            "tf32": null,
+            "int8": 0.388075,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.356378,
+          "tensor": {
+            "bf16": 0.220302,
+            "fp16": 0.234676,
+            "fp32": 0.940123,
+            "tf32": null,
+            "int8": 0.391076,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": 0.461253,
+            "fp16": 0.469367,
+            "fp32": 0.230722,
+            "int8": 0.11987,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "tsingmicro",
+        "vendor_zh": "清微智能",
+        "chip": "TX8110",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "tsingmicro",
+        "vendor_zh": "清微智能",
+        "chip": "REX1032",
+        "nominal": {
+          "bandwidth_gbps": 0.238806,
+          "tensor": {
+            "bf16": 0.517695,
+            "fp16": 0.517695,
+            "fp32": 0.179372,
+            "tf32": 1.035389,
+            "int8": 0.517433,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.197353,
+          "tensor": {
+            "bf16": 0.525497,
+            "fp16": 0.561805,
+            "fp32": 0.251029,
+            "tf32": 0.892402,
+            "int8": 0.521583,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "cambricon",
+        "vendor_zh": "寒武纪",
+        "chip": "MLU590-M9DE",
+        "nominal": {
+          "bandwidth_gbps": 0.671642,
+          "tensor": {
+            "bf16": 0.33367,
+            "fp16": 0.33367,
+            "fp32": 1.233184,
+            "tf32": 0.33367,
+            "int8": 0.333502,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.625387,
+          "tensor": {
+            "bf16": 0.316304,
+            "fp16": 0.338258,
+            "fp32": 1.604938,
+            "tf32": 0.307205,
+            "int8": 0.312064,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      }
+    ]
+  },
+  "_sparse_softmax_backward_data": {
+    "native_api": "ops._sparse_softmax_backward_data",
+    "shapes": {
+      "coo_1024x1024_nnz_65536_sd_2_dim_0": {
+        "torch.float32": {
+          "config": {
+            "native_expression": "torch.ops.aten._sparse_softmax_backward_data.default",
+            "case_source_commit": "38fd6d1ba0374f40f9c60b6291d951e24e52a4c0",
+            "benchmark": "benchmark/test__sparse_softmax_backward_data.py",
+            "benchmark_sha256": "277a4abf680476fc90612fdd696698d81c72dd87a5d2d8b196caf372b80bfd4f",
+            "scope": "core",
+            "case_id": "benchmark/test__sparse_softmax_backward_data.py::test__sparse_softmax_backward_data::core::float32::0",
+            "recipe": "coo-softmax-pcg64-native-width-compact-v1",
+            "seed_hex": "21b0595380a14ead",
+            "requested_nnz": 65536,
+            "sparse_dim": 2,
+            "dim": 0,
+            "input_device_role": "target",
+            "inputs": {
+              "tensors": {
+                "grad": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    1024,
+                    1024
+                  ],
+                  "dtype": "torch.float32",
+                  "sparse_dim": 2,
+                  "dense_dim": 0,
+                  "nnz": 65536,
+                  "is_coalesced": false,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      2,
+                      65536
+                    ],
+                    "stride": [
+                      65536,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 1048576,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "c06891af602b8f5705848db9b6b84207112f0964fb21bbda04250fc00a8f3aaa"
+                  },
+                  "values": {
+                    "dtype": "torch.float32",
+                    "shape": [
+                      65536
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 262144,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "042aa4f402a0ab9df4277bbbbc218c08beb4b226ef2bf2bcdde6a09326180332"
+                  }
+                },
+                "output": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    1024,
+                    1024
+                  ],
+                  "dtype": "torch.float32",
+                  "sparse_dim": 2,
+                  "dense_dim": 0,
+                  "nnz": 65536,
+                  "is_coalesced": false,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      2,
+                      65536
+                    ],
+                    "stride": [
+                      65536,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 1048576,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "c06891af602b8f5705848db9b6b84207112f0964fb21bbda04250fc00a8f3aaa"
+                  },
+                  "values": {
+                    "dtype": "torch.float32",
+                    "shape": [
+                      65536
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 262144,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "4bd1520934fba2980bc65310caa635e83f3e0534104ef9e1dbfa91198c22aedd"
+                  }
+                },
+                "self": {
+                  "layout": "torch.strided",
+                  "requires_grad": false,
+                  "part": {
+                    "dtype": "torch.float32",
+                    "shape": [
+                      1
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 4,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "27fe6a9d7f29eedc83b4e81794024bde39fb709a101efca8f90afa050c716316"
+                  }
+                }
+              },
+              "component_storage_aliases": {
+                "grad.indices|grad.values": false,
+                "grad.indices|output.indices": false,
+                "grad.indices|output.values": false,
+                "grad.indices|self.tensor": false,
+                "grad.values|output.indices": false,
+                "grad.values|output.values": false,
+                "grad.values|self.tensor": false,
+                "output.indices|output.values": false,
+                "output.indices|self.tensor": false,
+                "output.values|self.tensor": false
+              }
+            }
+          },
+          "T_us": 827.7625572681427,
+          "latency_ms": 0.8277625572681427,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float64": {
+          "config": {
+            "native_expression": "torch.ops.aten._sparse_softmax_backward_data.default",
+            "case_source_commit": "38fd6d1ba0374f40f9c60b6291d951e24e52a4c0",
+            "benchmark": "benchmark/test__sparse_softmax_backward_data.py",
+            "benchmark_sha256": "277a4abf680476fc90612fdd696698d81c72dd87a5d2d8b196caf372b80bfd4f",
+            "scope": "core",
+            "case_id": "benchmark/test__sparse_softmax_backward_data.py::test__sparse_softmax_backward_data::core::float64::0",
+            "recipe": "coo-softmax-pcg64-native-width-compact-v1",
+            "seed_hex": "45302028cf5763e0",
+            "requested_nnz": 65536,
+            "sparse_dim": 2,
+            "dim": 0,
+            "input_device_role": "target",
+            "inputs": {
+              "tensors": {
+                "grad": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    1024,
+                    1024
+                  ],
+                  "dtype": "torch.float64",
+                  "sparse_dim": 2,
+                  "dense_dim": 0,
+                  "nnz": 65536,
+                  "is_coalesced": false,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      2,
+                      65536
+                    ],
+                    "stride": [
+                      65536,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 1048576,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "0d1f1500e7cd9356b39e798d835d59880746ac76da2f2f31cde1b44f6fec1a3a"
+                  },
+                  "values": {
+                    "dtype": "torch.float64",
+                    "shape": [
+                      65536
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 524288,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "60798a2dfc74c040e5bec0bbf1fb68e5d27b74a45143f5953133a832a1e8253b"
+                  }
+                },
+                "output": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    1024,
+                    1024
+                  ],
+                  "dtype": "torch.float64",
+                  "sparse_dim": 2,
+                  "dense_dim": 0,
+                  "nnz": 65536,
+                  "is_coalesced": false,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      2,
+                      65536
+                    ],
+                    "stride": [
+                      65536,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 1048576,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "0d1f1500e7cd9356b39e798d835d59880746ac76da2f2f31cde1b44f6fec1a3a"
+                  },
+                  "values": {
+                    "dtype": "torch.float64",
+                    "shape": [
+                      65536
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 524288,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "3d43beea3d825e9408f90fc96a328f125d66cc95bfbfdc228d7af229dac41fcc"
+                  }
+                },
+                "self": {
+                  "layout": "torch.strided",
+                  "requires_grad": false,
+                  "part": {
+                    "dtype": "torch.float64",
+                    "shape": [
+                      1
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 8,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "845fa3a75f0df9219de9dd8a3dbe2cf98f1088e3f5af774a79b2d8d19fbc2d7b"
+                  }
+                }
+              },
+              "component_storage_aliases": {
+                "grad.indices|grad.values": false,
+                "grad.indices|output.indices": false,
+                "grad.indices|output.values": false,
+                "grad.indices|self.tensor": false,
+                "grad.values|output.indices": false,
+                "grad.values|output.values": false,
+                "grad.values|self.tensor": false,
+                "output.indices|output.values": false,
+                "output.indices|self.tensor": false,
+                "output.values|self.tensor": false
+              }
+            }
+          },
+          "T_us": 782.190876048908,
+          "latency_ms": 0.7821908760489079,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "coo_2048x2048_nnz_1048576_sd_2_dim_1": {
+        "torch.float32": {
+          "config": {
+            "native_expression": "torch.ops.aten._sparse_softmax_backward_data.default",
+            "case_source_commit": "38fd6d1ba0374f40f9c60b6291d951e24e52a4c0",
+            "benchmark": "benchmark/test__sparse_softmax_backward_data.py",
+            "benchmark_sha256": "277a4abf680476fc90612fdd696698d81c72dd87a5d2d8b196caf372b80bfd4f",
+            "scope": "core",
+            "case_id": "benchmark/test__sparse_softmax_backward_data.py::test__sparse_softmax_backward_data::core::float32::1",
+            "recipe": "coo-softmax-pcg64-native-width-compact-v1",
+            "seed_hex": "ce40aade1915600c",
+            "requested_nnz": 1048576,
+            "sparse_dim": 2,
+            "dim": 1,
+            "input_device_role": "target",
+            "inputs": {
+              "tensors": {
+                "grad": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    2048,
+                    2048
+                  ],
+                  "dtype": "torch.float32",
+                  "sparse_dim": 2,
+                  "dense_dim": 0,
+                  "nnz": 1048576,
+                  "is_coalesced": false,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      2,
+                      1048576
+                    ],
+                    "stride": [
+                      1048576,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 16777216,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "2357c8085c263ed3f93abfbc2a0653e0196fd86eef1b2188644bc7e6a4465827"
+                  },
+                  "values": {
+                    "dtype": "torch.float32",
+                    "shape": [
+                      1048576
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 4194304,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "405e978eefe483ef27dadf7d65aea191bc4152fc59949ba59c33c44eb33fd035"
+                  }
+                },
+                "output": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    2048,
+                    2048
+                  ],
+                  "dtype": "torch.float32",
+                  "sparse_dim": 2,
+                  "dense_dim": 0,
+                  "nnz": 1048576,
+                  "is_coalesced": false,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      2,
+                      1048576
+                    ],
+                    "stride": [
+                      1048576,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 16777216,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "2357c8085c263ed3f93abfbc2a0653e0196fd86eef1b2188644bc7e6a4465827"
+                  },
+                  "values": {
+                    "dtype": "torch.float32",
+                    "shape": [
+                      1048576
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 4194304,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "a867f4b2159f8eccee1ec300e1564f747fa7735ba8259192bc6326f2d35a0368"
+                  }
+                },
+                "self": {
+                  "layout": "torch.strided",
+                  "requires_grad": false,
+                  "part": {
+                    "dtype": "torch.float32",
+                    "shape": [
+                      1
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 4,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "2e71a8f06c4c7903d0be2c9a7a0f34221d0a87f19b88f9a21fa9cea4b597bb80"
+                  }
+                }
+              },
+              "component_storage_aliases": {
+                "grad.indices|grad.values": false,
+                "grad.indices|output.indices": false,
+                "grad.indices|output.values": false,
+                "grad.indices|self.tensor": false,
+                "grad.values|output.indices": false,
+                "grad.values|output.values": false,
+                "grad.values|self.tensor": false,
+                "output.indices|output.values": false,
+                "output.indices|self.tensor": false,
+                "output.values|self.tensor": false
+              }
+            }
+          },
+          "T_us": 2979.8140078783035,
+          "latency_ms": 2.9798140078783035,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float64": {
+          "config": {
+            "native_expression": "torch.ops.aten._sparse_softmax_backward_data.default",
+            "case_source_commit": "38fd6d1ba0374f40f9c60b6291d951e24e52a4c0",
+            "benchmark": "benchmark/test__sparse_softmax_backward_data.py",
+            "benchmark_sha256": "277a4abf680476fc90612fdd696698d81c72dd87a5d2d8b196caf372b80bfd4f",
+            "scope": "core",
+            "case_id": "benchmark/test__sparse_softmax_backward_data.py::test__sparse_softmax_backward_data::core::float64::1",
+            "recipe": "coo-softmax-pcg64-native-width-compact-v1",
+            "seed_hex": "ffd94523c9670e5d",
+            "requested_nnz": 1048576,
+            "sparse_dim": 2,
+            "dim": 1,
+            "input_device_role": "target",
+            "inputs": {
+              "tensors": {
+                "grad": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    2048,
+                    2048
+                  ],
+                  "dtype": "torch.float64",
+                  "sparse_dim": 2,
+                  "dense_dim": 0,
+                  "nnz": 1048576,
+                  "is_coalesced": false,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      2,
+                      1048576
+                    ],
+                    "stride": [
+                      1048576,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 16777216,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "30bee8e2f7408425fbb8ccb98b5154eeda483362fc388f91f00a67b158bf3499"
+                  },
+                  "values": {
+                    "dtype": "torch.float64",
+                    "shape": [
+                      1048576
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 8388608,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "a3cf1eddcf6b85e59b542dc7d14d87020b2a99ed9233e9b8c67bd5db3c04e6eb"
+                  }
+                },
+                "output": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    2048,
+                    2048
+                  ],
+                  "dtype": "torch.float64",
+                  "sparse_dim": 2,
+                  "dense_dim": 0,
+                  "nnz": 1048576,
+                  "is_coalesced": false,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      2,
+                      1048576
+                    ],
+                    "stride": [
+                      1048576,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 16777216,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "30bee8e2f7408425fbb8ccb98b5154eeda483362fc388f91f00a67b158bf3499"
+                  },
+                  "values": {
+                    "dtype": "torch.float64",
+                    "shape": [
+                      1048576
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 8388608,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "d44918a07adc040c6fd4f65d2a4f7c2e6e915b6863c5cdd6040a6d210801c47c"
+                  }
+                },
+                "self": {
+                  "layout": "torch.strided",
+                  "requires_grad": false,
+                  "part": {
+                    "dtype": "torch.float64",
+                    "shape": [
+                      1
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 8,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "210155c66cf2a1b3ed38739773a817565c0f4b2eca1f2154a58aa230eb2fefab"
+                  }
+                }
+              },
+              "component_storage_aliases": {
+                "grad.indices|grad.values": false,
+                "grad.indices|output.indices": false,
+                "grad.indices|output.values": false,
+                "grad.indices|self.tensor": false,
+                "grad.values|output.indices": false,
+                "grad.values|output.values": false,
+                "grad.values|self.tensor": false,
+                "output.indices|output.values": false,
+                "output.indices|self.tensor": false,
+                "output.values|self.tensor": false
+              }
+            }
+          },
+          "T_us": 3348.9842908135774,
+          "latency_ms": 3.3489842908135774,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "coo_256x256x256_nnz_262144_sd_3_dim_0": {
+        "torch.float32": {
+          "config": {
+            "native_expression": "torch.ops.aten._sparse_softmax_backward_data.default",
+            "case_source_commit": "38fd6d1ba0374f40f9c60b6291d951e24e52a4c0",
+            "benchmark": "benchmark/test__sparse_softmax_backward_data.py",
+            "benchmark_sha256": "277a4abf680476fc90612fdd696698d81c72dd87a5d2d8b196caf372b80bfd4f",
+            "scope": "core",
+            "case_id": "benchmark/test__sparse_softmax_backward_data.py::test__sparse_softmax_backward_data::core::float32::2",
+            "recipe": "coo-softmax-pcg64-native-width-compact-v1",
+            "seed_hex": "21d929541b5d5e5b",
+            "requested_nnz": 262144,
+            "sparse_dim": 3,
+            "dim": 0,
+            "input_device_role": "target",
+            "inputs": {
+              "tensors": {
+                "grad": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    256,
+                    256,
+                    256
+                  ],
+                  "dtype": "torch.float32",
+                  "sparse_dim": 3,
+                  "dense_dim": 0,
+                  "nnz": 262144,
+                  "is_coalesced": false,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      3,
+                      262144
+                    ],
+                    "stride": [
+                      262144,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 6291456,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "53719a685087b4f101566759356975564e11191dc994c422453f41b6d3218d1d"
+                  },
+                  "values": {
+                    "dtype": "torch.float32",
+                    "shape": [
+                      262144
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 1048576,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "b7d30ad883c08318ef3135e106dff652c3009923d8046b44bac60e947050362b"
+                  }
+                },
+                "output": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    256,
+                    256,
+                    256
+                  ],
+                  "dtype": "torch.float32",
+                  "sparse_dim": 3,
+                  "dense_dim": 0,
+                  "nnz": 262144,
+                  "is_coalesced": false,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      3,
+                      262144
+                    ],
+                    "stride": [
+                      262144,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 6291456,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "53719a685087b4f101566759356975564e11191dc994c422453f41b6d3218d1d"
+                  },
+                  "values": {
+                    "dtype": "torch.float32",
+                    "shape": [
+                      262144
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 1048576,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "bb0458635b788f907152de1116153565f853ab1e6f1a492cdad3ed254c0b0ecb"
+                  }
+                },
+                "self": {
+                  "layout": "torch.strided",
+                  "requires_grad": false,
+                  "part": {
+                    "dtype": "torch.float32",
+                    "shape": [
+                      1
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 4,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "148b6e4c4a6f2177d56e4405819d4d197f85325516146c262ce3b38bab4f7735"
+                  }
+                }
+              },
+              "component_storage_aliases": {
+                "grad.indices|grad.values": false,
+                "grad.indices|output.indices": false,
+                "grad.indices|output.values": false,
+                "grad.indices|self.tensor": false,
+                "grad.values|output.indices": false,
+                "grad.values|output.values": false,
+                "grad.values|self.tensor": false,
+                "output.indices|output.values": false,
+                "output.indices|self.tensor": false,
+                "output.values|self.tensor": false
+              }
+            }
+          },
+          "T_us": 775.3081383376285,
+          "latency_ms": 0.7753081383376286,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float64": {
+          "config": {
+            "native_expression": "torch.ops.aten._sparse_softmax_backward_data.default",
+            "case_source_commit": "38fd6d1ba0374f40f9c60b6291d951e24e52a4c0",
+            "benchmark": "benchmark/test__sparse_softmax_backward_data.py",
+            "benchmark_sha256": "277a4abf680476fc90612fdd696698d81c72dd87a5d2d8b196caf372b80bfd4f",
+            "scope": "core",
+            "case_id": "benchmark/test__sparse_softmax_backward_data.py::test__sparse_softmax_backward_data::core::float64::2",
+            "recipe": "coo-softmax-pcg64-native-width-compact-v1",
+            "seed_hex": "10350728389fa63d",
+            "requested_nnz": 262144,
+            "sparse_dim": 3,
+            "dim": 0,
+            "input_device_role": "target",
+            "inputs": {
+              "tensors": {
+                "grad": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    256,
+                    256,
+                    256
+                  ],
+                  "dtype": "torch.float64",
+                  "sparse_dim": 3,
+                  "dense_dim": 0,
+                  "nnz": 262144,
+                  "is_coalesced": false,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      3,
+                      262144
+                    ],
+                    "stride": [
+                      262144,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 6291456,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "f88599a7425e56d5660472551c5958167b354a39f58ee31479c3c9223cec5f36"
+                  },
+                  "values": {
+                    "dtype": "torch.float64",
+                    "shape": [
+                      262144
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 2097152,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "eadf9d54a36a531e0e5c66fbdb42d8afe974f15ccde7e701cdc243ab19d6eb99"
+                  }
+                },
+                "output": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    256,
+                    256,
+                    256
+                  ],
+                  "dtype": "torch.float64",
+                  "sparse_dim": 3,
+                  "dense_dim": 0,
+                  "nnz": 262144,
+                  "is_coalesced": false,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      3,
+                      262144
+                    ],
+                    "stride": [
+                      262144,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 6291456,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "f88599a7425e56d5660472551c5958167b354a39f58ee31479c3c9223cec5f36"
+                  },
+                  "values": {
+                    "dtype": "torch.float64",
+                    "shape": [
+                      262144
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 2097152,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "e106b97b48d1a1438c02fc7abdcc9f45afafc3d14fe18b745f39e464189e9451"
+                  }
+                },
+                "self": {
+                  "layout": "torch.strided",
+                  "requires_grad": false,
+                  "part": {
+                    "dtype": "torch.float64",
+                    "shape": [
+                      1
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 8,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "4c3e1b4e153acc7e8818e563465724cfe2abb2edb9f7cb11b9b10cb8c72df20f"
+                  }
+                }
+              },
+              "component_storage_aliases": {
+                "grad.indices|grad.values": false,
+                "grad.indices|output.indices": false,
+                "grad.indices|output.values": false,
+                "grad.indices|self.tensor": false,
+                "grad.values|output.indices": false,
+                "grad.values|output.values": false,
+                "grad.values|self.tensor": false,
+                "output.indices|output.values": false,
+                "output.indices|self.tensor": false,
+                "output.values|self.tensor": false
+              }
+            }
+          },
+          "T_us": 839.2340739568075,
+          "latency_ms": 0.8392340739568075,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "coo_4096x4096x64_nnz_65536_sd_2_dim_2": {
+        "torch.float32": {
+          "config": {
+            "native_expression": "torch.ops.aten._sparse_softmax_backward_data.default",
+            "case_source_commit": "38fd6d1ba0374f40f9c60b6291d951e24e52a4c0",
+            "benchmark": "benchmark/test__sparse_softmax_backward_data.py",
+            "benchmark_sha256": "277a4abf680476fc90612fdd696698d81c72dd87a5d2d8b196caf372b80bfd4f",
+            "scope": "core",
+            "case_id": "benchmark/test__sparse_softmax_backward_data.py::test__sparse_softmax_backward_data::core::float32::3",
+            "recipe": "coo-softmax-pcg64-native-width-compact-v1",
+            "seed_hex": "f973202d2b336479",
+            "requested_nnz": 65536,
+            "sparse_dim": 2,
+            "dim": 2,
+            "input_device_role": "target",
+            "inputs": {
+              "tensors": {
+                "grad": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    4096,
+                    4096,
+                    64
+                  ],
+                  "dtype": "torch.float32",
+                  "sparse_dim": 2,
+                  "dense_dim": 1,
+                  "nnz": 65536,
+                  "is_coalesced": false,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      2,
+                      65536
+                    ],
+                    "stride": [
+                      65536,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 1048576,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "023421066baefd7c2e090c8088c94a97e038f34833ba7b910ab990bcd845f5d4"
+                  },
+                  "values": {
+                    "dtype": "torch.float32",
+                    "shape": [
+                      65536,
+                      64
+                    ],
+                    "stride": [
+                      64,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 16777216,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "41a93189e41e86295253b7edffc6be0dc619cfeb290b5493cf829ffa20407fb5"
+                  }
+                },
+                "output": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    4096,
+                    4096,
+                    64
+                  ],
+                  "dtype": "torch.float32",
+                  "sparse_dim": 2,
+                  "dense_dim": 1,
+                  "nnz": 65536,
+                  "is_coalesced": false,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      2,
+                      65536
+                    ],
+                    "stride": [
+                      65536,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 1048576,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "023421066baefd7c2e090c8088c94a97e038f34833ba7b910ab990bcd845f5d4"
+                  },
+                  "values": {
+                    "dtype": "torch.float32",
+                    "shape": [
+                      65536,
+                      64
+                    ],
+                    "stride": [
+                      64,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 16777216,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "6e4935919767fa7584211165712c4bc71431fdf62ee17807bbc0ba78182d70c8"
+                  }
+                },
+                "self": {
+                  "layout": "torch.strided",
+                  "requires_grad": false,
+                  "part": {
+                    "dtype": "torch.float32",
+                    "shape": [
+                      1
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 4,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "aa0e63d7072e8f061aaa998e2137cda681865d16838832f3dbe0198eddfb8696"
+                  }
+                }
+              },
+              "component_storage_aliases": {
+                "grad.indices|grad.values": false,
+                "grad.indices|output.indices": false,
+                "grad.indices|output.values": false,
+                "grad.indices|self.tensor": false,
+                "grad.values|output.indices": false,
+                "grad.values|output.values": false,
+                "grad.values|self.tensor": false,
+                "output.indices|output.values": false,
+                "output.indices|self.tensor": false,
+                "output.values|self.tensor": false
+              }
+            }
+          },
+          "T_us": 454.75581711666155,
+          "latency_ms": 0.4547558171166615,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float64": {
+          "config": {
+            "native_expression": "torch.ops.aten._sparse_softmax_backward_data.default",
+            "case_source_commit": "38fd6d1ba0374f40f9c60b6291d951e24e52a4c0",
+            "benchmark": "benchmark/test__sparse_softmax_backward_data.py",
+            "benchmark_sha256": "277a4abf680476fc90612fdd696698d81c72dd87a5d2d8b196caf372b80bfd4f",
+            "scope": "core",
+            "case_id": "benchmark/test__sparse_softmax_backward_data.py::test__sparse_softmax_backward_data::core::float64::3",
+            "recipe": "coo-softmax-pcg64-native-width-compact-v1",
+            "seed_hex": "4bdd8e5a4f1bcd79",
+            "requested_nnz": 65536,
+            "sparse_dim": 2,
+            "dim": 2,
+            "input_device_role": "target",
+            "inputs": {
+              "tensors": {
+                "grad": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    4096,
+                    4096,
+                    64
+                  ],
+                  "dtype": "torch.float64",
+                  "sparse_dim": 2,
+                  "dense_dim": 1,
+                  "nnz": 65536,
+                  "is_coalesced": false,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      2,
+                      65536
+                    ],
+                    "stride": [
+                      65536,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 1048576,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "897e4d6f007d84dfd5ecc77fe2a4f94d22c90c1789e998b9f1a6cb09dcbc6b52"
+                  },
+                  "values": {
+                    "dtype": "torch.float64",
+                    "shape": [
+                      65536,
+                      64
+                    ],
+                    "stride": [
+                      64,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 33554432,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "81d841014ef31fbb428849a7529b430484ef7e3d58168bdb61973cf7225e5da9"
+                  }
+                },
+                "output": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    4096,
+                    4096,
+                    64
+                  ],
+                  "dtype": "torch.float64",
+                  "sparse_dim": 2,
+                  "dense_dim": 1,
+                  "nnz": 65536,
+                  "is_coalesced": false,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      2,
+                      65536
+                    ],
+                    "stride": [
+                      65536,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 1048576,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "897e4d6f007d84dfd5ecc77fe2a4f94d22c90c1789e998b9f1a6cb09dcbc6b52"
+                  },
+                  "values": {
+                    "dtype": "torch.float64",
+                    "shape": [
+                      65536,
+                      64
+                    ],
+                    "stride": [
+                      64,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 33554432,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "2564327f55dfd56b80ea1d2ccb93a6daa70ce630cf78bdedbf427154dd3c262a"
+                  }
+                },
+                "self": {
+                  "layout": "torch.strided",
+                  "requires_grad": false,
+                  "part": {
+                    "dtype": "torch.float64",
+                    "shape": [
+                      1
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 8,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "a4fea0d23c140dff50cbcc3f958c7e13d454dc1b40030f71f0e5e1406d53368a"
+                  }
+                }
+              },
+              "component_storage_aliases": {
+                "grad.indices|grad.values": false,
+                "grad.indices|output.indices": false,
+                "grad.indices|output.values": false,
+                "grad.indices|self.tensor": false,
+                "grad.values|output.indices": false,
+                "grad.values|output.values": false,
+                "grad.values|self.tensor": false,
+                "output.indices|output.values": false,
+                "output.indices|self.tensor": false,
+                "output.values|self.tensor": false
+              }
+            }
+          },
+          "T_us": 507.4857037938284,
+          "latency_ms": 0.5074857037938284,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "coo_1048576x128_nnz_65536_sd_1_dim_1": {
+        "torch.float32": {
+          "config": {
+            "native_expression": "torch.ops.aten._sparse_softmax_backward_data.default",
+            "case_source_commit": "38fd6d1ba0374f40f9c60b6291d951e24e52a4c0",
+            "benchmark": "benchmark/test__sparse_softmax_backward_data.py",
+            "benchmark_sha256": "277a4abf680476fc90612fdd696698d81c72dd87a5d2d8b196caf372b80bfd4f",
+            "scope": "core",
+            "case_id": "benchmark/test__sparse_softmax_backward_data.py::test__sparse_softmax_backward_data::core::float32::4",
+            "recipe": "coo-softmax-pcg64-native-width-compact-v1",
+            "seed_hex": "ac1b50b0610ac379",
+            "requested_nnz": 65536,
+            "sparse_dim": 1,
+            "dim": 1,
+            "input_device_role": "target",
+            "inputs": {
+              "tensors": {
+                "grad": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    1048576,
+                    128
+                  ],
+                  "dtype": "torch.float32",
+                  "sparse_dim": 1,
+                  "dense_dim": 1,
+                  "nnz": 65536,
+                  "is_coalesced": false,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      1,
+                      65536
+                    ],
+                    "stride": [
+                      65536,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 524288,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "eb81ccfa1921c61debf305df55f205678e26a6c9a2243a3ea02ba8bad385bbf4"
+                  },
+                  "values": {
+                    "dtype": "torch.float32",
+                    "shape": [
+                      65536,
+                      128
+                    ],
+                    "stride": [
+                      128,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 33554432,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "bcdef52248074540416b9183c7ec7fca1332b27db4a8f28fdd0b444702ab699c"
+                  }
+                },
+                "output": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    1048576,
+                    128
+                  ],
+                  "dtype": "torch.float32",
+                  "sparse_dim": 1,
+                  "dense_dim": 1,
+                  "nnz": 65536,
+                  "is_coalesced": false,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      1,
+                      65536
+                    ],
+                    "stride": [
+                      65536,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 524288,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "eb81ccfa1921c61debf305df55f205678e26a6c9a2243a3ea02ba8bad385bbf4"
+                  },
+                  "values": {
+                    "dtype": "torch.float32",
+                    "shape": [
+                      65536,
+                      128
+                    ],
+                    "stride": [
+                      128,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 33554432,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "407b42cad4fc7d2f98499ee26ae25a2141df913dfd13957ef95ac74160ed0c7b"
+                  }
+                },
+                "self": {
+                  "layout": "torch.strided",
+                  "requires_grad": false,
+                  "part": {
+                    "dtype": "torch.float32",
+                    "shape": [
+                      1
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 4,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "7fe2616f41379f51725c01addc2d7cf83429e3b07e1c8631ecf7c79bc3b2421d"
+                  }
+                }
+              },
+              "component_storage_aliases": {
+                "grad.indices|grad.values": false,
+                "grad.indices|output.indices": false,
+                "grad.indices|output.values": false,
+                "grad.indices|self.tensor": false,
+                "grad.values|output.indices": false,
+                "grad.values|output.values": false,
+                "grad.values|self.tensor": false,
+                "output.indices|output.values": false,
+                "output.indices|self.tensor": false,
+                "output.values|self.tensor": false
+              }
+            }
+          },
+          "T_us": 445.19512379233214,
+          "latency_ms": 0.4451951237923321,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float64": {
+          "config": {
+            "native_expression": "torch.ops.aten._sparse_softmax_backward_data.default",
+            "case_source_commit": "38fd6d1ba0374f40f9c60b6291d951e24e52a4c0",
+            "benchmark": "benchmark/test__sparse_softmax_backward_data.py",
+            "benchmark_sha256": "277a4abf680476fc90612fdd696698d81c72dd87a5d2d8b196caf372b80bfd4f",
+            "scope": "core",
+            "case_id": "benchmark/test__sparse_softmax_backward_data.py::test__sparse_softmax_backward_data::core::float64::4",
+            "recipe": "coo-softmax-pcg64-native-width-compact-v1",
+            "seed_hex": "68e1ed6b1c878eed",
+            "requested_nnz": 65536,
+            "sparse_dim": 1,
+            "dim": 1,
+            "input_device_role": "target",
+            "inputs": {
+              "tensors": {
+                "grad": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    1048576,
+                    128
+                  ],
+                  "dtype": "torch.float64",
+                  "sparse_dim": 1,
+                  "dense_dim": 1,
+                  "nnz": 65536,
+                  "is_coalesced": false,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      1,
+                      65536
+                    ],
+                    "stride": [
+                      65536,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 524288,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "af7d3ff9a3b272632e9f63e979eb7695329f98d02f941f98600641b2f6ce1fe7"
+                  },
+                  "values": {
+                    "dtype": "torch.float64",
+                    "shape": [
+                      65536,
+                      128
+                    ],
+                    "stride": [
+                      128,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 67108864,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "942934ad8f066f3ff759904bff09889935bc10e53792ddfcaa76c4474ec8233d"
+                  }
+                },
+                "output": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    1048576,
+                    128
+                  ],
+                  "dtype": "torch.float64",
+                  "sparse_dim": 1,
+                  "dense_dim": 1,
+                  "nnz": 65536,
+                  "is_coalesced": false,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      1,
+                      65536
+                    ],
+                    "stride": [
+                      65536,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 524288,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "af7d3ff9a3b272632e9f63e979eb7695329f98d02f941f98600641b2f6ce1fe7"
+                  },
+                  "values": {
+                    "dtype": "torch.float64",
+                    "shape": [
+                      65536,
+                      128
+                    ],
+                    "stride": [
+                      128,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 67108864,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "7c01a03d1a7f97082d157e6342987448137a26ca04a19fa08b58abd2dd631e53"
+                  }
+                },
+                "self": {
+                  "layout": "torch.strided",
+                  "requires_grad": false,
+                  "part": {
+                    "dtype": "torch.float64",
+                    "shape": [
+                      1
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 8,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "5fc1ec8bdc83911845e1fb699efb65d0fe6d2d75f0873310f953ed39c836da48"
+                  }
+                }
+              },
+              "component_storage_aliases": {
+                "grad.indices|grad.values": false,
+                "grad.indices|output.indices": false,
+                "grad.indices|output.values": false,
+                "grad.indices|self.tensor": false,
+                "grad.values|output.indices": false,
+                "grad.values|output.values": false,
+                "grad.values|self.tensor": false,
+                "output.indices|output.values": false,
+                "output.indices|self.tensor": false,
+                "output.values|self.tensor": false
+              }
+            }
+          },
+          "T_us": 565.7071520884832,
+          "latency_ms": 0.5657071520884832,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "coo_16x7x57x32x29_nnz_6_sd_5_dim_4": {
+        "torch.float32": {
+          "config": {
+            "native_expression": "torch.ops.aten._sparse_softmax_backward_data.default",
+            "case_source_commit": "38fd6d1ba0374f40f9c60b6291d951e24e52a4c0",
+            "benchmark": "benchmark/test__sparse_softmax_backward_data.py",
+            "benchmark_sha256": "277a4abf680476fc90612fdd696698d81c72dd87a5d2d8b196caf372b80bfd4f",
+            "scope": "core",
+            "case_id": "benchmark/test__sparse_softmax_backward_data.py::test__sparse_softmax_backward_data::core::float32::5",
+            "recipe": "coo-softmax-pcg64-native-width-compact-v1",
+            "seed_hex": "5aab1c1f16912473",
+            "requested_nnz": 6,
+            "sparse_dim": 5,
+            "dim": 4,
+            "input_device_role": "target",
+            "inputs": {
+              "tensors": {
+                "grad": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    16,
+                    7,
+                    57,
+                    32,
+                    29
+                  ],
+                  "dtype": "torch.float32",
+                  "sparse_dim": 5,
+                  "dense_dim": 0,
+                  "nnz": 6,
+                  "is_coalesced": false,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      5,
+                      6
+                    ],
+                    "stride": [
+                      6,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 240,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "1c8b91906fedcd5feac75bbc961aa8dcd319d329361cb4199ea6215ca4aed62b"
+                  },
+                  "values": {
+                    "dtype": "torch.float32",
+                    "shape": [
+                      6
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 24,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "c5fe3d47c53838bb33d87833d876013d191c6f54cd42fad269181d156466bb30"
+                  }
+                },
+                "output": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    16,
+                    7,
+                    57,
+                    32,
+                    29
+                  ],
+                  "dtype": "torch.float32",
+                  "sparse_dim": 5,
+                  "dense_dim": 0,
+                  "nnz": 6,
+                  "is_coalesced": false,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      5,
+                      6
+                    ],
+                    "stride": [
+                      6,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 240,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "1c8b91906fedcd5feac75bbc961aa8dcd319d329361cb4199ea6215ca4aed62b"
+                  },
+                  "values": {
+                    "dtype": "torch.float32",
+                    "shape": [
+                      6
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 24,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "820357f046fb27f95daea06ab2b282e34d2a092416af536a68074e729c1bb677"
+                  }
+                },
+                "self": {
+                  "layout": "torch.strided",
+                  "requires_grad": false,
+                  "part": {
+                    "dtype": "torch.float32",
+                    "shape": [
+                      1
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 4,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "f150e3bce018eb571946a6bc0d378747284e40074e536e298672cdd69a3fd996"
+                  }
+                }
+              },
+              "component_storage_aliases": {
+                "grad.indices|grad.values": false,
+                "grad.indices|output.indices": false,
+                "grad.indices|output.values": false,
+                "grad.indices|self.tensor": false,
+                "grad.values|output.indices": false,
+                "grad.values|output.values": false,
+                "grad.values|self.tensor": false,
+                "output.indices|output.values": false,
+                "output.indices|self.tensor": false,
+                "output.values|self.tensor": false
+              }
+            }
+          },
+          "T_us": 437.7429004384096,
+          "latency_ms": 0.43774290043840963,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float64": {
+          "config": {
+            "native_expression": "torch.ops.aten._sparse_softmax_backward_data.default",
+            "case_source_commit": "38fd6d1ba0374f40f9c60b6291d951e24e52a4c0",
+            "benchmark": "benchmark/test__sparse_softmax_backward_data.py",
+            "benchmark_sha256": "277a4abf680476fc90612fdd696698d81c72dd87a5d2d8b196caf372b80bfd4f",
+            "scope": "core",
+            "case_id": "benchmark/test__sparse_softmax_backward_data.py::test__sparse_softmax_backward_data::core::float64::5",
+            "recipe": "coo-softmax-pcg64-native-width-compact-v1",
+            "seed_hex": "34d475841f6abce3",
+            "requested_nnz": 6,
+            "sparse_dim": 5,
+            "dim": 4,
+            "input_device_role": "target",
+            "inputs": {
+              "tensors": {
+                "grad": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    16,
+                    7,
+                    57,
+                    32,
+                    29
+                  ],
+                  "dtype": "torch.float64",
+                  "sparse_dim": 5,
+                  "dense_dim": 0,
+                  "nnz": 6,
+                  "is_coalesced": false,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      5,
+                      6
+                    ],
+                    "stride": [
+                      6,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 240,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "36459236bb614376d0086f693d307ebbaca0ce6fe72f0f277ad938ac440c19bc"
+                  },
+                  "values": {
+                    "dtype": "torch.float64",
+                    "shape": [
+                      6
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 48,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "090327e73507718bd66da4af1e852f6f78112ced48da2d8761501b59161e987b"
+                  }
+                },
+                "output": {
+                  "layout": "torch.sparse_coo",
+                  "shape": [
+                    16,
+                    7,
+                    57,
+                    32,
+                    29
+                  ],
+                  "dtype": "torch.float64",
+                  "sparse_dim": 5,
+                  "dense_dim": 0,
+                  "nnz": 6,
+                  "is_coalesced": false,
+                  "requires_grad": false,
+                  "is_conj": false,
+                  "is_neg": false,
+                  "indices": {
+                    "dtype": "torch.int64",
+                    "shape": [
+                      5,
+                      6
+                    ],
+                    "stride": [
+                      6,
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 240,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "36459236bb614376d0086f693d307ebbaca0ce6fe72f0f277ad938ac440c19bc"
+                  },
+                  "values": {
+                    "dtype": "torch.float64",
+                    "shape": [
+                      6
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 48,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "a70c2404e9b6720847000a5815d00066256f7efb0d507dde11024a15a2bc0542"
+                  }
+                },
+                "self": {
+                  "layout": "torch.strided",
+                  "requires_grad": false,
+                  "part": {
+                    "dtype": "torch.float64",
+                    "shape": [
+                      1
+                    ],
+                    "stride": [
+                      1
+                    ],
+                    "storage_offset": 0,
+                    "storage_nbytes": 8,
+                    "is_conj": false,
+                    "is_neg": false,
+                    "sha256": "4e7f6d341d898d28eb2ad78f99ac7a0b7a3feb1cfe066183f555bc241b4d1d08"
+                  }
+                }
+              },
+              "component_storage_aliases": {
+                "grad.indices|grad.values": false,
+                "grad.indices|output.indices": false,
+                "grad.indices|output.values": false,
+                "grad.indices|self.tensor": false,
+                "grad.values|output.indices": false,
+                "grad.values|output.values": false,
+                "grad.values|self.tensor": false,
+                "output.indices|output.values": false,
+                "output.indices|self.tensor": false,
+                "output.values|self.tensor": false
+              }
+            }
+          },
+          "T_us": 437.4484206500806,
+          "latency_ms": 0.4374484206500806,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      }
+    }
+  }
+}

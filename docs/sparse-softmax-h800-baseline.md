@@ -1,8 +1,11 @@
-# Sparse softmax native H800 baselines (preparation)
+# Sparse softmax native H800 baselines
 
-This feature prepares `_sparse_softmax` and `_sparse_softmax_backward_data` only.
-No H800 collection or published artifact is included yet. The forward module is
-new; the backward module replaces its old random-input producer. Existing main
+This feature covers `_sparse_softmax` and `_sparse_softmax_backward_data` only.
+`op_pytorch_sparse_softmax_h800_perf_baseline.json` contains the official native
+H800 collection: 12 records/operator, 24 total, latency only (`--no-ncu`).
+Collection source is clean commit `0567cbffdb05aa7987650c55e47738c8183444a7`;
+artifact SHA256 is `8c81710abb79d4ac591b514e3efde080aadfa544ad3899d7ca3fa641886e51f5`.
+The forward module is new; the backward module replaces its old random-input producer. Existing main
 contains 12 completed backward records, but their payloads have no canonical
 identity and they are **not** the new recipe's records.
 
@@ -57,7 +60,7 @@ platform bit equality. Before formal collection/replay, compare all 24 configs
 in the actual H800 and intended target environments. A mismatch is an error,
 not permission to drop the identity or substitute a CPU latency.
 
-## Verification and future collection
+## Verification and collection
 
 Focused tests exercise actual CPU ATen on independent literal cases, complete
 catalog and genuine F64, duplicate/stored-zero semantics, RNG isolation,
@@ -67,16 +70,18 @@ original descriptor/dtype on real CPU inputs and against its original ABI
 metadata, plus the new full identity, rather than skipping it or treating
 undefined meta tensors as payload proof. These are CPU controls, not H800 data.
 
-After source reviews and consumer recipe agreement, create an isolated clean
-checkout in `flaggems_test_tj` on the designated H800. Reuse its existing runtime;
-do not upgrade packages. Record Git/source hashes, full software/hardware and
-input configs, per-operator worker results, controller exit and actual GPU
-occupancy/PID provenance. A candidate command (not executed here) is:
+Collection used an isolated clean checkout in `flaggems_test_tj` on the
+designated H800, physical GPU 7, UUID `555633f8-c39c-bb8a-d549-791cb8451f44`.
+The existing Python 3.12.3 / Torch 2.8.0a0+5228986c39.nv25.5 / Triton 3.6.0
+runtime was reused. Both tasks and the external controller exited 0. The
+source had 1,150 tracked files with identical hashes before/after collection.
+The executed native collector arguments, omitting only the owned output path,
+were:
 
 ```sh
 python tools/collect_baseline_nvidia.py --repo pytorch \
-  --ops _sparse_softmax,_sparse_softmax_backward_data --device 7 \
-  --no-ncu --op-timeout 3600 \
+  --ops _sparse_softmax,_sparse_softmax_backward_data --devices 7 \
+  --no-ncu --op-timeout 1800 \
   --output /data/tj/workspace/<owned-run>/sparse-softmax-h800.json
 ```
 
@@ -86,3 +91,13 @@ measurement. No CPU oracle is the native timing target. Require all 24 records
 finite and positive, both task states completed and matching actual source/input
 identity before publishing. Preserve `_sparse_*` operator keys during lookup;
 underscore prefixes are not sufficient to classify a key as metadata.
+
+Original per-operator worker results and host/container process monitors are
+retained as collection evidence. The combined `_environment` is the first
+worker environment; `_environments["7"]` is overwritten by the last task. Do
+not attribute the last task environment to both operators. Consumers pin the
+original per-operator environment, complete artifact hash and collection source.
+GPU monitors are sampled observations, not continuous proof that every brief
+foreign workload was absent. Zero NCU fields are placeholders for uncollected
+metrics, not measured zero GPU work. Target ref-as-candidate timing is
+functional validation and is not republished as a formal native baseline.
