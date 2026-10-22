@@ -4,9 +4,10 @@
 
 Case source: FlagGems 633f62d145b0c36ba374e4595dc3540a11044622,
 benchmark/test__sparse_csr_prod.py. Six shapes x three dim forms x three dtypes.
-The native callable is unchanged. A portable normal-input recipe supplies the
-same encoded CSR payload to H800 and to backends without a native reference;
-its complete input identity is saved in config rather than inferred from shape.
+The native callable is unchanged. The normal-input recipe is verified on the
+task's Linux backend environments. NumPy float32 normals can differ on another
+OS or CPU math stack: consumers must match the actual encoded CSR identity to
+the collected config and reject differences, rather than infer it from shape.
 No FlagGems or pytest dependency, cached tensors, or global RNG changes.
 """
 
