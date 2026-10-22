@@ -19,7 +19,7 @@ import torch
 OP_NAME = "_sparse_csr_prod"
 DTYPES = [torch.float16, torch.float32, torch.bfloat16]
 IS_INPLACE = False
-RECIPE = "csr-prod-pcg64-normal-f32-cast-v1"
+RECIPE = "csr-prod-pcg64-normal-f32-cast-compact-v2"
 CASE_SOURCE = "633f62d145b0c36ba374e4595dc3540a11044622"
 SHAPES = (
     (1024, 1024),
@@ -57,14 +57,32 @@ def _cpu_input(shape, dtype):
         raise TypeError("Unsupported CSR product benchmark dtype")
     rng = np.random.Generator(np.random.PCG64(_seed(shape, dtype)))
     dense = torch.from_numpy(rng.standard_normal(tuple(shape), dtype=np.float32))
-    return dense.to(dtype).to_sparse_csr()
+    csr = dense.to(dtype).to_sparse_csr()
+    # Native dense-to-CSR may share the index allocation and leave col at a
+    # nonzero storage offset. Give each component its own compact allocation
+    # so CPU configuration and target replay have the same physical geometry.
+    return torch.sparse_csr_tensor(
+        csr.crow_indices().clone(),
+        csr.col_indices().clone(),
+        csr.values().clone(),
+        size=csr.shape,
+        device="cpu",
+    )
 
 
 def _part_identity(part):
-    raw = part.detach().cpu().contiguous().reshape(-1).view(torch.uint8)
+    # Even contiguous() may retain a singleton view's non-unit stride.
+    logical = torch.empty(part.numel(), dtype=part.dtype, device="cpu")
+    logical.copy_(part.detach().cpu().reshape(-1))
+    raw = logical.view(torch.uint8)
     return {
         "dtype": str(part.dtype),
         "shape": list(part.shape),
+        "stride": list(part.stride()),
+        "storage_offset": part.storage_offset(),
+        "storage_nbytes": part.untyped_storage().nbytes(),
+        "is_conj": part.is_conj(),
+        "is_neg": part.is_neg(),
         "sha256": hashlib.sha256(raw.numpy().tobytes()).hexdigest(),
     }
 
@@ -73,6 +91,7 @@ def input_identity(inp):
     if inp.layout != torch.sparse_csr or inp.ndim != 2:
         raise ValueError("Expected a two-dimensional CSR input")
     shape = list(inp.shape)
+    parts = (inp.crow_indices(), inp.col_indices(), inp.values())
     return {
         "recipe": RECIPE,
         "seed_hex": f"{_seed(shape, inp.dtype):016x}",
@@ -81,6 +100,10 @@ def input_identity(inp):
         "dtype": str(inp.dtype),
         "nnz": inp._nnz(),
         "requires_grad": inp.requires_grad,
+        "component_storage_aliases": [
+            parts[i].untyped_storage()._cdata == parts[j].untyped_storage()._cdata
+            for i, j in ((0, 1), (0, 2), (1, 2))
+        ],
         "crow": _part_identity(inp.crow_indices()),
         "col": _part_identity(inp.col_indices()),
         "values": _part_identity(inp.values()),
@@ -104,6 +127,8 @@ def build_inputs(binding, dtype, device):
     )
     if inp.dtype != dtype or tuple(inp.shape) != tuple(binding["shape"]):
         raise ValueError("Input transfer changed the requested dtype or shape")
+    if input_identity(inp) != input_identity(cpu):
+        raise ValueError("Input transfer changed the CSR payload or storage geometry")
     return (inp,), {"dim": list(binding["dim"]), "keepdim": True}
 
 
