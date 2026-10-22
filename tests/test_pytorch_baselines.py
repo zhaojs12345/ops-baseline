@@ -14,6 +14,9 @@ import unittest
 
 import torch
 
+CANONICAL_BACKWARD = "_sparse_softmax_backward_data"
+CANONICAL_FORWARD = "_sparse_softmax"
+
 ROOT = Path(__file__).resolve().parents[1]
 OPS = ROOT / "ops/pytorch"
 sys.path.insert(0, str(OPS))
@@ -53,8 +56,33 @@ class PytorchCatalogTests(unittest.TestCase):
         names = [
             name
             for name, info in self.manifest["operators"].items()
-            if info.get("source_backend") == "nvidia"
+            if info.get("source_backend") == "nvidia" and name != CANONICAL_BACKWARD
         ]
+        # The canonical backward producer intentionally changes random payloads.
+        # Retain its original descriptor/dtype contract by inspecting the pinned
+        # source; exact new payload/native behavior is checked in the focused
+        # canonical tests, rather than pretending old random tensors are equal.
+        import ast
+
+        source = (
+            Path(os.environ["FLAGGEMS_SOURCE_REPO"])
+            / "benchmark"
+            / "test__sparse_softmax_backward_data.py"
+        )
+        module_ast = ast.parse(source.read_text())
+        descriptors = next(
+            ast.literal_eval(node.value)
+            for node in module_ast.body
+            if isinstance(node, ast.Assign)
+            and any(
+                isinstance(target, ast.Name) and target.id == "_SSBD_SHAPES"
+                for target in node.targets
+            )
+        )
+        self.assertEqual(tuple(descriptors), self.modules[CANONICAL_BACKWARD].SHAPES)
+        self.assertEqual(
+            self.modules[CANONICAL_BACKWARD].DTYPES, [torch.float32, torch.float64]
+        )
         with tempfile.TemporaryDirectory() as directory:
             subprocess.run(
                 [
@@ -135,7 +163,7 @@ print(json.dumps(result))
         expected = {
             info.get("module", name)
             for name, info in self.manifest["operators"].items()
-        } | {"silu"}
+        } | {"silu", CANONICAL_FORWARD}
         self.assertEqual(expected, {p.stem for p in OPS.glob("*.py")})
         coverage = json.loads((OPS / "coverage.json").read_text())
         self.assertEqual(coverage["summary"]["added_operators"], len(names))
@@ -145,7 +173,16 @@ print(json.dumps(result))
                 self.assertEqual(module.OP_NAME, name)
                 self.assertFalse(module.IS_INPLACE)
                 self.assertEqual([str(d) for d in module.DTYPES], info["dtypes"])
-                self.assertIn(self.manifest["source_commit"], module.__doc__)
+                if name == CANONICAL_BACKWARD:
+                    self.assertEqual(
+                        module.CASE_SOURCE, "38fd6d1ba0374f40f9c60b6291d951e24e52a4c0"
+                    )
+                    self.assertEqual(
+                        module.BENCHMARK_SHA256,
+                        "277a4abf680476fc90612fdd696698d81c72dd87a5d2d8b196caf372b80bfd4f",
+                    )
+                else:
+                    self.assertIn(self.manifest["source_commit"], module.__doc__)
                 self.assertTrue(callable(module.native()))
 
     def test_keys_are_unique_and_ncu_filenames_fit(self):
@@ -168,16 +205,53 @@ print(json.dumps(result))
                 for dtype in module.DTYPES:
                     with self.subTest(op=name, binding=binding, dtype=dtype):
                         before = json.loads(json.dumps(binding))
-                        args, kwargs = module.build_inputs(binding, dtype, "meta")
+                        if name == CANONICAL_BACKWARD:
+                            # Exercise every original descriptor/dtype on real CPU
+                            # tensors, including independent index storage and full
+                            # defined payload identity. No meta oracle hides values.
+                            from _sparse_softmax_inputs import input_identity
+
+                            args, kwargs = module.build_inputs(binding, dtype, "cpu")
+                            config = module.config(binding, dtype)
+                            original = self.cases[name][binding["ordinal"]]
+                            self.assertEqual(
+                                original["shape"],
+                                [
+                                    binding["shape"],
+                                    binding["nnz"],
+                                    binding["sparse_dim"],
+                                    binding["dim"],
+                                ],
+                            )
+                            self.assertEqual(
+                                describe({"args": args, "kwargs": kwargs}),
+                                original["config"][str(dtype)]["inputs"],
+                            )
+                            self.assertEqual(
+                                config["inputs"],
+                                input_identity(
+                                    {
+                                        "grad": args[0],
+                                        "output": args[1],
+                                        "self": args[3],
+                                    }
+                                ),
+                            )
+                            self.assertEqual(
+                                config["case_source_commit"], module.CASE_SOURCE
+                            )
+                        else:
+                            args, kwargs = module.build_inputs(binding, dtype, "meta")
+                            config = module.config(binding, dtype)
+                            self.assertEqual(
+                                describe({"args": args, "kwargs": kwargs}),
+                                config["inputs"],
+                            )
+                            self.assertEqual(
+                                config["source_commit"], self.manifest["source_commit"]
+                            )
                         self.assertIsInstance(args, tuple)
                         self.assertIsInstance(kwargs, dict)
-                        config = module.config(binding, dtype)
-                        self.assertEqual(
-                            describe({"args": args, "kwargs": kwargs}), config["inputs"]
-                        )
-                        self.assertEqual(
-                            config["source_commit"], self.manifest["source_commit"]
-                        )
                         self.assertEqual(binding, before)
                         json.dumps(config)
 
@@ -341,8 +415,10 @@ print(json.dumps(result))
         self.assertTrue(torch.equal(first.indices(), second.indices()))
         config = module.config(binding, torch.float32)["mask"]
         self.assertEqual(first._nnz(), config["nnz"])
-        self.assertEqual(hashlib.sha256(first.indices().numpy().tobytes()).hexdigest(),
-                         config["indices_sha256"])
+        self.assertEqual(
+            hashlib.sha256(first.indices().numpy().tobytes()).hexdigest(),
+            config["indices_sha256"],
+        )
         args, kwargs = module.build_inputs(binding, torch.float32, "cpu")
         output = module.native()(*args, **kwargs).coalesce()
         self.assertTrue(torch.equal(output.indices(), first.indices()))
@@ -356,7 +432,9 @@ print(json.dumps(result))
         for field, changed in (("nnz", -1), ("indices_sha256", "0" * 64)):
             config = module.config(binding, torch.float32)
             config["mask"][field] = changed
-            with self.subTest(field=field), patch.object(module, "config", return_value=config):
+            with self.subTest(field=field), patch.object(
+                module, "config", return_value=config
+            ):
                 with self.assertRaisesRegex(ValueError, "Sparse mask replay differs"):
                     module.build_inputs(binding, torch.float32, "cpu")
 
@@ -373,14 +451,21 @@ for binding in sparse_mask.grid():
     result.append([mask._nnz(), hashlib.sha256(mask.indices().numpy().tobytes()).hexdigest()])
 print(json.dumps(result))
 """
-        outputs = [subprocess.check_output(
-            [sys.executable, "-c", script, str(OPS), str(seed)], text=True
-        ) for seed in (123, 456)]
+        outputs = [
+            subprocess.check_output(
+                [sys.executable, "-c", script, str(OPS), str(seed)], text=True
+            )
+            for seed in (123, 456)
+        ]
         self.assertEqual(outputs[0], outputs[1])
-        expected = [self.modules["sparse_mask"].config(b, torch.float32)["mask"]
-                    for b in self.modules["sparse_mask"].grid()]
-        self.assertEqual(json.loads(outputs[0]),
-                         [[row["nnz"], row["indices_sha256"]] for row in expected])
+        expected = [
+            self.modules["sparse_mask"].config(b, torch.float32)["mask"]
+            for b in self.modules["sparse_mask"].grid()
+        ]
+        self.assertEqual(
+            json.loads(outputs[0]),
+            [[row["nnz"], row["indices_sha256"]] for row in expected],
+        )
 
     def test_unpack_matches_upstream_keyword_convention(self):
         value = torch.ones(2)

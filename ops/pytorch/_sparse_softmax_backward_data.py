@@ -1,82 +1,97 @@
 # Copyright 2026 FlagOS Contributors
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+# SPDX-License-Identifier: Apache-2.0
+"""Native H800 sparse softmax backward; original six core descriptors/dtypes.
 
-
-"""_sparse_softmax_backward_data: PyTorch native baseline from FlagGems kernelgen-dev.
-Source commit: 9d57a23b4386bd669152a935fe88a96db907da7c
-Benchmark: benchmark/test__sparse_softmax_backward_data.py:99 (test__sparse_softmax_backward_data)
-Native expression: torch.ops.aten._sparse_softmax_backward_data
-Input construction: upstream benchmark helpers/base class, CORE only.
-Shape source: benchmark/core_shapes.yaml benchmark class/default descriptors or explicit class descriptors.
-Comprehensive-only shapes are not imported.
+Shape source is FlagGems38fd6d1b benchmark/test__sparse_softmax_backward_data.py.
+Only the input recipe becomes canonical; native ATen arguments and the original
+independent random grad/output inputs (not probabilities) are preserved. Old12
+published random-input records are not this recipe and must not be relabeled.
 """
 
 import torch
-
-from _kernelgen import BenchmarkCasePlan, case_inputs, export_contract
-
-_DTYPES = [torch.float32] + ([torch.float64] if True else [])
-
-
-def _case_fn(shape, dtype):
-    del dtype
-    sparse_shape, nnz, sparse_dim, dim = shape
-    yield BenchmarkCasePlan(
-        shape={"input": sparse_shape},
-        params={"nnz": nnz, "sparse_dim": sparse_dim, "dim": dim},
-        builder_args=(sparse_shape, nnz, sparse_dim, dim),
-    )
-
-
-def _build_inputs_fn(plan, dtype, device):
-    sparse_shape, nnz, sparse_dim, dim = plan.builder_args
-    if sparse_dim == 0:
-        indices = torch.empty(0, nnz, dtype=torch.long, device=device)
-    else:
-        indices = torch.stack(
-            [
-                torch.randint(0, extent, (nnz,), dtype=torch.long, device=device)
-                for extent in sparse_shape[:sparse_dim]
-            ]
-        )
-    value_shape = (nnz,) + tuple(sparse_shape[sparse_dim:])
-    grad = torch.sparse_coo_tensor(
-        indices,
-        torch.randn(value_shape, dtype=dtype, device=device),
-        sparse_shape,
-        device=device,
-    )
-    output = torch.sparse_coo_tensor(
-        indices.clone(),
-        torch.randn(value_shape, dtype=dtype, device=device),
-        sparse_shape,
-        device=device,
-    )
-    self_tensor = torch.randn(1, dtype=dtype, device=device)
-    return (grad, output, dim, self_tensor, {})
-
-
-def _resolve_native():
-    return torch.ops.aten._sparse_softmax_backward_data
-
-
-DTYPES = _DTYPES
-
-_inputs = lambda shape, dtype, device: case_inputs(
-    _case_fn, _build_inputs_fn, shape, dtype, device
+from _sparse_softmax_inputs import (
+    RECIPE,
+    backward_cpu,
+    input_identity,
+    seed_hex,
+    to_device,
 )
 
-globals().update(
-    export_contract("_sparse_softmax_backward_data", DTYPES, _resolve_native, _inputs)
+OP_NAME = "_sparse_softmax_backward_data"
+DTYPES = [torch.float32, torch.float64]
+IS_INPLACE = False
+CASE_SOURCE = "38fd6d1ba0374f40f9c60b6291d951e24e52a4c0"
+BENCHMARK_SHA256 = "277a4abf680476fc90612fdd696698d81c72dd87a5d2d8b196caf372b80bfd4f"
+SHAPES = (
+    ((1024, 1024), 65536, 2, 0),
+    ((2048, 2048), 1048576, 2, 1),
+    ((256, 256, 256), 262144, 3, 0),
+    ((4096, 4096, 64), 65536, 2, 2),
+    ((1048576, 128), 65536, 1, 1),
+    ((16, 7, 57, 32, 29), 6, 5, 4),
 )
+
+
+def native():
+    try:
+        return torch.ops.aten._sparse_softmax_backward_data.default
+    except (AttributeError, RuntimeError):
+        return None
+
+
+def grid():
+    return [
+        {"shape": list(shape), "nnz": nnz, "sparse_dim": sd, "dim": dim, "ordinal": i}
+        for i, (shape, nnz, sd, dim) in enumerate(SHAPES)
+    ]
+
+
+def _checked(binding, dtype):
+    if dtype not in DTYPES:
+        raise TypeError("Unsupported original sparse backward dtype")
+    if not isinstance(binding, dict) or type(binding.get("ordinal")) is not int:
+        raise ValueError("Expected an original descriptor and ordinal")
+    i = binding["ordinal"]
+    if not 0 <= i < len(SHAPES) or binding != grid()[i]:
+        raise ValueError("Binding does not match the original core descriptor")
+    return SHAPES[i]
+
+
+def _cpu_inputs(binding, dtype):
+    shape, nnz, sd, dim = _checked(binding, dtype)
+    grad, output, self_tensor = backward_cpu(shape, nnz, sd, dim, dtype)
+    return {"grad": grad, "output": output, "self": self_tensor}
+
+
+def build_inputs(binding, dtype, device):
+    _checked(binding, dtype)
+    moved = to_device(_cpu_inputs(binding, dtype), device)
+    return (moved["grad"], moved["output"], binding["dim"], moved["self"]), {}
+
+
+def key_shape(binding):
+    shape, nnz, sd, dim = _checked(binding, DTYPES[0])
+    return "coo_" + "x".join(map(str, shape)) + f"_nnz_{nnz}_sd_{sd}_dim_{dim}"
+
+
+def config(binding, dtype):
+    shape, nnz, sd, dim = _checked(binding, dtype)
+    return {
+        "native_expression": "torch.ops.aten._sparse_softmax_backward_data.default",
+        "case_source_commit": CASE_SOURCE,
+        "benchmark": "benchmark/test__sparse_softmax_backward_data.py",
+        "benchmark_sha256": BENCHMARK_SHA256,
+        "scope": "core",
+        "case_id": (
+            "benchmark/test__sparse_softmax_backward_data.py"
+            "::test__sparse_softmax_backward_data::core::"
+            f"{str(dtype).removeprefix('torch.')}::{binding['ordinal']}"
+        ),
+        "recipe": RECIPE,
+        "seed_hex": seed_hex("backward", shape, nnz, sd, dim, dtype),
+        "requested_nnz": nnz,
+        "sparse_dim": sd,
+        "dim": dim,
+        "input_device_role": "target",
+        "inputs": input_identity(_cpu_inputs(binding, dtype)),
+    }
