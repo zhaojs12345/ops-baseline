@@ -135,7 +135,7 @@ print(json.dumps(result))
         expected = {
             info.get("module", name)
             for name, info in self.manifest["operators"].items()
-        } | {"silu"}
+        } | {"silu", "_sparse_log_softmax"}
         self.assertEqual(expected, {p.stem for p in OPS.glob("*.py")})
         coverage = json.loads((OPS / "coverage.json").read_text())
         self.assertEqual(coverage["summary"]["added_operators"], len(names))
@@ -145,7 +145,17 @@ print(json.dumps(result))
                 self.assertEqual(module.OP_NAME, name)
                 self.assertFalse(module.IS_INPLACE)
                 self.assertEqual([str(d) for d in module.DTYPES], info["dtypes"])
-                self.assertIn(self.manifest["source_commit"], module.__doc__)
+                if name == "_sparse_log_softmax_backward_data":
+                    # The historical 11 descriptors remain, but this module now
+                    # records canonical physical COO inputs at a newer source.
+                    self.assertEqual(
+                        module.CASE_SOURCE, "f30a563479449016490ef674b3670ede6c101988"
+                    )
+                    self.assertEqual(
+                        len(module.grid()), self.manifest["operators"][name]["cases"]
+                    )
+                else:
+                    self.assertIn(self.manifest["source_commit"], module.__doc__)
                 self.assertTrue(callable(module.native()))
 
     def test_keys_are_unique_and_ncu_filenames_fit(self):
@@ -168,6 +178,36 @@ print(json.dumps(result))
                 for dtype in module.DTYPES:
                     with self.subTest(op=name, binding=binding, dtype=dtype):
                         before = json.loads(json.dumps(binding))
+                        if name == "_sparse_log_softmax_backward_data":
+                            # All original descriptors/dtypes still execute; do not
+                            # compare a physical-byte recipe to undefined meta data.
+                            from _sparse_log_softmax_inputs import input_identity
+
+                            args, kwargs = module.build_inputs(binding, dtype, "cpu")
+                            config = module.config(binding, dtype)
+                            self.assertEqual(
+                                config["inputs"],
+                                input_identity(
+                                    {
+                                        "grad": args[0],
+                                        "output": args[1],
+                                        "self": args[3],
+                                    }
+                                ),
+                            )
+                            self.assertEqual(
+                                config["case_source_commit"], module.CASE_SOURCE
+                            )
+                            self.assertEqual(args[2], binding["dim"])
+                            self.assertEqual(kwargs, {})
+                            for value in (args[0], args[1], args[3]):
+                                self.assertEqual(value.layout, torch.sparse_coo)
+                                self.assertEqual(list(value.shape), binding["shape"])
+                                self.assertEqual(value._nnz(), binding["nnz"])
+                                self.assertEqual(value.dtype, dtype)
+                            self.assertEqual(binding, before)
+                            json.dumps(config)
+                            continue
                         args, kwargs = module.build_inputs(binding, dtype, "meta")
                         self.assertIsInstance(args, tuple)
                         self.assertIsInstance(kwargs, dict)
