@@ -5,11 +5,16 @@
 The target native API is unavailable. These six storage-layout plans match all
 60 target core case IDs. Allocate the original uninitialized payload; neither
 input nor returned output values are inspected by this latency-only recipe.
+
+This is host copy-on-write metadata work even for CUDA inputs. Collect with
+tools/collect_lazy_clone_host.py, not the CUDA-event/NCU GPU collector. There
+is no payload copy until later materialization, which is outside this recipe.
 """
 
 import torch
 
 OP_NAME = "_lazy_clone"
+MEASUREMENT_KIND = "cuda_dispatch_host_metadata"
 IS_INPLACE = False
 DTYPES = [
     torch.float16,
