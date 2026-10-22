@@ -1,8 +1,8 @@
-# Sparse log-softmax native baseline preparation
+# Sparse log-softmax native H800 baseline
 
 This source prepares two native PyTorch GPU modules for the original297 suite:
-`_sparse_log_softmax` and `_sparse_log_softmax_backward_data`. It does not collect
-or publish timings yet. Existing historical backward records are not this new
+`_sparse_log_softmax` and `_sparse_log_softmax_backward_data`. The snapshot `op_pytorch_sparse_log_softmax_h800_perf_baseline.json` contains
+40 native CUDA timing records. Existing historical backward records use a different
 input recipe and must not be relabelled.
 
 The exact case source is FlagGems `f30a563479449016490ef674b3670ede6c101988`.
@@ -50,26 +50,38 @@ All native timing must execute direct CUDA ATen on the actual target inputs;
 CPU construction/identity calculation is preparation, **not a timed CPU oracle**.
 
 Bitwise reproducibility across arbitrary NumPy/OS combinations is not assumed.
-Future target replay must compare actual complete input identity to the H800
-config and reject a mismatch. No H800 result or target GPU replay is claimed by
-CPU tests. No NCU metrics, GPU latency or performance speedup exists yet.
+Target replay must compare actual complete input identity to the H800 config
+and reject a mismatch. CPU tests establish no target GPU replay or performance
+speedup. This collection used `--no-ncu`; NCU-related placeholder zeros are not
+measured compute or bandwidth utilization.
 
-## Review and collection plan (not executed)
+## Collected snapshot
 
-After independent source review and a clean pinned producer commit, use an
-isolated H800 checkout and the existing authorized runtime, with no upgrades.
-The official tool command is:
+Collected on 2026-10-22 UTC using unchanged H800 runtime and clean producer
+commit `0f73cb27eb44781aa75cc2519482701c06f03e1e`. Forward18 and backward22 records both completed successfully.
+Source1150 tracked files had identical hashes before/after collection. The
+official tool command was:
 
 ```sh
 python tools/collect_baseline_nvidia.py --repo pytorch \
   --ops _sparse_log_softmax,_sparse_log_softmax_backward_data \
-  --device 7 --no-ncu --output /data/tj/workspace/OWNED_RUN/native.json
+  --devices 7 --no-ncu --op-timeout 1800 \
+  --output /data/tj/workspace/ops-baseline-log-softmax-run-v1-20261022/h800.json
 ```
 
-The hardware/preflight/ownership gate, clean source and before/after hashes,
-per-op worker environment, all forty case configs, finite positive `T_us`,
-units and completed tasks must be independently reviewed before an artifact is
-accepted. Preserve underscore operator keys explicitly when reading the JSON;
+Independent source and native-collection review verified actual H800 hardware,
+clean source/before-after hashes, each original per-op worker environment, all40
+case configs, positive finite `T_us`, ms/us units and completed tasks.
+
+The combined artifact stores the last per-device environment. Consumers pin each
+operator's original worker environment separately; do not label the last worker
+environment as both operators. The publication commit differs from the measured
+producer commit above.
+
+Host and container process sampling linked the native workers through NSpid and
+cgroup. The41 host and22 container samples had maximum gaps23.165s and29.468s;
+these are sampled ownership observations, not continuous exclusive-GPU proof.
+No unrelated jobs were stopped and no runtime/driver upgraded. Preserve underscore operator keys explicitly when reading the JSON;
 metadata filtering must not drop these two real names. A partial/error task is
 not completed native data and absent data is never zero latency. Ops PRs remain
 unmerged unless separately authorized.
