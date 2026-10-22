@@ -37,3 +37,12 @@ self-comparison verifies harness execution, not an independent generated kernel.
 Do not skip every underscore-prefixed operator key when looking up legacy GPU
 diagnostics: `_lazy_clone` is an API name, distinct from reserved metadata keys.
 This host artifact uses an explicit `operator` field and `records` list.
+
+The included `op_pytorch_h800_lazy_clone_host_baseline.json` contains 60 complete
+native records collected with clean producer commit
+`022e32d0e8ece2a9b90b92c7fc624eb62ee0afbe`, Torch
+`2.8.0a0+5228986c39.nv25.05`, an NVIDIA H800 (selected CUDA device 7),
+and an Intel Xeon Platinum 8468V host. Collection used one timing thread and
+0.05 seconds minimum autorange per case. The artifact records full actual
+hardware/software/source metadata. It is a host API baseline; target candidate
+replay and independently implemented kernel correctness are separate checks.

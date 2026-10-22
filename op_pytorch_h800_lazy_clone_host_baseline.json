@@ -1,0 +1,4014 @@
+{
+  "_format": "ops_pytorch_lazy_clone_host_v1",
+  "_status": "complete",
+  "_source": {
+    "commit": "022e32d0e8ece2a9b90b92c7fc624eb62ee0afbe",
+    "dirty": false,
+    "recipe_sha256": "e3584eb0888d17add8c12ac409dc4e6529bc19f4c345414f38396a61be1dc722",
+    "collector_sha256": "4f03b6d862a4adc1d926abc42f6429297469b69886ae0646176cc8dcb7743af9"
+  },
+  "_measurement": {
+    "kind": "cuda_dispatch_host_metadata",
+    "not_a_gpu_kernel_baseline": true,
+    "not_a_correctness_golden": true,
+    "no_ncu": true
+  },
+  "operator": "_lazy_clone",
+  "records": [
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::float16::0",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          64
+        ],
+        "input_shape": [
+          64,
+          64
+        ],
+        "input_stride": [
+          64,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.float16",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::float16::0",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            64
+          ],
+          "stride": [
+            64,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.float16",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.8677879124879837,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 26,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::float32::0",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          64
+        ],
+        "input_shape": [
+          64,
+          64
+        ],
+        "input_stride": [
+          64,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.float32",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::float32::0",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            64
+          ],
+          "stride": [
+            64,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.float32",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.6692709177732468,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 31,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::bfloat16::0",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          64
+        ],
+        "input_shape": [
+          64,
+          64
+        ],
+        "input_stride": [
+          64,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.bfloat16",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::bfloat16::0",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            64
+          ],
+          "stride": [
+            64,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.bfloat16",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.3720393180847168,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 37,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::complex64::0",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          64
+        ],
+        "input_shape": [
+          64,
+          64
+        ],
+        "input_stride": [
+          64,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.complex64",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::complex64::0",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            64
+          ],
+          "stride": [
+            64,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.complex64",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.3537844642996788,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 38,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int16::0",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          64
+        ],
+        "input_shape": [
+          64,
+          64
+        ],
+        "input_stride": [
+          64,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.int16",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int16::0",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            64
+          ],
+          "stride": [
+            64,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.int16",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.3573355972766876,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 37,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int32::0",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          64
+        ],
+        "input_shape": [
+          64,
+          64
+        ],
+        "input_stride": [
+          64,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.int32",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int32::0",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            64
+          ],
+          "stride": [
+            64,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.int32",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.3421745970845222,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 38,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int8::0",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          64
+        ],
+        "input_shape": [
+          64,
+          64
+        ],
+        "input_stride": [
+          64,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.int8",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int8::0",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            64
+          ],
+          "stride": [
+            64,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.int8",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.3701412826776505,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 37,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::uint8::0",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          64
+        ],
+        "input_shape": [
+          64,
+          64
+        ],
+        "input_stride": [
+          64,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.uint8",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::uint8::0",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            64
+          ],
+          "stride": [
+            64,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.uint8",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.397421583533287,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 36,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int64::0",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          64
+        ],
+        "input_shape": [
+          64,
+          64
+        ],
+        "input_stride": [
+          64,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.int64",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int64::0",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            64
+          ],
+          "stride": [
+            64,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.int64",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.3641510158777237,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 37,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::bool::0",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          64
+        ],
+        "input_shape": [
+          64,
+          64
+        ],
+        "input_stride": [
+          64,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.bool",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::bool::0",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            64
+          ],
+          "stride": [
+            64,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.bool",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.3652089983224869,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 37,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::float16::1",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          64
+        ],
+        "input_shape": [
+          64,
+          64
+        ],
+        "input_stride": [
+          1,
+          64
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.float16",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::float16::1",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            64
+          ],
+          "stride": [
+            1,
+            64
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.float16",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.4491304755210876,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 35,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::float32::1",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          64
+        ],
+        "input_shape": [
+          64,
+          64
+        ],
+        "input_stride": [
+          1,
+          64
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.float32",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::float32::1",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            64
+          ],
+          "stride": [
+            1,
+            64
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.float32",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.4645960181951523,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 35,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::bfloat16::1",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          64
+        ],
+        "input_shape": [
+          64,
+          64
+        ],
+        "input_stride": [
+          1,
+          64
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.bfloat16",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::bfloat16::1",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            64
+          ],
+          "stride": [
+            1,
+            64
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.bfloat16",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.5011858195066452,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 34,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::complex64::1",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          64
+        ],
+        "input_shape": [
+          64,
+          64
+        ],
+        "input_stride": [
+          1,
+          64
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.complex64",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::complex64::1",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            64
+          ],
+          "stride": [
+            1,
+            64
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.complex64",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.432979479432106,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 35,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int16::1",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          64
+        ],
+        "input_shape": [
+          64,
+          64
+        ],
+        "input_stride": [
+          1,
+          64
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.int16",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int16::1",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            64
+          ],
+          "stride": [
+            1,
+            64
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.int16",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.4697033911943436,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 35,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int32::1",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          64
+        ],
+        "input_shape": [
+          64,
+          64
+        ],
+        "input_stride": [
+          1,
+          64
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.int32",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int32::1",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            64
+          ],
+          "stride": [
+            1,
+            64
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.int32",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.437697559595108,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 35,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int8::1",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          64
+        ],
+        "input_shape": [
+          64,
+          64
+        ],
+        "input_stride": [
+          1,
+          64
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.int8",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int8::1",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            64
+          ],
+          "stride": [
+            1,
+            64
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.int8",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.4679115265607834,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 35,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::uint8::1",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          64
+        ],
+        "input_shape": [
+          64,
+          64
+        ],
+        "input_stride": [
+          1,
+          64
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.uint8",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::uint8::1",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            64
+          ],
+          "stride": [
+            1,
+            64
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.uint8",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.4344677329063416,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 35,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int64::1",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          64
+        ],
+        "input_shape": [
+          64,
+          64
+        ],
+        "input_stride": [
+          1,
+          64
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.int64",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int64::1",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            64
+          ],
+          "stride": [
+            1,
+            64
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.int64",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.4379918575286865,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 35,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::bool::1",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          64
+        ],
+        "input_shape": [
+          64,
+          64
+        ],
+        "input_stride": [
+          1,
+          64
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.bool",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::bool::1",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            64
+          ],
+          "stride": [
+            1,
+            64
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.bool",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.4192946255207064,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 36,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::float16::2",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          4096,
+          4096
+        ],
+        "input_shape": [
+          4096,
+          4096
+        ],
+        "input_stride": [
+          4096,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.float16",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::float16::2",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            4096,
+            4096
+          ],
+          "stride": [
+            4096,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.float16",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.3664551079273224,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 37,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::float32::2",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          4096,
+          4096
+        ],
+        "input_shape": [
+          4096,
+          4096
+        ],
+        "input_stride": [
+          4096,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.float32",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::float32::2",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            4096,
+            4096
+          ],
+          "stride": [
+            4096,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.float32",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.3718511909246445,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 37,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::bfloat16::2",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          4096,
+          4096
+        ],
+        "input_shape": [
+          4096,
+          4096
+        ],
+        "input_stride": [
+          4096,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.bfloat16",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::bfloat16::2",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            4096,
+            4096
+          ],
+          "stride": [
+            4096,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.bfloat16",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.339723356068134,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 38,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::complex64::2",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          4096,
+          4096
+        ],
+        "input_shape": [
+          4096,
+          4096
+        ],
+        "input_stride": [
+          4096,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.complex64",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::complex64::2",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            4096,
+            4096
+          ],
+          "stride": [
+            4096,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.complex64",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.3572275638580322,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 37,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int16::2",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          4096,
+          4096
+        ],
+        "input_shape": [
+          4096,
+          4096
+        ],
+        "input_stride": [
+          4096,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.int16",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int16::2",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            4096,
+            4096
+          ],
+          "stride": [
+            4096,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.int16",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.3516508042812347,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 38,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int32::2",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          4096,
+          4096
+        ],
+        "input_shape": [
+          4096,
+          4096
+        ],
+        "input_stride": [
+          4096,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.int32",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int32::2",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            4096,
+            4096
+          ],
+          "stride": [
+            4096,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.int32",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.3553239405155182,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 37,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int8::2",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          4096,
+          4096
+        ],
+        "input_shape": [
+          4096,
+          4096
+        ],
+        "input_stride": [
+          4096,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.int8",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int8::2",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            4096,
+            4096
+          ],
+          "stride": [
+            4096,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.int8",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.3562943786382675,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 37,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::uint8::2",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          4096,
+          4096
+        ],
+        "input_shape": [
+          4096,
+          4096
+        ],
+        "input_stride": [
+          4096,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.uint8",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::uint8::2",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            4096,
+            4096
+          ],
+          "stride": [
+            4096,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.uint8",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.3665519654750824,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 37,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int64::2",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          4096,
+          4096
+        ],
+        "input_shape": [
+          4096,
+          4096
+        ],
+        "input_stride": [
+          4096,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.int64",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int64::2",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            4096,
+            4096
+          ],
+          "stride": [
+            4096,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.int64",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.3921512290835383,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 36,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::bool::2",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          4096,
+          4096
+        ],
+        "input_shape": [
+          4096,
+          4096
+        ],
+        "input_stride": [
+          4096,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.bool",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::bool::2",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            4096,
+            4096
+          ],
+          "stride": [
+            4096,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.bool",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.3496000319719312,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 38,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::float16::3",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          4096,
+          4096
+        ],
+        "input_shape": [
+          4096,
+          4096
+        ],
+        "input_stride": [
+          1,
+          4096
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.float16",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::float16::3",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            4096,
+            4096
+          ],
+          "stride": [
+            1,
+            4096
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.float16",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.4496669173240662,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 35,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::float32::3",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          4096,
+          4096
+        ],
+        "input_shape": [
+          4096,
+          4096
+        ],
+        "input_stride": [
+          1,
+          4096
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.float32",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::float32::3",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            4096,
+            4096
+          ],
+          "stride": [
+            1,
+            4096
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.float32",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.4413967728614807,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 35,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::bfloat16::3",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          4096,
+          4096
+        ],
+        "input_shape": [
+          4096,
+          4096
+        ],
+        "input_stride": [
+          1,
+          4096
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.bfloat16",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::bfloat16::3",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            4096,
+            4096
+          ],
+          "stride": [
+            1,
+            4096
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.bfloat16",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.436043530702591,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 35,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::complex64::3",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          4096,
+          4096
+        ],
+        "input_shape": [
+          4096,
+          4096
+        ],
+        "input_stride": [
+          1,
+          4096
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.complex64",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::complex64::3",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            4096,
+            4096
+          ],
+          "stride": [
+            1,
+            4096
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.complex64",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.4432016760110855,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 35,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int16::3",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          4096,
+          4096
+        ],
+        "input_shape": [
+          4096,
+          4096
+        ],
+        "input_stride": [
+          1,
+          4096
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.int16",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int16::3",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            4096,
+            4096
+          ],
+          "stride": [
+            1,
+            4096
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.int16",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.4422368258237839,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 35,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int32::3",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          4096,
+          4096
+        ],
+        "input_shape": [
+          4096,
+          4096
+        ],
+        "input_stride": [
+          1,
+          4096
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.int32",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int32::3",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            4096,
+            4096
+          ],
+          "stride": [
+            1,
+            4096
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.int32",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.4709290117025375,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 35,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int8::3",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          4096,
+          4096
+        ],
+        "input_shape": [
+          4096,
+          4096
+        ],
+        "input_stride": [
+          1,
+          4096
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.int8",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int8::3",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            4096,
+            4096
+          ],
+          "stride": [
+            1,
+            4096
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.int8",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.436946913599968,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 35,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::uint8::3",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          4096,
+          4096
+        ],
+        "input_shape": [
+          4096,
+          4096
+        ],
+        "input_stride": [
+          1,
+          4096
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.uint8",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::uint8::3",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            4096,
+            4096
+          ],
+          "stride": [
+            1,
+            4096
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.uint8",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.4368761330842972,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 35,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int64::3",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          4096,
+          4096
+        ],
+        "input_shape": [
+          4096,
+          4096
+        ],
+        "input_stride": [
+          1,
+          4096
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.int64",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int64::3",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            4096,
+            4096
+          ],
+          "stride": [
+            1,
+            4096
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.int64",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.4584530144929886,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 35,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::bool::3",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          4096,
+          4096
+        ],
+        "input_shape": [
+          4096,
+          4096
+        ],
+        "input_stride": [
+          1,
+          4096
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.bool",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::bool::3",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            4096,
+            4096
+          ],
+          "stride": [
+            1,
+            4096
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.bool",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.445891335606575,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 35,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::float16::4",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_stride": [
+          262144,
+          512,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.float16",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::float16::4",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            512,
+            512
+          ],
+          "stride": [
+            262144,
+            512,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.float16",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.371515914797783,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 37,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::float32::4",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_stride": [
+          262144,
+          512,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.float32",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::float32::4",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            512,
+            512
+          ],
+          "stride": [
+            262144,
+            512,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.float32",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.3487115502357485,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 38,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::bfloat16::4",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_stride": [
+          262144,
+          512,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.bfloat16",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::bfloat16::4",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            512,
+            512
+          ],
+          "stride": [
+            262144,
+            512,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.bfloat16",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.3541076332330704,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 37,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::complex64::4",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_stride": [
+          262144,
+          512,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.complex64",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::complex64::4",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            512,
+            512
+          ],
+          "stride": [
+            262144,
+            512,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.complex64",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.3768654316663742,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 37,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int16::4",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_stride": [
+          262144,
+          512,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.int16",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int16::4",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            512,
+            512
+          ],
+          "stride": [
+            262144,
+            512,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.int16",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.4010882005095484,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 36,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int32::4",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_stride": [
+          262144,
+          512,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.int32",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int32::4",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            512,
+            512
+          ],
+          "stride": [
+            262144,
+            512,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.int32",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.3648997992277145,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 37,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int8::4",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_stride": [
+          262144,
+          512,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.int8",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int8::4",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            512,
+            512
+          ],
+          "stride": [
+            262144,
+            512,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.int8",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.3916287571191788,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 37,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::uint8::4",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_stride": [
+          262144,
+          512,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.uint8",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::uint8::4",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            512,
+            512
+          ],
+          "stride": [
+            262144,
+            512,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.uint8",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.347229816019535,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 38,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int64::4",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_stride": [
+          262144,
+          512,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.int64",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int64::4",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            512,
+            512
+          ],
+          "stride": [
+            262144,
+            512,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.int64",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.354709267616272,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 37,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::bool::4",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_stride": [
+          262144,
+          512,
+          1
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "contiguous",
+        "dtype": "torch.bool",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": null,
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::bool::4",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            512,
+            512
+          ],
+          "stride": [
+            262144,
+            512,
+            1
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.bool",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.3924157246947289,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 36,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::float16::5",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_stride": [
+          262144,
+          1,
+          512
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.float16",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::float16::5",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            512,
+            512
+          ],
+          "stride": [
+            262144,
+            1,
+            512
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.float16",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.4686435461044312,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 35,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::float32::5",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_stride": [
+          262144,
+          1,
+          512
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.float32",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::float32::5",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            512,
+            512
+          ],
+          "stride": [
+            262144,
+            1,
+            512
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.float32",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.4767367392778397,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 34,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::bfloat16::5",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_stride": [
+          262144,
+          1,
+          512
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.bfloat16",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::bfloat16::5",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            512,
+            512
+          ],
+          "stride": [
+            262144,
+            1,
+            512
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.bfloat16",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.4955075457692146,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 34,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::complex64::5",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_stride": [
+          262144,
+          1,
+          512
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.complex64",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::complex64::5",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            512,
+            512
+          ],
+          "stride": [
+            262144,
+            1,
+            512
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.complex64",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.4759600162506106,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 34,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int16::5",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_stride": [
+          262144,
+          1,
+          512
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.int16",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int16::5",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            512,
+            512
+          ],
+          "stride": [
+            262144,
+            1,
+            512
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.int16",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.4998409897089005,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 34,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int32::5",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_stride": [
+          262144,
+          1,
+          512
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.int32",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int32::5",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            512,
+            512
+          ],
+          "stride": [
+            262144,
+            1,
+            512
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.int32",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.4846241101622581,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 34,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int8::5",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_stride": [
+          262144,
+          1,
+          512
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.int8",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int8::5",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            512,
+            512
+          ],
+          "stride": [
+            262144,
+            1,
+            512
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.int8",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.4673415571451187,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 35,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::uint8::5",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_stride": [
+          262144,
+          1,
+          512
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.uint8",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::uint8::5",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            512,
+            512
+          ],
+          "stride": [
+            262144,
+            1,
+            512
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.uint8",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.4677513390779495,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 35,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int64::5",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_stride": [
+          262144,
+          1,
+          512
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.int64",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::int64::5",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            512,
+            512
+          ],
+          "stride": [
+            262144,
+            1,
+            512
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.int64",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.4542732387781143,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 35,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    },
+    {
+      "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::bool::5",
+      "config": {
+        "operator": "_lazy_clone",
+        "storage_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_shape": [
+          64,
+          512,
+          512
+        ],
+        "input_stride": [
+          262144,
+          1,
+          512
+        ],
+        "input_storage_offset": 0,
+        "input_layout": "transposed",
+        "dtype": "torch.bool",
+        "input_device_type": "cuda",
+        "input_requires_grad": false,
+        "input_is_conj": false,
+        "input_is_neg": false,
+        "input_recipe": "torch.empty(storage_shape, dtype=dtype, device=device)",
+        "input_transform": "transpose(-1, -2)",
+        "input_values": "uninitialized; no output value inspection",
+        "case_id": "benchmark/test__lazy_clone.py::test__lazy_clone::core::bool::5",
+        "flaggems_source_commit": "5313098abb729e22d406072abf795862ed8adaea",
+        "flaggems_benchmark_sha256": "23459d2b222f59eae9dc2319d638e855f10b10f313395b5130b2d8384b6b78b6",
+        "target_core_yaml_sha256": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07",
+        "target_catalog_sha256": "a09de0813dbbce2d84f9489a80c37abbebea85c4a2871f66437158d25237ac6e"
+      },
+      "inputs": [
+        {
+          "shape": [
+            64,
+            512,
+            512
+          ],
+          "stride": [
+            262144,
+            1,
+            512
+          ],
+          "storage_offset": 0,
+          "dtype": "torch.bool",
+          "device": "cuda:7",
+          "requires_grad": false,
+          "is_conj": false,
+          "is_neg": false
+        }
+      ],
+      "T_host_us": 1.4785472303628922,
+      "host_measurement": {
+        "kind": "cuda_dispatch_host_metadata",
+        "timer": "torch.utils.benchmark.Timer/perf_counter",
+        "statistic": "median microseconds",
+        "threads": 1,
+        "min_run_time_seconds": 0.05,
+        "number_per_run": 1000,
+        "sample_count": 34,
+        "synchronized_cuda": false,
+        "materializes_output": false,
+        "includes_output_destruction": true
+      }
+    }
+  ],
+  "_environment": {
+    "schema_version": 1,
+    "collected_at_utc": "2026-10-22T00:06:33.603790+00:00",
+    "hardware": {
+      "gpu": {
+        "name": "NVIDIA H800",
+        "uuid": "555633f8-c39c-bb8a-d549-791cb8451f44",
+        "total_memory_bytes": 85017624576,
+        "total_memory_gib": 79.18,
+        "compute_capability": "9.0",
+        "multiprocessor_count": 132,
+        "cuda_device_index": 7,
+        "driver_version": "580.105.08"
+      },
+      "cpu_model": "Intel(R) Xeon(R) Platinum 8468V",
+      "cpu_architecture": "x86_64",
+      "cpu_socket_count": 2,
+      "physical_cpu_core_count": 96,
+      "logical_cpu_count": 192,
+      "cpu_threads_per_core": 2,
+      "numa_node_count": 2,
+      "process_cpu_affinity_count": 192,
+      "hypervisor_vendor": null
+    },
+    "software": {
+      "os": "Linux",
+      "os_release": "5.15.0-78-generic",
+      "machine": "x86_64",
+      "python": "3.12.3",
+      "packages": {
+        "torch": "2.8.0a0+5228986c39.nv25.5",
+        "triton": "3.6.0",
+        "vllm": null,
+        "sglang": null
+      },
+      "torch_cuda_version": "12.9",
+      "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Apr__9_19:24:57_PDT_2025\nCuda compilation tools, release 12.9, V12.9.41\nBuild cuda_12.9.r12.9/compiler.35813241_0",
+      "ncu_version": "NVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2025 NVIDIA Corporation\nVersion 2025.2.0.0 (build 35613519) (public-release)"
+    },
+    "source": {
+      "git_commit": "022e32d0e8ece2a9b90b92c7fc624eb62ee0afbe",
+      "git_branch": "HEAD",
+      "git_dirty": false
+    },
+    "run": {
+      "output": "/data/tj/workspace/ops-baseline-lazy-clone-host-v2-20261022/lazy-clone-host.json",
+      "device": 7,
+      "threads": 1,
+      "min_run_time": 0.05
+    },
+    "environment_variables": {
+      "CUDA_VISIBLE_DEVICES": null,
+      "CUDA_DEVICE_ORDER": null
+    }
+  }
+}
