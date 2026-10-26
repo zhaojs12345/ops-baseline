@@ -899,8 +899,13 @@ def _collect_one_op_ops(op_module, ncu_enabled, report_dir,
         for dtype in dtypes:
             dtype_str = str(dtype)
             args, kwargs = op_module.build_inputs(binding, dtype, "cuda")
-            latency_ms = triton.testing.do_bench(
-                lambda: op(*args, **kwargs), warmup=25, rep=100)
+            if hasattr(op_module, "measure_latency"):
+                # Stateful operators restore their inputs before each event
+                # interval; wrapping restoration in op() would time the reset.
+                latency_ms = op_module.measure_latency(op, args, kwargs)
+            else:
+                latency_ms = triton.testing.do_bench(
+                    lambda: op(*args, **kwargs), warmup=25, rep=100)
             if ncu_enabled:
                 # NCU 子进程会用 build_inputs 再分配一份实参。大 E MoE（如
                 # e256_h7168 权重单份就 ~22GB）主、子进程两份叠加会超显存，导致
