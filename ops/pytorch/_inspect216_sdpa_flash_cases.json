@@ -1,0 +1,1219 @@
+{
+  "source_commit": "c3c0a041f2e4b16e32891007f70c84d9db534619",
+  "source_files": {
+    "benchmark/test_scaled_dot_product_attention.py": "7fb194fbcaf53a52753dc757588e96f3e0e3d48f5d7c596d0abb73674fcbf82b",
+    "benchmark/test_scaled_dot_product_flash_attention.py": "563373add79e41b0fa4ba52bc433bd46dc78492ce8f9b54d3eefe5fe25c69d23"
+  },
+  "recipes": [
+    {
+      "key": "shared_0",
+      "benchmark": "benchmark/test_scaled_dot_product_attention.py",
+      "ordinal": 0,
+      "shape": {
+        "query": [
+          4,
+          32,
+          1024,
+          64
+        ],
+        "key": [
+          4,
+          32,
+          1024,
+          64
+        ],
+        "value": [
+          4,
+          32,
+          1024,
+          64
+        ]
+      },
+      "params": {
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false
+      },
+      "inputs": {
+        "args": [
+          {
+            "shape": [
+              4,
+              32,
+              1024,
+              64
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.randn"
+          },
+          {
+            "shape": [
+              4,
+              32,
+              1024,
+              64
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.randn"
+          },
+          {
+            "shape": [
+              4,
+              32,
+              1024,
+              64
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.randn"
+          },
+          0.0,
+          false,
+          false
+        ],
+        "kwargs": {},
+        "seed": null
+      },
+      "case_ids": {
+        "torch.float16": "benchmark/test_scaled_dot_product_attention.py::test_scaled_dot_product_flash_attention::core::float16::0",
+        "torch.bfloat16": "benchmark/test_scaled_dot_product_attention.py::test_scaled_dot_product_flash_attention::core::bfloat16::0"
+      }
+    },
+    {
+      "key": "shared_1",
+      "benchmark": "benchmark/test_scaled_dot_product_attention.py",
+      "ordinal": 1,
+      "shape": {
+        "query": [
+          4,
+          32,
+          1024,
+          128
+        ],
+        "key": [
+          4,
+          32,
+          1024,
+          128
+        ],
+        "value": [
+          4,
+          32,
+          1024,
+          128
+        ]
+      },
+      "params": {
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false
+      },
+      "inputs": {
+        "args": [
+          {
+            "shape": [
+              4,
+              32,
+              1024,
+              128
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.randn"
+          },
+          {
+            "shape": [
+              4,
+              32,
+              1024,
+              128
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.randn"
+          },
+          {
+            "shape": [
+              4,
+              32,
+              1024,
+              128
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.randn"
+          },
+          0.0,
+          false,
+          false
+        ],
+        "kwargs": {},
+        "seed": null
+      },
+      "case_ids": {
+        "torch.float16": "benchmark/test_scaled_dot_product_attention.py::test_scaled_dot_product_flash_attention::core::float16::1",
+        "torch.bfloat16": "benchmark/test_scaled_dot_product_attention.py::test_scaled_dot_product_flash_attention::core::bfloat16::1"
+      }
+    },
+    {
+      "key": "shared_2",
+      "benchmark": "benchmark/test_scaled_dot_product_attention.py",
+      "ordinal": 2,
+      "shape": {
+        "query": [
+          4,
+          32,
+          2048,
+          128
+        ],
+        "key": [
+          4,
+          32,
+          2048,
+          128
+        ],
+        "value": [
+          4,
+          32,
+          2048,
+          128
+        ]
+      },
+      "params": {
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false
+      },
+      "inputs": {
+        "args": [
+          {
+            "shape": [
+              4,
+              32,
+              2048,
+              128
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.randn"
+          },
+          {
+            "shape": [
+              4,
+              32,
+              2048,
+              128
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.randn"
+          },
+          {
+            "shape": [
+              4,
+              32,
+              2048,
+              128
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.randn"
+          },
+          0.0,
+          false,
+          false
+        ],
+        "kwargs": {},
+        "seed": null
+      },
+      "case_ids": {
+        "torch.float16": "benchmark/test_scaled_dot_product_attention.py::test_scaled_dot_product_flash_attention::core::float16::2",
+        "torch.bfloat16": "benchmark/test_scaled_dot_product_attention.py::test_scaled_dot_product_flash_attention::core::bfloat16::2"
+      }
+    },
+    {
+      "key": "shared_3",
+      "benchmark": "benchmark/test_scaled_dot_product_attention.py",
+      "ordinal": 3,
+      "shape": {
+        "query": [
+          4,
+          32,
+          4096,
+          128
+        ],
+        "key": [
+          4,
+          32,
+          4096,
+          128
+        ],
+        "value": [
+          4,
+          32,
+          4096,
+          128
+        ]
+      },
+      "params": {
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false
+      },
+      "inputs": {
+        "args": [
+          {
+            "shape": [
+              4,
+              32,
+              4096,
+              128
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.randn"
+          },
+          {
+            "shape": [
+              4,
+              32,
+              4096,
+              128
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.randn"
+          },
+          {
+            "shape": [
+              4,
+              32,
+              4096,
+              128
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.randn"
+          },
+          0.0,
+          false,
+          false
+        ],
+        "kwargs": {},
+        "seed": null
+      },
+      "case_ids": {
+        "torch.float16": "benchmark/test_scaled_dot_product_attention.py::test_scaled_dot_product_flash_attention::core::float16::3",
+        "torch.bfloat16": "benchmark/test_scaled_dot_product_attention.py::test_scaled_dot_product_flash_attention::core::bfloat16::3"
+      }
+    },
+    {
+      "key": "shared_4",
+      "benchmark": "benchmark/test_scaled_dot_product_attention.py",
+      "ordinal": 4,
+      "shape": {
+        "query": [
+          4,
+          32,
+          8192,
+          128
+        ],
+        "key": [
+          4,
+          32,
+          8192,
+          128
+        ],
+        "value": [
+          4,
+          32,
+          8192,
+          128
+        ]
+      },
+      "params": {
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false
+      },
+      "inputs": {
+        "args": [
+          {
+            "shape": [
+              4,
+              32,
+              8192,
+              128
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.randn"
+          },
+          {
+            "shape": [
+              4,
+              32,
+              8192,
+              128
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.randn"
+          },
+          {
+            "shape": [
+              4,
+              32,
+              8192,
+              128
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.randn"
+          },
+          0.0,
+          false,
+          false
+        ],
+        "kwargs": {},
+        "seed": null
+      },
+      "case_ids": {
+        "torch.float16": "benchmark/test_scaled_dot_product_attention.py::test_scaled_dot_product_flash_attention::core::float16::4",
+        "torch.bfloat16": "benchmark/test_scaled_dot_product_attention.py::test_scaled_dot_product_flash_attention::core::bfloat16::4"
+      }
+    },
+    {
+      "key": "dedicated_0",
+      "benchmark": "benchmark/test_scaled_dot_product_flash_attention.py",
+      "ordinal": 0,
+      "shape": {
+        "query": [
+          1,
+          2,
+          128,
+          64
+        ],
+        "key": [
+          1,
+          2,
+          128,
+          64
+        ],
+        "value": [
+          1,
+          2,
+          128,
+          64
+        ]
+      },
+      "params": {
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false,
+        "scale_mode": "default"
+      },
+      "inputs": {
+        "args": [
+          {
+            "shape": [
+              1,
+              2,
+              128,
+              64
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.empty.uniform_(-0.05,0.05)"
+          },
+          {
+            "shape": [
+              1,
+              2,
+              128,
+              64
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.empty.uniform_(-0.05,0.05)"
+          },
+          {
+            "shape": [
+              1,
+              2,
+              128,
+              64
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.empty.uniform_(-0.05,0.05)"
+          },
+          0.0,
+          false,
+          false
+        ],
+        "kwargs": {
+          "scale": null
+        },
+        "seed": 0
+      },
+      "case_ids": {
+        "torch.float16": "benchmark/test_scaled_dot_product_flash_attention.py::test_scaled_dot_product_flash_attention::core::float16::0",
+        "torch.bfloat16": "benchmark/test_scaled_dot_product_flash_attention.py::test_scaled_dot_product_flash_attention::core::bfloat16::0"
+      }
+    },
+    {
+      "key": "dedicated_1",
+      "benchmark": "benchmark/test_scaled_dot_product_flash_attention.py",
+      "ordinal": 1,
+      "shape": {
+        "query": [
+          2,
+          4,
+          256,
+          64
+        ],
+        "key": [
+          2,
+          4,
+          256,
+          64
+        ],
+        "value": [
+          2,
+          4,
+          256,
+          64
+        ]
+      },
+      "params": {
+        "dropout_p": 0.0,
+        "is_causal": true,
+        "return_debug_mask": false,
+        "scale_mode": "explicit"
+      },
+      "inputs": {
+        "args": [
+          {
+            "shape": [
+              2,
+              4,
+              256,
+              64
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.empty.uniform_(-0.05,0.05)"
+          },
+          {
+            "shape": [
+              2,
+              4,
+              256,
+              64
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.empty.uniform_(-0.05,0.05)"
+          },
+          {
+            "shape": [
+              2,
+              4,
+              256,
+              64
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.empty.uniform_(-0.05,0.05)"
+          },
+          0.0,
+          true,
+          false
+        ],
+        "kwargs": {
+          "scale": 0.125
+        },
+        "seed": 0
+      },
+      "case_ids": {
+        "torch.float16": "benchmark/test_scaled_dot_product_flash_attention.py::test_scaled_dot_product_flash_attention::core::float16::1",
+        "torch.bfloat16": "benchmark/test_scaled_dot_product_flash_attention.py::test_scaled_dot_product_flash_attention::core::bfloat16::1"
+      }
+    },
+    {
+      "key": "dedicated_2",
+      "benchmark": "benchmark/test_scaled_dot_product_flash_attention.py",
+      "ordinal": 2,
+      "shape": {
+        "query": [
+          1,
+          8,
+          128,
+          128
+        ],
+        "key": [
+          1,
+          8,
+          512,
+          128
+        ],
+        "value": [
+          1,
+          8,
+          512,
+          128
+        ]
+      },
+      "params": {
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false,
+        "scale_mode": "explicit"
+      },
+      "inputs": {
+        "args": [
+          {
+            "shape": [
+              1,
+              8,
+              128,
+              128
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.empty.uniform_(-0.05,0.05)"
+          },
+          {
+            "shape": [
+              1,
+              8,
+              512,
+              128
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.empty.uniform_(-0.05,0.05)"
+          },
+          {
+            "shape": [
+              1,
+              8,
+              512,
+              128
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.empty.uniform_(-0.05,0.05)"
+          },
+          0.0,
+          false,
+          false
+        ],
+        "kwargs": {
+          "scale": 0.08838834764831843
+        },
+        "seed": 0
+      },
+      "case_ids": {
+        "torch.float16": "benchmark/test_scaled_dot_product_flash_attention.py::test_scaled_dot_product_flash_attention::core::float16::2",
+        "torch.bfloat16": "benchmark/test_scaled_dot_product_flash_attention.py::test_scaled_dot_product_flash_attention::core::bfloat16::2"
+      }
+    },
+    {
+      "key": "dedicated_3",
+      "benchmark": "benchmark/test_scaled_dot_product_flash_attention.py",
+      "ordinal": 3,
+      "shape": {
+        "query": [
+          1,
+          8,
+          1,
+          128
+        ],
+        "key": [
+          1,
+          8,
+          1024,
+          128
+        ],
+        "value": [
+          1,
+          8,
+          1024,
+          128
+        ]
+      },
+      "params": {
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false,
+        "scale_mode": "default"
+      },
+      "inputs": {
+        "args": [
+          {
+            "shape": [
+              1,
+              8,
+              1,
+              128
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.empty.uniform_(-0.05,0.05)"
+          },
+          {
+            "shape": [
+              1,
+              8,
+              1024,
+              128
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.empty.uniform_(-0.05,0.05)"
+          },
+          {
+            "shape": [
+              1,
+              8,
+              1024,
+              128
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.empty.uniform_(-0.05,0.05)"
+          },
+          0.0,
+          false,
+          false
+        ],
+        "kwargs": {
+          "scale": null
+        },
+        "seed": 0
+      },
+      "case_ids": {
+        "torch.float16": "benchmark/test_scaled_dot_product_flash_attention.py::test_scaled_dot_product_flash_attention::core::float16::3",
+        "torch.bfloat16": "benchmark/test_scaled_dot_product_flash_attention.py::test_scaled_dot_product_flash_attention::core::bfloat16::3"
+      }
+    },
+    {
+      "key": "dedicated_4",
+      "benchmark": "benchmark/test_scaled_dot_product_flash_attention.py",
+      "ordinal": 4,
+      "shape": {
+        "query": [
+          1,
+          2,
+          128,
+          64
+        ],
+        "key": [
+          1,
+          2,
+          128,
+          64
+        ],
+        "value": [
+          1,
+          2,
+          128,
+          64
+        ]
+      },
+      "params": {
+        "dropout_p": 0.2,
+        "is_causal": false,
+        "return_debug_mask": true,
+        "scale_mode": "explicit"
+      },
+      "inputs": {
+        "args": [
+          {
+            "shape": [
+              1,
+              2,
+              128,
+              64
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.empty.uniform_(-0.05,0.05)"
+          },
+          {
+            "shape": [
+              1,
+              2,
+              128,
+              64
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.empty.uniform_(-0.05,0.05)"
+          },
+          {
+            "shape": [
+              1,
+              2,
+              128,
+              64
+            ],
+            "layout": "BHSD contiguous",
+            "factory": "torch.empty.uniform_(-0.05,0.05)"
+          },
+          0.2,
+          false,
+          true
+        ],
+        "kwargs": {
+          "scale": 0.125
+        },
+        "seed": 0
+      },
+      "case_ids": {
+        "torch.float16": "benchmark/test_scaled_dot_product_flash_attention.py::test_scaled_dot_product_flash_attention::core::float16::4",
+        "torch.bfloat16": "benchmark/test_scaled_dot_product_flash_attention.py::test_scaled_dot_product_flash_attention::core::bfloat16::4"
+      }
+    },
+    {
+      "key": "shared_kunlun_0",
+      "source_commit": "a9d9cd629d0a884c105fd049ccfbfca8f2f05bc0",
+      "benchmark": "benchmark/test_scaled_dot_product_attention.py",
+      "ordinal": 0,
+      "shape": {
+        "query": [
+          4,
+          8,
+          512,
+          128
+        ],
+        "key": [
+          4,
+          8,
+          512,
+          128
+        ],
+        "value": [
+          4,
+          8,
+          512,
+          128
+        ]
+      },
+      "params": {
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false
+      },
+      "case_ids": {
+        "torch.float16": "benchmark/test_scaled_dot_product_attention.py::test_scaled_dot_product_flash_attention::core::float16::0",
+        "torch.bfloat16": "benchmark/test_scaled_dot_product_attention.py::test_scaled_dot_product_flash_attention::core::bfloat16::0"
+      },
+      "inputs": {
+        "args": [
+          {
+            "shape": [
+              4,
+              8,
+              512,
+              128
+            ],
+            "requires_grad": false,
+            "stride": [
+              524288,
+              65536,
+              128,
+              1
+            ],
+            "factory": "torch.randn"
+          },
+          {
+            "shape": [
+              4,
+              8,
+              512,
+              128
+            ],
+            "requires_grad": false,
+            "stride": [
+              524288,
+              65536,
+              128,
+              1
+            ],
+            "factory": "torch.randn"
+          },
+          {
+            "shape": [
+              4,
+              8,
+              512,
+              128
+            ],
+            "requires_grad": false,
+            "stride": [
+              524288,
+              65536,
+              128,
+              1
+            ],
+            "factory": "torch.randn"
+          },
+          0.0,
+          false,
+          false
+        ],
+        "kwargs": {},
+        "seed": null
+      },
+      "backend_recipe": "kunlunxin original core_shapes.yaml"
+    },
+    {
+      "key": "shared_kunlun_1",
+      "source_commit": "a9d9cd629d0a884c105fd049ccfbfca8f2f05bc0",
+      "benchmark": "benchmark/test_scaled_dot_product_attention.py",
+      "ordinal": 1,
+      "shape": {
+        "query": [
+          4,
+          8,
+          1024,
+          128
+        ],
+        "key": [
+          4,
+          8,
+          1024,
+          128
+        ],
+        "value": [
+          4,
+          8,
+          1024,
+          128
+        ]
+      },
+      "params": {
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false
+      },
+      "case_ids": {
+        "torch.float16": "benchmark/test_scaled_dot_product_attention.py::test_scaled_dot_product_flash_attention::core::float16::1",
+        "torch.bfloat16": "benchmark/test_scaled_dot_product_attention.py::test_scaled_dot_product_flash_attention::core::bfloat16::1"
+      },
+      "inputs": {
+        "args": [
+          {
+            "shape": [
+              4,
+              8,
+              1024,
+              128
+            ],
+            "requires_grad": false,
+            "stride": [
+              1048576,
+              131072,
+              128,
+              1
+            ],
+            "factory": "torch.randn"
+          },
+          {
+            "shape": [
+              4,
+              8,
+              1024,
+              128
+            ],
+            "requires_grad": false,
+            "stride": [
+              1048576,
+              131072,
+              128,
+              1
+            ],
+            "factory": "torch.randn"
+          },
+          {
+            "shape": [
+              4,
+              8,
+              1024,
+              128
+            ],
+            "requires_grad": false,
+            "stride": [
+              1048576,
+              131072,
+              128,
+              1
+            ],
+            "factory": "torch.randn"
+          },
+          0.0,
+          false,
+          false
+        ],
+        "kwargs": {},
+        "seed": null
+      },
+      "backend_recipe": "kunlunxin original core_shapes.yaml"
+    },
+    {
+      "key": "shared_kunlun_2",
+      "source_commit": "a9d9cd629d0a884c105fd049ccfbfca8f2f05bc0",
+      "benchmark": "benchmark/test_scaled_dot_product_attention.py",
+      "ordinal": 2,
+      "shape": {
+        "query": [
+          4,
+          8,
+          2048,
+          128
+        ],
+        "key": [
+          4,
+          8,
+          2048,
+          128
+        ],
+        "value": [
+          4,
+          8,
+          2048,
+          128
+        ]
+      },
+      "params": {
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false
+      },
+      "case_ids": {
+        "torch.float16": "benchmark/test_scaled_dot_product_attention.py::test_scaled_dot_product_flash_attention::core::float16::2",
+        "torch.bfloat16": "benchmark/test_scaled_dot_product_attention.py::test_scaled_dot_product_flash_attention::core::bfloat16::2"
+      },
+      "inputs": {
+        "args": [
+          {
+            "shape": [
+              4,
+              8,
+              2048,
+              128
+            ],
+            "requires_grad": false,
+            "stride": [
+              2097152,
+              262144,
+              128,
+              1
+            ],
+            "factory": "torch.randn"
+          },
+          {
+            "shape": [
+              4,
+              8,
+              2048,
+              128
+            ],
+            "requires_grad": false,
+            "stride": [
+              2097152,
+              262144,
+              128,
+              1
+            ],
+            "factory": "torch.randn"
+          },
+          {
+            "shape": [
+              4,
+              8,
+              2048,
+              128
+            ],
+            "requires_grad": false,
+            "stride": [
+              2097152,
+              262144,
+              128,
+              1
+            ],
+            "factory": "torch.randn"
+          },
+          0.0,
+          false,
+          false
+        ],
+        "kwargs": {},
+        "seed": null
+      },
+      "backend_recipe": "kunlunxin original core_shapes.yaml"
+    },
+    {
+      "key": "shared_kunlun_3",
+      "source_commit": "a9d9cd629d0a884c105fd049ccfbfca8f2f05bc0",
+      "benchmark": "benchmark/test_scaled_dot_product_attention.py",
+      "ordinal": 3,
+      "shape": {
+        "query": [
+          4,
+          8,
+          3072,
+          128
+        ],
+        "key": [
+          4,
+          8,
+          3072,
+          128
+        ],
+        "value": [
+          4,
+          8,
+          3072,
+          128
+        ]
+      },
+      "params": {
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false
+      },
+      "case_ids": {
+        "torch.float16": "benchmark/test_scaled_dot_product_attention.py::test_scaled_dot_product_flash_attention::core::float16::3",
+        "torch.bfloat16": "benchmark/test_scaled_dot_product_attention.py::test_scaled_dot_product_flash_attention::core::bfloat16::3"
+      },
+      "inputs": {
+        "args": [
+          {
+            "shape": [
+              4,
+              8,
+              3072,
+              128
+            ],
+            "requires_grad": false,
+            "stride": [
+              3145728,
+              393216,
+              128,
+              1
+            ],
+            "factory": "torch.randn"
+          },
+          {
+            "shape": [
+              4,
+              8,
+              3072,
+              128
+            ],
+            "requires_grad": false,
+            "stride": [
+              3145728,
+              393216,
+              128,
+              1
+            ],
+            "factory": "torch.randn"
+          },
+          {
+            "shape": [
+              4,
+              8,
+              3072,
+              128
+            ],
+            "requires_grad": false,
+            "stride": [
+              3145728,
+              393216,
+              128,
+              1
+            ],
+            "factory": "torch.randn"
+          },
+          0.0,
+          false,
+          false
+        ],
+        "kwargs": {},
+        "seed": null
+      },
+      "backend_recipe": "kunlunxin original core_shapes.yaml"
+    },
+    {
+      "key": "shared_kunlun_4",
+      "source_commit": "a9d9cd629d0a884c105fd049ccfbfca8f2f05bc0",
+      "benchmark": "benchmark/test_scaled_dot_product_attention.py",
+      "ordinal": 4,
+      "shape": {
+        "query": [
+          4,
+          8,
+          4096,
+          128
+        ],
+        "key": [
+          4,
+          8,
+          4096,
+          128
+        ],
+        "value": [
+          4,
+          8,
+          4096,
+          128
+        ]
+      },
+      "params": {
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false
+      },
+      "case_ids": {
+        "torch.float16": "benchmark/test_scaled_dot_product_attention.py::test_scaled_dot_product_flash_attention::core::float16::4",
+        "torch.bfloat16": "benchmark/test_scaled_dot_product_attention.py::test_scaled_dot_product_flash_attention::core::bfloat16::4"
+      },
+      "inputs": {
+        "args": [
+          {
+            "shape": [
+              4,
+              8,
+              4096,
+              128
+            ],
+            "requires_grad": false,
+            "stride": [
+              4194304,
+              524288,
+              128,
+              1
+            ],
+            "factory": "torch.randn"
+          },
+          {
+            "shape": [
+              4,
+              8,
+              4096,
+              128
+            ],
+            "requires_grad": false,
+            "stride": [
+              4194304,
+              524288,
+              128,
+              1
+            ],
+            "factory": "torch.randn"
+          },
+          {
+            "shape": [
+              4,
+              8,
+              4096,
+              128
+            ],
+            "requires_grad": false,
+            "stride": [
+              4194304,
+              524288,
+              128,
+              1
+            ],
+            "factory": "torch.randn"
+          },
+          0.0,
+          false,
+          false
+        ],
+        "kwargs": {},
+        "seed": null
+      },
+      "backend_recipe": "kunlunxin original core_shapes.yaml"
+    }
+  ]
+}

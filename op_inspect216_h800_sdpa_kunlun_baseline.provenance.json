@@ -1,0 +1,371 @@
+{
+  "validation_suite": {
+    "status": "FAILED_SEPARATE_LEGACY_PROCESS_CLEANUP_FIXTURES",
+    "tests": 72,
+    "failures": 7,
+    "skipped": 1,
+    "passed": 64,
+    "failed_tests": [
+      "test_exited_launcher_descendant_is_stopped",
+      "test_interruption_stops_descendants",
+      "test_ncu_export_timeout_stops_launcher_child",
+      "test_ncu_import_timeout_stops_launcher_child",
+      "test_operator_timeout_preserves_partial_and_stops_descendants",
+      "test_outer_process_group_cancellation_stops_command_descendants",
+      "test_real_group_sigint_keeps_adoption_boundary_until_cleanup"
+    ],
+    "command": [
+      "/usr/bin/python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-v"
+    ],
+    "log_sha256": "0751fba3e323bc34014c7db725c28c03aad669cedd4a7222254dd901f4f4e666",
+    "scope": "All native controls and actual collector tasks passed. These seven separate process-fixture tests are not claimed passing; base/environment comparison is tracked separately."
+  },
+  "status": "PASS_VERIFIED_NATIVE_H800_SNAPSHOT",
+  "artifact": "op_inspect216_h800_sdpa_kunlun_baseline.json",
+  "artifact_sha256": "a1c059611ab9d85d490342cc99924031fe067d38356269118ae265366bb25d0f",
+  "collection_source_commit": "0fc13795647f36d59534bbc690b8b5a0f3739ee7",
+  "source_files_checked": 1168,
+  "source_clean": true,
+  "environment": {
+    "schema_version": 1,
+    "collected_at_utc": "2026-10-26T11:36:22.994556+00:00",
+    "hardware": {
+      "gpu": {
+        "name": "NVIDIA H800",
+        "uuid": "555633f8-c39c-bb8a-d549-791cb8451f44",
+        "total_memory_bytes": 85017624576,
+        "total_memory_gib": 79.18,
+        "compute_capability": "9.0",
+        "multiprocessor_count": 132,
+        "cuda_device_index": 0,
+        "driver_version": "580.105.08"
+      },
+      "cpu_model": "Intel(R) Xeon(R) Platinum 8468V",
+      "cpu_architecture": "x86_64",
+      "cpu_socket_count": 2,
+      "physical_cpu_core_count": 96,
+      "logical_cpu_count": 192,
+      "cpu_threads_per_core": 2,
+      "numa_node_count": 2,
+      "process_cpu_affinity_count": 192,
+      "hypervisor_vendor": null
+    },
+    "software": {
+      "os": "Linux",
+      "os_release": "5.15.0-78-generic",
+      "machine": "x86_64",
+      "python": "3.12.3",
+      "packages": {
+        "torch": "2.8.0a0+5228986c39.nv25.5",
+        "triton": "3.6.0",
+        "vllm": null,
+        "sglang": null
+      },
+      "torch_cuda_version": "12.9",
+      "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Apr__9_19:24:57_PDT_2025\nCuda compilation tools, release 12.9, V12.9.41\nBuild cuda_12.9.r12.9/compiler.35813241_0",
+      "ncu_version": "NVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2025 NVIDIA Corporation\nVersion 2025.2.0.0 (build 35613519) (public-release)"
+    },
+    "source": {
+      "git_commit": "0fc13795647f36d59534bbc690b8b5a0f3739ee7",
+      "git_branch": "feat/inspect216-pack-flash-baseline-20261026",
+      "git_dirty": false
+    },
+    "run": {
+      "repo": "pytorch",
+      "device": null,
+      "ncu_enabled": false,
+      "report_dir": "/data/tj/workspace/inspect216-sdpa-kunlun-baselines-20261026-0fc1379564/native_h800.json.work/_scaled_dot_product_flash_attention/64b8b6c7f1044c32ae18bce377c474c9/ncu_reports",
+      "output_path": "/data/tj/workspace/inspect216-sdpa-kunlun-baselines-20261026-0fc1379564/native_h800.json.work/_scaled_dot_product_flash_attention/64b8b6c7f1044c32ae18bce377c474c9/result.json",
+      "op_timeout_seconds": 600.0,
+      "reference_chip": "H800",
+      "only": [
+        "_scaled_dot_product_flash_attention"
+      ],
+      "whitelist": null,
+      "blacklist": null,
+      "selected_ops": [
+        "_scaled_dot_product_flash_attention"
+      ],
+      "latency_warmup_ms": 25,
+      "latency_rep_ms": 100,
+      "ncu_warmup_calls": 3
+    },
+    "environment_variables": {
+      "CUDA_VISIBLE_DEVICES": "7",
+      "CUDA_DEVICE_ORDER": null
+    }
+  },
+  "operators": {
+    "_scaled_dot_product_flash_attention": {
+      "records": 30,
+      "numerical_or_native_abi_controls": "PASS"
+    }
+  },
+  "record_count": 30,
+  "records": [
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "[4, 32, 1024, 64]",
+      "dtype": "torch.float16",
+      "T_us": 132.36301599955948
+    },
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "[4, 32, 1024, 64]",
+      "dtype": "torch.bfloat16",
+      "T_us": 131.16654226810968
+    },
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "[4, 32, 1024, 128]",
+      "dtype": "torch.float16",
+      "T_us": 218.1608224473331
+    },
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "[4, 32, 1024, 128]",
+      "dtype": "torch.bfloat16",
+      "T_us": 217.9386986486883
+    },
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "[4, 32, 2048, 128]",
+      "dtype": "torch.float16",
+      "T_us": 814.3233693482583
+    },
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "[4, 32, 2048, 128]",
+      "dtype": "torch.bfloat16",
+      "T_us": 816.898934338071
+    },
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "[4, 32, 4096, 128]",
+      "dtype": "torch.float16",
+      "T_us": 3246.283354297761
+    },
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "[4, 32, 4096, 128]",
+      "dtype": "torch.bfloat16",
+      "T_us": 3098.9279985427856
+    },
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "[4, 32, 8192, 128]",
+      "dtype": "torch.float16",
+      "T_us": 13518.272127423968
+    },
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "[4, 32, 8192, 128]",
+      "dtype": "torch.bfloat16",
+      "T_us": 13169.403484889439
+    },
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "dedicated_0",
+      "dtype": "torch.float16",
+      "T_us": 9.151144699978937
+    },
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "dedicated_0",
+      "dtype": "torch.bfloat16",
+      "T_us": 8.517156559613776
+    },
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "dedicated_1",
+      "dtype": "torch.float16",
+      "T_us": 12.295691112171442
+    },
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "dedicated_1",
+      "dtype": "torch.bfloat16",
+      "T_us": 12.28021538655202
+    },
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "dedicated_2",
+      "dtype": "torch.float16",
+      "T_us": 15.116539689534832
+    },
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "dedicated_2",
+      "dtype": "torch.bfloat16",
+      "T_us": 15.170958251405366
+    },
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "dedicated_3",
+      "dtype": "torch.float16",
+      "T_us": 15.608751735512746
+    },
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "dedicated_3",
+      "dtype": "torch.bfloat16",
+      "T_us": 15.704174272457855
+    },
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "dedicated_4",
+      "dtype": "torch.float16",
+      "T_us": 26.413794919076278
+    },
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "dedicated_4",
+      "dtype": "torch.bfloat16",
+      "T_us": 25.993603527513287
+    },
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "[4, 8, 512, 128]",
+      "dtype": "torch.float16",
+      "T_us": 25.87684535082584
+    },
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "[4, 8, 512, 128]",
+      "dtype": "torch.bfloat16",
+      "T_us": 25.26223376893249
+    },
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "[4, 8, 1024, 128]",
+      "dtype": "torch.float16",
+      "T_us": 60.109382630411964
+    },
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "[4, 8, 1024, 128]",
+      "dtype": "torch.bfloat16",
+      "T_us": 60.921480630656745
+    },
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "[4, 8, 2048, 128]",
+      "dtype": "torch.float16",
+      "T_us": 207.5654343856667
+    },
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "[4, 8, 2048, 128]",
+      "dtype": "torch.bfloat16",
+      "T_us": 207.48634465124417
+    },
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "[4, 8, 3072, 128]",
+      "dtype": "torch.float16",
+      "T_us": 456.4403396971682
+    },
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "[4, 8, 3072, 128]",
+      "dtype": "torch.bfloat16",
+      "T_us": 449.2697947734111
+    },
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "[4, 8, 4096, 128]",
+      "dtype": "torch.float16",
+      "T_us": 800.5729374678239
+    },
+    {
+      "operator": "_scaled_dot_product_flash_attention",
+      "key": "[4, 8, 4096, 128]",
+      "dtype": "torch.bfloat16",
+      "T_us": 804.7883874547165
+    }
+  ],
+  "phases": [
+    {
+      "label": "controls-_scaled_dot_product_flash_attention",
+      "command": [
+        "/usr/bin/python3",
+        "/data/tj/workspace/inspect216-sdpa-kunlun-baselines-20261026-0fc1379564/native-controls.py",
+        "--checkout",
+        "/data/tj/workspace/inspect216-sdpa-kunlun-baselines-20261026-0fc1379564/ops-baseline",
+        "--operator",
+        "_scaled_dot_product_flash_attention",
+        "--output",
+        "/data/tj/workspace/inspect216-sdpa-kunlun-baselines-20261026-0fc1379564/controls-_scaled_dot_product_flash_attention.json"
+      ],
+      "exit": 0,
+      "seconds": 36.810696840286255
+    },
+    {
+      "label": "collector-check",
+      "command": [
+        "/usr/bin/python3",
+        "tools/collect_baseline_nvidia.py",
+        "--repo",
+        "pytorch",
+        "--ops",
+        "_scaled_dot_product_flash_attention",
+        "--device",
+        "7",
+        "--check"
+      ],
+      "exit": 0,
+      "seconds": 35.21005201339722
+    },
+    {
+      "label": "collect",
+      "command": [
+        "/usr/bin/python3",
+        "tools/collect_baseline_nvidia.py",
+        "--repo",
+        "pytorch",
+        "--ops",
+        "_scaled_dot_product_flash_attention",
+        "--devices",
+        "7",
+        "--no-ncu",
+        "--op-timeout",
+        "600",
+        "--output",
+        "/data/tj/workspace/inspect216-sdpa-kunlun-baselines-20261026-0fc1379564/native_h800.json"
+      ],
+      "exit": 0,
+      "seconds": 30.504683017730713
+    },
+    {
+      "label": "unit-tests",
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit": 1,
+      "seconds": 199.67504978179932
+    }
+  ],
+  "native_controls_source_sha256": "3e42de015d4db6c878f0ec26cb7ad61145282e0a49d87cf711f35e2bd808e3ae",
+  "controller_source_sha256": "b66d11f3c634c8cd859f9e3b9aa6f8f2e9089347c79992dd596b318399bfaf0d",
+  "controller_environment": {
+    "CUDA_VISIBLE_DEVICES": "7",
+    "NVIDIA_TF32_OVERRIDE": "0",
+    "OMP_NUM_THREADS": "2",
+    "MKL_NUM_THREADS": "2"
+  },
+  "precision_scope": "Canonical native nine-output API; original H20 shared and dedicated recipes plus Kunlunxin-specific shared core shapes.",
+  "metrics_scope": "Latency-only (--no-ncu); no NCU utilization claims.",
+  "original_recipe_controls": "common/sdpa-kunlun-meta-contract-controls.json"
+}

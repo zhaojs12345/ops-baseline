@@ -136,6 +136,10 @@ print(json.dumps(result))
             info.get("module", name)
             for name, info in self.manifest["operators"].items()
         } | {"silu"}
+        extensions = json.loads((OPS / "_inspect216_manifest.json").read_text())
+        expected |= {
+            info["module"] for info in extensions["operators"].values()
+        }
         self.assertEqual(expected, {p.stem for p in OPS.glob("*.py")})
         coverage = json.loads((OPS / "coverage.json").read_text())
         self.assertEqual(coverage["summary"]["added_operators"], len(names))

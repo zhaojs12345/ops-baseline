@@ -1,0 +1,187 @@
+test_commands_are_bounded_and_nonfatal (test_collection_environment.EnvironmentTests.test_commands_are_bounded_and_nonfatal) ... ok
+test_cpu_topology_and_affinity (test_collection_environment.EnvironmentTests.test_cpu_topology_and_affinity) ... ok
+test_driver_fallback_requires_consistent_versions (test_collection_environment.EnvironmentTests.test_driver_fallback_requires_consistent_versions) ... ok
+test_driver_normalizes_bare_uuid (test_collection_environment.EnvironmentTests.test_driver_normalizes_bare_uuid) ... ok
+test_environment_survives_worker_merge_and_empty_run (test_collection_environment.EnvironmentTests.test_environment_survives_worker_merge_and_empty_run) ... ok
+test_selected_device_and_json_roundtrip (test_collection_environment.EnvironmentTests.test_selected_device_and_json_roundtrip) ... ok
+test_triton_uses_imported_runtime_not_distribution (test_collection_environment.EnvironmentTests.test_triton_uses_imported_runtime_not_distribution) ... ok
+test_unavailable_probes_are_null (test_collection_environment.EnvironmentTests.test_unavailable_probes_are_null) ... ok
+test_catalog_cannot_hide_or_mix_workloads (test_host_collection.HostReportTests.test_catalog_cannot_hide_or_mix_workloads) ... ok
+test_missing_or_added_case_is_rejected (test_host_collection.HostReportTests.test_missing_or_added_case_is_rejected) ... ok
+test_native_positive_clock_and_provenance_are_required (test_host_collection.HostReportTests.test_native_positive_clock_and_provenance_are_required) ... ok
+test_partial_reports_and_duplicate_cases_are_rejected (test_host_collection.HostReportTests.test_partial_reports_and_duplicate_cases_are_rejected) ... ok
+test_source_change_during_catalog_cannot_complete_a_task (test_host_collection.HostReportTests.test_source_change_during_catalog_cannot_complete_a_task) ... ok
+test_unreplayable_source_is_rejected_before_allocating_run (test_host_collection.HostReportTests.test_unreplayable_source_is_rejected_before_allocating_run) ... ok
+test_clock_source_kind_and_device_contract (test_host_replay.HostReplayTests.test_clock_source_kind_and_device_contract) ... ok
+test_incomplete_dirty_and_duplicate_sources_rejected (test_host_replay.HostReplayTests.test_incomplete_dirty_and_duplicate_sources_rejected) ... ok
+test_native_cpu_does_not_accept_a_different_timing_scope (test_host_replay.HostReplayTests.test_native_cpu_does_not_accept_a_different_timing_scope) ... ok
+test_only_accelerator_roles_are_portable (test_host_replay.HostReplayTests.test_only_accelerator_roles_are_portable) ... ok
+test_all_184_configs_have_unique_keys_and_real_input_descriptions (test_inspect216_baselines.Inspect216BaselineTests.test_all_184_configs_have_unique_keys_and_real_input_descriptions) ... ok
+test_catalog_source_hashes_are_declared_and_all_recipe_ordinals_remain (test_inspect216_baselines.Inspect216BaselineTests.test_catalog_source_hashes_are_declared_and_all_recipe_ordinals_remain) ... ok
+test_configs_do_not_mutate_frozen_recipes (test_inspect216_baselines.Inspect216BaselineTests.test_configs_do_not_mutate_frozen_recipes) ... ok
+test_event_timer_excludes_slow_preparation_and_flush (test_inspect216_baselines.Inspect216BaselineTests.test_event_timer_excludes_slow_preparation_and_flush) ... ok
+test_event_timer_rejects_invalid_calibration_and_samples (test_inspect216_baselines.Inspect216BaselineTests.test_event_timer_rejects_invalid_calibration_and_samples) ... ok
+test_explicit_inventory_counts_and_closed_source_pins (test_inspect216_baselines.Inspect216BaselineTests.test_explicit_inventory_counts_and_closed_source_pins) ... ok
+test_fresh_input_protocol_is_detectable_and_restores_all_operands (test_inspect216_baselines.Inspect216BaselineTests.test_fresh_input_protocol_is_detectable_and_restores_all_operands) ... ok
+test_inplace_native_keeps_beta_one_alias_and_column_major_operand (test_inspect216_baselines.Inspect216BaselineTests.test_inplace_native_keeps_beta_one_alias_and_column_major_operand) ... ok
+test_polar_cpu_composition_and_out_write_contract (test_inspect216_baselines.Inspect216BaselineTests.test_polar_cpu_composition_and_out_write_contract) ... ok
+test_return_schemas_keep_five_output_flash_and_nine_output_sdpa_distinct (test_inspect216_baselines.Inspect216BaselineTests.test_return_schemas_keep_five_output_flash_and_nine_output_sdpa_distinct) ... ok
+test_small_packing_preserves_host_batch_sizes (test_inspect216_baselines.Inspect216BaselineTests.test_small_packing_preserves_host_batch_sizes) ... ok
+test_small_quantized_pooling_out_and_parameters (test_inspect216_baselines.Inspect216BaselineTests.test_small_quantized_pooling_out_and_parameters) ... ok
+test_checkpoint_failure_stops_consumer_before_next_task (test_multi_gpu_collection.CollectionTests.test_checkpoint_failure_stops_consumer_before_next_task) ... ok
+test_custom_reports_are_isolated_by_full_output_path (test_multi_gpu_collection.CollectionTests.test_custom_reports_are_isolated_by_full_output_path) ... 采集设备: NVIDIA Test  (repo=vllm, ops 目录=/data/tj/workspace/inspect216-sdpa-kunlun-baselines-20261026-0fc1379564/ops-baseline/ops/vllm)
+警告: test
+警告: 名单过滤后没有可采集的算子
+
+✓ Baseline 数据已写入: /tmp/tmpauppot2v/baseline.json  (共 0 个算子)
+采集设备: NVIDIA Test  (repo=vllm, ops 目录=/data/tj/workspace/inspect216-sdpa-kunlun-baselines-20261026-0fc1379564/ops-baseline/ops/vllm)
+警告: test
+待采集算子（1）: example
+
+✓ Baseline 数据已写入: /tmp/tmpauppot2v/baseline.json  (共 1 个算子)
+[0] abs: completed
+[0] abs: completed
+ok
+test_device_and_operator_validation (test_multi_gpu_collection.CollectionTests.test_device_and_operator_validation) ... ok
+test_dynamic_queue_isolation_merge_and_resume (test_multi_gpu_collection.CollectionTests.test_dynamic_queue_isolation_merge_and_resume) ... [0] abs: completed
+[1] add: completed
+[0] mul: completed
+ok
+test_failed_retry_preserves_partial_measurements_and_artifacts (test_multi_gpu_collection.CollectionTests.test_failed_retry_preserves_partial_measurements_and_artifacts) ... [0] abs: failed
+[0] abs: failed
+[0] abs: completed
+[0] abs: failed
+[0] abs: failed
+[0] abs: completed
+ok
+test_failures_and_missing_profiles_are_not_completed (test_multi_gpu_collection.CollectionTests.test_failures_and_missing_profiles_are_not_completed) ... [1] add: profiling_incomplete
+[0] abs: failed
+[1] mul: failed
+ok
+test_legacy_and_internal_worker_failure_exit_status (test_multi_gpu_collection.CollectionTests.test_legacy_and_internal_worker_failure_exit_status) ... ok
+test_long_operator_selection_is_not_a_filename (test_multi_gpu_collection.CollectionTests.test_long_operator_selection_is_not_a_filename) ... ok
+test_resume_clears_terminal_state_before_starting_worker (test_multi_gpu_collection.CollectionTests.test_resume_clears_terminal_state_before_starting_worker) ... [0] abs: failed
+[0] abs: completed
+ok
+test_timeout_kills_descendants (test_multi_gpu_collection.CollectionTests.test_timeout_kills_descendants) ... ok
+test_cleanup_does_not_require_ps_on_path (test_process_cleanup.CleanupTests.test_cleanup_does_not_require_ps_on_path) ... ok
+test_exited_launcher_descendant_is_stopped (test_process_cleanup.CleanupTests.test_exited_launcher_descendant_is_stopped) ... FAIL
+test_interruption_stops_descendants (test_process_cleanup.CleanupTests.test_interruption_stops_descendants) ... FAIL
+test_missing_executable_still_raises (test_process_cleanup.CleanupTests.test_missing_executable_still_raises) ... ok
+test_ncu_export_timeout_stops_launcher_child (test_process_cleanup.CleanupTests.test_ncu_export_timeout_stops_launcher_child) ... FAIL
+test_ncu_import_timeout_stops_launcher_child (test_process_cleanup.CleanupTests.test_ncu_import_timeout_stops_launcher_child) ... FAIL
+test_operator_timeout_preserves_partial_and_stops_descendants (test_process_cleanup.CleanupTests.test_operator_timeout_preserves_partial_and_stops_descendants) ... FAIL
+test_outer_process_group_cancellation_stops_command_descendants (test_process_cleanup.CleanupTests.test_outer_process_group_cancellation_stops_command_descendants) ... FAIL
+test_real_group_sigint_keeps_adoption_boundary_until_cleanup (test_process_cleanup.CleanupTests.test_real_group_sigint_keeps_adoption_boundary_until_cleanup) ... FAIL
+test_signal_returncode_and_binary_output (test_process_cleanup.CleanupTests.test_signal_returncode_and_binary_output) ... ok
+test_success_and_nonzero_exit_preserve_output_and_process_group (test_process_cleanup.CleanupTests.test_success_and_nonzero_exit_preserve_output_and_process_group) ... ok
+/usr/lib/python3.12/json/decoder.py:353: ResourceWarning: unclosed file <_io.FileIO name=3 mode='rb' closefd=True>
+  obj, end = self.scan_once(s, idx)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib/python3.12/json/decoder.py:353: ResourceWarning: unclosed file <_io.FileIO name=5 mode='rb' closefd=True>
+  obj, end = self.scan_once(s, idx)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+test_all_source_descriptors_dtypes_and_variants_reconstruct (test_pytorch_baselines.PytorchCatalogTests.test_all_source_descriptors_dtypes_and_variants_reconstruct) ... ok
+test_bindings_and_config_are_not_shared_mutable_state (test_pytorch_baselines.PytorchCatalogTests.test_bindings_and_config_are_not_shared_mutable_state) ... ok
+test_concat_and_stack_constructor_inputs_match_native (test_pytorch_baselines.PytorchCatalogTests.test_concat_and_stack_constructor_inputs_match_native) ... ok
+test_custom_constructor_rejections_are_fully_classified (test_pytorch_baselines.PytorchCatalogTests.test_custom_constructor_rejections_are_fully_classified) ... ok
+test_fixed_geometry_is_listed_once_per_source_case (test_pytorch_baselines.PytorchCatalogTests.test_fixed_geometry_is_listed_once_per_source_case) ... ok
+test_half_fft_retains_only_source_power_of_two_transforms (test_pytorch_baselines.PytorchCatalogTests.test_half_fft_retains_only_source_power_of_two_transforms) ... ok
+test_inventory_and_source_provenance_match_files (test_pytorch_baselines.PytorchCatalogTests.test_inventory_and_source_provenance_match_files) ... ok
+test_keys_are_unique_and_ncu_filenames_fit (test_pytorch_baselines.PytorchCatalogTests.test_keys_are_unique_and_ncu_filenames_fit) ... ok
+test_multi_margin_constructor_parameter_product_and_output_shapes (test_pytorch_baselines.PytorchCatalogTests.test_multi_margin_constructor_parameter_product_and_output_shapes) ... ok
+test_nvidia_cases_match_pinned_source (test_pytorch_baselines.PytorchCatalogTests.test_nvidia_cases_match_pinned_source) ... skipped 'Set FLAGGEMS_SOURCE_REPO for pinned source integration'
+test_out_buffer_and_boolean_dtype_semantics (test_pytorch_baselines.PytorchCatalogTests.test_out_buffer_and_boolean_dtype_semantics) ... ok
+test_paired_quantization_factory_uses_native_arguments_only (test_pytorch_baselines.PytorchCatalogTests.test_paired_quantization_factory_uses_native_arguments_only) ... ok
+test_parameterized_einsum_and_copy_source_dtype_are_not_lost (test_pytorch_baselines.PytorchCatalogTests.test_parameterized_einsum_and_copy_source_dtype_are_not_lost) ... ok
+test_random_scalar_parameters_replay_without_polluting_host_rng (test_pytorch_baselines.PytorchCatalogTests.test_random_scalar_parameters_replay_without_polluting_host_rng) ... ok
+test_repeat_interleave_repeats_preserve_rng_and_source_contract (test_pytorch_baselines.PytorchCatalogTests.test_repeat_interleave_repeats_preserve_rng_and_source_contract) ... ok
+test_repeat_interleave_workload_replays_across_processes (test_pytorch_baselines.PytorchCatalogTests.test_repeat_interleave_workload_replays_across_processes) ... ok
+test_source_stack_memory_filters_are_preserved (test_pytorch_baselines.PytorchCatalogTests.test_source_stack_memory_filters_are_preserved) ... ok
+test_sparse_mask_identity_replays_across_processes (test_pytorch_baselines.PytorchCatalogTests.test_sparse_mask_identity_replays_across_processes) ... ok
+test_sparse_mask_rejects_changed_recorded_identity (test_pytorch_baselines.PytorchCatalogTests.test_sparse_mask_rejects_changed_recorded_identity) ... ok
+test_sparse_mask_replay_matches_recorded_identity_and_native_values (test_pytorch_baselines.PytorchCatalogTests.test_sparse_mask_replay_matches_recorded_identity_and_native_values) ... ok
+test_unpack_matches_upstream_keyword_convention (test_pytorch_baselines.PytorchCatalogTests.test_unpack_matches_upstream_keyword_convention) ... ok
+
+======================================================================
+FAIL: test_exited_launcher_descendant_is_stopped (test_process_cleanup.CleanupTests.test_exited_launcher_descendant_is_stopped)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/data/tj/workspace/inspect216-sdpa-kunlun-baselines-20261026-0fc1379564/ops-baseline/tests/test_process_cleanup.py", line 135, in test_exited_launcher_descendant_is_stopped
+    self.assert_descendant_stopped()
+  File "/data/tj/workspace/inspect216-sdpa-kunlun-baselines-20261026-0fc1379564/ops-baseline/tests/test_process_cleanup.py", line 57, in assert_descendant_stopped
+    self.assertTrue(self.pidfile.exists(), 'fixture must start before timeout')
+AssertionError: False is not true : fixture must start before timeout
+
+======================================================================
+FAIL: test_interruption_stops_descendants (test_process_cleanup.CleanupTests.test_interruption_stops_descendants)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/data/tj/workspace/inspect216-sdpa-kunlun-baselines-20261026-0fc1379564/ops-baseline/tests/test_process_cleanup.py", line 126, in test_interruption_stops_descendants
+    run_with_cleanup([str(self.wrapper)], timeout=5, capture_output=True)
+  File "/data/tj/workspace/inspect216-sdpa-kunlun-baselines-20261026-0fc1379564/ops-baseline/tools/collection_process.py", line 101, in run_with_cleanup
+    stdout, stderr = process.communicate(timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in communicate
+  File "/usr/lib/python3.12/unittest/mock.py", line 1134, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/mock.py", line 1138, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/unittest/mock.py", line 1199, in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/tj/workspace/inspect216-sdpa-kunlun-baselines-20261026-0fc1379564/ops-baseline/tests/test_process_cleanup.py", line 122, in interrupted
+    self.assertTrue(self.pidfile.exists())
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_ncu_export_timeout_stops_launcher_child (test_process_cleanup.CleanupTests.test_ncu_export_timeout_stops_launcher_child)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/data/tj/workspace/inspect216-sdpa-kunlun-baselines-20261026-0fc1379564/ops-baseline/tests/test_process_cleanup.py", line 89, in test_ncu_export_timeout_stops_launcher_child
+    self.assert_descendant_stopped()
+  File "/data/tj/workspace/inspect216-sdpa-kunlun-baselines-20261026-0fc1379564/ops-baseline/tests/test_process_cleanup.py", line 57, in assert_descendant_stopped
+    self.assertTrue(self.pidfile.exists(), 'fixture must start before timeout')
+AssertionError: False is not true : fixture must start before timeout
+
+======================================================================
+FAIL: test_ncu_import_timeout_stops_launcher_child (test_process_cleanup.CleanupTests.test_ncu_import_timeout_stops_launcher_child)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/data/tj/workspace/inspect216-sdpa-kunlun-baselines-20261026-0fc1379564/ops-baseline/tests/test_process_cleanup.py", line 97, in test_ncu_import_timeout_stops_launcher_child
+    with self.assertRaises(subprocess.TimeoutExpired):
+AssertionError: TimeoutExpired not raised
+
+======================================================================
+FAIL: test_operator_timeout_preserves_partial_and_stops_descendants (test_process_cleanup.CleanupTests.test_operator_timeout_preserves_partial_and_stops_descendants)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/data/tj/workspace/inspect216-sdpa-kunlun-baselines-20261026-0fc1379564/ops-baseline/tests/test_process_cleanup.py", line 219, in test_operator_timeout_preserves_partial_and_stops_descendants
+    self.assert_descendant_stopped()
+  File "/data/tj/workspace/inspect216-sdpa-kunlun-baselines-20261026-0fc1379564/ops-baseline/tests/test_process_cleanup.py", line 57, in assert_descendant_stopped
+    self.assertTrue(self.pidfile.exists(), 'fixture must start before timeout')
+AssertionError: False is not true : fixture must start before timeout
+
+======================================================================
+FAIL: test_outer_process_group_cancellation_stops_command_descendants (test_process_cleanup.CleanupTests.test_outer_process_group_cancellation_stops_command_descendants)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/data/tj/workspace/inspect216-sdpa-kunlun-baselines-20261026-0fc1379564/ops-baseline/tests/test_process_cleanup.py", line 201, in test_outer_process_group_cancellation_stops_command_descendants
+    self.assertTrue(self.pidfile.exists())
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_real_group_sigint_keeps_adoption_boundary_until_cleanup (test_process_cleanup.CleanupTests.test_real_group_sigint_keeps_adoption_boundary_until_cleanup)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/data/tj/workspace/inspect216-sdpa-kunlun-baselines-20261026-0fc1379564/ops-baseline/tests/test_process_cleanup.py", line 176, in test_real_group_sigint_keeps_adoption_boundary_until_cleanup
+    self.assertTrue(self.pidfile.exists())
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 72 tests in 197.522s
+
+FAILED (failures=7, skipped=1)
+  ✗ NCU 超时: [1] torch.float32

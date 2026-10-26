@@ -1,0 +1,1436 @@
+{
+  "source_commit": "59515a3d1e76025b624574f1e0ace759339deeec",
+  "recipe": {
+    "manual_seed": 0,
+    "random_factory": "torch.randn(dtype=dtype, device=assigned_native_GPU)",
+    "random_scope": "reset seed once at start of each _build_inputs_fn, then mat1/batch1, mat2/batch2, then self/bias",
+    "column_major": "mat2 generated [n,k] then .t(); batch2 generated [b,n,k] then .transpose(1,2); no contiguous copy",
+    "cross_device_rng": "same distribution and seed recipe; not byte-identical across chips"
+  },
+  "operators": {
+    "addmm_": [
+      {
+        "native_api": "torch.Tensor.addmm_",
+        "source_benchmark": "benchmark/test_addmm_.py",
+        "descriptor": [
+          2,
+          384,
+          384,
+          384
+        ],
+        "params": {
+          "column_major": false
+        },
+        "inputs": {
+          "args": [
+            {
+              "kind": "tensor",
+              "shape": [
+                384,
+                384
+              ],
+              "stride": [
+                384,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                384,
+                384
+              ],
+              "stride": [
+                384,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                384,
+                384
+              ],
+              "stride": [
+                384,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            }
+          ],
+          "kwargs": {}
+        },
+        "binding_defaults": {
+          "alpha": 1,
+          "beta": 1
+        },
+        "effects": {
+          "mutates": [
+            "self"
+          ],
+          "return_alias": "self"
+        },
+        "fresh_inputs": true
+      },
+      {
+        "native_api": "torch.Tensor.addmm_",
+        "source_benchmark": "benchmark/test_addmm_.py",
+        "descriptor": [
+          2,
+          384,
+          384,
+          384
+        ],
+        "params": {
+          "column_major": true
+        },
+        "inputs": {
+          "args": [
+            {
+              "kind": "tensor",
+              "shape": [
+                384,
+                384
+              ],
+              "stride": [
+                384,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                384,
+                384
+              ],
+              "stride": [
+                384,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                384,
+                384
+              ],
+              "stride": [
+                1,
+                384
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            }
+          ],
+          "kwargs": {}
+        },
+        "binding_defaults": {
+          "alpha": 1,
+          "beta": 1
+        },
+        "effects": {
+          "mutates": [
+            "self"
+          ],
+          "return_alias": "self"
+        },
+        "fresh_inputs": true
+      },
+      {
+        "native_api": "torch.Tensor.addmm_",
+        "source_benchmark": "benchmark/test_addmm_.py",
+        "descriptor": [
+          2,
+          4096,
+          4096,
+          4096
+        ],
+        "params": {
+          "column_major": false
+        },
+        "inputs": {
+          "args": [
+            {
+              "kind": "tensor",
+              "shape": [
+                4096,
+                4096
+              ],
+              "stride": [
+                4096,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                4096,
+                4096
+              ],
+              "stride": [
+                4096,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                4096,
+                4096
+              ],
+              "stride": [
+                4096,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            }
+          ],
+          "kwargs": {}
+        },
+        "binding_defaults": {
+          "alpha": 1,
+          "beta": 1
+        },
+        "effects": {
+          "mutates": [
+            "self"
+          ],
+          "return_alias": "self"
+        },
+        "fresh_inputs": true
+      },
+      {
+        "native_api": "torch.Tensor.addmm_",
+        "source_benchmark": "benchmark/test_addmm_.py",
+        "descriptor": [
+          2,
+          4096,
+          4096,
+          4096
+        ],
+        "params": {
+          "column_major": true
+        },
+        "inputs": {
+          "args": [
+            {
+              "kind": "tensor",
+              "shape": [
+                4096,
+                4096
+              ],
+              "stride": [
+                4096,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                4096,
+                4096
+              ],
+              "stride": [
+                4096,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                4096,
+                4096
+              ],
+              "stride": [
+                1,
+                4096
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            }
+          ],
+          "kwargs": {}
+        },
+        "binding_defaults": {
+          "alpha": 1,
+          "beta": 1
+        },
+        "effects": {
+          "mutates": [
+            "self"
+          ],
+          "return_alias": "self"
+        },
+        "fresh_inputs": true
+      },
+      {
+        "native_api": "torch.Tensor.addmm_",
+        "source_benchmark": "benchmark/test_addmm_.py",
+        "descriptor": [
+          16,
+          1024,
+          1024,
+          1024
+        ],
+        "params": {
+          "column_major": false
+        },
+        "inputs": {
+          "args": [
+            {
+              "kind": "tensor",
+              "shape": [
+                1024,
+                1024
+              ],
+              "stride": [
+                1024,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                1024,
+                1024
+              ],
+              "stride": [
+                1024,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                1024,
+                1024
+              ],
+              "stride": [
+                1024,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            }
+          ],
+          "kwargs": {}
+        },
+        "binding_defaults": {
+          "alpha": 1,
+          "beta": 1
+        },
+        "effects": {
+          "mutates": [
+            "self"
+          ],
+          "return_alias": "self"
+        },
+        "fresh_inputs": true
+      },
+      {
+        "native_api": "torch.Tensor.addmm_",
+        "source_benchmark": "benchmark/test_addmm_.py",
+        "descriptor": [
+          16,
+          1024,
+          1024,
+          1024
+        ],
+        "params": {
+          "column_major": true
+        },
+        "inputs": {
+          "args": [
+            {
+              "kind": "tensor",
+              "shape": [
+                1024,
+                1024
+              ],
+              "stride": [
+                1024,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                1024,
+                1024
+              ],
+              "stride": [
+                1024,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                1024,
+                1024
+              ],
+              "stride": [
+                1,
+                1024
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            }
+          ],
+          "kwargs": {}
+        },
+        "binding_defaults": {
+          "alpha": 1,
+          "beta": 1
+        },
+        "effects": {
+          "mutates": [
+            "self"
+          ],
+          "return_alias": "self"
+        },
+        "fresh_inputs": true
+      },
+      {
+        "native_api": "torch.Tensor.addmm_",
+        "source_benchmark": "benchmark/test_addmm_.py",
+        "descriptor": [
+          16,
+          2048,
+          2048,
+          2048
+        ],
+        "params": {
+          "column_major": false
+        },
+        "inputs": {
+          "args": [
+            {
+              "kind": "tensor",
+              "shape": [
+                2048,
+                2048
+              ],
+              "stride": [
+                2048,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                2048,
+                2048
+              ],
+              "stride": [
+                2048,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                2048,
+                2048
+              ],
+              "stride": [
+                2048,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            }
+          ],
+          "kwargs": {}
+        },
+        "binding_defaults": {
+          "alpha": 1,
+          "beta": 1
+        },
+        "effects": {
+          "mutates": [
+            "self"
+          ],
+          "return_alias": "self"
+        },
+        "fresh_inputs": true
+      },
+      {
+        "native_api": "torch.Tensor.addmm_",
+        "source_benchmark": "benchmark/test_addmm_.py",
+        "descriptor": [
+          16,
+          2048,
+          2048,
+          2048
+        ],
+        "params": {
+          "column_major": true
+        },
+        "inputs": {
+          "args": [
+            {
+              "kind": "tensor",
+              "shape": [
+                2048,
+                2048
+              ],
+              "stride": [
+                2048,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                2048,
+                2048
+              ],
+              "stride": [
+                2048,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                2048,
+                2048
+              ],
+              "stride": [
+                1,
+                2048
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            }
+          ],
+          "kwargs": {}
+        },
+        "binding_defaults": {
+          "alpha": 1,
+          "beta": 1
+        },
+        "effects": {
+          "mutates": [
+            "self"
+          ],
+          "return_alias": "self"
+        },
+        "fresh_inputs": true
+      },
+      {
+        "native_api": "torch.Tensor.addmm_",
+        "source_benchmark": "benchmark/test_addmm_.py",
+        "descriptor": [
+          16,
+          4096,
+          4096,
+          4096
+        ],
+        "params": {
+          "column_major": false
+        },
+        "inputs": {
+          "args": [
+            {
+              "kind": "tensor",
+              "shape": [
+                4096,
+                4096
+              ],
+              "stride": [
+                4096,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                4096,
+                4096
+              ],
+              "stride": [
+                4096,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                4096,
+                4096
+              ],
+              "stride": [
+                4096,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            }
+          ],
+          "kwargs": {}
+        },
+        "binding_defaults": {
+          "alpha": 1,
+          "beta": 1
+        },
+        "effects": {
+          "mutates": [
+            "self"
+          ],
+          "return_alias": "self"
+        },
+        "fresh_inputs": true
+      },
+      {
+        "native_api": "torch.Tensor.addmm_",
+        "source_benchmark": "benchmark/test_addmm_.py",
+        "descriptor": [
+          16,
+          4096,
+          4096,
+          4096
+        ],
+        "params": {
+          "column_major": true
+        },
+        "inputs": {
+          "args": [
+            {
+              "kind": "tensor",
+              "shape": [
+                4096,
+                4096
+              ],
+              "stride": [
+                4096,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                4096,
+                4096
+              ],
+              "stride": [
+                4096,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                4096,
+                4096
+              ],
+              "stride": [
+                1,
+                4096
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            }
+          ],
+          "kwargs": {}
+        },
+        "binding_defaults": {
+          "alpha": 1,
+          "beta": 1
+        },
+        "effects": {
+          "mutates": [
+            "self"
+          ],
+          "return_alias": "self"
+        },
+        "fresh_inputs": true
+      }
+    ],
+    "baddbmm_": [
+      {
+        "native_api": "torch.Tensor.baddbmm_",
+        "source_benchmark": "benchmark/test_baddbmm_.py",
+        "descriptor": [
+          2,
+          384,
+          384,
+          384
+        ],
+        "params": {
+          "column_major": false
+        },
+        "inputs": {
+          "args": [
+            {
+              "kind": "tensor",
+              "shape": [
+                2,
+                384,
+                384
+              ],
+              "stride": [
+                147456,
+                384,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                2,
+                384,
+                384
+              ],
+              "stride": [
+                147456,
+                384,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                2,
+                384,
+                384
+              ],
+              "stride": [
+                147456,
+                384,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            }
+          ],
+          "kwargs": {}
+        },
+        "binding_defaults": {
+          "alpha": 1,
+          "beta": 1
+        },
+        "effects": {
+          "mutates": [
+            "self"
+          ],
+          "return_alias": "self"
+        },
+        "fresh_inputs": true
+      },
+      {
+        "native_api": "torch.Tensor.baddbmm_",
+        "source_benchmark": "benchmark/test_baddbmm_.py",
+        "descriptor": [
+          2,
+          384,
+          384,
+          384
+        ],
+        "params": {
+          "column_major": true
+        },
+        "inputs": {
+          "args": [
+            {
+              "kind": "tensor",
+              "shape": [
+                2,
+                384,
+                384
+              ],
+              "stride": [
+                147456,
+                384,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                2,
+                384,
+                384
+              ],
+              "stride": [
+                147456,
+                384,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                2,
+                384,
+                384
+              ],
+              "stride": [
+                147456,
+                1,
+                384
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            }
+          ],
+          "kwargs": {}
+        },
+        "binding_defaults": {
+          "alpha": 1,
+          "beta": 1
+        },
+        "effects": {
+          "mutates": [
+            "self"
+          ],
+          "return_alias": "self"
+        },
+        "fresh_inputs": true
+      },
+      {
+        "native_api": "torch.Tensor.baddbmm_",
+        "source_benchmark": "benchmark/test_baddbmm_.py",
+        "descriptor": [
+          2,
+          4096,
+          4096,
+          4096
+        ],
+        "params": {
+          "column_major": false
+        },
+        "inputs": {
+          "args": [
+            {
+              "kind": "tensor",
+              "shape": [
+                2,
+                4096,
+                4096
+              ],
+              "stride": [
+                16777216,
+                4096,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                2,
+                4096,
+                4096
+              ],
+              "stride": [
+                16777216,
+                4096,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                2,
+                4096,
+                4096
+              ],
+              "stride": [
+                16777216,
+                4096,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            }
+          ],
+          "kwargs": {}
+        },
+        "binding_defaults": {
+          "alpha": 1,
+          "beta": 1
+        },
+        "effects": {
+          "mutates": [
+            "self"
+          ],
+          "return_alias": "self"
+        },
+        "fresh_inputs": true
+      },
+      {
+        "native_api": "torch.Tensor.baddbmm_",
+        "source_benchmark": "benchmark/test_baddbmm_.py",
+        "descriptor": [
+          2,
+          4096,
+          4096,
+          4096
+        ],
+        "params": {
+          "column_major": true
+        },
+        "inputs": {
+          "args": [
+            {
+              "kind": "tensor",
+              "shape": [
+                2,
+                4096,
+                4096
+              ],
+              "stride": [
+                16777216,
+                4096,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                2,
+                4096,
+                4096
+              ],
+              "stride": [
+                16777216,
+                4096,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                2,
+                4096,
+                4096
+              ],
+              "stride": [
+                16777216,
+                1,
+                4096
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            }
+          ],
+          "kwargs": {}
+        },
+        "binding_defaults": {
+          "alpha": 1,
+          "beta": 1
+        },
+        "effects": {
+          "mutates": [
+            "self"
+          ],
+          "return_alias": "self"
+        },
+        "fresh_inputs": true
+      },
+      {
+        "native_api": "torch.Tensor.baddbmm_",
+        "source_benchmark": "benchmark/test_baddbmm_.py",
+        "descriptor": [
+          16,
+          1024,
+          1024,
+          1024
+        ],
+        "params": {
+          "column_major": false
+        },
+        "inputs": {
+          "args": [
+            {
+              "kind": "tensor",
+              "shape": [
+                16,
+                1024,
+                1024
+              ],
+              "stride": [
+                1048576,
+                1024,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                16,
+                1024,
+                1024
+              ],
+              "stride": [
+                1048576,
+                1024,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                16,
+                1024,
+                1024
+              ],
+              "stride": [
+                1048576,
+                1024,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            }
+          ],
+          "kwargs": {}
+        },
+        "binding_defaults": {
+          "alpha": 1,
+          "beta": 1
+        },
+        "effects": {
+          "mutates": [
+            "self"
+          ],
+          "return_alias": "self"
+        },
+        "fresh_inputs": true
+      },
+      {
+        "native_api": "torch.Tensor.baddbmm_",
+        "source_benchmark": "benchmark/test_baddbmm_.py",
+        "descriptor": [
+          16,
+          1024,
+          1024,
+          1024
+        ],
+        "params": {
+          "column_major": true
+        },
+        "inputs": {
+          "args": [
+            {
+              "kind": "tensor",
+              "shape": [
+                16,
+                1024,
+                1024
+              ],
+              "stride": [
+                1048576,
+                1024,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                16,
+                1024,
+                1024
+              ],
+              "stride": [
+                1048576,
+                1024,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                16,
+                1024,
+                1024
+              ],
+              "stride": [
+                1048576,
+                1,
+                1024
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            }
+          ],
+          "kwargs": {}
+        },
+        "binding_defaults": {
+          "alpha": 1,
+          "beta": 1
+        },
+        "effects": {
+          "mutates": [
+            "self"
+          ],
+          "return_alias": "self"
+        },
+        "fresh_inputs": true
+      },
+      {
+        "native_api": "torch.Tensor.baddbmm_",
+        "source_benchmark": "benchmark/test_baddbmm_.py",
+        "descriptor": [
+          16,
+          2048,
+          2048,
+          2048
+        ],
+        "params": {
+          "column_major": false
+        },
+        "inputs": {
+          "args": [
+            {
+              "kind": "tensor",
+              "shape": [
+                16,
+                2048,
+                2048
+              ],
+              "stride": [
+                4194304,
+                2048,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                16,
+                2048,
+                2048
+              ],
+              "stride": [
+                4194304,
+                2048,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                16,
+                2048,
+                2048
+              ],
+              "stride": [
+                4194304,
+                2048,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            }
+          ],
+          "kwargs": {}
+        },
+        "binding_defaults": {
+          "alpha": 1,
+          "beta": 1
+        },
+        "effects": {
+          "mutates": [
+            "self"
+          ],
+          "return_alias": "self"
+        },
+        "fresh_inputs": true
+      },
+      {
+        "native_api": "torch.Tensor.baddbmm_",
+        "source_benchmark": "benchmark/test_baddbmm_.py",
+        "descriptor": [
+          16,
+          2048,
+          2048,
+          2048
+        ],
+        "params": {
+          "column_major": true
+        },
+        "inputs": {
+          "args": [
+            {
+              "kind": "tensor",
+              "shape": [
+                16,
+                2048,
+                2048
+              ],
+              "stride": [
+                4194304,
+                2048,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                16,
+                2048,
+                2048
+              ],
+              "stride": [
+                4194304,
+                2048,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                16,
+                2048,
+                2048
+              ],
+              "stride": [
+                4194304,
+                1,
+                2048
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            }
+          ],
+          "kwargs": {}
+        },
+        "binding_defaults": {
+          "alpha": 1,
+          "beta": 1
+        },
+        "effects": {
+          "mutates": [
+            "self"
+          ],
+          "return_alias": "self"
+        },
+        "fresh_inputs": true
+      },
+      {
+        "native_api": "torch.Tensor.baddbmm_",
+        "source_benchmark": "benchmark/test_baddbmm_.py",
+        "descriptor": [
+          16,
+          4096,
+          4096,
+          4096
+        ],
+        "params": {
+          "column_major": false
+        },
+        "inputs": {
+          "args": [
+            {
+              "kind": "tensor",
+              "shape": [
+                16,
+                4096,
+                4096
+              ],
+              "stride": [
+                16777216,
+                4096,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                16,
+                4096,
+                4096
+              ],
+              "stride": [
+                16777216,
+                4096,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                16,
+                4096,
+                4096
+              ],
+              "stride": [
+                16777216,
+                4096,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            }
+          ],
+          "kwargs": {}
+        },
+        "binding_defaults": {
+          "alpha": 1,
+          "beta": 1
+        },
+        "effects": {
+          "mutates": [
+            "self"
+          ],
+          "return_alias": "self"
+        },
+        "fresh_inputs": true
+      },
+      {
+        "native_api": "torch.Tensor.baddbmm_",
+        "source_benchmark": "benchmark/test_baddbmm_.py",
+        "descriptor": [
+          16,
+          4096,
+          4096,
+          4096
+        ],
+        "params": {
+          "column_major": true
+        },
+        "inputs": {
+          "args": [
+            {
+              "kind": "tensor",
+              "shape": [
+                16,
+                4096,
+                4096
+              ],
+              "stride": [
+                16777216,
+                4096,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                16,
+                4096,
+                4096
+              ],
+              "stride": [
+                16777216,
+                4096,
+                1
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            },
+            {
+              "kind": "tensor",
+              "shape": [
+                16,
+                4096,
+                4096
+              ],
+              "stride": [
+                16777216,
+                1,
+                4096
+              ],
+              "dtype": "DTYPE",
+              "requires_grad": false
+            }
+          ],
+          "kwargs": {}
+        },
+        "binding_defaults": {
+          "alpha": 1,
+          "beta": 1
+        },
+        "effects": {
+          "mutates": [
+            "self"
+          ],
+          "return_alias": "self"
+        },
+        "fresh_inputs": true
+      }
+    ]
+  }
+}
