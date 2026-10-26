@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "source_repo": "https://github.com/flagos-ai/FlagGems",
+  "historical_inventory": "_kernelgen/manifest.json",
+  "scope": "Explicit inspect216 extensions; historical plain scaled_dot_product_flash_attention remains in the unchanged frozen inventory.",
+  "operators": {
+    "_flash_attention_forward": {
+      "module": "_flash_attention_forward",
+      "recipes": 32,
+      "dtypes": [
+        "torch.float16",
+        "torch.bfloat16"
+      ],
+      "configurations": 64,
+      "is_inplace": false,
+      "native": "torch.ops.aten._flash_attention_forward.default",
+      "source_pins": {
+        "b9c4b24a83ecc38312d2e6c2779d314b405f69cf": {
+          "benchmark/test__flash_attention_forward.py": "66bdfdfb37a5c819c9c8951550a291b283fb4388e8b5fae2b233f8bfeb485ca5",
+          "benchmark/test_flash_attention_forward.py": "733f6a3cfd4386d44e85c5b4b8a1c5caedef0d5df17f038bfee9c4664e996299",
+          "definitions/_flash_attention_forward.json": "a4e5212e2aad4b5631e08272a3ef217017091418ce3cc46f89cf67ebe2450dc6"
+        }
+      }
+    },
+    "_scaled_dot_product_flash_attention": {
+      "module": "_scaled_dot_product_flash_attention",
+      "recipes": 15,
+      "dtypes": [
+        "torch.float16",
+        "torch.bfloat16"
+      ],
+      "configurations": 30,
+      "is_inplace": false,
+      "native": "torch.ops.aten._scaled_dot_product_flash_attention.default",
+      "source_pins": {
+        "c3c0a041f2e4b16e32891007f70c84d9db534619": {
+          "benchmark/test_scaled_dot_product_attention.py": "7fb194fbcaf53a52753dc757588e96f3e0e3d48f5d7c596d0abb73674fcbf82b",
+          "benchmark/test_scaled_dot_product_flash_attention.py": "563373add79e41b0fa4ba52bc433bd46dc78492ce8f9b54d3eefe5fe25c69d23",
+          "benchmark/core_shapes.yaml": "720ad7776ce6e172e6c6eb78ee94b84b243ec7ee84a295543ac76fddd63b664d"
+        },
+        "a9d9cd629d0a884c105fd049ccfbfca8f2f05bc0": {
+          "benchmark/test_scaled_dot_product_attention.py": "39f7cb53ae78b5c03a72394f87fdb29f0ccf7ab680da472d4f59f5556ef961f9",
+          "src/flag_gems/runtime/backend/_kunlunxin/core_shapes.yaml": "1cf11e3ee0fa2c7b5ff2762f5c5d5c252f6c0248294b7d1d0db141bfc7304d07"
+        }
+      }
+    },
+    "addmm_": {
+      "module": "addmm_",
+      "recipes": 10,
+      "dtypes": [
+        "torch.float16",
+        "torch.float32",
+        "torch.bfloat16"
+      ],
+      "configurations": 30,
+      "is_inplace": true,
+      "native": "torch.Tensor.addmm_",
+      "source_pins": {
+        "59515a3d1e76025b624574f1e0ace759339deeec": {
+          "benchmark/test_addmm_.py": "f8408f17f1c7109bd4aa4551f559733cb5a6c254ee92276352df5ac488b6faa2",
+          "benchmark/core_shapes.yaml": "720ad7776ce6e172e6c6eb78ee94b84b243ec7ee84a295543ac76fddd63b664d"
+        }
+      }
+    },
+    "baddbmm_": {
+      "module": "baddbmm_",
+      "recipes": 10,
+      "dtypes": [
+        "torch.float16",
+        "torch.float32",
+        "torch.bfloat16"
+      ],
+      "configurations": 30,
+      "is_inplace": true,
+      "native": "torch.Tensor.baddbmm_",
+      "source_pins": {
+        "59515a3d1e76025b624574f1e0ace759339deeec": {
+          "benchmark/test_baddbmm_.py": "741024e7f2b4350038063e2f0799ad209b98e7740d5c82bc42e98efc1408e979",
+          "benchmark/core_shapes.yaml": "720ad7776ce6e172e6c6eb78ee94b84b243ec7ee84a295543ac76fddd63b664d"
+        }
+      }
+    },
+    "linalg_polar": {
+      "module": "linalg_polar",
+      "recipes": 4,
+      "dtypes": [
+        "torch.float32"
+      ],
+      "configurations": 4,
+      "is_inplace": false,
+      "native": "native GPU PyTorch right-polar SVD composition",
+      "source_pins": {
+        "cae5c46393b02862c696499e25258518e0cc0e54": {
+          "benchmark/test_linalg_polar.py": "fd0130d931a97f89877ff3963b14b392578597fb210a88fc9b6573614eafb728",
+          "tests/test_linalg_polar.py": "51aaa56d3449ea041cc41697775b22d4d617ad7ebffa1062ee019c534c7e3925"
+        }
+      }
+    },
+    "linalg_polar_out": {
+      "module": "linalg_polar_out",
+      "recipes": 4,
+      "dtypes": [
+        "torch.float32"
+      ],
+      "configurations": 4,
+      "is_inplace": true,
+      "native": "native GPU PyTorch right-polar SVD composition with U/H writes",
+      "source_pins": {
+        "cae5c46393b02862c696499e25258518e0cc0e54": {
+          "benchmark/test_linalg_polar_out.py": "45d12f1e7ff7836a69bd65aa2960197d37351f1b302bd75e69d79d14df5ba423",
+          "tests/test_linalg_polar_out.py": "cc76d8e3080dd2d7bcf69b2cfb2bdf1a02e9d7cb2421fd00d22f6331258c1b16"
+        }
+      }
+    },
+    "pack_padded_sequence": {
+      "module": "pack_padded_sequence",
+      "recipes": 4,
+      "dtypes": [
+        "torch.float16",
+        "torch.float32",
+        "torch.bfloat16"
+      ],
+      "configurations": 12,
+      "is_inplace": false,
+      "native": "torch.ops.aten._pack_padded_sequence.default",
+      "source_pins": {
+        "00cd80f89b12864b2e6cf711db283d3d95b2187a": {
+          "benchmark/test_pack_padded_sequence.py": "c7de039e09d42b745637d9e4a5c2a92555db7b5aad9a05ba2870e8365e4c0b02"
+        }
+      }
+    },
+    "quantized_max_pool2d": {
+      "module": "quantized_max_pool2d",
+      "recipes": 5,
+      "dtypes": [
+        "torch.qint8"
+      ],
+      "configurations": 5,
+      "is_inplace": false,
+      "native": "torch.quantized_max_pool2d",
+      "source_pins": {
+        "b9c4b24a83ecc38312d2e6c2779d314b405f69cf": {
+          "benchmark/test_quantized_max_pool2d.py": "874448345e5516ea5a0bc3441a98b57bf1f5f9734392f04b10eeb77f4babe208"
+        }
+      }
+    },
+    "quantized_max_pool2d_out": {
+      "module": "quantized_max_pool2d_out",
+      "recipes": 5,
+      "dtypes": [
+        "torch.qint8"
+      ],
+      "configurations": 5,
+      "is_inplace": true,
+      "native": "torch.ops.aten.quantized_max_pool2d.out",
+      "source_pins": {
+        "b9c4b24a83ecc38312d2e6c2779d314b405f69cf": {
+          "benchmark/test_quantized_max_pool2d.py": "874448345e5516ea5a0bc3441a98b57bf1f5f9734392f04b10eeb77f4babe208"
+        }
+      }
+    }
+  },
+  "summary": {
+    "operators": 9,
+    "recipes": 89,
+    "configurations": 184
+  }
+}
