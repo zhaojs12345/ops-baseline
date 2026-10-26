@@ -1,0 +1,2666 @@
+{
+  "source_commit": "b9c4b24a83ecc38312d2e6c2779d314b405f69cf",
+  "source_files_sha256": {
+    "benchmark/test__flash_attention_forward.py": "66bdfdfb37a5c819c9c8951550a291b283fb4388e8b5fae2b233f8bfeb485ca5",
+    "benchmark/test_flash_attention_forward.py": "733f6a3cfd4386d44e85c5b4b8a1c5caedef0d5df17f038bfee9c4664e996299",
+    "definitions/_flash_attention_forward.json": "a4e5212e2aad4b5631e08272a3ef217017091418ce3cc46f89cf67ebe2450dc6"
+  },
+  "source_native_report_sha256": "2fbcebfc9a07928ed86980d6b439cb54244cfc70e86076dd722a0c97393f73dc",
+  "request_sha256": "522c3d6a85b03131903b2105ab681fe18cef7ef7eb88e4c43e639b021312f4ba",
+  "recipes": [
+    {
+      "key": "dedicated_0",
+      "benchmark": "benchmark/test__flash_attention_forward.py",
+      "ordinal": 0,
+      "case_ids": {
+        "torch.float16": "benchmark/test__flash_attention_forward.py::test__flash_attention_forward::core::float16::0",
+        "torch.bfloat16": "benchmark/test__flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::0"
+      },
+      "shape": {
+        "query": [
+          1,
+          128,
+          2,
+          64
+        ],
+        "key": [
+          1,
+          128,
+          2,
+          64
+        ],
+        "value": [
+          1,
+          128,
+          2,
+          64
+        ]
+      },
+      "params": {
+        "mode": "dense",
+        "is_causal": false,
+        "dropout_p": 0.0,
+        "return_debug_mask": false,
+        "window_size_left": null,
+        "window_size_right": null
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            1,
+            128,
+            2,
+            64
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            1,
+            128,
+            2,
+            64
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            1,
+            128,
+            2,
+            64
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 128,
+        "max_k": 128,
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false,
+        "scale": 0.125,
+        "window_size_left": null,
+        "window_size_right": null,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": 0
+      }
+    },
+    {
+      "key": "dedicated_1",
+      "benchmark": "benchmark/test__flash_attention_forward.py",
+      "ordinal": 1,
+      "case_ids": {
+        "torch.float16": "benchmark/test__flash_attention_forward.py::test__flash_attention_forward::core::float16::1",
+        "torch.bfloat16": "benchmark/test__flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::1"
+      },
+      "shape": {
+        "query": [
+          2,
+          256,
+          4,
+          64
+        ],
+        "key": [
+          2,
+          256,
+          4,
+          64
+        ],
+        "value": [
+          2,
+          256,
+          4,
+          64
+        ]
+      },
+      "params": {
+        "mode": "dense",
+        "is_causal": true,
+        "dropout_p": 0.0,
+        "return_debug_mask": false,
+        "window_size_left": null,
+        "window_size_right": null
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            2,
+            256,
+            4,
+            64
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            2,
+            256,
+            4,
+            64
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            2,
+            256,
+            4,
+            64
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 256,
+        "max_k": 256,
+        "dropout_p": 0.0,
+        "is_causal": true,
+        "return_debug_mask": false,
+        "scale": 0.125,
+        "window_size_left": null,
+        "window_size_right": null,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": 0
+      }
+    },
+    {
+      "key": "dedicated_2",
+      "benchmark": "benchmark/test__flash_attention_forward.py",
+      "ordinal": 2,
+      "case_ids": {
+        "torch.float16": "benchmark/test__flash_attention_forward.py::test__flash_attention_forward::core::float16::2",
+        "torch.bfloat16": "benchmark/test__flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::2"
+      },
+      "shape": {
+        "query": [
+          1,
+          128,
+          8,
+          128
+        ],
+        "key": [
+          1,
+          512,
+          2,
+          128
+        ],
+        "value": [
+          1,
+          512,
+          2,
+          128
+        ]
+      },
+      "params": {
+        "mode": "dense",
+        "is_causal": false,
+        "dropout_p": 0.0,
+        "return_debug_mask": false,
+        "window_size_left": null,
+        "window_size_right": null
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            1,
+            128,
+            8,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            1,
+            512,
+            2,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            1,
+            512,
+            2,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 128,
+        "max_k": 512,
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false,
+        "scale": 0.08838834764831843,
+        "window_size_left": null,
+        "window_size_right": null,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": 0
+      }
+    },
+    {
+      "key": "dedicated_3",
+      "benchmark": "benchmark/test__flash_attention_forward.py",
+      "ordinal": 3,
+      "case_ids": {
+        "torch.float16": "benchmark/test__flash_attention_forward.py::test__flash_attention_forward::core::float16::3",
+        "torch.bfloat16": "benchmark/test__flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::3"
+      },
+      "shape": {
+        "query": [
+          1,
+          1,
+          8,
+          128
+        ],
+        "key": [
+          1,
+          1024,
+          1,
+          128
+        ],
+        "value": [
+          1,
+          1024,
+          1,
+          128
+        ]
+      },
+      "params": {
+        "mode": "dense",
+        "is_causal": false,
+        "dropout_p": 0.0,
+        "return_debug_mask": false,
+        "window_size_left": null,
+        "window_size_right": null
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            1,
+            1,
+            8,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            1,
+            1024,
+            1,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            1,
+            1024,
+            1,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 1,
+        "max_k": 1024,
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false,
+        "scale": 0.08838834764831843,
+        "window_size_left": null,
+        "window_size_right": null,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": 0
+      }
+    },
+    {
+      "key": "dedicated_4",
+      "benchmark": "benchmark/test__flash_attention_forward.py",
+      "ordinal": 4,
+      "case_ids": {
+        "torch.float16": "benchmark/test__flash_attention_forward.py::test__flash_attention_forward::core::float16::4",
+        "torch.bfloat16": "benchmark/test__flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::4"
+      },
+      "shape": {
+        "query": [
+          1,
+          128,
+          4,
+          128
+        ],
+        "key": [
+          1,
+          512,
+          4,
+          128
+        ],
+        "value": [
+          1,
+          512,
+          4,
+          128
+        ]
+      },
+      "params": {
+        "mode": "dense",
+        "is_causal": false,
+        "dropout_p": 0.0,
+        "return_debug_mask": false,
+        "window_size_left": 128,
+        "window_size_right": 0
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            1,
+            128,
+            4,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            1,
+            512,
+            4,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            1,
+            512,
+            4,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 128,
+        "max_k": 512,
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false,
+        "scale": 0.08838834764831843,
+        "window_size_left": 128,
+        "window_size_right": 0,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": 0
+      }
+    },
+    {
+      "key": "dedicated_5",
+      "benchmark": "benchmark/test__flash_attention_forward.py",
+      "ordinal": 5,
+      "case_ids": {
+        "torch.float16": "benchmark/test__flash_attention_forward.py::test__flash_attention_forward::core::float16::5",
+        "torch.bfloat16": "benchmark/test__flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::5"
+      },
+      "shape": {
+        "query": [
+          1,
+          128,
+          2,
+          64
+        ],
+        "key": [
+          1,
+          128,
+          2,
+          64
+        ],
+        "value": [
+          1,
+          128,
+          2,
+          64
+        ]
+      },
+      "params": {
+        "mode": "dense",
+        "is_causal": false,
+        "dropout_p": 0.2,
+        "return_debug_mask": true,
+        "window_size_left": null,
+        "window_size_right": null
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            1,
+            128,
+            2,
+            64
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            1,
+            128,
+            2,
+            64
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            1,
+            128,
+            2,
+            64
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 128,
+        "max_k": 128,
+        "dropout_p": 0.2,
+        "is_causal": false,
+        "return_debug_mask": true,
+        "scale": 0.125,
+        "window_size_left": null,
+        "window_size_right": null,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": 0
+      }
+    },
+    {
+      "key": "dedicated_6",
+      "benchmark": "benchmark/test__flash_attention_forward.py",
+      "ordinal": 6,
+      "case_ids": {
+        "torch.float16": "benchmark/test__flash_attention_forward.py::test__flash_attention_forward::core::float16::6",
+        "torch.bfloat16": "benchmark/test__flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::6"
+      },
+      "shape": {
+        "query": [
+          8,
+          2,
+          64
+        ],
+        "key": [
+          9,
+          2,
+          64
+        ],
+        "value": [
+          9,
+          2,
+          64
+        ],
+        "sequences": 2,
+        "max_q": 5,
+        "max_k": 5
+      },
+      "params": {
+        "mode": "varlen",
+        "is_causal": false,
+        "dropout_p": 0.0,
+        "return_debug_mask": false,
+        "window_size_left": null,
+        "window_size_right": null
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            8,
+            2,
+            64
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            9,
+            2,
+            64
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            9,
+            2,
+            64
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": [
+          0,
+          3,
+          8
+        ],
+        "cum_seq_k": [
+          0,
+          4,
+          9
+        ],
+        "max_q": 5,
+        "max_k": 5,
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false,
+        "scale": 0.125,
+        "window_size_left": null,
+        "window_size_right": null,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": 0
+      }
+    },
+    {
+      "key": "shared_0",
+      "benchmark": "benchmark/test_flash_attention_forward.py",
+      "ordinal": 0,
+      "case_ids": {
+        "torch.float16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::float16::0",
+        "torch.bfloat16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::0"
+      },
+      "shape": {
+        "query": [
+          4,
+          1024,
+          8,
+          64
+        ],
+        "key": [
+          4,
+          128,
+          8,
+          64
+        ],
+        "value": [
+          4,
+          128,
+          8,
+          64
+        ]
+      },
+      "params": {
+        "scale": 0.125,
+        "is_causal": false,
+        "dropout_p": 0.0,
+        "return_debug_mask": false,
+        "window_size_left": null,
+        "window_size_right": null,
+        "use_alibi": false
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            4,
+            1024,
+            8,
+            64
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            4,
+            128,
+            8,
+            64
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            4,
+            128,
+            8,
+            64
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 1024,
+        "max_k": 128,
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false,
+        "scale": 0.125,
+        "window_size_left": null,
+        "window_size_right": null,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": null
+      }
+    },
+    {
+      "key": "shared_1",
+      "benchmark": "benchmark/test_flash_attention_forward.py",
+      "ordinal": 1,
+      "case_ids": {
+        "torch.float16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::float16::1",
+        "torch.bfloat16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::1"
+      },
+      "shape": {
+        "query": [
+          4,
+          1024,
+          8,
+          64
+        ],
+        "key": [
+          4,
+          128,
+          8,
+          64
+        ],
+        "value": [
+          4,
+          128,
+          8,
+          64
+        ]
+      },
+      "params": {
+        "scale": 0.125,
+        "is_causal": true,
+        "dropout_p": 0.0,
+        "return_debug_mask": false,
+        "window_size_left": null,
+        "window_size_right": null,
+        "use_alibi": false
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            4,
+            1024,
+            8,
+            64
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            4,
+            128,
+            8,
+            64
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            4,
+            128,
+            8,
+            64
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 1024,
+        "max_k": 128,
+        "dropout_p": 0.0,
+        "is_causal": true,
+        "return_debug_mask": false,
+        "scale": 0.125,
+        "window_size_left": null,
+        "window_size_right": null,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": null
+      }
+    },
+    {
+      "key": "shared_2",
+      "benchmark": "benchmark/test_flash_attention_forward.py",
+      "ordinal": 2,
+      "case_ids": {
+        "torch.float16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::float16::2",
+        "torch.bfloat16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::2"
+      },
+      "shape": {
+        "query": [
+          4,
+          1024,
+          8,
+          128
+        ],
+        "key": [
+          4,
+          128,
+          8,
+          128
+        ],
+        "value": [
+          4,
+          128,
+          8,
+          128
+        ]
+      },
+      "params": {
+        "scale": 0.08838834764831843,
+        "is_causal": false,
+        "dropout_p": 0.0,
+        "return_debug_mask": false,
+        "window_size_left": null,
+        "window_size_right": null,
+        "use_alibi": false
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            4,
+            1024,
+            8,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            4,
+            128,
+            8,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            4,
+            128,
+            8,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 1024,
+        "max_k": 128,
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false,
+        "scale": 0.08838834764831843,
+        "window_size_left": null,
+        "window_size_right": null,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": null
+      }
+    },
+    {
+      "key": "shared_3",
+      "benchmark": "benchmark/test_flash_attention_forward.py",
+      "ordinal": 3,
+      "case_ids": {
+        "torch.float16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::float16::3",
+        "torch.bfloat16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::3"
+      },
+      "shape": {
+        "query": [
+          4,
+          1024,
+          8,
+          128
+        ],
+        "key": [
+          4,
+          128,
+          8,
+          128
+        ],
+        "value": [
+          4,
+          128,
+          8,
+          128
+        ]
+      },
+      "params": {
+        "scale": 0.08838834764831843,
+        "is_causal": true,
+        "dropout_p": 0.0,
+        "return_debug_mask": false,
+        "window_size_left": null,
+        "window_size_right": null,
+        "use_alibi": false
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            4,
+            1024,
+            8,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            4,
+            128,
+            8,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            4,
+            128,
+            8,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 1024,
+        "max_k": 128,
+        "dropout_p": 0.0,
+        "is_causal": true,
+        "return_debug_mask": false,
+        "scale": 0.08838834764831843,
+        "window_size_left": null,
+        "window_size_right": null,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": null
+      }
+    },
+    {
+      "key": "shared_4",
+      "benchmark": "benchmark/test_flash_attention_forward.py",
+      "ordinal": 4,
+      "case_ids": {
+        "torch.float16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::float16::4",
+        "torch.bfloat16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::4"
+      },
+      "shape": {
+        "query": [
+          4,
+          1024,
+          8,
+          192
+        ],
+        "key": [
+          4,
+          128,
+          8,
+          192
+        ],
+        "value": [
+          4,
+          128,
+          8,
+          192
+        ]
+      },
+      "params": {
+        "scale": 0.07216878364870323,
+        "is_causal": false,
+        "dropout_p": 0.0,
+        "return_debug_mask": false,
+        "window_size_left": null,
+        "window_size_right": null,
+        "use_alibi": false
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            4,
+            1024,
+            8,
+            192
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            4,
+            128,
+            8,
+            192
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            4,
+            128,
+            8,
+            192
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 1024,
+        "max_k": 128,
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false,
+        "scale": 0.07216878364870323,
+        "window_size_left": null,
+        "window_size_right": null,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": null
+      }
+    },
+    {
+      "key": "shared_5",
+      "benchmark": "benchmark/test_flash_attention_forward.py",
+      "ordinal": 5,
+      "case_ids": {
+        "torch.float16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::float16::5",
+        "torch.bfloat16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::5"
+      },
+      "shape": {
+        "query": [
+          4,
+          1024,
+          8,
+          192
+        ],
+        "key": [
+          4,
+          128,
+          8,
+          192
+        ],
+        "value": [
+          4,
+          128,
+          8,
+          192
+        ]
+      },
+      "params": {
+        "scale": 0.07216878364870323,
+        "is_causal": true,
+        "dropout_p": 0.0,
+        "return_debug_mask": false,
+        "window_size_left": null,
+        "window_size_right": null,
+        "use_alibi": false
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            4,
+            1024,
+            8,
+            192
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            4,
+            128,
+            8,
+            192
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            4,
+            128,
+            8,
+            192
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 1024,
+        "max_k": 128,
+        "dropout_p": 0.0,
+        "is_causal": true,
+        "return_debug_mask": false,
+        "scale": 0.07216878364870323,
+        "window_size_left": null,
+        "window_size_right": null,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": null
+      }
+    },
+    {
+      "key": "shared_6",
+      "benchmark": "benchmark/test_flash_attention_forward.py",
+      "ordinal": 6,
+      "case_ids": {
+        "torch.float16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::float16::6",
+        "torch.bfloat16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::6"
+      },
+      "shape": {
+        "query": [
+          4,
+          1024,
+          8,
+          256
+        ],
+        "key": [
+          4,
+          128,
+          8,
+          256
+        ],
+        "value": [
+          4,
+          128,
+          8,
+          256
+        ]
+      },
+      "params": {
+        "scale": 0.0625,
+        "is_causal": false,
+        "dropout_p": 0.0,
+        "return_debug_mask": false,
+        "window_size_left": null,
+        "window_size_right": null,
+        "use_alibi": false
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            4,
+            1024,
+            8,
+            256
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            4,
+            128,
+            8,
+            256
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            4,
+            128,
+            8,
+            256
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 1024,
+        "max_k": 128,
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false,
+        "scale": 0.0625,
+        "window_size_left": null,
+        "window_size_right": null,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": null
+      }
+    },
+    {
+      "key": "shared_7",
+      "benchmark": "benchmark/test_flash_attention_forward.py",
+      "ordinal": 7,
+      "case_ids": {
+        "torch.float16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::float16::7",
+        "torch.bfloat16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::7"
+      },
+      "shape": {
+        "query": [
+          4,
+          1024,
+          8,
+          256
+        ],
+        "key": [
+          4,
+          128,
+          8,
+          256
+        ],
+        "value": [
+          4,
+          128,
+          8,
+          256
+        ]
+      },
+      "params": {
+        "scale": 0.0625,
+        "is_causal": true,
+        "dropout_p": 0.0,
+        "return_debug_mask": false,
+        "window_size_left": null,
+        "window_size_right": null,
+        "use_alibi": false
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            4,
+            1024,
+            8,
+            256
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            4,
+            128,
+            8,
+            256
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            4,
+            128,
+            8,
+            256
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 1024,
+        "max_k": 128,
+        "dropout_p": 0.0,
+        "is_causal": true,
+        "return_debug_mask": false,
+        "scale": 0.0625,
+        "window_size_left": null,
+        "window_size_right": null,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": null
+      }
+    },
+    {
+      "key": "shared_8",
+      "benchmark": "benchmark/test_flash_attention_forward.py",
+      "ordinal": 8,
+      "case_ids": {
+        "torch.float16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::float16::8",
+        "torch.bfloat16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::8"
+      },
+      "shape": {
+        "query": [
+          1,
+          128,
+          1,
+          128
+        ],
+        "key": [
+          1,
+          2048,
+          1,
+          128
+        ],
+        "value": [
+          1,
+          2048,
+          1,
+          128
+        ]
+      },
+      "params": {
+        "scale": 0.08838834764831843,
+        "is_causal": false,
+        "dropout_p": 0.0,
+        "return_debug_mask": false,
+        "window_size_left": null,
+        "window_size_right": null,
+        "use_alibi": false
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            1,
+            128,
+            1,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            1,
+            2048,
+            1,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            1,
+            2048,
+            1,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 128,
+        "max_k": 2048,
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false,
+        "scale": 0.08838834764831843,
+        "window_size_left": null,
+        "window_size_right": null,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": null
+      }
+    },
+    {
+      "key": "shared_9",
+      "benchmark": "benchmark/test_flash_attention_forward.py",
+      "ordinal": 9,
+      "case_ids": {
+        "torch.float16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::float16::9",
+        "torch.bfloat16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::9"
+      },
+      "shape": {
+        "query": [
+          1,
+          128,
+          1,
+          128
+        ],
+        "key": [
+          1,
+          2048,
+          1,
+          128
+        ],
+        "value": [
+          1,
+          2048,
+          1,
+          128
+        ]
+      },
+      "params": {
+        "scale": 0.08838834764831843,
+        "is_causal": true,
+        "dropout_p": 0.0,
+        "return_debug_mask": false,
+        "window_size_left": null,
+        "window_size_right": null,
+        "use_alibi": false
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            1,
+            128,
+            1,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            1,
+            2048,
+            1,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            1,
+            2048,
+            1,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 128,
+        "max_k": 2048,
+        "dropout_p": 0.0,
+        "is_causal": true,
+        "return_debug_mask": false,
+        "scale": 0.08838834764831843,
+        "window_size_left": null,
+        "window_size_right": null,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": null
+      }
+    },
+    {
+      "key": "shared_10",
+      "benchmark": "benchmark/test_flash_attention_forward.py",
+      "ordinal": 10,
+      "case_ids": {
+        "torch.float16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::float16::10",
+        "torch.bfloat16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::10"
+      },
+      "shape": {
+        "query": [
+          4,
+          17,
+          8,
+          128
+        ],
+        "key": [
+          4,
+          1030,
+          8,
+          128
+        ],
+        "value": [
+          4,
+          1030,
+          8,
+          128
+        ]
+      },
+      "params": {
+        "scale": 0.08838834764831843,
+        "is_causal": false,
+        "dropout_p": 0.0,
+        "return_debug_mask": false,
+        "window_size_left": null,
+        "window_size_right": null,
+        "use_alibi": false
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            4,
+            17,
+            8,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            4,
+            1030,
+            8,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            4,
+            1030,
+            8,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 17,
+        "max_k": 1030,
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false,
+        "scale": 0.08838834764831843,
+        "window_size_left": null,
+        "window_size_right": null,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": null
+      }
+    },
+    {
+      "key": "shared_11",
+      "benchmark": "benchmark/test_flash_attention_forward.py",
+      "ordinal": 11,
+      "case_ids": {
+        "torch.float16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::float16::11",
+        "torch.bfloat16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::11"
+      },
+      "shape": {
+        "query": [
+          4,
+          17,
+          8,
+          128
+        ],
+        "key": [
+          4,
+          1030,
+          8,
+          128
+        ],
+        "value": [
+          4,
+          1030,
+          8,
+          128
+        ]
+      },
+      "params": {
+        "scale": 0.08838834764831843,
+        "is_causal": true,
+        "dropout_p": 0.0,
+        "return_debug_mask": false,
+        "window_size_left": null,
+        "window_size_right": null,
+        "use_alibi": false
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            4,
+            17,
+            8,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            4,
+            1030,
+            8,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            4,
+            1030,
+            8,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 17,
+        "max_k": 1030,
+        "dropout_p": 0.0,
+        "is_causal": true,
+        "return_debug_mask": false,
+        "scale": 0.08838834764831843,
+        "window_size_left": null,
+        "window_size_right": null,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": null
+      }
+    },
+    {
+      "key": "shared_12",
+      "benchmark": "benchmark/test_flash_attention_forward.py",
+      "ordinal": 12,
+      "case_ids": {
+        "torch.float16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::float16::12",
+        "torch.bfloat16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::12"
+      },
+      "shape": {
+        "query": [
+          1,
+          1,
+          4,
+          128
+        ],
+        "key": [
+          1,
+          1024,
+          1,
+          128
+        ],
+        "value": [
+          1,
+          1024,
+          1,
+          128
+        ]
+      },
+      "params": {
+        "scale": 0.08838834764831843,
+        "is_causal": false,
+        "dropout_p": 0.0,
+        "return_debug_mask": false,
+        "window_size_left": null,
+        "window_size_right": null,
+        "use_alibi": false
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            1,
+            1,
+            4,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            1,
+            1024,
+            1,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            1,
+            1024,
+            1,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 1,
+        "max_k": 1024,
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false,
+        "scale": 0.08838834764831843,
+        "window_size_left": null,
+        "window_size_right": null,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": null
+      }
+    },
+    {
+      "key": "shared_13",
+      "benchmark": "benchmark/test_flash_attention_forward.py",
+      "ordinal": 13,
+      "case_ids": {
+        "torch.float16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::float16::13",
+        "torch.bfloat16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::13"
+      },
+      "shape": {
+        "query": [
+          1,
+          1,
+          4,
+          128
+        ],
+        "key": [
+          1,
+          1024,
+          1,
+          128
+        ],
+        "value": [
+          1,
+          1024,
+          1,
+          128
+        ]
+      },
+      "params": {
+        "scale": 0.08838834764831843,
+        "is_causal": true,
+        "dropout_p": 0.0,
+        "return_debug_mask": false,
+        "window_size_left": null,
+        "window_size_right": null,
+        "use_alibi": false
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            1,
+            1,
+            4,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            1,
+            1024,
+            1,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            1,
+            1024,
+            1,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 1,
+        "max_k": 1024,
+        "dropout_p": 0.0,
+        "is_causal": true,
+        "return_debug_mask": false,
+        "scale": 0.08838834764831843,
+        "window_size_left": null,
+        "window_size_right": null,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": null
+      }
+    },
+    {
+      "key": "shared_14",
+      "benchmark": "benchmark/test_flash_attention_forward.py",
+      "ordinal": 14,
+      "case_ids": {
+        "torch.float16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::float16::14",
+        "torch.bfloat16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::14"
+      },
+      "shape": {
+        "query": [
+          1,
+          128,
+          1,
+          128
+        ],
+        "key": [
+          1,
+          2048,
+          1,
+          128
+        ],
+        "value": [
+          1,
+          2048,
+          1,
+          128
+        ]
+      },
+      "params": {
+        "scale": 0.08838834764831843,
+        "is_causal": false,
+        "dropout_p": 0.0,
+        "return_debug_mask": false,
+        "window_size_left": 256,
+        "window_size_right": 0,
+        "use_alibi": false
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            1,
+            128,
+            1,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            1,
+            2048,
+            1,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            1,
+            2048,
+            1,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 128,
+        "max_k": 2048,
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false,
+        "scale": 0.08838834764831843,
+        "window_size_left": 256,
+        "window_size_right": 0,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": null
+      }
+    },
+    {
+      "key": "shared_15",
+      "benchmark": "benchmark/test_flash_attention_forward.py",
+      "ordinal": 15,
+      "case_ids": {
+        "torch.float16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::float16::15",
+        "torch.bfloat16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::15"
+      },
+      "shape": {
+        "query": [
+          1,
+          128,
+          1,
+          128
+        ],
+        "key": [
+          1,
+          2048,
+          1,
+          128
+        ],
+        "value": [
+          1,
+          2048,
+          1,
+          128
+        ]
+      },
+      "params": {
+        "scale": 0.08838834764831843,
+        "is_causal": false,
+        "dropout_p": 0.0,
+        "return_debug_mask": false,
+        "window_size_left": 128,
+        "window_size_right": 128,
+        "use_alibi": false
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            1,
+            128,
+            1,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            1,
+            2048,
+            1,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            1,
+            2048,
+            1,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 128,
+        "max_k": 2048,
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false,
+        "scale": 0.08838834764831843,
+        "window_size_left": 128,
+        "window_size_right": 128,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": null
+      }
+    },
+    {
+      "key": "shared_16",
+      "benchmark": "benchmark/test_flash_attention_forward.py",
+      "ordinal": 16,
+      "case_ids": {
+        "torch.float16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::float16::16",
+        "torch.bfloat16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::16"
+      },
+      "shape": {
+        "query": [
+          8,
+          1024,
+          32,
+          128
+        ],
+        "key": [
+          8,
+          1024,
+          32,
+          128
+        ],
+        "value": [
+          8,
+          1024,
+          32,
+          128
+        ]
+      },
+      "params": {
+        "scale": 0.08838834764831843,
+        "is_causal": false,
+        "dropout_p": 0.0,
+        "return_debug_mask": false,
+        "window_size_left": 256,
+        "window_size_right": 0,
+        "use_alibi": false
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            8,
+            1024,
+            32,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            8,
+            1024,
+            32,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            8,
+            1024,
+            32,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 1024,
+        "max_k": 1024,
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false,
+        "scale": 0.08838834764831843,
+        "window_size_left": 256,
+        "window_size_right": 0,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": null
+      }
+    },
+    {
+      "key": "shared_17",
+      "benchmark": "benchmark/test_flash_attention_forward.py",
+      "ordinal": 17,
+      "case_ids": {
+        "torch.float16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::float16::17",
+        "torch.bfloat16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::17"
+      },
+      "shape": {
+        "query": [
+          8,
+          1024,
+          32,
+          128
+        ],
+        "key": [
+          8,
+          1024,
+          32,
+          128
+        ],
+        "value": [
+          8,
+          1024,
+          32,
+          128
+        ]
+      },
+      "params": {
+        "scale": 0.08838834764831843,
+        "is_causal": false,
+        "dropout_p": 0.0,
+        "return_debug_mask": false,
+        "window_size_left": 128,
+        "window_size_right": 128,
+        "use_alibi": false
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            8,
+            1024,
+            32,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            8,
+            1024,
+            32,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            8,
+            1024,
+            32,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 1024,
+        "max_k": 1024,
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false,
+        "scale": 0.08838834764831843,
+        "window_size_left": 128,
+        "window_size_right": 128,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": null
+      }
+    },
+    {
+      "key": "shared_18",
+      "benchmark": "benchmark/test_flash_attention_forward.py",
+      "ordinal": 18,
+      "case_ids": {
+        "torch.float16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::float16::18",
+        "torch.bfloat16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::18"
+      },
+      "shape": {
+        "query": [
+          8,
+          1024,
+          32,
+          128
+        ],
+        "key": [
+          8,
+          128,
+          32,
+          128
+        ],
+        "value": [
+          8,
+          128,
+          32,
+          128
+        ]
+      },
+      "params": {
+        "scale": 0.08838834764831843,
+        "is_causal": false,
+        "dropout_p": 0.0,
+        "return_debug_mask": false,
+        "window_size_left": 256,
+        "window_size_right": 0,
+        "use_alibi": false
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            8,
+            1024,
+            32,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            8,
+            128,
+            32,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            8,
+            128,
+            32,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 1024,
+        "max_k": 128,
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false,
+        "scale": 0.08838834764831843,
+        "window_size_left": 256,
+        "window_size_right": 0,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": null
+      }
+    },
+    {
+      "key": "shared_19",
+      "benchmark": "benchmark/test_flash_attention_forward.py",
+      "ordinal": 19,
+      "case_ids": {
+        "torch.float16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::float16::19",
+        "torch.bfloat16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::19"
+      },
+      "shape": {
+        "query": [
+          8,
+          1024,
+          32,
+          128
+        ],
+        "key": [
+          8,
+          128,
+          32,
+          128
+        ],
+        "value": [
+          8,
+          128,
+          32,
+          128
+        ]
+      },
+      "params": {
+        "scale": 0.08838834764831843,
+        "is_causal": false,
+        "dropout_p": 0.0,
+        "return_debug_mask": false,
+        "window_size_left": 128,
+        "window_size_right": 128,
+        "use_alibi": false
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            8,
+            1024,
+            32,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            8,
+            128,
+            32,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            8,
+            128,
+            32,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 1024,
+        "max_k": 128,
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false,
+        "scale": 0.08838834764831843,
+        "window_size_left": 128,
+        "window_size_right": 128,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": null
+      }
+    },
+    {
+      "key": "shared_20",
+      "benchmark": "benchmark/test_flash_attention_forward.py",
+      "ordinal": 20,
+      "case_ids": {
+        "torch.float16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::float16::20",
+        "torch.bfloat16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::20"
+      },
+      "shape": {
+        "query": [
+          8,
+          17,
+          32,
+          128
+        ],
+        "key": [
+          8,
+          1030,
+          32,
+          128
+        ],
+        "value": [
+          8,
+          1030,
+          32,
+          128
+        ]
+      },
+      "params": {
+        "scale": 0.08838834764831843,
+        "is_causal": false,
+        "dropout_p": 0.0,
+        "return_debug_mask": false,
+        "window_size_left": 256,
+        "window_size_right": 0,
+        "use_alibi": false
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            8,
+            17,
+            32,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            8,
+            1030,
+            32,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            8,
+            1030,
+            32,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 17,
+        "max_k": 1030,
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false,
+        "scale": 0.08838834764831843,
+        "window_size_left": 256,
+        "window_size_right": 0,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": null
+      }
+    },
+    {
+      "key": "shared_21",
+      "benchmark": "benchmark/test_flash_attention_forward.py",
+      "ordinal": 21,
+      "case_ids": {
+        "torch.float16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::float16::21",
+        "torch.bfloat16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::21"
+      },
+      "shape": {
+        "query": [
+          8,
+          17,
+          32,
+          128
+        ],
+        "key": [
+          8,
+          1030,
+          32,
+          128
+        ],
+        "value": [
+          8,
+          1030,
+          32,
+          128
+        ]
+      },
+      "params": {
+        "scale": 0.08838834764831843,
+        "is_causal": false,
+        "dropout_p": 0.0,
+        "return_debug_mask": false,
+        "window_size_left": 128,
+        "window_size_right": 128,
+        "use_alibi": false
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            8,
+            17,
+            32,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            8,
+            1030,
+            32,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            8,
+            1030,
+            32,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 17,
+        "max_k": 1030,
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false,
+        "scale": 0.08838834764831843,
+        "window_size_left": 128,
+        "window_size_right": 128,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": null
+      }
+    },
+    {
+      "key": "shared_22",
+      "benchmark": "benchmark/test_flash_attention_forward.py",
+      "ordinal": 22,
+      "case_ids": {
+        "torch.float16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::float16::22",
+        "torch.bfloat16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::22"
+      },
+      "shape": {
+        "query": [
+          8,
+          1024,
+          32,
+          192
+        ],
+        "key": [
+          8,
+          1024,
+          32,
+          192
+        ],
+        "value": [
+          8,
+          1024,
+          32,
+          192
+        ]
+      },
+      "params": {
+        "scale": 0.07216878364870323,
+        "is_causal": false,
+        "dropout_p": 0.0,
+        "return_debug_mask": false,
+        "window_size_left": 256,
+        "window_size_right": 0,
+        "use_alibi": false
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            8,
+            1024,
+            32,
+            192
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            8,
+            1024,
+            32,
+            192
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            8,
+            1024,
+            32,
+            192
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 1024,
+        "max_k": 1024,
+        "dropout_p": 0.0,
+        "is_causal": false,
+        "return_debug_mask": false,
+        "scale": 0.07216878364870323,
+        "window_size_left": 256,
+        "window_size_right": 0,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": null
+      }
+    },
+    {
+      "key": "shared_23",
+      "benchmark": "benchmark/test_flash_attention_forward.py",
+      "ordinal": 23,
+      "case_ids": {
+        "torch.float16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::float16::23",
+        "torch.bfloat16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::23"
+      },
+      "shape": {
+        "query": [
+          1,
+          1024,
+          1,
+          128
+        ],
+        "key": [
+          1,
+          1024,
+          1,
+          128
+        ],
+        "value": [
+          1,
+          1024,
+          1,
+          128
+        ]
+      },
+      "params": {
+        "scale": 0.08838834764831843,
+        "is_causal": false,
+        "dropout_p": 0.2,
+        "return_debug_mask": true,
+        "window_size_left": null,
+        "window_size_right": null,
+        "use_alibi": false
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            1,
+            1024,
+            1,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            1,
+            1024,
+            1,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            1,
+            1024,
+            1,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 1024,
+        "max_k": 1024,
+        "dropout_p": 0.2,
+        "is_causal": false,
+        "return_debug_mask": true,
+        "scale": 0.08838834764831843,
+        "window_size_left": null,
+        "window_size_right": null,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": null
+      }
+    },
+    {
+      "key": "shared_24",
+      "benchmark": "benchmark/test_flash_attention_forward.py",
+      "ordinal": 24,
+      "case_ids": {
+        "torch.float16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::float16::24",
+        "torch.bfloat16": "benchmark/test_flash_attention_forward.py::test__flash_attention_forward::core::bfloat16::24"
+      },
+      "shape": {
+        "query": [
+          1,
+          1024,
+          1,
+          128
+        ],
+        "key": [
+          1,
+          1024,
+          1,
+          128
+        ],
+        "value": [
+          1,
+          1024,
+          1,
+          128
+        ]
+      },
+      "params": {
+        "scale": 0.08838834764831843,
+        "is_causal": true,
+        "dropout_p": 0.2,
+        "return_debug_mask": true,
+        "window_size_left": null,
+        "window_size_right": null,
+        "use_alibi": false
+      },
+      "inputs": {
+        "query": {
+          "shape": [
+            1,
+            1024,
+            1,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "key": {
+          "shape": [
+            1,
+            1024,
+            1,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "value": {
+          "shape": [
+            1,
+            1024,
+            1,
+            128
+          ],
+          "layout": "contiguous",
+          "factory": "torch.empty(...).uniform_(-0.05, 0.05)"
+        },
+        "cum_seq_q": null,
+        "cum_seq_k": null,
+        "max_q": 1024,
+        "max_k": 1024,
+        "dropout_p": 0.2,
+        "is_causal": true,
+        "return_debug_mask": true,
+        "scale": 0.08838834764831843,
+        "window_size_left": null,
+        "window_size_right": null,
+        "seqused_k": null,
+        "alibi_slopes": null,
+        "seed": null
+      }
+    }
+  ]
+}
