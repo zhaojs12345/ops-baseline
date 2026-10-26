@@ -6,6 +6,8 @@ Case recipes: FlagGems kernelgen-dev d20405a359ab31f2c5d856c760850486d858e341,
 benchmark/test_fused_rms_norm.py and benchmark/test_fused_rms_norm_backward.py.
 The two original core grids contain eight distinct shapes and three dtypes.
 No Triton/Gems kernel or CPU transfer is included in the measured callable.
+The collector samples each binding with seed 0. Target benchmarks retain their
+own RNG stream; distribution and input contracts match, not exact payload bytes.
 """
 
 import math
@@ -115,7 +117,6 @@ def config(binding, dtype):
         "descriptor": [m, n],
         "scope": "core",
         "variant": 0,
-        "seed": 0,
         "rstd_recipe": RSTD_RECIPE,
         "reference_implementation": REFERENCE_IMPLEMENTATION,
     }
