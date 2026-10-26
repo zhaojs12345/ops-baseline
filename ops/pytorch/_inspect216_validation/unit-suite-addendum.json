@@ -1,0 +1,78 @@
+{
+  "status": "PASS_DIAGNOSIS_RECONCILED",
+  "head": "0fc13795647f36d59534bbc690b8b5a0f3739ee7",
+  "original_full_suite": {
+    "tests": 72,
+    "passed": 64,
+    "failed": 7,
+    "skipped": 1,
+    "log_sha256": "0751fba3e323bc34014c7db725c28c03aad669cedd4a7222254dd901f4f4e666"
+  },
+  "base_and_current_cleanup_suite": {
+    "tests": 11,
+    "passed": 4,
+    "failed": 7,
+    "same_failed_nodes": [
+      "test_exited_launcher_descendant_is_stopped",
+      "test_interruption_stops_descendants",
+      "test_ncu_export_timeout_stops_launcher_child",
+      "test_ncu_import_timeout_stops_launcher_child",
+      "test_operator_timeout_preserves_partial_and_stops_descendants",
+      "test_outer_process_group_cancellation_stops_command_descendants",
+      "test_real_group_sigint_keeps_adoption_boundary_until_cleanup"
+    ]
+  },
+  "controlled_full_suite": {
+    "tests": 72,
+    "passed": 71,
+    "failed": 0,
+    "skipped": 1,
+    "exit": 0,
+    "seconds": 186.80531907081604,
+    "source_files_unchanged": 1168,
+    "cleanup_passed": 11
+  },
+  "scope": "read-only diagnosis; no product edits, formal collection environment/data or original failures altered",
+  "command_record": {
+    "head": "0fc13795647f36d59534bbc690b8b5a0f3739ee7",
+    "cwd": "/data/tj/workspace/inspect216-sdpa-kunlun-baselines-20261026-0fc1379564/ops-baseline",
+    "command": [
+      "/usr/bin/python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-v"
+    ],
+    "environment_removed": {
+      "BASH_ENV": "/etc/bash.bashrc",
+      "ENV": "/etc/shinit_v2"
+    },
+    "other_environment_overrides": {
+      "CUDA_VISIBLE_DEVICES": "",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "NVIDIA_TF32_OVERRIDE": "0",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "cpu_only": true,
+    "source_edited": false,
+    "original_failure_preserved": "0751fba3e323bc34014c7db725c28c03aad669cedd4a7222254dd901f4f4e666",
+    "started": 1793015976.0566814,
+    "exit": 0,
+    "seconds": 186.80531907081604
+  },
+  "raw_log_sha256": {
+    "original-unit-suite.txt": "0751fba3e323bc34014c7db725c28c03aad669cedd4a7222254dd901f4f4e666",
+    "controlled-unit-suite.txt": "1dfc1aaf9fd0b14b703ab9f9c7e3d8816a2a2f12e3d66b0b6d82d62e46a5a94f"
+  },
+  "source_proof": {
+    "head": "0fc13795647f36d59534bbc690b8b5a0f3739ee7",
+    "files": 1168,
+    "before_sha256": "3c08f8b6f6398d8c87e21b062a28faeb8e28005be0cb5adf10df9430190f1b0e",
+    "after_sha256": "3c08f8b6f6398d8c87e21b062a28faeb8e28005be0cb5adf10df9430190f1b0e",
+    "mismatches": []
+  },
+  "diagnosis": "Default BASH_ENV=/etc/bash.bashrc shell startup interacts with the existing PATH-isolation test order. Removing BASH_ENV alone makes the minimal two-test reproduction pass; removing ENV alone does not. The full supplementary suite omits both variables only in its child environment. Formal collection and original sidecar remain unchanged."
+}

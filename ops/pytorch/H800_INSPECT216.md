@@ -85,3 +85,20 @@ all 30 collection records passed independently. The full failure is retained in
 its provenance rather than labeled a passing suite. Comparison with the unchanged
 main-branch process fixtures is tracked separately; no process framework changes
 are part of this operator baseline repair.
+
+A separate read-only comparison reproduced the same seven failures using main's
+unchanged cleanup fixtures. The container injects `BASH_ENV=/etc/bash.bashrc`;
+its shell startup conflicts with an existing test that temporarily isolates
+`PATH`. In the original two-test order, removing only `BASH_ENV` makes both pass;
+removing only `ENV` does not. No test, shell configuration or process framework
+was changed.
+
+A supplementary CPU-only full suite in the same frozen `0fc1379` source cwd,
+with `BASH_ENV` and `ENV` omitted only from that child environment, completed
+with **71 passed, one existing source-integration skip, zero failures** (72
+tests, exit 0). All 1,168 tracked files matched the collection source before and
+after. `_inspect216_validation/unit-suite-addendum.json` records the exact
+command, environment, source-proof hashes and original versus supplementary
+results; the two adjacent text reports retain both full logs. This follow-up
+does not overwrite the original seven failures, collection environment, data or
+provenance sidecar.
