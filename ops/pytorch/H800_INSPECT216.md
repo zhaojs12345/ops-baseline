@@ -10,7 +10,8 @@ SHA-256 of each unchanged artifact.
 | --- | ---: | --- |
 | `op_inspect216_h800_perf_baseline.json` | 94 | pack_padded_sequence (12), _flash_attention_forward (64), quantized_max_pool2d (5), quantized_max_pool2d_out (5), linalg_polar (4), linalg_polar_out (4) |
 | `op_inspect216_h800_inplace_baseline.json` | 60 | addmm_ (30), baddbmm_ (30) |
-| `op_inspect216_h800_sdpa_baseline.json` | 20 | scaled_dot_product_flash_attention (20) |
+| `op_inspect216_h800_sdpa_baseline.json` | 20 | scaled_dot_product_flash_attention (20, historical key) |
+| `op_inspect216_h800_sdpa_kunlun_baseline.json` | 30 | _scaled_dot_product_flash_attention (original 20 plus 10 Kunlunxin-specific shared recipes) |
 
 Actual device: NVIDIA H800, GPU 7, container `flaggems_test_tj`, Torch
 2.8.0a0+5228986c39.nv25.05, Triton 3.6.0. All runs used
@@ -29,7 +30,8 @@ NVIDIA_TF32_OVERRIDE=0 OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 \
 ```
 
 The first snapshot was collected at `5c7dcbe47498d1be6eb032f52811ebd0080b612b`;
-the other two at `0eb30dbe5c7f3e1f3af31f2867fe877d259680bc`. Complete tracked
+the inplace and original SDPA snapshots at `0eb30dbe5c7f3e1f3af31f2867fe877d259680bc`,
+and the canonical SDPA supplement at `0fc13795647f36d59534bbc690b8b5a0f3739ee7`. Complete tracked
 source hashes were unchanged before/after each run. Per-record `config` retains
 input shapes, dtypes, strides and API parameters. Frozen catalog files also
 retain original benchmark sources and case identities. Match the full recipe
@@ -45,7 +47,13 @@ The five-output `_flash_attention_forward` and the nine-output
 `aten._scaled_dot_product_flash_attention.default` are separate APIs. The latter
 snapshot's historical operator key is `scaled_dot_product_flash_attention`.
 Dedicated and shared recipes have distinct keys/configurations; do not exchange
-their records. Native output-schema checks and small independent CPU attention
+their records. The canonical supplement also preserves Kunlunxin's different shared
+core grid. Original case IDs repeat across backend catalogs; lookup must include
+full input metadata and parameters, not just the original ordinal/case ID. The four
+snapshots contain 204 measured records covering 184 distinct reference cases; the
+20 original SDPA recipes are intentionally retained in both SDPA snapshots.
+The legacy plain-name module and `_kernelgen` frozen catalogs remain unchanged;
+`_inspect216_manifest.json` explicitly registers the nine added modules separately. Native output-schema checks and small independent CPU attention
 controls passed. Quantized pooling was checked against independent integer
 max-pooling, including quantization parameters and out aliasing. Packed sequence
 outputs were checked against manual packing, including the host batch-size ABI.
@@ -69,3 +77,11 @@ SDPA controls were corrected and its separate 20-record run passed all phases.
 These artifacts supply external native references. Target-backend candidate
 correctness, dummy injection, full case enumeration and actual benchmark
 execution remain separate acceptance requirements.
+
+The supplemental run also executed the complete Linux unit suite: 72 tests,
+64 passed, one existing source-integration condition skipped, and seven old
+process-cleanup fixture tests failed. Native controls, collector preflight and
+all 30 collection records passed independently. The full failure is retained in
+its provenance rather than labeled a passing suite. Comparison with the unchanged
+main-branch process fixtures is tracked separately; no process framework changes
+are part of this operator baseline repair.
