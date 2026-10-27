@@ -1,0 +1,742 @@
+{
+  "masked_scale": {
+    "native_api": "ops.masked_scale",
+    "shapes": {
+      "[1073741824]": {
+        "torch.float32": {
+          "config": {
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    1073741824
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    1
+                  ],
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    1073741824
+                  ],
+                  "dtype": "torch.uint8",
+                  "stride": [
+                    1
+                  ],
+                  "requires_grad": false
+                },
+                2.0
+              ],
+              "kwargs": {}
+            },
+            "source_commit": "ac9a1f703757537a3d54cc1ac1febeca410316c0",
+            "benchmark": "benchmark/test_masked_scale.py",
+            "descriptor": [
+              1073741824
+            ],
+            "scope": "core",
+            "variant": 0,
+            "input_recipe": {
+              "seed": 0,
+              "input": "torch.randn",
+              "mask": "torch.randint",
+              "mask_low": 0,
+              "mask_high": 2,
+              "mask_dtype": "torch.uint8",
+              "draw_order": [
+                "input",
+                "mask"
+              ],
+              "scale": 2.0
+            }
+          },
+          "T_us": 3158.13155968984,
+          "latency_ms": 3.15813155968984,
+          "metric_validity": {
+            "T_us": "measured",
+            "latency_ms": "measured"
+          },
+          "collection_origin": {
+            "environment": {
+              "schema_version": 1,
+              "collected_at_utc": "2026-10-27T15:14:38.124059+00:00",
+              "hardware": {
+                "gpu": {
+                  "name": "NVIDIA H800",
+                  "uuid": "7d545def-d5ba-4424-b859-2067806337c2",
+                  "total_memory_bytes": 85017624576,
+                  "total_memory_gib": 79.18,
+                  "compute_capability": "9.0",
+                  "multiprocessor_count": 132,
+                  "cuda_device_index": 0,
+                  "driver_version": "580.105.08"
+                },
+                "cpu_model": "Intel(R) Xeon(R) Platinum 8468V",
+                "cpu_architecture": "x86_64",
+                "cpu_socket_count": 2,
+                "physical_cpu_core_count": 96,
+                "logical_cpu_count": 192,
+                "cpu_threads_per_core": 2,
+                "numa_node_count": 2,
+                "process_cpu_affinity_count": 192,
+                "hypervisor_vendor": null
+              },
+              "software": {
+                "os": "Linux",
+                "os_release": "5.15.0-78-generic",
+                "machine": "x86_64",
+                "python": "3.12.3",
+                "packages": {
+                  "torch": "2.8.0a0+5228986c39.nv25.5",
+                  "triton": "3.6.0",
+                  "vllm": null,
+                  "sglang": null
+                },
+                "torch_cuda_version": "12.9",
+                "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Apr__9_19:24:57_PDT_2025\nCuda compilation tools, release 12.9, V12.9.41\nBuild cuda_12.9.r12.9/compiler.35813241_0",
+                "ncu_version": "NVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2025 NVIDIA Corporation\nVersion 2025.2.0.0 (build 35613519) (public-release)"
+              },
+              "source": {
+                "git_commit": "335d9a9179c04034d5a1e77c291666857984a922",
+                "git_branch": "feat/masked-scale-h800-20261027",
+                "git_dirty": false
+              },
+              "run": {
+                "repo": "pytorch",
+                "device": null,
+                "ncu_enabled": false,
+                "report_dir": "/data/tj/workspace/b13-masked-h800-20261027-335d9a9179-r2/reports/native-h800.json.work/masked_scale/5d7399950c4c46f197b4315c913eede8/ncu_reports",
+                "output_path": "/data/tj/workspace/b13-masked-h800-20261027-335d9a9179-r2/reports/native-h800.json.work/masked_scale/5d7399950c4c46f197b4315c913eede8/result.json",
+                "op_timeout_seconds": 3600.0,
+                "reference_chip": "H800",
+                "only": [
+                  "masked_scale"
+                ],
+                "whitelist": null,
+                "blacklist": null,
+                "selected_ops": [
+                  "masked_scale"
+                ],
+                "latency_warmup_ms": 25,
+                "latency_rep_ms": 100,
+                "ncu_warmup_calls": 3
+              },
+              "environment_variables": {
+                "CUDA_VISIBLE_DEVICES": "3",
+                "CUDA_DEVICE_ORDER": null
+              }
+            },
+            "task": {
+              "status": "completed",
+              "device": "3",
+              "returncode": 0,
+              "log": "/data/tj/workspace/b13-masked-h800-20261027-335d9a9179-r2/reports/native-h800.json.work/masked_scale/5d7399950c4c46f197b4315c913eede8/collector.log",
+              "result": "/data/tj/workspace/b13-masked-h800-20261027-335d9a9179-r2/reports/native-h800.json.work/masked_scale/5d7399950c4c46f197b4315c913eede8/result.json"
+            },
+            "raw_worker_sha256": "be2566b06786f296ff7ea362b10a271517dcda4d90efd7d64b5510be74883b4b",
+            "raw_collection_sha256": "09680488848a22afed6dd1ce0ef32569d8a13b70d7d0c482dbde95694b052b00",
+            "source_module_sha256": "590e4733d559258bd359e81662f1212cbbcec45b0f7c33afc0ede389e7b6a074"
+          }
+        }
+      },
+      "[64, 64]": {
+        "torch.float32": {
+          "config": {
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    64,
+                    64
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    64,
+                    1
+                  ],
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    64,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "stride": [
+                    64,
+                    1
+                  ],
+                  "requires_grad": false
+                },
+                2.0
+              ],
+              "kwargs": {}
+            },
+            "source_commit": "ac9a1f703757537a3d54cc1ac1febeca410316c0",
+            "benchmark": "benchmark/test_masked_scale.py",
+            "descriptor": [
+              64,
+              64
+            ],
+            "scope": "core",
+            "variant": 0,
+            "input_recipe": {
+              "seed": 0,
+              "input": "torch.randn",
+              "mask": "torch.randint",
+              "mask_low": 0,
+              "mask_high": 2,
+              "mask_dtype": "torch.uint8",
+              "draw_order": [
+                "input",
+                "mask"
+              ],
+              "scale": 2.0
+            }
+          },
+          "T_us": 4.6262571413535625,
+          "latency_ms": 0.0046262571413535625,
+          "metric_validity": {
+            "T_us": "measured",
+            "latency_ms": "measured"
+          },
+          "collection_origin": {
+            "environment": {
+              "schema_version": 1,
+              "collected_at_utc": "2026-10-27T15:14:38.124059+00:00",
+              "hardware": {
+                "gpu": {
+                  "name": "NVIDIA H800",
+                  "uuid": "7d545def-d5ba-4424-b859-2067806337c2",
+                  "total_memory_bytes": 85017624576,
+                  "total_memory_gib": 79.18,
+                  "compute_capability": "9.0",
+                  "multiprocessor_count": 132,
+                  "cuda_device_index": 0,
+                  "driver_version": "580.105.08"
+                },
+                "cpu_model": "Intel(R) Xeon(R) Platinum 8468V",
+                "cpu_architecture": "x86_64",
+                "cpu_socket_count": 2,
+                "physical_cpu_core_count": 96,
+                "logical_cpu_count": 192,
+                "cpu_threads_per_core": 2,
+                "numa_node_count": 2,
+                "process_cpu_affinity_count": 192,
+                "hypervisor_vendor": null
+              },
+              "software": {
+                "os": "Linux",
+                "os_release": "5.15.0-78-generic",
+                "machine": "x86_64",
+                "python": "3.12.3",
+                "packages": {
+                  "torch": "2.8.0a0+5228986c39.nv25.5",
+                  "triton": "3.6.0",
+                  "vllm": null,
+                  "sglang": null
+                },
+                "torch_cuda_version": "12.9",
+                "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Apr__9_19:24:57_PDT_2025\nCuda compilation tools, release 12.9, V12.9.41\nBuild cuda_12.9.r12.9/compiler.35813241_0",
+                "ncu_version": "NVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2025 NVIDIA Corporation\nVersion 2025.2.0.0 (build 35613519) (public-release)"
+              },
+              "source": {
+                "git_commit": "335d9a9179c04034d5a1e77c291666857984a922",
+                "git_branch": "feat/masked-scale-h800-20261027",
+                "git_dirty": false
+              },
+              "run": {
+                "repo": "pytorch",
+                "device": null,
+                "ncu_enabled": false,
+                "report_dir": "/data/tj/workspace/b13-masked-h800-20261027-335d9a9179-r2/reports/native-h800.json.work/masked_scale/5d7399950c4c46f197b4315c913eede8/ncu_reports",
+                "output_path": "/data/tj/workspace/b13-masked-h800-20261027-335d9a9179-r2/reports/native-h800.json.work/masked_scale/5d7399950c4c46f197b4315c913eede8/result.json",
+                "op_timeout_seconds": 3600.0,
+                "reference_chip": "H800",
+                "only": [
+                  "masked_scale"
+                ],
+                "whitelist": null,
+                "blacklist": null,
+                "selected_ops": [
+                  "masked_scale"
+                ],
+                "latency_warmup_ms": 25,
+                "latency_rep_ms": 100,
+                "ncu_warmup_calls": 3
+              },
+              "environment_variables": {
+                "CUDA_VISIBLE_DEVICES": "3",
+                "CUDA_DEVICE_ORDER": null
+              }
+            },
+            "task": {
+              "status": "completed",
+              "device": "3",
+              "returncode": 0,
+              "log": "/data/tj/workspace/b13-masked-h800-20261027-335d9a9179-r2/reports/native-h800.json.work/masked_scale/5d7399950c4c46f197b4315c913eede8/collector.log",
+              "result": "/data/tj/workspace/b13-masked-h800-20261027-335d9a9179-r2/reports/native-h800.json.work/masked_scale/5d7399950c4c46f197b4315c913eede8/result.json"
+            },
+            "raw_worker_sha256": "be2566b06786f296ff7ea362b10a271517dcda4d90efd7d64b5510be74883b4b",
+            "raw_collection_sha256": "09680488848a22afed6dd1ce0ef32569d8a13b70d7d0c482dbde95694b052b00",
+            "source_module_sha256": "590e4733d559258bd359e81662f1212cbbcec45b0f7c33afc0ede389e7b6a074"
+          }
+        }
+      },
+      "[4096, 4096]": {
+        "torch.float32": {
+          "config": {
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4096,
+                    4096
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    4096,
+                    1
+                  ],
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4096,
+                    4096
+                  ],
+                  "dtype": "torch.uint8",
+                  "stride": [
+                    4096,
+                    1
+                  ],
+                  "requires_grad": false
+                },
+                2.0
+              ],
+              "kwargs": {}
+            },
+            "source_commit": "ac9a1f703757537a3d54cc1ac1febeca410316c0",
+            "benchmark": "benchmark/test_masked_scale.py",
+            "descriptor": [
+              4096,
+              4096
+            ],
+            "scope": "core",
+            "variant": 0,
+            "input_recipe": {
+              "seed": 0,
+              "input": "torch.randn",
+              "mask": "torch.randint",
+              "mask_low": 0,
+              "mask_high": 2,
+              "mask_dtype": "torch.uint8",
+              "draw_order": [
+                "input",
+                "mask"
+              ],
+              "scale": 2.0
+            }
+          },
+          "T_us": 55.65280000575715,
+          "latency_ms": 0.05565280000575715,
+          "metric_validity": {
+            "T_us": "measured",
+            "latency_ms": "measured"
+          },
+          "collection_origin": {
+            "environment": {
+              "schema_version": 1,
+              "collected_at_utc": "2026-10-27T15:14:38.124059+00:00",
+              "hardware": {
+                "gpu": {
+                  "name": "NVIDIA H800",
+                  "uuid": "7d545def-d5ba-4424-b859-2067806337c2",
+                  "total_memory_bytes": 85017624576,
+                  "total_memory_gib": 79.18,
+                  "compute_capability": "9.0",
+                  "multiprocessor_count": 132,
+                  "cuda_device_index": 0,
+                  "driver_version": "580.105.08"
+                },
+                "cpu_model": "Intel(R) Xeon(R) Platinum 8468V",
+                "cpu_architecture": "x86_64",
+                "cpu_socket_count": 2,
+                "physical_cpu_core_count": 96,
+                "logical_cpu_count": 192,
+                "cpu_threads_per_core": 2,
+                "numa_node_count": 2,
+                "process_cpu_affinity_count": 192,
+                "hypervisor_vendor": null
+              },
+              "software": {
+                "os": "Linux",
+                "os_release": "5.15.0-78-generic",
+                "machine": "x86_64",
+                "python": "3.12.3",
+                "packages": {
+                  "torch": "2.8.0a0+5228986c39.nv25.5",
+                  "triton": "3.6.0",
+                  "vllm": null,
+                  "sglang": null
+                },
+                "torch_cuda_version": "12.9",
+                "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Apr__9_19:24:57_PDT_2025\nCuda compilation tools, release 12.9, V12.9.41\nBuild cuda_12.9.r12.9/compiler.35813241_0",
+                "ncu_version": "NVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2025 NVIDIA Corporation\nVersion 2025.2.0.0 (build 35613519) (public-release)"
+              },
+              "source": {
+                "git_commit": "335d9a9179c04034d5a1e77c291666857984a922",
+                "git_branch": "feat/masked-scale-h800-20261027",
+                "git_dirty": false
+              },
+              "run": {
+                "repo": "pytorch",
+                "device": null,
+                "ncu_enabled": false,
+                "report_dir": "/data/tj/workspace/b13-masked-h800-20261027-335d9a9179-r2/reports/native-h800.json.work/masked_scale/5d7399950c4c46f197b4315c913eede8/ncu_reports",
+                "output_path": "/data/tj/workspace/b13-masked-h800-20261027-335d9a9179-r2/reports/native-h800.json.work/masked_scale/5d7399950c4c46f197b4315c913eede8/result.json",
+                "op_timeout_seconds": 3600.0,
+                "reference_chip": "H800",
+                "only": [
+                  "masked_scale"
+                ],
+                "whitelist": null,
+                "blacklist": null,
+                "selected_ops": [
+                  "masked_scale"
+                ],
+                "latency_warmup_ms": 25,
+                "latency_rep_ms": 100,
+                "ncu_warmup_calls": 3
+              },
+              "environment_variables": {
+                "CUDA_VISIBLE_DEVICES": "3",
+                "CUDA_DEVICE_ORDER": null
+              }
+            },
+            "task": {
+              "status": "completed",
+              "device": "3",
+              "returncode": 0,
+              "log": "/data/tj/workspace/b13-masked-h800-20261027-335d9a9179-r2/reports/native-h800.json.work/masked_scale/5d7399950c4c46f197b4315c913eede8/collector.log",
+              "result": "/data/tj/workspace/b13-masked-h800-20261027-335d9a9179-r2/reports/native-h800.json.work/masked_scale/5d7399950c4c46f197b4315c913eede8/result.json"
+            },
+            "raw_worker_sha256": "be2566b06786f296ff7ea362b10a271517dcda4d90efd7d64b5510be74883b4b",
+            "raw_collection_sha256": "09680488848a22afed6dd1ce0ef32569d8a13b70d7d0c482dbde95694b052b00",
+            "source_module_sha256": "590e4733d559258bd359e81662f1212cbbcec45b0f7c33afc0ede389e7b6a074"
+          }
+        }
+      },
+      "[64, 512, 512]": {
+        "torch.float32": {
+          "config": {
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    64,
+                    512,
+                    512
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    262144,
+                    512,
+                    1
+                  ],
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    64,
+                    512,
+                    512
+                  ],
+                  "dtype": "torch.uint8",
+                  "stride": [
+                    262144,
+                    512,
+                    1
+                  ],
+                  "requires_grad": false
+                },
+                2.0
+              ],
+              "kwargs": {}
+            },
+            "source_commit": "ac9a1f703757537a3d54cc1ac1febeca410316c0",
+            "benchmark": "benchmark/test_masked_scale.py",
+            "descriptor": [
+              64,
+              512,
+              512
+            ],
+            "scope": "core",
+            "variant": 0,
+            "input_recipe": {
+              "seed": 0,
+              "input": "torch.randn",
+              "mask": "torch.randint",
+              "mask_low": 0,
+              "mask_high": 2,
+              "mask_dtype": "torch.uint8",
+              "draw_order": [
+                "input",
+                "mask"
+              ],
+              "scale": 2.0
+            }
+          },
+          "T_us": 55.15599995851517,
+          "latency_ms": 0.05515599995851517,
+          "metric_validity": {
+            "T_us": "measured",
+            "latency_ms": "measured"
+          },
+          "collection_origin": {
+            "environment": {
+              "schema_version": 1,
+              "collected_at_utc": "2026-10-27T15:14:38.124059+00:00",
+              "hardware": {
+                "gpu": {
+                  "name": "NVIDIA H800",
+                  "uuid": "7d545def-d5ba-4424-b859-2067806337c2",
+                  "total_memory_bytes": 85017624576,
+                  "total_memory_gib": 79.18,
+                  "compute_capability": "9.0",
+                  "multiprocessor_count": 132,
+                  "cuda_device_index": 0,
+                  "driver_version": "580.105.08"
+                },
+                "cpu_model": "Intel(R) Xeon(R) Platinum 8468V",
+                "cpu_architecture": "x86_64",
+                "cpu_socket_count": 2,
+                "physical_cpu_core_count": 96,
+                "logical_cpu_count": 192,
+                "cpu_threads_per_core": 2,
+                "numa_node_count": 2,
+                "process_cpu_affinity_count": 192,
+                "hypervisor_vendor": null
+              },
+              "software": {
+                "os": "Linux",
+                "os_release": "5.15.0-78-generic",
+                "machine": "x86_64",
+                "python": "3.12.3",
+                "packages": {
+                  "torch": "2.8.0a0+5228986c39.nv25.5",
+                  "triton": "3.6.0",
+                  "vllm": null,
+                  "sglang": null
+                },
+                "torch_cuda_version": "12.9",
+                "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Apr__9_19:24:57_PDT_2025\nCuda compilation tools, release 12.9, V12.9.41\nBuild cuda_12.9.r12.9/compiler.35813241_0",
+                "ncu_version": "NVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2025 NVIDIA Corporation\nVersion 2025.2.0.0 (build 35613519) (public-release)"
+              },
+              "source": {
+                "git_commit": "335d9a9179c04034d5a1e77c291666857984a922",
+                "git_branch": "feat/masked-scale-h800-20261027",
+                "git_dirty": false
+              },
+              "run": {
+                "repo": "pytorch",
+                "device": null,
+                "ncu_enabled": false,
+                "report_dir": "/data/tj/workspace/b13-masked-h800-20261027-335d9a9179-r2/reports/native-h800.json.work/masked_scale/5d7399950c4c46f197b4315c913eede8/ncu_reports",
+                "output_path": "/data/tj/workspace/b13-masked-h800-20261027-335d9a9179-r2/reports/native-h800.json.work/masked_scale/5d7399950c4c46f197b4315c913eede8/result.json",
+                "op_timeout_seconds": 3600.0,
+                "reference_chip": "H800",
+                "only": [
+                  "masked_scale"
+                ],
+                "whitelist": null,
+                "blacklist": null,
+                "selected_ops": [
+                  "masked_scale"
+                ],
+                "latency_warmup_ms": 25,
+                "latency_rep_ms": 100,
+                "ncu_warmup_calls": 3
+              },
+              "environment_variables": {
+                "CUDA_VISIBLE_DEVICES": "3",
+                "CUDA_DEVICE_ORDER": null
+              }
+            },
+            "task": {
+              "status": "completed",
+              "device": "3",
+              "returncode": 0,
+              "log": "/data/tj/workspace/b13-masked-h800-20261027-335d9a9179-r2/reports/native-h800.json.work/masked_scale/5d7399950c4c46f197b4315c913eede8/collector.log",
+              "result": "/data/tj/workspace/b13-masked-h800-20261027-335d9a9179-r2/reports/native-h800.json.work/masked_scale/5d7399950c4c46f197b4315c913eede8/result.json"
+            },
+            "raw_worker_sha256": "be2566b06786f296ff7ea362b10a271517dcda4d90efd7d64b5510be74883b4b",
+            "raw_collection_sha256": "09680488848a22afed6dd1ce0ef32569d8a13b70d7d0c482dbde95694b052b00",
+            "source_module_sha256": "590e4733d559258bd359e81662f1212cbbcec45b0f7c33afc0ede389e7b6a074"
+          }
+        }
+      },
+      "[1024, 1024, 1024]": {
+        "torch.float32": {
+          "config": {
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    1024,
+                    1024,
+                    1024
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    1048576,
+                    1024,
+                    1
+                  ],
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    1024,
+                    1024,
+                    1024
+                  ],
+                  "dtype": "torch.uint8",
+                  "stride": [
+                    1048576,
+                    1024,
+                    1
+                  ],
+                  "requires_grad": false
+                },
+                2.0
+              ],
+              "kwargs": {}
+            },
+            "source_commit": "ac9a1f703757537a3d54cc1ac1febeca410316c0",
+            "benchmark": "benchmark/test_masked_scale.py",
+            "descriptor": [
+              1024,
+              1024,
+              1024
+            ],
+            "scope": "core",
+            "variant": 0,
+            "input_recipe": {
+              "seed": 0,
+              "input": "torch.randn",
+              "mask": "torch.randint",
+              "mask_low": 0,
+              "mask_high": 2,
+              "mask_dtype": "torch.uint8",
+              "draw_order": [
+                "input",
+                "mask"
+              ],
+              "scale": 2.0
+            }
+          },
+          "T_us": 3159.6885204315186,
+          "latency_ms": 3.1596885204315184,
+          "metric_validity": {
+            "T_us": "measured",
+            "latency_ms": "measured"
+          },
+          "collection_origin": {
+            "environment": {
+              "schema_version": 1,
+              "collected_at_utc": "2026-10-27T15:14:38.124059+00:00",
+              "hardware": {
+                "gpu": {
+                  "name": "NVIDIA H800",
+                  "uuid": "7d545def-d5ba-4424-b859-2067806337c2",
+                  "total_memory_bytes": 85017624576,
+                  "total_memory_gib": 79.18,
+                  "compute_capability": "9.0",
+                  "multiprocessor_count": 132,
+                  "cuda_device_index": 0,
+                  "driver_version": "580.105.08"
+                },
+                "cpu_model": "Intel(R) Xeon(R) Platinum 8468V",
+                "cpu_architecture": "x86_64",
+                "cpu_socket_count": 2,
+                "physical_cpu_core_count": 96,
+                "logical_cpu_count": 192,
+                "cpu_threads_per_core": 2,
+                "numa_node_count": 2,
+                "process_cpu_affinity_count": 192,
+                "hypervisor_vendor": null
+              },
+              "software": {
+                "os": "Linux",
+                "os_release": "5.15.0-78-generic",
+                "machine": "x86_64",
+                "python": "3.12.3",
+                "packages": {
+                  "torch": "2.8.0a0+5228986c39.nv25.5",
+                  "triton": "3.6.0",
+                  "vllm": null,
+                  "sglang": null
+                },
+                "torch_cuda_version": "12.9",
+                "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Apr__9_19:24:57_PDT_2025\nCuda compilation tools, release 12.9, V12.9.41\nBuild cuda_12.9.r12.9/compiler.35813241_0",
+                "ncu_version": "NVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2025 NVIDIA Corporation\nVersion 2025.2.0.0 (build 35613519) (public-release)"
+              },
+              "source": {
+                "git_commit": "335d9a9179c04034d5a1e77c291666857984a922",
+                "git_branch": "feat/masked-scale-h800-20261027",
+                "git_dirty": false
+              },
+              "run": {
+                "repo": "pytorch",
+                "device": null,
+                "ncu_enabled": false,
+                "report_dir": "/data/tj/workspace/b13-masked-h800-20261027-335d9a9179-r2/reports/native-h800.json.work/masked_scale/5d7399950c4c46f197b4315c913eede8/ncu_reports",
+                "output_path": "/data/tj/workspace/b13-masked-h800-20261027-335d9a9179-r2/reports/native-h800.json.work/masked_scale/5d7399950c4c46f197b4315c913eede8/result.json",
+                "op_timeout_seconds": 3600.0,
+                "reference_chip": "H800",
+                "only": [
+                  "masked_scale"
+                ],
+                "whitelist": null,
+                "blacklist": null,
+                "selected_ops": [
+                  "masked_scale"
+                ],
+                "latency_warmup_ms": 25,
+                "latency_rep_ms": 100,
+                "ncu_warmup_calls": 3
+              },
+              "environment_variables": {
+                "CUDA_VISIBLE_DEVICES": "3",
+                "CUDA_DEVICE_ORDER": null
+              }
+            },
+            "task": {
+              "status": "completed",
+              "device": "3",
+              "returncode": 0,
+              "log": "/data/tj/workspace/b13-masked-h800-20261027-335d9a9179-r2/reports/native-h800.json.work/masked_scale/5d7399950c4c46f197b4315c913eede8/collector.log",
+              "result": "/data/tj/workspace/b13-masked-h800-20261027-335d9a9179-r2/reports/native-h800.json.work/masked_scale/5d7399950c4c46f197b4315c913eede8/result.json"
+            },
+            "raw_worker_sha256": "be2566b06786f296ff7ea362b10a271517dcda4d90efd7d64b5510be74883b4b",
+            "raw_collection_sha256": "09680488848a22afed6dd1ce0ef32569d8a13b70d7d0c482dbde95694b052b00",
+            "source_module_sha256": "590e4733d559258bd359e81662f1212cbbcec45b0f7c33afc0ede389e7b6a074"
+          }
+        }
+      }
+    }
+  },
+  "_snapshot_source": {
+    "kind": "latency_only_static_comparison_not_resume_input",
+    "records": 5,
+    "raw_artifact_sha256": "09680488848a22afed6dd1ce0ef32569d8a13b70d7d0c482dbde95694b052b00",
+    "collection_git_commit": "335d9a9179c04034d5a1e77c291666857984a922",
+    "benchmark_recipe_commit": "ac9a1f703757537a3d54cc1ac1febeca410316c0",
+    "ncu_enabled": false,
+    "uncollected_profiling_fields_omitted": true,
+    "input_identity": "Original Gaussian seed0 draw then Uint8 randint(0,2), scale2; backend RNG payloads are not claimed byte-identical."
+  }
+}
