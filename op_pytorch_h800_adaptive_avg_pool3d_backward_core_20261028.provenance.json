@@ -7,7 +7,7 @@
   "native_schema": "aten::_adaptive_avg_pool3d_backward.default",
   "canonical_operator": "_adaptive_avg_pool3d_backward",
   "actual_recipe_source_commit": "2ff0931a646b97ec98ebd50642b5889619125a6b",
-  "final_flag_gems_integration_source": "e53bb598eb396f5c5c13ecf6087a141309fba8ca",
+  "final_flag_gems_integration_source": "dcb6a10936c60684a4ef8fe1b87990a72322595b",
   "input_builder_sha256": "6658ad2c7da71d182bb2a0137ba1de5e0880b12b003e9a8aa5e3afa2a2ace6c1",
   "producer_module_sha256": "53f4aec05e9ff6409ed4ff4be58b8dd9aa22d9b9e3dcbda9fa99ff44d769b74f",
   "completed_native_records": 12,
@@ -126,8 +126,27 @@
     "pool3d-h800-pipeline-v1/interference-assessment.json": "f684c671208606b67762979c133a6dcf4026cea6258585a9b3c4bc1e7f090830",
     "pool3d-h800-pipeline-v1/collector-before.json": "84098214743947e970d9eb486e6dd9760a450f72d216abd38c31fa265d2b9b1d",
     "pool3d-h800-pipeline-v1/collector-after.json": "7ee9e65d8e80789cc9f5c027b4e11dbd5910536e3205bcf84dd66d40fcdba5e3",
-    "pool3d-legacy-catalog-four-tests-v2.json": "fde72aafc97e96c0c56e3c3cbc6eb5dce8da748082c3e6b2a5c6fa2fe8a9f21f"
+    "pool3d-legacy-catalog-four-tests-v2.json": "fde72aafc97e96c0c56e3c3cbc6eb5dce8da748082c3e6b2a5c6fa2fe8a9f21f",
+    "pool3d-range-final-four-targets-audit-v1.json": "18ccbae94eb368c4532c0fc594b063bedfd48fafeaba1c6aee6d67e79ec99d99",
+    "pool3d-physical-range-final-controls-h20-v1/result.json": "4d9209bcf32ed66feb66bdd0c39c1c83933c83245ac93a1c6fe79e9e6ef5967c",
+    "pool3d-range-sui0-v2-qualification-signal9-v1.json": "f315d1508b84af06b9bbf1b1ad13f5a486d387ee4f838b4d59ad4d4e20da7a23"
   },
   "initial_flag_gems_integration_source": "1c14e61e0ec40e750a978141e21b90fae2c6a23b",
-  "integration_followup": "Only readonly test metadata added; original benchmark builder, consumer and producer bytes remain identical. Four backends reran all eight phases and real KGS at the final source; original intermediate reports retained."
+  "integration_followup": "Only own correctness guard now rejects physically overlapping storage ranges, including independent DLPack StorageImpl wrappers. Original benchmark/producer/artifact bytes remain identical. Four targets completed full original eight phases and real KGS at dcb; Enflame numeric-CPU was repeated in a separate same-source/root after full108passed followed by KMD Sip/SIGKILL, with source/oracle/support/env/loaded-byte proof. Olde53/R2blocker and originalGPU7slow/raw retained, never relabeled as final success.",
+  "superseded_integration_source_before_physical_alias_review": "e53bb598eb396f5c5c13ecf6087a141309fba8ca",
+  "final_validation_counts": {
+    "numeric_passed": 864,
+    "numeric_skipped": 0,
+    "official_dummy_reached": 864,
+    "catalog_KGS_core_dummy_each": 48,
+    "actual_core_timings": 48,
+    "actual_candidate_calls": 831,
+    "loaded_source_hash_observations": 41436,
+    "SUI_original_full_packet_scope_receipts": 8,
+    "SUI_numeric_cpu_retry_scope_receipts": 1,
+    "original_numeric_joints_per_mode": 108,
+    "distinct_value_joints_per_mode": 90,
+    "full_original_joint_multiplicity_preserved": true
+  },
+  "final_provenance_update_utc": "2026-10-27T19:41:33.568388+00:00"
 }
