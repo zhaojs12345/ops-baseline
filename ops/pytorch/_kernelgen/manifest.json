@@ -12198,6 +12198,23 @@
         "torch.float32",
         "torch.bfloat16"
       ]
+    },
+    "median": {
+      "source_file": "benchmark/test_median.py",
+      "source_test": "test_median",
+      "line": 74,
+      "native": "torch.median",
+      "dtype_expression": "consts.FLOAT_DTYPES + consts.INT_DTYPES",
+      "shape_source": "MedianNoDimBenchmark",
+      "family": "manual_source_review",
+      "cases": 9,
+      "dtypes": [
+        "torch.float16",
+        "torch.float32",
+        "torch.bfloat16",
+        "torch.int16",
+        "torch.int32"
+      ]
     }
   },
   "validation": {
