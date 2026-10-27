@@ -4,24 +4,38 @@
 Native CUDA forward prepares workspace outside the backward timer. This module
 collects only the named ATen backward ABI and does not time a portable CPU oracle.
 """
+
 import torch
-OP_'_thnn_fused_gru_cell_backward' = '_thnn_fused_gru_cell_backward'
+
+OP_NAME = "_thnn_fused_gru_cell_backward"
 IS_INPLACE = False
 DTYPES = [torch.float16, torch.float32, torch.bfloat16, torch.float64]
-SHAPES = [(1, 32, False), (8, 64, True), (32, 128, False), (64, 256, True), (128, 512, False), (256, 1024, True)]
+SHAPES = [
+    (1, 32, False),
+    (8, 64, True),
+    (32, 128, False),
+    (64, 256, True),
+    (128, 512, False),
+    (256, 1024, True),
+]
 SOURCE_COMMIT = "ac9a1f703757537a3d54cc1ac1febeca410316c0"
+
 
 def native():
     def run(*args):
         with torch.no_grad():
-            return getattr(torch.ops.aten, OP_'_thnn_fused_gru_cell_backward')(*args)
+            return getattr(torch.ops.aten, OP_NAME)(*args)
+
     return run
+
 
 def grid():
     return [dict(shape=list(shape), variant=0) for shape in SHAPES]
 
+
 def key_shape(binding):
     return list(binding["shape"])
+
 
 def build_inputs(binding, dtype, device):
     batch, hidden, has_bias = binding["shape"]
@@ -32,18 +46,42 @@ def build_inputs(binding, dtype, device):
     input_bias = torch.randn(3 * hidden, dtype=dtype, device=device)
     hidden_bias = torch.randn_like(input_bias)
     with torch.no_grad():
-        forward = torch.ops.aten._thnn_fused_gru_cell(input_gates, hidden_gates, state, input_bias, hidden_bias)
-    return (torch.randn(batch, hidden, dtype=dtype, device=device), forward[1], has_bias), {}
+        forward = torch.ops.aten._thnn_fused_gru_cell(
+            input_gates, hidden_gates, state, input_bias, hidden_bias
+        )
+    return (
+        torch.randn(batch, hidden, dtype=dtype, device=device),
+        forward[1],
+        has_bias,
+    ), {}
+
 
 def config(binding, dtype):
     batch, hidden, has_bias = binding["shape"]
+
     def tensor(rows, cols):
-        return dict(shape=[rows, cols], dtype=str(dtype), stride=[cols, 1], requires_grad=False)
+        return dict(
+            shape=[rows, cols], dtype=str(dtype), stride=[cols, 1], requires_grad=False
+        )
+
     args = [tensor(batch, hidden), tensor(batch, 5 * hidden), has_bias]
-    return dict(inputs=dict(args=args, kwargs={}), source_commit=SOURCE_COMMIT,
-                benchmark="benchmark/test_thnn_fused_gru_cell_backward.py", descriptor=list(binding["shape"]),
-                scope="core", variant=0,
-                native_api="torch.ops.aten." + OP_'_thnn_fused_gru_cell_backward',
-                input_recipe={'rng': 'ambient target RNG', 'input_gates': 'randn', 'hidden_gates': 'randn_like(input_gates)', 'state': 'randn', 'input_bias': 'randn independent', 'hidden_bias': 'randn_like(input_bias)', 'gradients': 'randn(batch,hidden) after forward'},
-                workspace_producer="torch.ops.aten._thnn_fused_gru_cell native CUDA outside timer",
-                autograd=False)
+    return dict(
+        inputs=dict(args=args, kwargs={}),
+        source_commit=SOURCE_COMMIT,
+        benchmark="benchmark/test_thnn_fused_gru_cell_backward.py",
+        descriptor=list(binding["shape"]),
+        scope="core",
+        variant=0,
+        native_api="torch.ops.aten." + OP_NAME,
+        input_recipe={
+            "rng": "ambient target RNG",
+            "input_gates": "randn",
+            "hidden_gates": "randn_like(input_gates)",
+            "state": "randn",
+            "input_bias": "randn independent",
+            "hidden_bias": "randn_like(input_bias)",
+            "gradients": "randn(batch,hidden) after forward",
+        },
+        workspace_producer="torch.ops.aten._thnn_fused_gru_cell native CUDA outside timer",
+        autograd=False,
+    )
