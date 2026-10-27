@@ -7,6 +7,7 @@ This is not stock triton.testing.do_bench. No NCU path is supported.
 from pathlib import Path
 import dis
 import hashlib
+import importlib
 import json
 import math
 import os
@@ -152,16 +153,23 @@ def main():
         args = resolve_stock_call(fn, native)
         return measure_fresh(args, warmup=warmup, rep=rep, torch=torch, native=native)
 
+    original_do_bench = triton.testing.do_bench
     triton.testing.do_bench = fresh_do_bench
+    # Use the same top-level module name as the official ops discovery path.
+    sys.path.insert(0, str(ROOT / 'ops/pytorch'))
+    op_module = importlib.import_module(OP_NAME)
     original_argv = list(sys.argv)
     sys.path.insert(0, str(COLLECTOR.parent))
     sys.argv = [str(COLLECTOR), *argv]
     code = 1
     try:
-        runpy.run_path(str(COLLECTOR), run_name='__main__')
+        with op_module._fresh_timing_scope(triton.testing, fresh_do_bench):
+            runpy.run_path(str(COLLECTOR), run_name='__main__')
     except SystemExit as error:
         code = error.code or 0
     finally:
+        triton.testing.do_bench = original_do_bench
+        sys.argv = original_argv
         output.parent.mkdir(parents=True, exist_ok=True)
         report = dict(method=METHOD, driver=str(Path(__file__).resolve()),
                       driver_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
