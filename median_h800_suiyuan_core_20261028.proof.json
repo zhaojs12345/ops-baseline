@@ -198,5 +198,24 @@
     "h800-current25-v1/staged-source-support.json": "0d83fad1f24248e68e6d41977061d72613d53e69b55129682696c3c4658f703b",
     "h800-current25-v1/terminal-source-proof.json": "ee3c9b4adf49aecd9ea3e5563d6d75fbb36e3e7ba6ada35f8db727408e110656"
   },
-  "publication_commit_is_not_the_measured_source": true
+  "publication_commit_is_not_the_measured_source": true,
+  "target_functional_validation": {
+    "correctness_actual_source": "2017f681855e4bb8dc6047f6bddbd43b6a82a61a",
+    "benchmark_actual_source": "6ae58bef75e41e9833ffe81e4486d31101aaf6d6",
+    "benchmark_loaded_byte_bridge_sha256": "91c1130b4b8a82cf5a6836f5f12f69693eb1f871098ef44ed44f1771cd88d25d",
+    "benchmark_changed_correctness_file_never_loaded_in_all_12_reused_phases": true,
+    "numeric_full_default_and_CPU_passes": 720,
+    "precise_capability_or_existing_skips": 26,
+    "official_dummy_reached": 720,
+    "original_typed_core_list_KGS_dummy_actual": 130,
+    "H800_static_reference_records_consumed_on_SUI": 25,
+    "full_default_kernel_actual_25_preserved": true,
+    "SUI_actual_core_seconds": 1889.8220891952515,
+    "SUI_candidate_native_API_is_CPUfallback_not_independent_GPU_kernel": true,
+    "CPU_oracle_Double_routes_are_functional_self_comparison": true,
+    "context": "/Users/tao/benchmark/context/blocked581-20261027/b13-data-api/median-double-fixture-v1",
+    "final_validation_file": "final-validation-v1.json",
+    "final_validation_sha256": "13408e973e36bcabbb49bbb27cf81a91e44304a353e65e8fd8a1c034739986ef",
+    "independent_reviews": "required separately before publication; not claimed by this author proof"
+  }
 }
