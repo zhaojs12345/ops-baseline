@@ -1,0 +1,231 @@
+{
+  "status": "PASS_VERIFIED_NATIVE_H800_LATENCY_SNAPSHOT",
+  "operator": "mkldnn_rnn_layer",
+  "artifact_sha256": "587c1b79f9952c2d6a54a90a5706871155882c3f21ec1896fc3477b5fd293443",
+  "collection_source_commit": "7d43707757d04910585b0b97f9bdcb56faa1e56e",
+  "source_clean": true,
+  "source_files_checked": 1146,
+  "source_manifest_sha256": "8884358e3a200e39ff7989d9b69fa37d706cfdfe0388a4096c1b5994ce8a1525",
+  "source_before_sha256": "6d78b97849fccd148b3cc7631073d95d216c7c75070684661bd767712ade6a04",
+  "source_after_sha256": "7c21ae5420a05272373a07f58f40d82e2462e5bac660523d91149c045c35a7b2",
+  "source_bundle_sha256": "2d0151846d1672698742389a005fcaa8cfac2c6844de39e4fd8e39fc533ac634",
+  "records": 9,
+  "duration_seconds": 32.223959,
+  "controller_environment": {
+    "NVIDIA_TF32_OVERRIDE": "0",
+    "OMP_NUM_THREADS": "2",
+    "MKL_NUM_THREADS": "2"
+  },
+  "collection_configuration": {
+    "repo": "pytorch",
+    "operators": [
+      "mkldnn_rnn_layer"
+    ],
+    "devices": [
+      "2"
+    ],
+    "ncu_enabled": false,
+    "op_timeout": 3600.0,
+    "reference_chip": "H800",
+    "source_sha256": "cb4bb269c2db4b46e846666714b12097738657d025551166d4d149c6ae9c5be6",
+    "report_dir": null
+  },
+  "actual_environment": {
+    "schema_version": 1,
+    "collected_at_utc": "2026-10-27T09:43:54.851041+00:00",
+    "hardware": {
+      "gpu": {
+        "name": "NVIDIA H800",
+        "uuid": "f71a6457-0dba-3807-5973-e98752701911",
+        "total_memory_bytes": 85017624576,
+        "total_memory_gib": 79.18,
+        "compute_capability": "9.0",
+        "multiprocessor_count": 132,
+        "cuda_device_index": 0,
+        "driver_version": "580.105.08"
+      },
+      "cpu_model": "Intel(R) Xeon(R) Platinum 8468V",
+      "cpu_architecture": "x86_64",
+      "cpu_socket_count": 2,
+      "physical_cpu_core_count": 96,
+      "logical_cpu_count": 192,
+      "cpu_threads_per_core": 2,
+      "numa_node_count": 2,
+      "process_cpu_affinity_count": 192,
+      "hypervisor_vendor": null
+    },
+    "software": {
+      "os": "Linux",
+      "os_release": "5.15.0-78-generic",
+      "machine": "x86_64",
+      "python": "3.12.3",
+      "packages": {
+        "torch": "2.8.0a0+5228986c39.nv25.5",
+        "triton": "3.6.0",
+        "vllm": null,
+        "sglang": null
+      },
+      "torch_cuda_version": "12.9",
+      "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Apr__9_19:24:57_PDT_2025\nCuda compilation tools, release 12.9, V12.9.41\nBuild cuda_12.9.r12.9/compiler.35813241_0",
+      "ncu_version": "NVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2025 NVIDIA Corporation\nVersion 2025.2.0.0 (build 35613519) (public-release)"
+    },
+    "source": {
+      "git_commit": "7d43707757d04910585b0b97f9bdcb56faa1e56e",
+      "git_branch": "HEAD",
+      "git_dirty": false
+    },
+    "run": {
+      "repo": "pytorch",
+      "device": null,
+      "ncu_enabled": false,
+      "report_dir": "/data/tj/workspace/ops-mkldnn-h800-b07-20261027/runs/mkldnn_h800.json.work/mkldnn_rnn_layer/7cfe6b5ff809481fbbe9821566f72993/ncu_reports",
+      "output_path": "/data/tj/workspace/ops-mkldnn-h800-b07-20261027/runs/mkldnn_h800.json.work/mkldnn_rnn_layer/7cfe6b5ff809481fbbe9821566f72993/result.json",
+      "op_timeout_seconds": 3600.0,
+      "reference_chip": "H800",
+      "only": [
+        "mkldnn_rnn_layer"
+      ],
+      "whitelist": null,
+      "blacklist": null,
+      "selected_ops": [
+        "mkldnn_rnn_layer"
+      ],
+      "latency_warmup_ms": 25,
+      "latency_rep_ms": 100,
+      "ncu_warmup_calls": 3
+    },
+    "environment_variables": {
+      "CUDA_VISIBLE_DEVICES": "2",
+      "CUDA_DEVICE_ORDER": null
+    }
+  },
+  "native_controls": {
+    "status": "PASS_NATIVE_TINY_CONTROLS",
+    "head": "7d43707757d04910585b0b97f9bdcb56faa1e56e",
+    "actual_gpu": "NVIDIA H800",
+    "device_uuid": "f71a6457-0dba-3807-5973-e98752701911",
+    "grid": [
+      {
+        "shape": [
+          16,
+          4,
+          32
+        ],
+        "variant": 0
+      },
+      {
+        "shape": [
+          32,
+          8,
+          64
+        ],
+        "variant": 1
+      },
+      {
+        "shape": [
+          64,
+          16,
+          128
+        ],
+        "variant": 2
+      }
+    ],
+    "results": [
+      {
+        "dtype": "torch.float16",
+        "status": "PASS_NATIVE_GPU_COMPOSITION_VS_CPU_ONEDNN",
+        "max_errors": [
+          0.0004928708076477051,
+          0.0001513063907623291,
+          0.0002530217170715332
+        ]
+      },
+      {
+        "dtype": "torch.float32",
+        "status": "PASS_NATIVE_GPU_COMPOSITION_VS_CPU_ONEDNN",
+        "max_errors": [
+          5.960464477539063e-08,
+          2.9802322387695312e-08,
+          8.940696716308594e-08
+        ]
+      },
+      {
+        "dtype": "torch.bfloat16",
+        "status": "PASS_NATIVE_GPU_COMPOSITION_VS_CPU_ONEDNN",
+        "max_errors": [
+          0.0020766407251358032,
+          0.0011800527572631836,
+          0.0026588141918182373
+        ]
+      }
+    ]
+  },
+  "latencies": [
+    {
+      "shape": "16x4x32_case0",
+      "dtype": "torch.float16",
+      "T_us": 3445.905065536499,
+      "latency_ms": 3.445905065536499
+    },
+    {
+      "shape": "16x4x32_case0",
+      "dtype": "torch.float32",
+      "T_us": 1777.015544333548,
+      "latency_ms": 1.777015544333548
+    },
+    {
+      "shape": "16x4x32_case0",
+      "dtype": "torch.bfloat16",
+      "T_us": 1880.3680086135864,
+      "latency_ms": 1.8803680086135863
+    },
+    {
+      "shape": "32x8x64_case1",
+      "dtype": "torch.float16",
+      "T_us": 3837.9097747802734,
+      "latency_ms": 3.8379097747802735
+    },
+    {
+      "shape": "32x8x64_case1",
+      "dtype": "torch.float32",
+      "T_us": 3650.529181515729,
+      "latency_ms": 3.650529181515729
+    },
+    {
+      "shape": "32x8x64_case1",
+      "dtype": "torch.bfloat16",
+      "T_us": 3830.6373357772827,
+      "latency_ms": 3.8306373357772827
+    },
+    {
+      "shape": "64x16x128_case2",
+      "dtype": "torch.float16",
+      "T_us": 7778.000036875407,
+      "latency_ms": 7.778000036875407
+    },
+    {
+      "shape": "64x16x128_case2",
+      "dtype": "torch.float32",
+      "T_us": 7347.278778369609,
+      "latency_ms": 7.34727877836961
+    },
+    {
+      "shape": "64x16x128_case2",
+      "dtype": "torch.bfloat16",
+      "T_us": 7752.786676088969,
+      "latency_ms": 7.752786676088969
+    }
+  ],
+  "reference_implementation": "pytorch_native_lstm_composition",
+  "input_identity": "Original FlagGems core recipe/configuration; independent random payloads, not identical tensors",
+  "ncu_enabled": false,
+  "ncu_note": "No NCU profiling. Legacy zero computation/memory/utilization fields are placeholders and are not measured throughput.",
+  "source_file_hashes": {
+    "ops/pytorch/mkldnn_rnn_layer.py": "0018a5fd32114c40504a7c6a7326d75f5f15b2623446795746a79be81028d8da",
+    "ops/pytorch/_kernelgen/__init__.py": "1b1772d7b91cbb165d55585cd6c38296d45aa37b8c579ac52abe20b8126b7b21",
+    "ops/pytorch/_kernelgen/cases.json": "0ed740af035a5fc39e2d11c30a86b11e8cffa8c1fbdb178f5cf5ee7011c855b9",
+    "tools/collect_baseline_nvidia.py": "1289acb3e86afa259a33ebec718f2e7f82d36dd573708ece143fa16890282ff0",
+    "tools/collect_baseline_multi_gpu.py": "1e9c15ff936722fb033e11d1284e0f4e0d0a6e1fb06ade6a210e475552a67574",
+    "tools/collection_environment.py": "94f2d211f11e19843d74aa10ac66db67839fcd2840f1ac483ae4ea29553fe683"
+  }
+}
