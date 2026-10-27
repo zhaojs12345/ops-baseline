@@ -127,9 +127,24 @@ def main():
     if '--whitelist' in argv or '--blacklist' in argv:
         raise ValueError('No alternative operator filters')
     output = Path(argv[argv.index('--output')+1]).resolve()
+    if '--device' not in argv:
+        raise ValueError('Explicit physical CUDA device is required')
+    device = argv[argv.index('--device')+1]
+    if not device.isdigit():
+        raise ValueError('Expected physical CUDA device index')
+    os.environ['CUDA_VISIBLE_DEVICES'] = device
+    sys.path.insert(0, str(COLLECTOR.parent))
     import torch
     import triton.testing
     native = torch.ops.aten.ldexp_.default
+    from collection_environment import collect_environment
+    environment = collect_environment(torch, dict(
+        repo='pytorch', device=device, ncu_enabled=False, output_path=str(output),
+        only=[OP_NAME], selected_ops=[OP_NAME], official_worker=True,
+        actual_driver_entrypoint=list(sys.argv), latency_method=METHOD,
+        latency_warmup_ms=25, latency_rep_ms=100,
+        budget_unit='accumulated native CUDA-event milliseconds',
+        setup_timed=False, timed_native_api_calls_per_sample=1))
 
     def fresh_do_bench(fn, warmup=25, rep=100, **kwargs):
         if kwargs:
@@ -155,6 +170,8 @@ def main():
                       env={k:os.environ.get(k) for k in ['CUDA_VISIBLE_DEVICES']},
                       official_exit=code, cases=CASE_REPORTS,
                       native_api_calls=sum(x['native_api_calls'] for x in CASE_REPORTS),
+                      call_count_scope='Timed samples only; official unmeasured preflight is separate',
+                      environment_before_measurement=environment,
                       limits=['Untimed clone/equality/sync/ABI checks may dominate walltime.',
                               'Budgets accumulate native CUDA-event milliseconds only.',
                               'No NCU measurement; no stock do_bench claim.'])
@@ -172,6 +189,7 @@ def main():
                   actual_entrypoint=original_argv, ncu_profiled=False,
                   raw_official_sha256=hashlib.sha256(raw).hexdigest(),
                   sample_report=output.with_suffix('.fresh-samples.json').name)
+    artifact['_environment'] = environment
     artifact['_measurement_method'] = method
     for per_dtype in artifact[OP_NAME]['shapes'].values():
         for dtype, record in per_dtype.items():
