@@ -404,6 +404,13 @@ def build_inputs(case, device):
 
 
 def native():
+    # Standard GPU collectors receive only the real ATen callable. Its CUDA
+    # dispatch is absent in this stack, so it cannot time a CPU roundtrip as GPU.
+    return torch._fused_adagrad_
+
+
+def host_native():
+    """Explicit dedicated host entry; CPU-native with target transfers."""
     return cpu_native_transfer
 
 

@@ -176,7 +176,7 @@ def main():
         ]
         torch._fused_adagrad_(*expected, **kwargs)
         readonly = module._adagrad_fingerprint((native_input[1], native_input[3]))
-        module.native()(*native_input, **kwargs)
+        module.host_native()(*native_input, **kwargs)
         for index in (0, 2):
             torch.testing.assert_close(
                 native_input[index][0].cpu(), expected[index][0], rtol=1e-5, atol=1e-5
@@ -197,7 +197,7 @@ def main():
         gc.collect()
         boundary = sample_idle(args.physical_device)
         measured = module._adagrad_host_samples(
-            module.native(), built, kwargs, torch.cuda.synchronize
+            module.host_native(), built, kwargs, torch.cuda.synchronize
         )
         case_id = f"benchmark/test_fused_adagrad_.py::test_fused_adagrad_::core::float32::{ordinal}"
         records.append(
