@@ -6,6 +6,7 @@ Seed, shape, dtype, dimensions and keepdim follow benchmark/test_median.py.
 import torch
 from _kernelgen import generate_tensor_input
 OP_NAME = 'median'
+IS_INPLACE = False
 DTYPES = [torch.float16, torch.float32, torch.bfloat16, torch.int16, torch.int32]
 _BINDINGS = [{'shape': [2], 'params': {}}, {'shape': [64], 'params': {}}, {'shape': [65], 'params': {}}, {'shape': [128], 'params': {}}, {'shape': [256], 'params': {}}, {'shape': [257], 'params': {}}, {'shape': [1024], 'params': {}}, {'shape': [4096], 'params': {}}, {'shape': [4, 8, 16, 8], 'params': {}}]
 
