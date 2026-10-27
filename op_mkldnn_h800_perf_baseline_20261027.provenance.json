@@ -1,7 +1,7 @@
 {
   "status": "PASS_VERIFIED_NATIVE_H800_LATENCY_SNAPSHOT",
   "operator": "mkldnn_rnn_layer",
-  "artifact_sha256": "587c1b79f9952c2d6a54a90a5706871155882c3f21ec1896fc3477b5fd293443",
+  "artifact_sha256": "d772003ca5b79cbdcb3eaccf679b5d8d03c0ba9c22f5c6d0a7171c9868e6f45c",
   "collection_source_commit": "7d43707757d04910585b0b97f9bdcb56faa1e56e",
   "source_clean": true,
   "source_files_checked": 1146,
@@ -219,7 +219,7 @@
   "reference_implementation": "pytorch_native_lstm_composition",
   "input_identity": "Original FlagGems core recipe/configuration; independent random payloads, not identical tensors",
   "ncu_enabled": false,
-  "ncu_note": "No NCU profiling. Legacy zero computation/memory/utilization fields are placeholders and are not measured throughput.",
+  "ncu_note": "No NCU profiling. Published records omit all uncollected FLOP/memory/utilization/kernel-count placeholder fields; raw reports remain preserved.",
   "source_file_hashes": {
     "ops/pytorch/mkldnn_rnn_layer.py": "0018a5fd32114c40504a7c6a7326d75f5f15b2623446795746a79be81028d8da",
     "ops/pytorch/_kernelgen/__init__.py": "1b1772d7b91cbb165d55585cd6c38296d45aa37b8c579ac52abe20b8126b7b21",
@@ -227,5 +227,12 @@
     "tools/collect_baseline_nvidia.py": "1289acb3e86afa259a33ebec718f2e7f82d36dd573708ece143fa16890282ff0",
     "tools/collect_baseline_multi_gpu.py": "1e9c15ff936722fb033e11d1284e0f4e0d0a6e1fb06ade6a210e475552a67574",
     "tools/collection_environment.py": "94f2d211f11e19843d74aa10ac66db67839fcd2840f1ac483ae4ea29553fe683"
-  }
+  },
+  "raw_artifact_sha256": "587c1b79f9952c2d6a54a90a5706871155882c3f21ec1896fc3477b5fd293443",
+  "raw_record_fields_preserved": [
+    "config",
+    "T_us",
+    "latency_ms"
+  ],
+  "uncollected_profiling_fields_omitted": true
 }

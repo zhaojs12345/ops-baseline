@@ -213,27 +213,11 @@
           },
           "T_us": 3445.905065536499,
           "latency_ms": 3.445905065536499,
-          "F_cuda": 0.0,
-          "F_tensor": 0.0,
-          "B_mem": 0.0,
-          "U_cuda": 0.0,
-          "U_tensor": 0.0,
-          "U_mem": 0.0,
-          "U_bottle_neck": 0.0,
-          "bottle_neck_unit": null,
-          "num_kernels": 0,
-          "per_kernel": [],
-          "flops_cuda_core": 0.0,
-          "flops_tensor_core": 0.0,
-          "memory_bytes": 0.0,
-          "util_cuda_core": 0.0,
-          "util_tensor_core": 0.0,
-          "util_memory_bw": 0.0,
-          "bottleneck": null,
-          "bottleneck_util": 0.0,
-          "cuda_flops": 0.0,
-          "sm_utilization": 0.0,
-          "report_path": null
+          "metric_validity": {
+            "T_us": "measured",
+            "latency_ms": "measured",
+            "profiling": "not_collected_no_ncu"
+          }
         },
         "torch.float32": {
           "config": {
@@ -345,27 +329,11 @@
           },
           "T_us": 1777.015544333548,
           "latency_ms": 1.777015544333548,
-          "F_cuda": 0.0,
-          "F_tensor": 0.0,
-          "B_mem": 0.0,
-          "U_cuda": 0.0,
-          "U_tensor": 0.0,
-          "U_mem": 0.0,
-          "U_bottle_neck": 0.0,
-          "bottle_neck_unit": null,
-          "num_kernels": 0,
-          "per_kernel": [],
-          "flops_cuda_core": 0.0,
-          "flops_tensor_core": 0.0,
-          "memory_bytes": 0.0,
-          "util_cuda_core": 0.0,
-          "util_tensor_core": 0.0,
-          "util_memory_bw": 0.0,
-          "bottleneck": null,
-          "bottleneck_util": 0.0,
-          "cuda_flops": 0.0,
-          "sm_utilization": 0.0,
-          "report_path": null
+          "metric_validity": {
+            "T_us": "measured",
+            "latency_ms": "measured",
+            "profiling": "not_collected_no_ncu"
+          }
         },
         "torch.bfloat16": {
           "config": {
@@ -477,27 +445,11 @@
           },
           "T_us": 1880.3680086135864,
           "latency_ms": 1.8803680086135863,
-          "F_cuda": 0.0,
-          "F_tensor": 0.0,
-          "B_mem": 0.0,
-          "U_cuda": 0.0,
-          "U_tensor": 0.0,
-          "U_mem": 0.0,
-          "U_bottle_neck": 0.0,
-          "bottle_neck_unit": null,
-          "num_kernels": 0,
-          "per_kernel": [],
-          "flops_cuda_core": 0.0,
-          "flops_tensor_core": 0.0,
-          "memory_bytes": 0.0,
-          "util_cuda_core": 0.0,
-          "util_tensor_core": 0.0,
-          "util_memory_bw": 0.0,
-          "bottleneck": null,
-          "bottleneck_util": 0.0,
-          "cuda_flops": 0.0,
-          "sm_utilization": 0.0,
-          "report_path": null
+          "metric_validity": {
+            "T_us": "measured",
+            "latency_ms": "measured",
+            "profiling": "not_collected_no_ncu"
+          }
         }
       },
       "32x8x64_case1": {
@@ -611,27 +563,11 @@
           },
           "T_us": 3837.9097747802734,
           "latency_ms": 3.8379097747802735,
-          "F_cuda": 0.0,
-          "F_tensor": 0.0,
-          "B_mem": 0.0,
-          "U_cuda": 0.0,
-          "U_tensor": 0.0,
-          "U_mem": 0.0,
-          "U_bottle_neck": 0.0,
-          "bottle_neck_unit": null,
-          "num_kernels": 0,
-          "per_kernel": [],
-          "flops_cuda_core": 0.0,
-          "flops_tensor_core": 0.0,
-          "memory_bytes": 0.0,
-          "util_cuda_core": 0.0,
-          "util_tensor_core": 0.0,
-          "util_memory_bw": 0.0,
-          "bottleneck": null,
-          "bottleneck_util": 0.0,
-          "cuda_flops": 0.0,
-          "sm_utilization": 0.0,
-          "report_path": null
+          "metric_validity": {
+            "T_us": "measured",
+            "latency_ms": "measured",
+            "profiling": "not_collected_no_ncu"
+          }
         },
         "torch.float32": {
           "config": {
@@ -743,27 +679,11 @@
           },
           "T_us": 3650.529181515729,
           "latency_ms": 3.650529181515729,
-          "F_cuda": 0.0,
-          "F_tensor": 0.0,
-          "B_mem": 0.0,
-          "U_cuda": 0.0,
-          "U_tensor": 0.0,
-          "U_mem": 0.0,
-          "U_bottle_neck": 0.0,
-          "bottle_neck_unit": null,
-          "num_kernels": 0,
-          "per_kernel": [],
-          "flops_cuda_core": 0.0,
-          "flops_tensor_core": 0.0,
-          "memory_bytes": 0.0,
-          "util_cuda_core": 0.0,
-          "util_tensor_core": 0.0,
-          "util_memory_bw": 0.0,
-          "bottleneck": null,
-          "bottleneck_util": 0.0,
-          "cuda_flops": 0.0,
-          "sm_utilization": 0.0,
-          "report_path": null
+          "metric_validity": {
+            "T_us": "measured",
+            "latency_ms": "measured",
+            "profiling": "not_collected_no_ncu"
+          }
         },
         "torch.bfloat16": {
           "config": {
@@ -875,27 +795,11 @@
           },
           "T_us": 3830.6373357772827,
           "latency_ms": 3.8306373357772827,
-          "F_cuda": 0.0,
-          "F_tensor": 0.0,
-          "B_mem": 0.0,
-          "U_cuda": 0.0,
-          "U_tensor": 0.0,
-          "U_mem": 0.0,
-          "U_bottle_neck": 0.0,
-          "bottle_neck_unit": null,
-          "num_kernels": 0,
-          "per_kernel": [],
-          "flops_cuda_core": 0.0,
-          "flops_tensor_core": 0.0,
-          "memory_bytes": 0.0,
-          "util_cuda_core": 0.0,
-          "util_tensor_core": 0.0,
-          "util_memory_bw": 0.0,
-          "bottleneck": null,
-          "bottleneck_util": 0.0,
-          "cuda_flops": 0.0,
-          "sm_utilization": 0.0,
-          "report_path": null
+          "metric_validity": {
+            "T_us": "measured",
+            "latency_ms": "measured",
+            "profiling": "not_collected_no_ncu"
+          }
         }
       },
       "64x16x128_case2": {
@@ -1009,27 +913,11 @@
           },
           "T_us": 7778.000036875407,
           "latency_ms": 7.778000036875407,
-          "F_cuda": 0.0,
-          "F_tensor": 0.0,
-          "B_mem": 0.0,
-          "U_cuda": 0.0,
-          "U_tensor": 0.0,
-          "U_mem": 0.0,
-          "U_bottle_neck": 0.0,
-          "bottle_neck_unit": null,
-          "num_kernels": 0,
-          "per_kernel": [],
-          "flops_cuda_core": 0.0,
-          "flops_tensor_core": 0.0,
-          "memory_bytes": 0.0,
-          "util_cuda_core": 0.0,
-          "util_tensor_core": 0.0,
-          "util_memory_bw": 0.0,
-          "bottleneck": null,
-          "bottleneck_util": 0.0,
-          "cuda_flops": 0.0,
-          "sm_utilization": 0.0,
-          "report_path": null
+          "metric_validity": {
+            "T_us": "measured",
+            "latency_ms": "measured",
+            "profiling": "not_collected_no_ncu"
+          }
         },
         "torch.float32": {
           "config": {
@@ -1141,27 +1029,11 @@
           },
           "T_us": 7347.278778369609,
           "latency_ms": 7.34727877836961,
-          "F_cuda": 0.0,
-          "F_tensor": 0.0,
-          "B_mem": 0.0,
-          "U_cuda": 0.0,
-          "U_tensor": 0.0,
-          "U_mem": 0.0,
-          "U_bottle_neck": 0.0,
-          "bottle_neck_unit": null,
-          "num_kernels": 0,
-          "per_kernel": [],
-          "flops_cuda_core": 0.0,
-          "flops_tensor_core": 0.0,
-          "memory_bytes": 0.0,
-          "util_cuda_core": 0.0,
-          "util_tensor_core": 0.0,
-          "util_memory_bw": 0.0,
-          "bottleneck": null,
-          "bottleneck_util": 0.0,
-          "cuda_flops": 0.0,
-          "sm_utilization": 0.0,
-          "report_path": null
+          "metric_validity": {
+            "T_us": "measured",
+            "latency_ms": "measured",
+            "profiling": "not_collected_no_ncu"
+          }
         },
         "torch.bfloat16": {
           "config": {
@@ -1273,27 +1145,11 @@
           },
           "T_us": 7752.786676088969,
           "latency_ms": 7.752786676088969,
-          "F_cuda": 0.0,
-          "F_tensor": 0.0,
-          "B_mem": 0.0,
-          "U_cuda": 0.0,
-          "U_tensor": 0.0,
-          "U_mem": 0.0,
-          "U_bottle_neck": 0.0,
-          "bottle_neck_unit": null,
-          "num_kernels": 0,
-          "per_kernel": [],
-          "flops_cuda_core": 0.0,
-          "flops_tensor_core": 0.0,
-          "memory_bytes": 0.0,
-          "util_cuda_core": 0.0,
-          "util_tensor_core": 0.0,
-          "util_memory_bw": 0.0,
-          "bottleneck": null,
-          "bottleneck_util": 0.0,
-          "cuda_flops": 0.0,
-          "sm_utilization": 0.0,
-          "report_path": null
+          "metric_validity": {
+            "T_us": "measured",
+            "latency_ms": "measured",
+            "profiling": "not_collected_no_ncu"
+          }
         }
       }
     }
@@ -1368,13 +1224,13 @@
     }
   },
   "_scaling_factors": {
-    "_note": "factor = vendor_peak / H800_peak；null 表示分子或分母缺失；nominal/measured 各一套。供 flaggems-vllm 跨芯片归一化对比使用。",
+    "_note": "factor = vendor_peak / H800_peak\uff1bnull \u8868\u793a\u5206\u5b50\u6216\u5206\u6bcd\u7f3a\u5931\uff1bnominal/measured \u5404\u4e00\u5957\u3002\u4f9b flaggems-vllm \u8de8\u82af\u7247\u5f52\u4e00\u5316\u5bf9\u6bd4\u4f7f\u7528\u3002",
     "reference_chip": "H800",
     "source_specs": "hardware_specs.json",
     "chips": [
       {
         "vendor": "nvidia",
-        "vendor_zh": "英伟达",
+        "vendor_zh": "\u82f1\u4f1f\u8fbe",
         "chip": "H800",
         "nominal": {
           "bandwidth_gbps": 1.0,
@@ -1419,7 +1275,7 @@
       },
       {
         "vendor": "nvidia",
-        "vendor_zh": "英伟达",
+        "vendor_zh": "\u82f1\u4f1f\u8fbe",
         "chip": "H100",
         "nominal": {
           "bandwidth_gbps": 1.0,
@@ -1464,7 +1320,7 @@
       },
       {
         "vendor": "t-head",
-        "vendor_zh": "平头哥",
+        "vendor_zh": "\u5e73\u5934\u54e5",
         "chip": "PPU-ZW810E",
         "nominal": {
           "bandwidth_gbps": null,
@@ -1509,7 +1365,7 @@
       },
       {
         "vendor": "t-head",
-        "vendor_zh": "平头哥",
+        "vendor_zh": "\u5e73\u5934\u54e5",
         "chip": "m890",
         "nominal": {
           "bandwidth_gbps": null,
@@ -1554,7 +1410,7 @@
       },
       {
         "vendor": "enflame",
-        "vendor_zh": "燧原",
+        "vendor_zh": "\u71e7\u539f",
         "chip": "S60",
         "nominal": {
           "bandwidth_gbps": 0.200597,
@@ -1599,7 +1455,7 @@
       },
       {
         "vendor": "ascend",
-        "vendor_zh": "华为",
+        "vendor_zh": "\u534e\u4e3a",
         "chip": "Atlas 800T A3",
         "nominal": {
           "bandwidth_gbps": null,
@@ -1644,7 +1500,7 @@
       },
       {
         "vendor": "metax",
-        "vendor_zh": "沐曦",
+        "vendor_zh": "\u6c90\u66e6",
         "chip": "C550",
         "nominal": {
           "bandwidth_gbps": 0.537313,
@@ -1689,7 +1545,7 @@
       },
       {
         "vendor": "kunlunxin",
-        "vendor_zh": "昆仑芯",
+        "vendor_zh": "\u6606\u4ed1\u82af",
         "chip": "P900",
         "nominal": {
           "bandwidth_gbps": 0.776119,
@@ -1734,7 +1590,7 @@
       },
       {
         "vendor": "kunlunxin",
-        "vendor_zh": "昆仑芯",
+        "vendor_zh": "\u6606\u4ed1\u82af",
         "chip": "P800",
         "nominal": {
           "bandwidth_gbps": null,
@@ -1779,7 +1635,7 @@
       },
       {
         "vendor": "mthreads",
-        "vendor_zh": "摩尔",
+        "vendor_zh": "\u6469\u5c14",
         "chip": "MTT-S5000",
         "nominal": {
           "bandwidth_gbps": 0.477612,
@@ -1824,7 +1680,7 @@
       },
       {
         "vendor": "hygon",
-        "vendor_zh": "海光",
+        "vendor_zh": "\u6d77\u5149",
         "chip": "BW1000",
         "nominal": {
           "bandwidth_gbps": 0.537313,
@@ -1869,7 +1725,7 @@
       },
       {
         "vendor": "iluvatar",
-        "vendor_zh": "天数",
+        "vendor_zh": "\u5929\u6570",
         "chip": "BI-V150",
         "nominal": {
           "bandwidth_gbps": 0.477612,
@@ -1914,7 +1770,7 @@
       },
       {
         "vendor": "tsingmicro",
-        "vendor_zh": "清微智能",
+        "vendor_zh": "\u6e05\u5fae\u667a\u80fd",
         "chip": "TX8110",
         "nominal": {
           "bandwidth_gbps": null,
@@ -1959,7 +1815,7 @@
       },
       {
         "vendor": "tsingmicro",
-        "vendor_zh": "清微智能",
+        "vendor_zh": "\u6e05\u5fae\u667a\u80fd",
         "chip": "REX1032",
         "nominal": {
           "bandwidth_gbps": 0.238806,
@@ -2004,7 +1860,7 @@
       },
       {
         "vendor": "cambricon",
-        "vendor_zh": "寒武纪",
+        "vendor_zh": "\u5bd2\u6b66\u7eaa",
         "chip": "MLU590-M9DE",
         "nominal": {
           "bandwidth_gbps": 0.671642,
@@ -2048,5 +1904,14 @@
         }
       }
     ]
+  },
+  "_mkldnn_latency_snapshot": {
+    "schema_version": 1,
+    "kind": "published_latency_only_snapshot_not_resume_input",
+    "raw_snapshot_sha256": "587c1b79f9952c2d6a54a90a5706871155882c3f21ec1896fc3477b5fd293443",
+    "collection_source_revision": "7d43707757d04910585b0b97f9bdcb56faa1e56e",
+    "records": 9,
+    "uncollected_profiling_fields_omitted": true,
+    "input_identity": "Original configuration/recipe; independent random tensor payloads"
   }
 }
