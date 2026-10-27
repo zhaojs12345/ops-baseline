@@ -1,0 +1,125 @@
+{
+  "status": "PASS_REAL_NATIVE_H800_EXACT_PROFILE_15_AND_FIVE_TARGET_FUNCTIONAL_GATES_PENDING_PEER_REVIEWS",
+  "artifact": "op_pytorch_h800_aminmax_direct_core_20261028.json",
+  "artifact_sha256": "d418916c6a8c345eb368aad18b9847deec45c34ceb9553f34ce410c3f2d4ab7c",
+  "canonical_operator": "_aminmax",
+  "profile": "direct",
+  "measured_source_commit": "1a60bee68368cbdb2f5ada69796302c2fffeb583",
+  "producer_module_sha256": "e0d3bbba3ce9fa19aadb98f925c037a0175e3e7b0e1cd6bd8782ac496fe192c6",
+  "completed_native_records": 15,
+  "selector": {
+    "OPS_BASELINE_AMINMAX_CORE_PROFILE": "direct"
+  },
+  "physical_gpu": 4,
+  "environment": {
+    "schema_version": 1,
+    "collected_at_utc": "2026-10-27T21:26:00.452423+00:00",
+    "hardware": {
+      "gpu": {
+        "name": "NVIDIA H800",
+        "uuid": "fd660a7d-352c-6699-9e93-74c8ea136095",
+        "total_memory_bytes": 85017624576,
+        "total_memory_gib": 79.18,
+        "compute_capability": "9.0",
+        "multiprocessor_count": 132,
+        "cuda_device_index": 0,
+        "driver_version": "580.105.08"
+      },
+      "cpu_model": "Intel(R) Xeon(R) Platinum 8468V",
+      "cpu_architecture": "x86_64",
+      "cpu_socket_count": 2,
+      "physical_cpu_core_count": 96,
+      "logical_cpu_count": 192,
+      "cpu_threads_per_core": 2,
+      "numa_node_count": 2,
+      "process_cpu_affinity_count": 192,
+      "hypervisor_vendor": null
+    },
+    "software": {
+      "os": "Linux",
+      "os_release": "5.15.0-78-generic",
+      "machine": "x86_64",
+      "python": "3.12.3",
+      "packages": {
+        "torch": "2.8.0a0+5228986c39.nv25.5",
+        "triton": "3.6.0",
+        "vllm": null,
+        "sglang": null
+      },
+      "torch_cuda_version": "12.9",
+      "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Apr__9_19:24:57_PDT_2025\nCuda compilation tools, release 12.9, V12.9.41\nBuild cuda_12.9.r12.9/compiler.35813241_0",
+      "ncu_version": "NVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2025 NVIDIA Corporation\nVersion 2025.2.0.0 (build 35613519) (public-release)"
+    },
+    "source": {
+      "git_commit": "1a60bee68368cbdb2f5ada69796302c2fffeb583",
+      "git_branch": "HEAD",
+      "git_dirty": false
+    },
+    "run": {
+      "repo": "pytorch",
+      "device": null,
+      "ncu_enabled": false,
+      "report_dir": "/data/tj/workspace/blocked581-b16-aminmax-h800-v1-20261028/attempt-v1/direct/aminmax-direct-h800.json.work/_aminmax/07be7488ee024c0b9175f6213cb99178/ncu_reports",
+      "output_path": "/data/tj/workspace/blocked581-b16-aminmax-h800-v1-20261028/attempt-v1/direct/aminmax-direct-h800.json.work/_aminmax/07be7488ee024c0b9175f6213cb99178/result.json",
+      "op_timeout_seconds": 600.0,
+      "reference_chip": "H800",
+      "only": [
+        "_aminmax"
+      ],
+      "whitelist": null,
+      "blacklist": null,
+      "selected_ops": [
+        "_aminmax"
+      ],
+      "latency_warmup_ms": 25,
+      "latency_rep_ms": 100,
+      "ncu_warmup_calls": 3
+    },
+    "environment_variables": {
+      "CUDA_VISIBLE_DEVICES": "4",
+      "CUDA_DEVICE_ORDER": null
+    }
+  },
+  "source_controls": {
+    "legacy_full": 15,
+    "shared_full": 15,
+    "direct_full": 15,
+    "original_source_and_producer_all_input_and_tuple_output_values_CPU_CUDA_RNG_ABI_equal": true,
+    "CPU64_all_elements_chunk_control": "trusted same native private API CPU reduction, not independently derived mathematical formula",
+    "original_actual_SUI_catalog_complete30_typed_node_shape_dtype_params_and_case_ID_Counter_equal": true
+  },
+  "clean_measured_source_files": 1146,
+  "interference": {
+    "selected_gpu_stable_idle_before": true,
+    "foreign_holders_during": false,
+    "after_no_holder": true,
+    "no_stop_or_reset": true
+  },
+  "ncu": "--no-ncu: zero NCU fields are unmeasured, not measured zero utilization",
+  "profile_separation": "shared preserves original unseeded input and direct preserves original manual_seed(0); each entire 15-case profile, input mapping, native private API, tuple2 scalar ABI and source/timer/RNG config must match; artifacts must not be interchanged even at common shapes.",
+  "current_grid_origin": "FlagGems 2ff0931a646b97ec98ebd50642b5889619125a6b actual SUI core catalog, SHA 60dc0cd4f40196f55896fbe35694d05c2ce08a10aa690996c58ac0583e579f74",
+  "final_flaggems_integration_source": "514b0bb052228d2fe16486ffe84b9b513d49d2b8",
+  "final_target_gate_summary": {
+    "source": "514b0bb052228d2fe16486ffe84b9b513d49d2b8",
+    "numeric_passed": 1302,
+    "official_dummy_reached": 1302,
+    "default_only_DoubleNaN_skips": 18,
+    "CPU_reference_skips": 0,
+    "original_catalog_realKGS_core_dummy_actual": 138,
+    "actual_positive_candidate_reference_fields": 276,
+    "actual_candidate_calls": 2079,
+    "loaded_source_hash_observations": 58363,
+    "actual_private_environment_receipts": 9
+  },
+  "SUI_actual_profile": {
+    "physical_gpu": 5,
+    "case_count": 15
+  },
+  "SUI_profile_union": "original30 case IDs exactly unique; each separate original benchmark file executed with marker underscore_aminmax, level core, default kernel mode, warmup0/iter1 and its own static artifact",
+  "target_timing_qualification": "Functional harness executability under shared workloads only, not a formal target performance baseline. Enflame original private API physically CPU-falls-back plus copies, disclosed; H800 artifact is genuine native NVIDIA reference.",
+  "CPU_oracle_limit": "Ref-as-candidate bootstrap and same-API CPU controls do not independently prove a generated candidate kernel.",
+  "peer_review_status": "Pending two independent reviews; do not merge",
+  "raw_evidence_root": "context/blocked581-20261027/b16-native-pooling-reduction/repair-three-v1/aminmax-static-plan-v1/h800-formal-v1",
+  "H800_audit_sha256": "3b64f40eaf49771980a42d2ef727c580a1e83ca5f08fc1df2c50d0c9b63cdf1a",
+  "target_audit_sha256": "8543cdbcf981c3c2f69a6f99ddec0f992c90625811a8ec275987298e2e834dd9"
+}
