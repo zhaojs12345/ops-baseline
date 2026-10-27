@@ -16,7 +16,7 @@ def _build_inputs_fn(plan, dtype, device):
 from types import SimpleNamespace
 OP_NAME = 'b03_activation_out'
 DTYPES = [torch.float16, torch.float32, torch.bfloat16]
-IS_INPLACE = False
+IS_INPLACE = True
 def native():
     return torch.ops.aten._addmm_activation.out
 def grid():

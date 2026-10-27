@@ -15,7 +15,7 @@ def _input_fn_out(b, m, n, k, dtype, device, b_column_major):
 from types import SimpleNamespace
 OP_NAME = 'b03_activation_out_legacy'
 DTYPES = [torch.float16, torch.float32, torch.bfloat16]
-IS_INPLACE = False
+IS_INPLACE = True
 def native():
     return torch._addmm_activation
 def grid():
