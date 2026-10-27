@@ -9,10 +9,10 @@
     "named_benchmark_constructors": 1805,
     "unique_benchmark_names": 1694,
     "operator_config_ids": 1443,
-    "added_operators": 813,
+    "added_operators": 816,
     "existing_silu": 1,
-    "added_descriptors": 5229,
-    "pending_records": 1085,
+    "added_descriptors": 5244,
+    "pending_records": 1082,
     "pending_categories": {
       "custom_input_or_state": 393,
       "host_or_no_kernel": 96,
@@ -27,7 +27,7 @@
       "opaque_input_metadata": 1,
       "invalid_upstream_input": 1,
       "timing_boundary": 1,
-      "missing_benchmark_geometry": 93
+      "missing_benchmark_geometry": 90
     }
   },
   "dtype_exclusions": {
@@ -9090,31 +9090,13 @@
       "category": "missing_benchmark_geometry"
     },
     {
-      "op": "float_power_scalar_tensor_out",
-      "source_file": "conf/operators.yaml",
-      "reason": "No named benchmark constructor found in the pinned snapshot; representative performance geometry/API mapping still needs a decision.",
-      "category": "missing_benchmark_geometry"
-    },
-    {
       "op": "float_power_tensor_scalar",
       "source_file": "conf/operators.yaml",
       "reason": "No named benchmark constructor found in the pinned snapshot; representative performance geometry/API mapping still needs a decision.",
       "category": "missing_benchmark_geometry"
     },
     {
-      "op": "float_power_tensor_scalar_out",
-      "source_file": "conf/operators.yaml",
-      "reason": "No named benchmark constructor found in the pinned snapshot; representative performance geometry/API mapping still needs a decision.",
-      "category": "missing_benchmark_geometry"
-    },
-    {
       "op": "float_power_tensor_tensor",
-      "source_file": "conf/operators.yaml",
-      "reason": "No named benchmark constructor found in the pinned snapshot; representative performance geometry/API mapping still needs a decision.",
-      "category": "missing_benchmark_geometry"
-    },
-    {
-      "op": "float_power_tensor_tensor_out",
       "source_file": "conf/operators.yaml",
       "reason": "No named benchmark constructor found in the pinned snapshot; representative performance geometry/API mapping still needs a decision.",
       "category": "missing_benchmark_geometry"
@@ -10584,6 +10566,24 @@
       "source_commit": "9d57a23b4386bd669152a935fe88a96db907da7c",
       "scope": "core",
       "note": "Native CUDA recipe; sparse_mask fixes the sampled mask with explicit replay identity"
+    },
+    {
+      "op": "float_power_scalar_tensor_out",
+      "source_commit": "9d57a23b4386bd669152a935fe88a96db907da7c",
+      "scope": "core",
+      "note": "Verified existing helper-dispatched _run_benchmark source: unseeded 5-shape/3-dtype Double out; no parser change."
+    },
+    {
+      "op": "float_power_tensor_scalar_out",
+      "source_commit": "9d57a23b4386bd669152a935fe88a96db907da7c",
+      "scope": "core",
+      "note": "Verified existing helper-dispatched _run_benchmark source: unseeded 5-shape/3-dtype Double out; no parser change."
+    },
+    {
+      "op": "float_power_tensor_tensor_out",
+      "source_commit": "9d57a23b4386bd669152a935fe88a96db907da7c",
+      "scope": "core",
+      "note": "Verified existing helper-dispatched _run_benchmark source: unseeded 5-shape/3-dtype Double out; no parser change."
     }
   ]
 }
