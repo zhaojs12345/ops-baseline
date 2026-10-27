@@ -148,28 +148,7 @@
             "reference_implementation": "pytorch_native_operator"
           },
           "T_us": 110.23427342113695,
-          "latency_ms": 0.11023427342113695,
-          "F_cuda": 0.0,
-          "F_tensor": 0.0,
-          "B_mem": 0.0,
-          "U_cuda": 0.0,
-          "U_tensor": 0.0,
-          "U_mem": 0.0,
-          "U_bottle_neck": 0.0,
-          "bottle_neck_unit": null,
-          "num_kernels": 0,
-          "per_kernel": [],
-          "flops_cuda_core": 0.0,
-          "flops_tensor_core": 0.0,
-          "memory_bytes": 0.0,
-          "util_cuda_core": 0.0,
-          "util_tensor_core": 0.0,
-          "util_memory_bw": 0.0,
-          "bottleneck": null,
-          "bottleneck_util": 0.0,
-          "cuda_flops": 0.0,
-          "sm_utilization": 0.0,
-          "report_path": null
+          "latency_ms": 0.11023427342113695
         }
       },
       "256x256": {
@@ -218,28 +197,7 @@
             "reference_implementation": "pytorch_native_operator"
           },
           "T_us": 420.80080689805925,
-          "latency_ms": 0.42080080689805927,
-          "F_cuda": 0.0,
-          "F_tensor": 0.0,
-          "B_mem": 0.0,
-          "U_cuda": 0.0,
-          "U_tensor": 0.0,
-          "U_mem": 0.0,
-          "U_bottle_neck": 0.0,
-          "bottle_neck_unit": null,
-          "num_kernels": 0,
-          "per_kernel": [],
-          "flops_cuda_core": 0.0,
-          "flops_tensor_core": 0.0,
-          "memory_bytes": 0.0,
-          "util_cuda_core": 0.0,
-          "util_tensor_core": 0.0,
-          "util_memory_bw": 0.0,
-          "bottleneck": null,
-          "bottleneck_util": 0.0,
-          "cuda_flops": 0.0,
-          "sm_utilization": 0.0,
-          "report_path": null
+          "latency_ms": 0.42080080689805927
         }
       },
       "512x512": {
@@ -288,28 +246,7 @@
             "reference_implementation": "pytorch_native_operator"
           },
           "T_us": 952.5276670853297,
-          "latency_ms": 0.9525276670853297,
-          "F_cuda": 0.0,
-          "F_tensor": 0.0,
-          "B_mem": 0.0,
-          "U_cuda": 0.0,
-          "U_tensor": 0.0,
-          "U_mem": 0.0,
-          "U_bottle_neck": 0.0,
-          "bottle_neck_unit": null,
-          "num_kernels": 0,
-          "per_kernel": [],
-          "flops_cuda_core": 0.0,
-          "flops_tensor_core": 0.0,
-          "memory_bytes": 0.0,
-          "util_cuda_core": 0.0,
-          "util_tensor_core": 0.0,
-          "util_memory_bw": 0.0,
-          "bottleneck": null,
-          "bottleneck_util": 0.0,
-          "cuda_flops": 0.0,
-          "sm_utilization": 0.0,
-          "report_path": null
+          "latency_ms": 0.9525276670853297
         }
       },
       "1024x1024": {
@@ -358,28 +295,7 @@
             "reference_implementation": "pytorch_native_operator"
           },
           "T_us": 2044.8173854662027,
-          "latency_ms": 2.0448173854662026,
-          "F_cuda": 0.0,
-          "F_tensor": 0.0,
-          "B_mem": 0.0,
-          "U_cuda": 0.0,
-          "U_tensor": 0.0,
-          "U_mem": 0.0,
-          "U_bottle_neck": 0.0,
-          "bottle_neck_unit": null,
-          "num_kernels": 0,
-          "per_kernel": [],
-          "flops_cuda_core": 0.0,
-          "flops_tensor_core": 0.0,
-          "memory_bytes": 0.0,
-          "util_cuda_core": 0.0,
-          "util_tensor_core": 0.0,
-          "util_memory_bw": 0.0,
-          "bottleneck": null,
-          "bottleneck_util": 0.0,
-          "cuda_flops": 0.0,
-          "sm_utilization": 0.0,
-          "report_path": null
+          "latency_ms": 2.0448173854662026
         }
       },
       "8x128x128": {
@@ -431,28 +347,7 @@
             "reference_implementation": "pytorch_native_operator"
           },
           "T_us": 284.36947583712333,
-          "latency_ms": 0.28436947583712335,
-          "F_cuda": 0.0,
-          "F_tensor": 0.0,
-          "B_mem": 0.0,
-          "U_cuda": 0.0,
-          "U_tensor": 0.0,
-          "U_mem": 0.0,
-          "U_bottle_neck": 0.0,
-          "bottle_neck_unit": null,
-          "num_kernels": 0,
-          "per_kernel": [],
-          "flops_cuda_core": 0.0,
-          "flops_tensor_core": 0.0,
-          "memory_bytes": 0.0,
-          "util_cuda_core": 0.0,
-          "util_tensor_core": 0.0,
-          "util_memory_bw": 0.0,
-          "bottleneck": null,
-          "bottleneck_util": 0.0,
-          "cuda_flops": 0.0,
-          "sm_utilization": 0.0,
-          "report_path": null
+          "latency_ms": 0.28436947583712335
         }
       }
     }
@@ -527,13 +422,13 @@
     }
   },
   "_scaling_factors": {
-    "_note": "factor = vendor_peak / H800_peak；null 表示分子或分母缺失；nominal/measured 各一套。供 flaggems-vllm 跨芯片归一化对比使用。",
+    "_note": "factor = vendor_peak / H800_peak\uff1bnull \u8868\u793a\u5206\u5b50\u6216\u5206\u6bcd\u7f3a\u5931\uff1bnominal/measured \u5404\u4e00\u5957\u3002\u4f9b flaggems-vllm \u8de8\u82af\u7247\u5f52\u4e00\u5316\u5bf9\u6bd4\u4f7f\u7528\u3002",
     "reference_chip": "H800",
     "source_specs": "hardware_specs.json",
     "chips": [
       {
         "vendor": "nvidia",
-        "vendor_zh": "英伟达",
+        "vendor_zh": "\u82f1\u4f1f\u8fbe",
         "chip": "H800",
         "nominal": {
           "bandwidth_gbps": 1.0,
@@ -578,7 +473,7 @@
       },
       {
         "vendor": "nvidia",
-        "vendor_zh": "英伟达",
+        "vendor_zh": "\u82f1\u4f1f\u8fbe",
         "chip": "H100",
         "nominal": {
           "bandwidth_gbps": 1.0,
@@ -623,7 +518,7 @@
       },
       {
         "vendor": "t-head",
-        "vendor_zh": "平头哥",
+        "vendor_zh": "\u5e73\u5934\u54e5",
         "chip": "PPU-ZW810E",
         "nominal": {
           "bandwidth_gbps": null,
@@ -668,7 +563,7 @@
       },
       {
         "vendor": "t-head",
-        "vendor_zh": "平头哥",
+        "vendor_zh": "\u5e73\u5934\u54e5",
         "chip": "m890",
         "nominal": {
           "bandwidth_gbps": null,
@@ -713,7 +608,7 @@
       },
       {
         "vendor": "enflame",
-        "vendor_zh": "燧原",
+        "vendor_zh": "\u71e7\u539f",
         "chip": "S60",
         "nominal": {
           "bandwidth_gbps": 0.200597,
@@ -758,7 +653,7 @@
       },
       {
         "vendor": "ascend",
-        "vendor_zh": "华为",
+        "vendor_zh": "\u534e\u4e3a",
         "chip": "Atlas 800T A3",
         "nominal": {
           "bandwidth_gbps": null,
@@ -803,7 +698,7 @@
       },
       {
         "vendor": "metax",
-        "vendor_zh": "沐曦",
+        "vendor_zh": "\u6c90\u66e6",
         "chip": "C550",
         "nominal": {
           "bandwidth_gbps": 0.537313,
@@ -848,7 +743,7 @@
       },
       {
         "vendor": "kunlunxin",
-        "vendor_zh": "昆仑芯",
+        "vendor_zh": "\u6606\u4ed1\u82af",
         "chip": "P900",
         "nominal": {
           "bandwidth_gbps": 0.776119,
@@ -893,7 +788,7 @@
       },
       {
         "vendor": "kunlunxin",
-        "vendor_zh": "昆仑芯",
+        "vendor_zh": "\u6606\u4ed1\u82af",
         "chip": "P800",
         "nominal": {
           "bandwidth_gbps": null,
@@ -938,7 +833,7 @@
       },
       {
         "vendor": "mthreads",
-        "vendor_zh": "摩尔",
+        "vendor_zh": "\u6469\u5c14",
         "chip": "MTT-S5000",
         "nominal": {
           "bandwidth_gbps": 0.477612,
@@ -983,7 +878,7 @@
       },
       {
         "vendor": "hygon",
-        "vendor_zh": "海光",
+        "vendor_zh": "\u6d77\u5149",
         "chip": "BW1000",
         "nominal": {
           "bandwidth_gbps": 0.537313,
@@ -1028,7 +923,7 @@
       },
       {
         "vendor": "iluvatar",
-        "vendor_zh": "天数",
+        "vendor_zh": "\u5929\u6570",
         "chip": "BI-V150",
         "nominal": {
           "bandwidth_gbps": 0.477612,
@@ -1073,7 +968,7 @@
       },
       {
         "vendor": "tsingmicro",
-        "vendor_zh": "清微智能",
+        "vendor_zh": "\u6e05\u5fae\u667a\u80fd",
         "chip": "TX8110",
         "nominal": {
           "bandwidth_gbps": null,
@@ -1118,7 +1013,7 @@
       },
       {
         "vendor": "tsingmicro",
-        "vendor_zh": "清微智能",
+        "vendor_zh": "\u6e05\u5fae\u667a\u80fd",
         "chip": "REX1032",
         "nominal": {
           "bandwidth_gbps": 0.238806,
@@ -1163,7 +1058,7 @@
       },
       {
         "vendor": "cambricon",
-        "vendor_zh": "寒武纪",
+        "vendor_zh": "\u5bd2\u6b66\u7eaa",
         "chip": "MLU590-M9DE",
         "nominal": {
           "bandwidth_gbps": 0.671642,
