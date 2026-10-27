@@ -1,0 +1,181 @@
+{
+  "status": "PASS_REAL_NATIVE_H800_EXACT_PROFILE_AND_TWO_TARGET_ALL_FUNCTIONAL_GATES",
+  "artifact": "op_pytorch_h800_special_round_suiyuan_core_20261028.json",
+  "artifact_sha256": "d07a7a18de7c31c983e2ef0682addbb9f0fb4b4e94bd540fc4b3018101e55c95",
+  "canonical_operator": "special_round",
+  "profile": "current-decimals0",
+  "measured_source_commit": "fe33a75f17271c0e8abc0dd50e47c4d58667aa2b",
+  "publication_source_is_descendant_of_measured_source": true,
+  "publication_only_scope": "Round producer/native data/provenance; shared SGN producer reset to legacy at publication and no SGN artifact is published",
+  "producer_module_sha256": "137ab67974c54fbeccb34fc484498a69274b3e81bc76b0bf2a121308d3ab9f4a",
+  "completed_native_records": 15,
+  "selector": {
+    "OPS_BASELINE_SPECIAL_ROUND_CURRENT_CORE": "1"
+  },
+  "physical_gpu": 5,
+  "environment": {
+    "schema_version": 1,
+    "collected_at_utc": "2026-10-27T21:31:41.849327+00:00",
+    "hardware": {
+      "gpu": {
+        "name": "NVIDIA H800",
+        "uuid": "e41d3c5d-c479-0214-300f-536c384b7422",
+        "total_memory_bytes": 85017624576,
+        "total_memory_gib": 79.18,
+        "compute_capability": "9.0",
+        "multiprocessor_count": 132,
+        "cuda_device_index": 0,
+        "driver_version": "580.105.08"
+      },
+      "cpu_model": "Intel(R) Xeon(R) Platinum 8468V",
+      "cpu_architecture": "x86_64",
+      "cpu_socket_count": 2,
+      "physical_cpu_core_count": 96,
+      "logical_cpu_count": 192,
+      "cpu_threads_per_core": 2,
+      "numa_node_count": 2,
+      "process_cpu_affinity_count": 192,
+      "hypervisor_vendor": null
+    },
+    "software": {
+      "os": "Linux",
+      "os_release": "5.15.0-78-generic",
+      "machine": "x86_64",
+      "python": "3.12.3",
+      "packages": {
+        "torch": "2.8.0a0+5228986c39.nv25.5",
+        "triton": "3.6.0",
+        "vllm": null,
+        "sglang": null
+      },
+      "torch_cuda_version": "12.9",
+      "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Apr__9_19:24:57_PDT_2025\nCuda compilation tools, release 12.9, V12.9.41\nBuild cuda_12.9.r12.9/compiler.35813241_0",
+      "ncu_version": "NVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2025 NVIDIA Corporation\nVersion 2025.2.0.0 (build 35613519) (public-release)"
+    },
+    "source": {
+      "git_commit": "fe33a75f17271c0e8abc0dd50e47c4d58667aa2b",
+      "git_branch": "HEAD",
+      "git_dirty": false
+    },
+    "run": {
+      "repo": "pytorch",
+      "device": null,
+      "ncu_enabled": false,
+      "report_dir": "/data/tj/workspace/blocked581-b18-sgn-round-h800-v1-20261028/special_round-current-h800.json.work/special_round/b1b4565f851f4dae8f6e724406b8348a/ncu_reports",
+      "output_path": "/data/tj/workspace/blocked581-b18-sgn-round-h800-v1-20261028/special_round-current-h800.json.work/special_round/b1b4565f851f4dae8f6e724406b8348a/result.json",
+      "op_timeout_seconds": 600.0,
+      "reference_chip": "H800",
+      "only": [
+        "special_round"
+      ],
+      "whitelist": null,
+      "blacklist": null,
+      "selected_ops": [
+        "special_round"
+      ],
+      "latency_warmup_ms": 25,
+      "latency_rep_ms": 100,
+      "ncu_warmup_calls": 3
+    },
+    "environment_variables": {
+      "CUDA_VISIBLE_DEVICES": "5",
+      "CUDA_DEVICE_ORDER": null
+    }
+  },
+  "native_timer_contract": {
+    "native_api": "torch.special.round(input, decimals=0)",
+    "overload": "decimals",
+    "fresh_inputs": false,
+    "timer": "unchanged tools/collect_baseline_nvidia.py -> triton.testing.do_bench",
+    "seed_policy": "unseeded_original_builder_no_reset",
+    "input_generation_timed": false
+  },
+  "collector": {
+    "utc": "2026-10-27T21:31:05.346003+00:00",
+    "command": [
+      "ssh",
+      "-S",
+      "/tmp/blocked581-h800-20261027-v2",
+      "-o",
+      "BatchMode=yes",
+      "bm-jn-sz1-default-zone1-H800-80G-25-65",
+      "docker exec -i -w /data/tj/workspace/blocked581-b18-sgn-round-h800-v1-20261028/source flaggems_test_tj env CUDA_VISIBLE_DEVICES=5 OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 PYTHONDONTWRITEBYTECODE=1 OPS_BASELINE_SPECIAL_ROUND_CURRENT_CORE=1 /usr/bin/python3 tools/collect_baseline_nvidia.py --repo pytorch --ops special_round --devices 5 --no-ncu --op-timeout 600 --output /data/tj/workspace/blocked581-b18-sgn-round-h800-v1-20261028/special_round-current-h800.json"
+    ],
+    "source": "fe33a75f17271c0e8abc0dd50e47c4d58667aa2b",
+    "physical_gpu": 5,
+    "selector": {
+      "CUDA_VISIBLE_DEVICES": "5",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OPS_BASELINE_SPECIAL_ROUND_CURRENT_CORE": "1"
+    },
+    "formal_native_collection": true
+  },
+  "clean_measured_source_files": 1146,
+  "source_controls": {
+    "exact_original_SUI_joint_catalog": 15,
+    "real_CUDA_full_source_RNG_ABI_checks": 15,
+    "CPU64_comparison": "trusted CPU native API at deterministic sampled positions; not an independent mathematical formula or a whole-large-tensor golden",
+    "cross_vendor_random_values_not_claimed_byte_equal": true
+  },
+  "raw_evidence": {
+    "context/blocked581-20261027/b18-leaf-operators/sgn-round-static-plan-v1/execution-package-v1/actual-run-v1/controls-after.json": "9aeb3992cd3c0d7ba4080baba911bfa0a3dc0ae38a6eba77ef2b34ddf17f2958",
+    "context/blocked581-20261027/b18-leaf-operators/sgn-round-static-plan-v1/execution-package-v1/actual-run-v1/controls-before.json": "b1c1871efa96e05f4a3e90c412d8c1dc191ba4be8a5f97a326f17b4219699602",
+    "context/blocked581-20261027/b18-leaf-operators/sgn-round-static-plan-v1/execution-package-v1/actual-run-v1/controls-during-0.json": "20cb46c02146496df0d1dc83f256c86c4f83caf2c1f4e26f503f8cd5fe47b973",
+    "context/blocked581-20261027/b18-leaf-operators/sgn-round-static-plan-v1/execution-package-v1/actual-run-v1/controls-during-1.json": "f040c3d62e53e4cb0836b2f9c61a0b3ca8c79f92cf1e5df631cd8da9e44d6a46",
+    "context/blocked581-20261027/b18-leaf-operators/sgn-round-static-plan-v1/execution-package-v1/actual-run-v1/controls-interference.json": "a68bf41fe28c7d70607f8b0e435e361b1a0afe75c2da74a86a58fa024eeb158e",
+    "context/blocked581-20261027/b18-leaf-operators/sgn-round-static-plan-v1/execution-package-v1/actual-run-v1/controls-launch.json": "66bd9e1e3942f1294774b130b7504a219080b9f0cf737ce3ee2621d212d31221",
+    "context/blocked581-20261027/b18-leaf-operators/sgn-round-static-plan-v1/execution-package-v1/actual-run-v1/controls-result.json": "3aaf3915b232aadbf0e604e1620191f2631a8b4db0cd4eb8aea5c920d194a3ad",
+    "context/blocked581-20261027/b18-leaf-operators/sgn-round-static-plan-v1/execution-package-v1/actual-run-v1/final-owned-processes-and-card5-release-v1.json": "04b3a464132a377d7244cf7a7c1395499d1aac966473fb37c209497eed8852d5",
+    "context/blocked581-20261027/b18-leaf-operators/sgn-round-static-plan-v1/execution-package-v1/actual-run-v1/source-after-controls.json": "e6a819fbd056d396a3220796c13e296a237a6c22d16b0a64ee2c3614bdebc964",
+    "context/blocked581-20261027/b18-leaf-operators/sgn-round-static-plan-v1/execution-package-v1/actual-run-v1/source-before-controls.json": "e6a819fbd056d396a3220796c13e296a237a6c22d16b0a64ee2c3614bdebc964",
+    "context/blocked581-20261027/b18-leaf-operators/sgn-round-static-plan-v1/execution-package-v1/actual-run-v1/special_round-artifact-proof.json": "137fe1c64bb7e1292b75d0cc0d49df9d1063280631e8e9f2517864cb09c35fe3",
+    "context/blocked581-20261027/b18-leaf-operators/sgn-round-static-plan-v1/execution-package-v1/actual-run-v1/special_round-collector-after.json": "007820e2749ffa5639ce4a029d713183f41f2ae7b98671c0704ab4c28eb1cf8e",
+    "context/blocked581-20261027/b18-leaf-operators/sgn-round-static-plan-v1/execution-package-v1/actual-run-v1/special_round-collector-before.json": "010b4b3921f958c74c71e208149bcbf3334940454dc9c56e4edef1bd33d492c2",
+    "context/blocked581-20261027/b18-leaf-operators/sgn-round-static-plan-v1/execution-package-v1/actual-run-v1/special_round-collector-during-0.json": "15371b340b670642fd568bca10fd927d0fb190fc161b10887555c5b5426d98ff",
+    "context/blocked581-20261027/b18-leaf-operators/sgn-round-static-plan-v1/execution-package-v1/actual-run-v1/special_round-collector-during-1.json": "fe1466d768b74b0953285bd46da29d7934bcb719d3c9b061781ce946fcef302d",
+    "context/blocked581-20261027/b18-leaf-operators/sgn-round-static-plan-v1/execution-package-v1/actual-run-v1/special_round-collector-during-2.json": "3542d9b18411462543ca2403d6fa3d6cf605e54e3803b9257d4e017e382e255b",
+    "context/blocked581-20261027/b18-leaf-operators/sgn-round-static-plan-v1/execution-package-v1/actual-run-v1/special_round-collector-during-3.json": "63958471b78e9ace7133e9f4802aa12a426790a2248a87f93d062391ab0992a7",
+    "context/blocked581-20261027/b18-leaf-operators/sgn-round-static-plan-v1/execution-package-v1/actual-run-v1/special_round-collector-interference.json": "a68bf41fe28c7d70607f8b0e435e361b1a0afe75c2da74a86a58fa024eeb158e",
+    "context/blocked581-20261027/b18-leaf-operators/sgn-round-static-plan-v1/execution-package-v1/actual-run-v1/special_round-collector-launch.json": "1357b0505a01bf416eed621e139ba02c80307a4cc82d53be8b260c0411db3733",
+    "context/blocked581-20261027/b18-leaf-operators/sgn-round-static-plan-v1/execution-package-v1/actual-run-v1/special_round-collector-result.json": "de2ab2592f0fe3e8cb1372caf6902ea407ad6b55350297bc5facd7b256ffa9ed",
+    "context/blocked581-20261027/b18-leaf-operators/sgn-round-static-plan-v1/execution-package-v1/actual-run-v1/special_round-current-h800.json": "d07a7a18de7c31c983e2ef0682addbb9f0fb4b4e94bd540fc4b3018101e55c95",
+    "context/blocked581-20261027/b18-leaf-operators/sgn-round-static-plan-v1/execution-package-v1/actual-run-v1/special_round-source-after.json": "e6a819fbd056d396a3220796c13e296a237a6c22d16b0a64ee2c3614bdebc964",
+    "context/blocked581-20261027/b18-leaf-operators/sgn-round-static-plan-v1/execution-package-v1/actual-run-v1/special_round-source-before.json": "e6a819fbd056d396a3220796c13e296a237a6c22d16b0a64ee2c3614bdebc964",
+    "context/blocked581-20261027/b18-leaf-operators/sgn-round-static-plan-v1/execution-package-v1/actual-run-v1/stable-before-0.json": "ded9b468dd6631cf77e4ca6469d6d0f0144cfc31ce5b3b9160fbf133faa31659",
+    "context/blocked581-20261027/b18-leaf-operators/sgn-round-static-plan-v1/execution-package-v1/actual-run-v1/stable-before-1.json": "39b7640d3d30863f23be21aae8d6a109c29502b8689c5e15b05566172f9a128c"
+  },
+  "interference": {
+    "two_idle_observations_10s_apart": true,
+    "each_compute_fresh": true,
+    "actual_uuid_verified": true,
+    "foreign_holders_during": false,
+    "after_no_holder": true,
+    "no_stop_or_reset": true
+  },
+  "ncu": "--no-ncu; NCU metrics are unmeasured, not measured zero",
+  "target_validation_status": "H20 and Enflame same-source full default+CPU correctness, official dummy, core dummy/list-cases/real KGS inspect/actual all passed",
+  "functional_timing_qualification": "SUI native reference was positively observed CPU fallback; the artifact supplies only native H800 reference latency while the target oracle candidate is timed locally. Candidate self-comparison and function executability do not prove an optimized implementation or formal target chip performance.",
+  "peer_review_status": "Pending two independent reviews; no merge",
+  "final_flaggems_integration_source": "7151d0d94717904fb6a8b0bb95051929817c2c8a",
+  "final_target_gate_summary": {
+    "numeric_passed": 100,
+    "numeric_skipped": 0,
+    "dummy_reached": 100,
+    "core_cases": 30,
+    "positive_timing_fields": 90,
+    "actual_core_candidate_calls": 286,
+    "typed_original_final_joint_observations": 100,
+    "loaded_source_sha256_observations": 20142
+  },
+  "final_raw_gate_audit_sha256": "f4f7c7fced8c2517c79bd690fe41f640b41a5fe2b69e204b21624351be2b7b94",
+  "local_raw_evidence_root": "context/blocked581-20261027/b18-leaf-operators/round-static-final-v1",
+  "actual_test_caller_controls": {
+    "source": "7151d0d94717904fb6a8b0bb95051929817c2c8a",
+    "honest_native_strided_valid_lazy": 6,
+    "rejected_wrong_device_dtype_shape_DLPack_alias_input_value_metadata_capacity_grad": 16,
+    "report_sha256": "4d0504ac96793506c940b190192952a62f000aec532355339cc3f8340a2584fa",
+    "original_18_element_midpoint_both_reference_modes": true
+  }
+}
