@@ -1,0 +1,81 @@
+{
+  "status": "PASS_VERIFIED_NATIVE_H800_LU_CORE_SNAPSHOT",
+  "artifact_sha256": "8a97ee0f31d6c60a0b9597394af3465715e3a7fc94aeae5a65e22538f83b8a21",
+  "collection_source_commit": "95847c9f7040152cb774fe56183eb280c5764c97",
+  "source_clean": true,
+  "source_files": 1147,
+  "original_recipe_controls": 5,
+  "native_cpu_reconstruction_controls": 5,
+  "records": 5,
+  "hardware_environment": {
+    "schema_version": 1,
+    "collected_at_utc": "2026-10-27T21:46:16.887917+00:00",
+    "hardware": {
+      "gpu": {
+        "name": "NVIDIA H800",
+        "uuid": "555633f8-c39c-bb8a-d549-791cb8451f44",
+        "total_memory_bytes": 85017624576,
+        "total_memory_gib": 79.18,
+        "compute_capability": "9.0",
+        "multiprocessor_count": 132,
+        "cuda_device_index": 0,
+        "driver_version": "580.105.08"
+      },
+      "cpu_model": "Intel(R) Xeon(R) Platinum 8468V",
+      "cpu_architecture": "x86_64",
+      "cpu_socket_count": 2,
+      "physical_cpu_core_count": 96,
+      "logical_cpu_count": 192,
+      "cpu_threads_per_core": 2,
+      "numa_node_count": 2,
+      "process_cpu_affinity_count": 192,
+      "hypervisor_vendor": null
+    },
+    "software": {
+      "os": "Linux",
+      "os_release": "5.15.0-78-generic",
+      "machine": "x86_64",
+      "python": "3.12.3",
+      "packages": {
+        "torch": "2.8.0a0+5228986c39.nv25.5",
+        "triton": "3.6.0",
+        "vllm": null,
+        "sglang": null
+      },
+      "torch_cuda_version": "12.9",
+      "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Apr__9_19:24:57_PDT_2025\nCuda compilation tools, release 12.9, V12.9.41\nBuild cuda_12.9.r12.9/compiler.35813241_0",
+      "ncu_version": "NVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2025 NVIDIA Corporation\nVersion 2025.2.0.0 (build 35613519) (public-release)"
+    },
+    "source": {
+      "git_commit": "95847c9f7040152cb774fe56183eb280c5764c97",
+      "git_branch": "feat/lu-reference-current-core-20261028",
+      "git_dirty": false
+    },
+    "run": {
+      "repo": "pytorch",
+      "device": null,
+      "ncu_enabled": false,
+      "report_dir": "/data/tj/workspace/lu-core-native-h800-sol-20261028-95847c9f70/runs/lu_h800.json.work/lu_with_info_current_core/8f8c4fd9b9174cdb9f57afcec12e34cb/ncu_reports",
+      "output_path": "/data/tj/workspace/lu-core-native-h800-sol-20261028-95847c9f70/runs/lu_h800.json.work/lu_with_info_current_core/8f8c4fd9b9174cdb9f57afcec12e34cb/result.json",
+      "op_timeout_seconds": 600.0,
+      "reference_chip": "H800",
+      "only": [
+        "lu_with_info_current_core"
+      ],
+      "whitelist": null,
+      "blacklist": null,
+      "selected_ops": [
+        "lu_with_info_current_core"
+      ],
+      "latency_warmup_ms": 25,
+      "latency_rep_ms": 100,
+      "ncu_warmup_calls": 3
+    },
+    "environment_variables": {
+      "CUDA_VISIBLE_DEVICES": "7",
+      "CUDA_DEVICE_ORDER": null
+    }
+  },
+  "scope": "Original five FP32 target core inputs; native NVIDIA torch._lu_with_info latency only, no NCU metrics.",
+  "source_recipe": "benchmark/test_lu_with_info.py at ac9a1f703757537a3d54cc1ac1febeca410316c0; same device-local seed0 torch.randn distribution, not cross-device byte identity."
+}

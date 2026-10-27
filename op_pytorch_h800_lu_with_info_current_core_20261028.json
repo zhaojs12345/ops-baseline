@@ -1,0 +1,1211 @@
+{
+  "_collection": {
+    "configuration": {
+      "repo": "pytorch",
+      "operators": [
+        "lu_with_info_current_core"
+      ],
+      "devices": [
+        "7"
+      ],
+      "ncu_enabled": false,
+      "op_timeout": 600.0,
+      "reference_chip": "H800",
+      "source_sha256": "a1921d391dfa6dfafab0b657982f6ef094a483d8c231bde22e87c5f6bc9f0289",
+      "report_dir": null
+    },
+    "started_at_utc": "2026-10-27T21:45:47.883263+00:00",
+    "tasks": {
+      "lu_with_info_current_core": {
+        "status": "completed",
+        "device": "7",
+        "returncode": 0,
+        "log": "/data/tj/workspace/lu-core-native-h800-sol-20261028-95847c9f70/runs/lu_h800.json.work/lu_with_info_current_core/8f8c4fd9b9174cdb9f57afcec12e34cb/collector.log",
+        "result": "/data/tj/workspace/lu-core-native-h800-sol-20261028-95847c9f70/runs/lu_h800.json.work/lu_with_info_current_core/8f8c4fd9b9174cdb9f57afcec12e34cb/result.json"
+      }
+    },
+    "interrupted": false,
+    "attempt_started_at_utc": "2026-10-27T21:45:47.883342+00:00",
+    "finished_at_utc": "2026-10-27T21:46:28.904787+00:00"
+  },
+  "_environments": {
+    "7": {
+      "schema_version": 1,
+      "collected_at_utc": "2026-10-27T21:46:16.887917+00:00",
+      "hardware": {
+        "gpu": {
+          "name": "NVIDIA H800",
+          "uuid": "555633f8-c39c-bb8a-d549-791cb8451f44",
+          "total_memory_bytes": 85017624576,
+          "total_memory_gib": 79.18,
+          "compute_capability": "9.0",
+          "multiprocessor_count": 132,
+          "cuda_device_index": 0,
+          "driver_version": "580.105.08"
+        },
+        "cpu_model": "Intel(R) Xeon(R) Platinum 8468V",
+        "cpu_architecture": "x86_64",
+        "cpu_socket_count": 2,
+        "physical_cpu_core_count": 96,
+        "logical_cpu_count": 192,
+        "cpu_threads_per_core": 2,
+        "numa_node_count": 2,
+        "process_cpu_affinity_count": 192,
+        "hypervisor_vendor": null
+      },
+      "software": {
+        "os": "Linux",
+        "os_release": "5.15.0-78-generic",
+        "machine": "x86_64",
+        "python": "3.12.3",
+        "packages": {
+          "torch": "2.8.0a0+5228986c39.nv25.5",
+          "triton": "3.6.0",
+          "vllm": null,
+          "sglang": null
+        },
+        "torch_cuda_version": "12.9",
+        "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Apr__9_19:24:57_PDT_2025\nCuda compilation tools, release 12.9, V12.9.41\nBuild cuda_12.9.r12.9/compiler.35813241_0",
+        "ncu_version": "NVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2025 NVIDIA Corporation\nVersion 2025.2.0.0 (build 35613519) (public-release)"
+      },
+      "source": {
+        "git_commit": "95847c9f7040152cb774fe56183eb280c5764c97",
+        "git_branch": "feat/lu-reference-current-core-20261028",
+        "git_dirty": false
+      },
+      "run": {
+        "repo": "pytorch",
+        "device": null,
+        "ncu_enabled": false,
+        "report_dir": "/data/tj/workspace/lu-core-native-h800-sol-20261028-95847c9f70/runs/lu_h800.json.work/lu_with_info_current_core/8f8c4fd9b9174cdb9f57afcec12e34cb/ncu_reports",
+        "output_path": "/data/tj/workspace/lu-core-native-h800-sol-20261028-95847c9f70/runs/lu_h800.json.work/lu_with_info_current_core/8f8c4fd9b9174cdb9f57afcec12e34cb/result.json",
+        "op_timeout_seconds": 600.0,
+        "reference_chip": "H800",
+        "only": [
+          "lu_with_info_current_core"
+        ],
+        "whitelist": null,
+        "blacklist": null,
+        "selected_ops": [
+          "lu_with_info_current_core"
+        ],
+        "latency_warmup_ms": 25,
+        "latency_rep_ms": 100,
+        "ncu_warmup_calls": 3
+      },
+      "environment_variables": {
+        "CUDA_VISIBLE_DEVICES": "7",
+        "CUDA_DEVICE_ORDER": null
+      }
+    }
+  },
+  "lu_with_info_current_core": {
+    "native_api": "ops.lu_with_info_current_core",
+    "shapes": {
+      "64x64": {
+        "torch.float32": {
+          "config": {
+            "operator": "_lu_with_info",
+            "native_api": "torch._lu_with_info",
+            "source_commit": "ac9a1f703757537a3d54cc1ac1febeca410316c0",
+            "benchmark": "benchmark/test_lu_with_info.py",
+            "scope": "core",
+            "shape": [
+              64,
+              64
+            ],
+            "dtype": "torch.float32",
+            "inputs": {
+              "args": [
+                {
+                  "kind": "tensor",
+                  "shape": [
+                    64,
+                    64
+                  ],
+                  "stride": [
+                    64,
+                    1
+                  ],
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {
+                "pivot": true,
+                "check_errors": false
+              }
+            },
+            "input_recipe": {
+              "manual_seed": 0,
+              "factory": "torch.randn",
+              "cross_device_rng": "same distribution, not byte-identical"
+            },
+            "effects": {
+              "mutates": [],
+              "return_aliases_input": false
+            },
+            "reference_implementation": "pytorch_native_operator"
+          },
+          "T_us": 110.23427342113695,
+          "latency_ms": 0.11023427342113695,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "256x256": {
+        "torch.float32": {
+          "config": {
+            "operator": "_lu_with_info",
+            "native_api": "torch._lu_with_info",
+            "source_commit": "ac9a1f703757537a3d54cc1ac1febeca410316c0",
+            "benchmark": "benchmark/test_lu_with_info.py",
+            "scope": "core",
+            "shape": [
+              256,
+              256
+            ],
+            "dtype": "torch.float32",
+            "inputs": {
+              "args": [
+                {
+                  "kind": "tensor",
+                  "shape": [
+                    256,
+                    256
+                  ],
+                  "stride": [
+                    256,
+                    1
+                  ],
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {
+                "pivot": true,
+                "check_errors": false
+              }
+            },
+            "input_recipe": {
+              "manual_seed": 0,
+              "factory": "torch.randn",
+              "cross_device_rng": "same distribution, not byte-identical"
+            },
+            "effects": {
+              "mutates": [],
+              "return_aliases_input": false
+            },
+            "reference_implementation": "pytorch_native_operator"
+          },
+          "T_us": 420.80080689805925,
+          "latency_ms": 0.42080080689805927,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "512x512": {
+        "torch.float32": {
+          "config": {
+            "operator": "_lu_with_info",
+            "native_api": "torch._lu_with_info",
+            "source_commit": "ac9a1f703757537a3d54cc1ac1febeca410316c0",
+            "benchmark": "benchmark/test_lu_with_info.py",
+            "scope": "core",
+            "shape": [
+              512,
+              512
+            ],
+            "dtype": "torch.float32",
+            "inputs": {
+              "args": [
+                {
+                  "kind": "tensor",
+                  "shape": [
+                    512,
+                    512
+                  ],
+                  "stride": [
+                    512,
+                    1
+                  ],
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {
+                "pivot": true,
+                "check_errors": false
+              }
+            },
+            "input_recipe": {
+              "manual_seed": 0,
+              "factory": "torch.randn",
+              "cross_device_rng": "same distribution, not byte-identical"
+            },
+            "effects": {
+              "mutates": [],
+              "return_aliases_input": false
+            },
+            "reference_implementation": "pytorch_native_operator"
+          },
+          "T_us": 952.5276670853297,
+          "latency_ms": 0.9525276670853297,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "1024x1024": {
+        "torch.float32": {
+          "config": {
+            "operator": "_lu_with_info",
+            "native_api": "torch._lu_with_info",
+            "source_commit": "ac9a1f703757537a3d54cc1ac1febeca410316c0",
+            "benchmark": "benchmark/test_lu_with_info.py",
+            "scope": "core",
+            "shape": [
+              1024,
+              1024
+            ],
+            "dtype": "torch.float32",
+            "inputs": {
+              "args": [
+                {
+                  "kind": "tensor",
+                  "shape": [
+                    1024,
+                    1024
+                  ],
+                  "stride": [
+                    1024,
+                    1
+                  ],
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {
+                "pivot": true,
+                "check_errors": false
+              }
+            },
+            "input_recipe": {
+              "manual_seed": 0,
+              "factory": "torch.randn",
+              "cross_device_rng": "same distribution, not byte-identical"
+            },
+            "effects": {
+              "mutates": [],
+              "return_aliases_input": false
+            },
+            "reference_implementation": "pytorch_native_operator"
+          },
+          "T_us": 2044.8173854662027,
+          "latency_ms": 2.0448173854662026,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "8x128x128": {
+        "torch.float32": {
+          "config": {
+            "operator": "_lu_with_info",
+            "native_api": "torch._lu_with_info",
+            "source_commit": "ac9a1f703757537a3d54cc1ac1febeca410316c0",
+            "benchmark": "benchmark/test_lu_with_info.py",
+            "scope": "core",
+            "shape": [
+              8,
+              128,
+              128
+            ],
+            "dtype": "torch.float32",
+            "inputs": {
+              "args": [
+                {
+                  "kind": "tensor",
+                  "shape": [
+                    8,
+                    128,
+                    128
+                  ],
+                  "stride": [
+                    16384,
+                    128,
+                    1
+                  ],
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {
+                "pivot": true,
+                "check_errors": false
+              }
+            },
+            "input_recipe": {
+              "manual_seed": 0,
+              "factory": "torch.randn",
+              "cross_device_rng": "same distribution, not byte-identical"
+            },
+            "effects": {
+              "mutates": [],
+              "return_aliases_input": false
+            },
+            "reference_implementation": "pytorch_native_operator"
+          },
+          "T_us": 284.36947583712333,
+          "latency_ms": 0.28436947583712335,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      }
+    }
+  },
+  "_environment": {
+    "schema_version": 1,
+    "collected_at_utc": "2026-10-27T21:46:16.887917+00:00",
+    "hardware": {
+      "gpu": {
+        "name": "NVIDIA H800",
+        "uuid": "555633f8-c39c-bb8a-d549-791cb8451f44",
+        "total_memory_bytes": 85017624576,
+        "total_memory_gib": 79.18,
+        "compute_capability": "9.0",
+        "multiprocessor_count": 132,
+        "cuda_device_index": 0,
+        "driver_version": "580.105.08"
+      },
+      "cpu_model": "Intel(R) Xeon(R) Platinum 8468V",
+      "cpu_architecture": "x86_64",
+      "cpu_socket_count": 2,
+      "physical_cpu_core_count": 96,
+      "logical_cpu_count": 192,
+      "cpu_threads_per_core": 2,
+      "numa_node_count": 2,
+      "process_cpu_affinity_count": 192,
+      "hypervisor_vendor": null
+    },
+    "software": {
+      "os": "Linux",
+      "os_release": "5.15.0-78-generic",
+      "machine": "x86_64",
+      "python": "3.12.3",
+      "packages": {
+        "torch": "2.8.0a0+5228986c39.nv25.5",
+        "triton": "3.6.0",
+        "vllm": null,
+        "sglang": null
+      },
+      "torch_cuda_version": "12.9",
+      "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Apr__9_19:24:57_PDT_2025\nCuda compilation tools, release 12.9, V12.9.41\nBuild cuda_12.9.r12.9/compiler.35813241_0",
+      "ncu_version": "NVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2025 NVIDIA Corporation\nVersion 2025.2.0.0 (build 35613519) (public-release)"
+    },
+    "source": {
+      "git_commit": "95847c9f7040152cb774fe56183eb280c5764c97",
+      "git_branch": "feat/lu-reference-current-core-20261028",
+      "git_dirty": false
+    },
+    "run": {
+      "repo": "pytorch",
+      "device": null,
+      "ncu_enabled": false,
+      "report_dir": "/data/tj/workspace/lu-core-native-h800-sol-20261028-95847c9f70/runs/lu_h800.json.work/lu_with_info_current_core/8f8c4fd9b9174cdb9f57afcec12e34cb/ncu_reports",
+      "output_path": "/data/tj/workspace/lu-core-native-h800-sol-20261028-95847c9f70/runs/lu_h800.json.work/lu_with_info_current_core/8f8c4fd9b9174cdb9f57afcec12e34cb/result.json",
+      "op_timeout_seconds": 600.0,
+      "reference_chip": "H800",
+      "only": [
+        "lu_with_info_current_core"
+      ],
+      "whitelist": null,
+      "blacklist": null,
+      "selected_ops": [
+        "lu_with_info_current_core"
+      ],
+      "latency_warmup_ms": 25,
+      "latency_rep_ms": 100,
+      "ncu_warmup_calls": 3
+    },
+    "environment_variables": {
+      "CUDA_VISIBLE_DEVICES": "7",
+      "CUDA_DEVICE_ORDER": null
+    }
+  },
+  "_scaling_factors": {
+    "_note": "factor = vendor_peak / H800_peak；null 表示分子或分母缺失；nominal/measured 各一套。供 flaggems-vllm 跨芯片归一化对比使用。",
+    "reference_chip": "H800",
+    "source_specs": "hardware_specs.json",
+    "chips": [
+      {
+        "vendor": "nvidia",
+        "vendor_zh": "英伟达",
+        "chip": "H800",
+        "nominal": {
+          "bandwidth_gbps": 1.0,
+          "tensor": {
+            "bf16": 1.0,
+            "fp16": 1.0,
+            "fp32": 1.0,
+            "tf32": 1.0,
+            "int8": 1.0,
+            "fp64": 1.0,
+            "fp8": 1.0
+          },
+          "vector": {
+            "bf16": 1.0,
+            "fp16": 1.0,
+            "fp32": 1.0,
+            "int8": null,
+            "fp64": 1.0,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 1.0,
+          "tensor": {
+            "bf16": 1.0,
+            "fp16": 1.0,
+            "fp32": 1.0,
+            "tf32": 1.0,
+            "int8": 1.0,
+            "fp64": 1.0,
+            "fp8": 1.0
+          },
+          "vector": {
+            "bf16": 1.0,
+            "fp16": 1.0,
+            "fp32": 1.0,
+            "int8": 1.0,
+            "fp64": 1.0,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "nvidia",
+        "vendor_zh": "英伟达",
+        "chip": "H100",
+        "nominal": {
+          "bandwidth_gbps": 1.0,
+          "tensor": {
+            "bf16": 1.000404,
+            "fp16": 1.000404,
+            "fp32": 1.0,
+            "tf32": 1.000404,
+            "int8": 0.999949,
+            "fp64": 66.9,
+            "fp8": 0.999949
+          },
+          "vector": {
+            "bf16": 0.998507,
+            "fp16": 0.998507,
+            "fp32": 0.998507,
+            "int8": null,
+            "fp64": 33.5,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 1.0,
+          "tensor": {
+            "bf16": 0.992845,
+            "fp16": 1.043176,
+            "fp32": 0.999938,
+            "tf32": 0.964256,
+            "int8": 0.988143,
+            "fp64": 58.895238,
+            "fp8": 1.048244
+          },
+          "vector": {
+            "bf16": 0.999955,
+            "fp16": 0.99997,
+            "fp32": 0.992604,
+            "int8": 1.0003,
+            "fp64": 29.44689,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "t-head",
+        "vendor_zh": "平头哥",
+        "chip": "PPU-ZW810E",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.662759,
+          "tensor": {
+            "bf16": 0.058651,
+            "fp16": 0.062691,
+            "fp32": 0.538868,
+            "tf32": 0.075912,
+            "int8": 0.027883,
+            "fp64": 6.597143,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": 0.828975,
+            "fp16": 0.828837,
+            "fp32": 0.416839,
+            "int8": 0.206073,
+            "fp64": 6.120574,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "t-head",
+        "vendor_zh": "平头哥",
+        "chip": "m890",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.781483,
+          "tensor": {
+            "bf16": 0.281445,
+            "fp16": 0.300869,
+            "fp32": 0.257819,
+            "tf32": 0.161166,
+            "int8": null,
+            "fp64": null,
+            "fp8": 0.042014
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": 0.194236,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "enflame",
+        "vendor_zh": "燧原",
+        "chip": "S60",
+        "nominal": {
+          "bandwidth_gbps": 0.200597,
+          "tensor": {
+            "bf16": 0.132457,
+            "fp16": 0.132457,
+            "fp32": 0.478326,
+            "tf32": null,
+            "int8": 0.13239,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.150325,
+          "tensor": {
+            "bf16": 0.135388,
+            "fp16": 0.144762,
+            "fp32": 0.672654,
+            "tf32": null,
+            "int8": 0.134391,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": 0.026166,
+            "fp16": 0.026197,
+            "fp32": 0.029496,
+            "int8": 0.013308,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "ascend",
+        "vendor_zh": "华为",
+        "chip": "Atlas 800T A3",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": 0.760364,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.951084,
+          "tensor": {
+            "bf16": 0.761695,
+            "fp16": 0.839078,
+            "fp32": 4.098971,
+            "tf32": null,
+            "int8": 0.756027,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "metax",
+        "vendor_zh": "沐曦",
+        "chip": "C550",
+        "nominal": {
+          "bandwidth_gbps": 0.537313,
+          "tensor": {
+            "bf16": 0.323559,
+            "fp16": 0.323559,
+            "fp32": 0.597907,
+            "tf32": 0.323559,
+            "int8": 0.323396,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.472532,
+          "tensor": {
+            "bf16": 0.285784,
+            "fp16": 0.298125,
+            "fp32": 0.816461,
+            "tf32": 0.265815,
+            "int8": 0.291016,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": 0.136079,
+            "fp32": 0.541991,
+            "int8": 0.068039,
+            "fp64": 2.166507,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "kunlunxin",
+        "vendor_zh": "昆仑芯",
+        "chip": "P900",
+        "nominal": {
+          "bandwidth_gbps": 0.776119,
+          "tensor": {
+            "bf16": 0.353893,
+            "fp16": 0.353893,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.791,
+          "tensor": {
+            "bf16": 0.357504,
+            "fp16": 0.389264,
+            "fp32": 2.853909,
+            "tf32": 0.278234,
+            "int8": 0.33308,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "kunlunxin",
+        "vendor_zh": "昆仑芯",
+        "chip": "P800",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": 0.032261,
+            "fp16": 0.03449,
+            "fp32": null,
+            "tf32": 0.062035,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "mthreads",
+        "vendor_zh": "摩尔",
+        "chip": "MTT-S5000",
+        "nominal": {
+          "bandwidth_gbps": 0.477612,
+          "tensor": {
+            "bf16": 0.434783,
+            "fp16": 0.434783,
+            "fp32": 0.433483,
+            "tf32": 0.434783,
+            "int8": 0.434563,
+            "fp64": 14.5,
+            "fp8": 0.434563
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.423867,
+          "tensor": {
+            "bf16": 0.46863,
+            "fp16": 0.499849,
+            "fp32": 0.585391,
+            "tf32": 0.449552,
+            "int8": 0.463452,
+            "fp64": 13.533333,
+            "fp8": 0.504517
+          },
+          "vector": {
+            "bf16": 0.285102,
+            "fp16": 0.284926,
+            "fp32": 0.255336,
+            "int8": 0.095037,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "hygon",
+        "vendor_zh": "海光",
+        "chip": "BW1000",
+        "nominal": {
+          "bandwidth_gbps": 0.537313,
+          "tensor": {
+            "bf16": 0.485339,
+            "fp16": 0.485339,
+            "fp32": 0.896861,
+            "tf32": 0.485339,
+            "int8": 0.485093,
+            "fp64": 30.0,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.47352,
+          "tensor": {
+            "bf16": 0.494279,
+            "fp16": 0.526445,
+            "fp32": 1.253704,
+            "tf32": 0.475373,
+            "int8": 0.490587,
+            "fp64": 29.009524,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": 0.109955,
+            "fp16": 0.45465,
+            "fp32": 0.228884,
+            "int8": 0.114093,
+            "fp64": 14.488038,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "iluvatar",
+        "vendor_zh": "天数",
+        "chip": "BI-V150",
+        "nominal": {
+          "bandwidth_gbps": 0.477612,
+          "tensor": {
+            "bf16": 0.258847,
+            "fp16": 0.258847,
+            "fp32": 0.956652,
+            "tf32": null,
+            "int8": 0.388075,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.356378,
+          "tensor": {
+            "bf16": 0.220302,
+            "fp16": 0.234676,
+            "fp32": 0.940123,
+            "tf32": null,
+            "int8": 0.391076,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": 0.461253,
+            "fp16": 0.469367,
+            "fp32": 0.230722,
+            "int8": 0.11987,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "tsingmicro",
+        "vendor_zh": "清微智能",
+        "chip": "TX8110",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "tsingmicro",
+        "vendor_zh": "清微智能",
+        "chip": "REX1032",
+        "nominal": {
+          "bandwidth_gbps": 0.238806,
+          "tensor": {
+            "bf16": 0.517695,
+            "fp16": 0.517695,
+            "fp32": 0.179372,
+            "tf32": 1.035389,
+            "int8": 0.517433,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.197353,
+          "tensor": {
+            "bf16": 0.525497,
+            "fp16": 0.561805,
+            "fp32": 0.251029,
+            "tf32": 0.892402,
+            "int8": 0.521583,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "cambricon",
+        "vendor_zh": "寒武纪",
+        "chip": "MLU590-M9DE",
+        "nominal": {
+          "bandwidth_gbps": 0.671642,
+          "tensor": {
+            "bf16": 0.33367,
+            "fp16": 0.33367,
+            "fp32": 1.233184,
+            "tf32": 0.33367,
+            "int8": 0.333502,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.625387,
+          "tensor": {
+            "bf16": 0.316304,
+            "fp16": 0.338258,
+            "fp32": 1.604938,
+            "tf32": 0.307205,
+            "int8": 0.312064,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      }
+    ]
+  }
+}
