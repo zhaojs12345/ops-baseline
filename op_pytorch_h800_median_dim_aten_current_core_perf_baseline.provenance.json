@@ -1,0 +1,146 @@
+{
+  "status": "PASS_EXACT_ORIGINAL_ATEN_MEDIAN_DIM_H800_SNAPSHOT",
+  "actual_collection_source": "9899c7d86491ed071449c8a9502e4fd0d87439ce",
+  "artifact_sha256": "6633a06619aaeddde7bcf813f8aae2f203da894d5481f897d7ff0915051a744a",
+  "raw_sha256": "d47cde7c47f26f614ce7e7b68e818839d9df49a341f0c797ecea9ab2eef23114",
+  "source_files": 1151,
+  "source_before_after_clean": true,
+  "original_recipe_and_rng_controls": 20,
+  "native_plain_tuple_long8_readonly_noalias_cpu_value_controls": 20,
+  "records": 20,
+  "normalizer_sha256": "1b2049c1ef7b6d1bac0aaa1c3267f540c4676a6372eb78f9afb46aedb5cb3daa",
+  "retained_fields_json_bytes_equivalent": true,
+  "environment_json_bytes_exact": true,
+  "omitted_fields": [
+    "B_mem",
+    "F_cuda",
+    "F_tensor",
+    "U_bottle_neck",
+    "U_cuda",
+    "U_mem",
+    "U_tensor",
+    "bottle_neck_unit",
+    "bottleneck",
+    "bottleneck_util",
+    "cuda_flops",
+    "flops_cuda_core",
+    "flops_tensor_core",
+    "memory_bytes",
+    "num_kernels",
+    "per_kernel",
+    "report_path",
+    "sm_utilization",
+    "util_cuda_core",
+    "util_memory_bw",
+    "util_tensor_core"
+  ],
+  "native_api": "torch.ops.aten.median.dim",
+  "input_abi": "(inp, dim, keepdim), {}",
+  "rows": [
+    {
+      "key": "{'shape': [9, 7], 'params': {'dim': 0, 'keepdim': False}}",
+      "dtype": "torch.float16",
+      "retained_json_sha256": "2d13c0f5560c9bdfd61d5f537c1387bbfa0adf3c086812387be617523276c7b5"
+    },
+    {
+      "key": "{'shape': [9, 7], 'params': {'dim': 0, 'keepdim': False}}",
+      "dtype": "torch.float32",
+      "retained_json_sha256": "d631115bdd2645f2c31098c4ddca8ee3c12d17a1feb506f796ffc98d07169d18"
+    },
+    {
+      "key": "{'shape': [9, 7], 'params': {'dim': 0, 'keepdim': False}}",
+      "dtype": "torch.bfloat16",
+      "retained_json_sha256": "e1e81a3f41502ea6e7beeb7026e42c0e13a140bd66a34db7efbc74c68a9fcf32"
+    },
+    {
+      "key": "{'shape': [9, 7], 'params': {'dim': 0, 'keepdim': False}}",
+      "dtype": "torch.int16",
+      "retained_json_sha256": "c79dcd94340c41cef1c9be03e5e341e9a7fa879a68fd769639fb979c89eb95c4"
+    },
+    {
+      "key": "{'shape': [9, 7], 'params': {'dim': 0, 'keepdim': False}}",
+      "dtype": "torch.int32",
+      "retained_json_sha256": "c1dc619f152d17d0e8364f72f4dc862e5174b29096b800411db4b80fa0bc184c"
+    },
+    {
+      "key": "{'shape': [9, 7], 'params': {'dim': -1, 'keepdim': True}}",
+      "dtype": "torch.float16",
+      "retained_json_sha256": "9368ee5e7ac3c90589554fa88c8846070efc739a1d68f2b13ccc3711f2c413d3"
+    },
+    {
+      "key": "{'shape': [9, 7], 'params': {'dim': -1, 'keepdim': True}}",
+      "dtype": "torch.float32",
+      "retained_json_sha256": "0104ddf51698da8af718e23eeeef247d0ace7ca97d24e3dc084a5139600a7a23"
+    },
+    {
+      "key": "{'shape': [9, 7], 'params': {'dim': -1, 'keepdim': True}}",
+      "dtype": "torch.bfloat16",
+      "retained_json_sha256": "2e45cd01fee1a257942f5c3679332ebd2e1407bb638aa5450da08a6f113b8ffb"
+    },
+    {
+      "key": "{'shape': [9, 7], 'params': {'dim': -1, 'keepdim': True}}",
+      "dtype": "torch.int16",
+      "retained_json_sha256": "dda835018969b5212176d23a0e8b35658ae47292f82a59da17bfcedf700a4394"
+    },
+    {
+      "key": "{'shape': [9, 7], 'params': {'dim': -1, 'keepdim': True}}",
+      "dtype": "torch.int32",
+      "retained_json_sha256": "65424d0394201749c23e1e1771e4fd1cdaf23d11e3cb429d3aa2dc6367c824d3"
+    },
+    {
+      "key": "{'shape': [384, 7], 'params': {'dim': 0, 'keepdim': False}}",
+      "dtype": "torch.float16",
+      "retained_json_sha256": "1947ada2e8411bad58ef3e7459fd90a762d0652ad741ebb49cb119f13ca7dd3c"
+    },
+    {
+      "key": "{'shape': [384, 7], 'params': {'dim': 0, 'keepdim': False}}",
+      "dtype": "torch.float32",
+      "retained_json_sha256": "df1b69486b198d29c6e71df72ccd30f182c7c7a2529e1de51d7138e2706423e2"
+    },
+    {
+      "key": "{'shape': [384, 7], 'params': {'dim': 0, 'keepdim': False}}",
+      "dtype": "torch.bfloat16",
+      "retained_json_sha256": "9b3e9a0a01d49146dae737372a061a88afb5890bef198bf3ebe04927d95597a7"
+    },
+    {
+      "key": "{'shape': [384, 7], 'params': {'dim': 0, 'keepdim': False}}",
+      "dtype": "torch.int16",
+      "retained_json_sha256": "85505f18d3cd8d644ddb65d958527855e439a47f6a708909f28dd048c9ed6d6e"
+    },
+    {
+      "key": "{'shape': [384, 7], 'params': {'dim': 0, 'keepdim': False}}",
+      "dtype": "torch.int32",
+      "retained_json_sha256": "3bf7b588928976268894f24a99babd4dcd3f9bbd00a8894c98c6f1ca0c0bfe11"
+    },
+    {
+      "key": "{'shape': [5, 9], 'params': {'dim': 1, 'keepdim': False}}",
+      "dtype": "torch.float16",
+      "retained_json_sha256": "9f46c767ba2903349035df2a742287ecb1612a68c54ef0806bad8d9d1280c694"
+    },
+    {
+      "key": "{'shape': [5, 9], 'params': {'dim': 1, 'keepdim': False}}",
+      "dtype": "torch.float32",
+      "retained_json_sha256": "b8d6faa68d6f0f2bc64caafc0a1508305c6011a031c6809372193133ac25cc1e"
+    },
+    {
+      "key": "{'shape': [5, 9], 'params': {'dim': 1, 'keepdim': False}}",
+      "dtype": "torch.bfloat16",
+      "retained_json_sha256": "e1c249a418cc5d0acf7f77309668c7c5cc82d0597083416f2c20a0d50989544a"
+    },
+    {
+      "key": "{'shape': [5, 9], 'params': {'dim': 1, 'keepdim': False}}",
+      "dtype": "torch.int16",
+      "retained_json_sha256": "3f0e081f0c0bad57dbeb76e5855f9684fa6e6f6953f52a3a2026c7c5cbb28eb5"
+    },
+    {
+      "key": "{'shape': [5, 9], 'params': {'dim': 1, 'keepdim': False}}",
+      "dtype": "torch.int32",
+      "retained_json_sha256": "51f2f77a3680d8be99d59988b0b6a57f14cb921ea4a9a26953c8929c7f9f39be"
+    }
+  ],
+  "limits": [
+    "No NCU metrics; public rows omit all unmeasured profiling placeholders.",
+    "Sampled idle preflight and formal boundaries, not continuous exclusive ownership.",
+    "Original public torch.median20 from5b remains separate historical union data and is not the exact ATen reference."
+  ]
+}
