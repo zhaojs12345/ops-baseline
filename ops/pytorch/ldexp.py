@@ -42,3 +42,71 @@ DTYPES = [torch.float16, torch.float32, torch.bfloat16]
 _inputs = ldexp_input_fn
 
 globals().update(export_contract("ldexp", DTYPES, _resolve_native, _inputs))
+
+# Current FlagGems core recipes at ac9a1f703757537a3d54cc1ac1febeca410316c0.
+# Keep every legacy binding above and append only previously absent shapes.
+_CURRENT_CORE_SOURCE = "ac9a1f703757537a3d54cc1ac1febeca410316c0"
+_EXTRA_SHAPES = [(1073741824,), (64, 64), (64, 512, 512), (1024, 1024, 1024)]
+_LEGACY = {
+    key: globals()[key] for key in ("grid", "build_inputs", "key_shape", "config")
+}
+
+
+def grid():
+    return _LEGACY["grid"]() + [
+        {"shape": list(shape), "variant": 0} for shape in _EXTRA_SHAPES
+    ]
+
+
+def key_shape(binding):
+    return list(binding["shape"])
+
+
+def build_inputs(binding, dtype, device):
+    shape = tuple(binding["shape"])
+    if shape not in _EXTRA_SHAPES:
+        return _LEGACY["build_inputs"](binding, dtype, device)
+    # Match the current FlagGems builder's explicit seed and value recipes.
+    torch.manual_seed(0)
+    inp = torch.randn(shape, dtype=dtype, device=device)
+    exponent = torch.randint(-8, 9, shape, dtype=torch.int32, device=device)
+    kwargs = (
+        {"out": torch.empty(shape, dtype=dtype, device=device)}
+        if OP_NAME == "ldexp_out"
+        else {}
+    )
+    return (inp, exponent), kwargs
+
+
+def config(binding, dtype):
+    shape = tuple(binding["shape"])
+    if shape not in _EXTRA_SHAPES:
+        return _LEGACY["config"](binding, dtype)
+
+    def describe(dtype):
+        stride = []
+        size = 1
+        for dim in reversed(shape):
+            stride.append(size)
+            size *= dim
+        return {
+            "shape": list(shape),
+            "dtype": str(dtype),
+            "stride": list(reversed(stride)),
+            "requires_grad": False,
+        }
+
+    kwargs = {"out": describe(dtype)} if OP_NAME == "ldexp_out" else {}
+    return {
+        "inputs": {"args": [describe(dtype), describe(torch.int32)], "kwargs": kwargs},
+        "source_commit": _CURRENT_CORE_SOURCE,
+        "benchmark": "benchmark/test_ldexp.py",
+        "descriptor": list(shape),
+        "scope": "core",
+        "variant": 0,
+        "input_recipe": {
+            "seed": 0,
+            "input": "torch.randn",
+            "exponent": "torch.randint(-8,9,int32)",
+        },
+    }
