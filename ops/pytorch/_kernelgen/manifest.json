@@ -12198,6 +12198,57 @@
         "torch.float32",
         "torch.bfloat16"
       ]
+    },
+    "float_power_scalar_tensor_out": {
+      "source_file": "benchmark/test_float_power.py",
+      "source_test": "test_float_power_scalar_tensor_out",
+      "line": 117,
+      "native": "torch.ops.aten.float_power.Scalar_out",
+      "dtype_expression": "consts.FLOAT_DTYPES",
+      "shape_source": "FloatPowerBenchmark.set_shapes explicit core geometry",
+      "family": "FloatPowerBenchmark",
+      "cases": 5,
+      "dtypes": [
+        "torch.float16",
+        "torch.float32",
+        "torch.bfloat16"
+      ],
+      "manual_catalog_reason": "Original named-constructor parser misses _run_benchmark; source and exact geometry manually verified",
+      "source_benchmark_blob_sha1": "303c74c64b1fe3470e6d0ad0a5bc6c583a34e57a"
+    },
+    "float_power_tensor_scalar_out": {
+      "source_file": "benchmark/test_float_power.py",
+      "source_test": "test_float_power_tensor_scalar_out",
+      "line": 108,
+      "native": "torch.ops.aten.float_power.Tensor_Scalar_out",
+      "dtype_expression": "consts.FLOAT_DTYPES",
+      "shape_source": "FloatPowerBenchmark.set_shapes explicit core geometry",
+      "family": "FloatPowerBenchmark",
+      "cases": 5,
+      "dtypes": [
+        "torch.float16",
+        "torch.float32",
+        "torch.bfloat16"
+      ],
+      "manual_catalog_reason": "Original named-constructor parser misses _run_benchmark; source and exact geometry manually verified",
+      "source_benchmark_blob_sha1": "303c74c64b1fe3470e6d0ad0a5bc6c583a34e57a"
+    },
+    "float_power_tensor_tensor_out": {
+      "source_file": "benchmark/test_float_power.py",
+      "source_test": "test_float_power_tensor_tensor_out",
+      "line": 99,
+      "native": "torch.ops.aten.float_power.Tensor_Tensor_out",
+      "dtype_expression": "consts.FLOAT_DTYPES",
+      "shape_source": "FloatPowerBenchmark.set_shapes explicit core geometry",
+      "family": "FloatPowerBenchmark",
+      "cases": 5,
+      "dtypes": [
+        "torch.float16",
+        "torch.float32",
+        "torch.bfloat16"
+      ],
+      "manual_catalog_reason": "Original named-constructor parser misses _run_benchmark; source and exact geometry manually verified",
+      "source_benchmark_blob_sha1": "303c74c64b1fe3470e6d0ad0a5bc6c583a34e57a"
     }
   },
   "validation": {
