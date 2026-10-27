@@ -25,7 +25,8 @@ Collection used physical H800 GPU 7, UUID
 Torch `2.8.0a0+5228986c39.nv25.05`, CUDA 12.9 and Python 3.12.3. Inputs were built
 with four host threads and measured with one thread. The timer is
 `torch.utils.benchmark.Timer`, with a minimum 0.05 second measurement window and
-CUDA synchronization before and after each complete reference call. There are
+one CUDA synchronization before measurement and synchronization after each
+timed complete reference call. There are
 no NCU metrics. Idle GPU occupancy was sampled before independent controls,
 before collection and after collection; this is not a continuous exclusivity
 claim. Independent controls checked all 18 original builders, native CPU
