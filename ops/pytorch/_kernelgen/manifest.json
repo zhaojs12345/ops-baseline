@@ -12198,6 +12198,21 @@
         "torch.float32",
         "torch.bfloat16"
       ]
+    },
+    "_adaptive_avg_pool3d_backward": {
+      "source_file": "benchmark/test__adaptive_avg_pool3d_backward.py",
+      "source_test": "test_adaptive_avg_pool3d_backward",
+      "line": 45,
+      "native": "torch.ops.aten._adaptive_avg_pool3d_backward",
+      "dtype_expression": "consts.FLOAT_DTYPES",
+      "shape_source": "benchmark class explicit source shape/output pairs",
+      "family": "base.Benchmark",
+      "cases": 4,
+      "dtypes": [
+        "torch.float16",
+        "torch.float32",
+        "torch.bfloat16"
+      ]
     }
   },
   "validation": {

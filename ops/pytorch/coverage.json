@@ -9,12 +9,12 @@
     "named_benchmark_constructors": 1805,
     "unique_benchmark_names": 1694,
     "operator_config_ids": 1443,
-    "added_operators": 813,
+    "added_operators": 814,
     "existing_silu": 1,
-    "added_descriptors": 5229,
-    "pending_records": 1085,
+    "added_descriptors": 5233,
+    "pending_records": 1084,
     "pending_categories": {
-      "custom_input_or_state": 393,
+      "custom_input_or_state": 392,
       "host_or_no_kernel": 96,
       "meta_enumeration_unavailable": 20,
       "manual_input_review": 105,
@@ -102,15 +102,6 @@
       "line": 179,
       "native": "_torch_op_wrapper",
       "reason": "custom benchmark family: Benchmark",
-      "category": "custom_input_or_state"
-    },
-    {
-      "op": "_adaptive_avg_pool3d_backward",
-      "source_file": "benchmark/test__adaptive_avg_pool3d_backward.py",
-      "source_test": "test_adaptive_avg_pool3d_backward",
-      "line": 45,
-      "native": "torch.ops.aten._adaptive_avg_pool3d_backward",
-      "reason": "unresolved dependency: self",
       "category": "custom_input_or_state"
     },
     {
@@ -10584,6 +10575,12 @@
       "source_commit": "9d57a23b4386bd669152a935fe88a96db907da7c",
       "scope": "core",
       "note": "Native CUDA recipe; sparse_mask fixes the sampled mask with explicit replay identity"
+    },
+    {
+      "op": "_adaptive_avg_pool3d_backward",
+      "source_commit": "9d57a23b4386bd669152a935fe88a96db907da7c",
+      "scope": "core",
+      "note": "Explicit original self/gradient recipe: legacy forward then ones_like; optional current2ff randn-gradient profile, both retain unseeded source RNG behavior."
     }
   ]
 }
