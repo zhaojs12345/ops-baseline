@@ -161,6 +161,36 @@ def main():
         output.with_suffix('.fresh-samples.json').write_text(json.dumps(report,indent=2)+'\n')
     if code:
         raise SystemExit(code)
+    # Preserve official output before adding explicit operator-specific method.
+    raw = output.read_bytes()
+    output.with_suffix('.official-raw.json').write_bytes(raw)
+    artifact = json.loads(raw)
+    if OP_NAME not in artifact or len(CASE_REPORTS) != 15:
+        raise RuntimeError('Expected complete original fifteen-case native grid')
+    method = dict(name=METHOD, driver_sha256=report['driver_sha256'],
+                  official_collector_sha256=report['collector_sha256'],
+                  actual_entrypoint=original_argv, ncu_profiled=False,
+                  raw_official_sha256=hashlib.sha256(raw).hexdigest(),
+                  sample_report=output.with_suffix('.fresh-samples.json').name)
+    artifact['_measurement_method'] = method
+    for per_dtype in artifact[OP_NAME]['shapes'].values():
+        for dtype, record in per_dtype.items():
+            shape = record['config']['descriptor']
+            matches = [c for c in CASE_REPORTS
+                       if c['prototype'][0]['dtype'] == dtype
+                       and c['prototype'][0]['shape'] == shape]
+            if len(matches) != 1:
+                raise RuntimeError('No unique original fresh-sample identity')
+            case = matches[0]
+            if not math.isclose(record['latency_ms'], case['mean_native_ms'],
+                                rel_tol=1e-12, abs_tol=1e-12):
+                raise RuntimeError('Official result differs from actual native events')
+            record['measurement_method'] = dict(method, case_index=case['index'],
+                                                native_api_calls=case['native_api_calls'])
+            for key in list(record):
+                if key not in ['config','T_us','latency_ms','measurement_method']:
+                    record.pop(key)
+    output.write_text(json.dumps(artifact, indent=2) + '\n')
 
 
 if __name__ == '__main__':
