@@ -1,0 +1,6455 @@
+{
+  "schema": "b03-exact-native-case-index/v1",
+  "cases": [
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation::core::float16::0",
+      "dtype": "torch.float16",
+      "shape": {
+        "b": 2,
+        "m": 384,
+        "n": 384,
+        "k": 384
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_legacy",
+      "binding": [
+        2,
+        384,
+        384,
+        384
+      ],
+      "record_shape_key": "[2, 384, 384, 384]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation::core::float16::1",
+      "dtype": "torch.float16",
+      "shape": {
+        "b": 2,
+        "m": 4096,
+        "n": 4096,
+        "k": 4096
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_legacy",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation::core::float16::2",
+      "dtype": "torch.float16",
+      "shape": {
+        "b": 16,
+        "m": 1024,
+        "n": 1024,
+        "k": 1024
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_legacy",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation::core::float16::3",
+      "dtype": "torch.float16",
+      "shape": {
+        "b": 16,
+        "m": 2048,
+        "n": 2048,
+        "k": 2048
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_legacy",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation::core::float16::4",
+      "dtype": "torch.float16",
+      "shape": {
+        "b": 16,
+        "m": 4096,
+        "n": 4096,
+        "k": 4096
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_legacy",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation::core::float32::0",
+      "dtype": "torch.float32",
+      "shape": {
+        "b": 2,
+        "m": 384,
+        "n": 384,
+        "k": 384
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_legacy",
+      "binding": [
+        2,
+        384,
+        384,
+        384
+      ],
+      "record_shape_key": "[2, 384, 384, 384]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation::core::float32::1",
+      "dtype": "torch.float32",
+      "shape": {
+        "b": 2,
+        "m": 4096,
+        "n": 4096,
+        "k": 4096
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_legacy",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation::core::float32::2",
+      "dtype": "torch.float32",
+      "shape": {
+        "b": 16,
+        "m": 1024,
+        "n": 1024,
+        "k": 1024
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_legacy",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation::core::float32::3",
+      "dtype": "torch.float32",
+      "shape": {
+        "b": 16,
+        "m": 2048,
+        "n": 2048,
+        "k": 2048
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_legacy",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation::core::float32::4",
+      "dtype": "torch.float32",
+      "shape": {
+        "b": 16,
+        "m": 4096,
+        "n": 4096,
+        "k": 4096
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_legacy",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation::core::bfloat16::0",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "b": 2,
+        "m": 384,
+        "n": 384,
+        "k": 384
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_legacy",
+      "binding": [
+        2,
+        384,
+        384,
+        384
+      ],
+      "record_shape_key": "[2, 384, 384, 384]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation::core::bfloat16::1",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "b": 2,
+        "m": 4096,
+        "n": 4096,
+        "k": 4096
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_legacy",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation::core::bfloat16::2",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "b": 16,
+        "m": 1024,
+        "n": 1024,
+        "k": 1024
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_legacy",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation::core::bfloat16::3",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "b": 16,
+        "m": 2048,
+        "n": 2048,
+        "k": 2048
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_legacy",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation::core::bfloat16::4",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "b": 16,
+        "m": 4096,
+        "n": 4096,
+        "k": 4096
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_legacy",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float16::0",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          384
+        ],
+        "mat1": [
+          384,
+          384
+        ],
+        "mat2": [
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        false,
+        false
+      ],
+      "record_shape_key": "[2, 384, 384, 384, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float16::1",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          384
+        ],
+        "mat1": [
+          384,
+          384
+        ],
+        "mat2": [
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        true,
+        false
+      ],
+      "record_shape_key": "[2, 384, 384, 384, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float16::2",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          384
+        ],
+        "mat1": [
+          384,
+          384
+        ],
+        "mat2": [
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        false,
+        true
+      ],
+      "record_shape_key": "[2, 384, 384, 384, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float16::3",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          384
+        ],
+        "mat1": [
+          384,
+          384
+        ],
+        "mat2": [
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        true,
+        true
+      ],
+      "record_shape_key": "[2, 384, 384, 384, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float16::4",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        false,
+        false
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float16::5",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        true,
+        false
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float16::6",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        false,
+        true
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float16::7",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        true,
+        true
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float16::8",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          1024
+        ],
+        "mat1": [
+          1024,
+          1024
+        ],
+        "mat2": [
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        false,
+        false
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float16::9",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          1024
+        ],
+        "mat1": [
+          1024,
+          1024
+        ],
+        "mat2": [
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        true,
+        false
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float16::10",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          1024
+        ],
+        "mat1": [
+          1024,
+          1024
+        ],
+        "mat2": [
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        false,
+        true
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float16::11",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          1024
+        ],
+        "mat1": [
+          1024,
+          1024
+        ],
+        "mat2": [
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        true,
+        true
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float16::12",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          2048
+        ],
+        "mat1": [
+          2048,
+          2048
+        ],
+        "mat2": [
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        false,
+        false
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float16::13",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          2048
+        ],
+        "mat1": [
+          2048,
+          2048
+        ],
+        "mat2": [
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        true,
+        false
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float16::14",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          2048
+        ],
+        "mat1": [
+          2048,
+          2048
+        ],
+        "mat2": [
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        false,
+        true
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float16::15",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          2048
+        ],
+        "mat1": [
+          2048,
+          2048
+        ],
+        "mat2": [
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        true,
+        true
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float16::16",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        false,
+        false
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float16::17",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        true,
+        false
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float16::18",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        false,
+        true
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float16::19",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        true,
+        true
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float32::0",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          384
+        ],
+        "mat1": [
+          384,
+          384
+        ],
+        "mat2": [
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        false,
+        false
+      ],
+      "record_shape_key": "[2, 384, 384, 384, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float32::1",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          384
+        ],
+        "mat1": [
+          384,
+          384
+        ],
+        "mat2": [
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        true,
+        false
+      ],
+      "record_shape_key": "[2, 384, 384, 384, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float32::2",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          384
+        ],
+        "mat1": [
+          384,
+          384
+        ],
+        "mat2": [
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        false,
+        true
+      ],
+      "record_shape_key": "[2, 384, 384, 384, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float32::3",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          384
+        ],
+        "mat1": [
+          384,
+          384
+        ],
+        "mat2": [
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        true,
+        true
+      ],
+      "record_shape_key": "[2, 384, 384, 384, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float32::4",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        false,
+        false
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float32::5",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        true,
+        false
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float32::6",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        false,
+        true
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float32::7",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        true,
+        true
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float32::8",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          1024
+        ],
+        "mat1": [
+          1024,
+          1024
+        ],
+        "mat2": [
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        false,
+        false
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float32::9",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          1024
+        ],
+        "mat1": [
+          1024,
+          1024
+        ],
+        "mat2": [
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        true,
+        false
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float32::10",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          1024
+        ],
+        "mat1": [
+          1024,
+          1024
+        ],
+        "mat2": [
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        false,
+        true
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float32::11",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          1024
+        ],
+        "mat1": [
+          1024,
+          1024
+        ],
+        "mat2": [
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        true,
+        true
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float32::12",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          2048
+        ],
+        "mat1": [
+          2048,
+          2048
+        ],
+        "mat2": [
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        false,
+        false
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float32::13",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          2048
+        ],
+        "mat1": [
+          2048,
+          2048
+        ],
+        "mat2": [
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        true,
+        false
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float32::14",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          2048
+        ],
+        "mat1": [
+          2048,
+          2048
+        ],
+        "mat2": [
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        false,
+        true
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float32::15",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          2048
+        ],
+        "mat1": [
+          2048,
+          2048
+        ],
+        "mat2": [
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        true,
+        true
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float32::16",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        false,
+        false
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float32::17",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        true,
+        false
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float32::18",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        false,
+        true
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::float32::19",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        true,
+        true
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::bfloat16::0",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          384
+        ],
+        "mat1": [
+          384,
+          384
+        ],
+        "mat2": [
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        false,
+        false
+      ],
+      "record_shape_key": "[2, 384, 384, 384, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::bfloat16::1",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          384
+        ],
+        "mat1": [
+          384,
+          384
+        ],
+        "mat2": [
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        true,
+        false
+      ],
+      "record_shape_key": "[2, 384, 384, 384, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::bfloat16::2",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          384
+        ],
+        "mat1": [
+          384,
+          384
+        ],
+        "mat2": [
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        false,
+        true
+      ],
+      "record_shape_key": "[2, 384, 384, 384, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::bfloat16::3",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          384
+        ],
+        "mat1": [
+          384,
+          384
+        ],
+        "mat2": [
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        true,
+        true
+      ],
+      "record_shape_key": "[2, 384, 384, 384, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::bfloat16::4",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        false,
+        false
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::bfloat16::5",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        true,
+        false
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::bfloat16::6",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        false,
+        true
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::bfloat16::7",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        true,
+        true
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::bfloat16::8",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          1024
+        ],
+        "mat1": [
+          1024,
+          1024
+        ],
+        "mat2": [
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        false,
+        false
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::bfloat16::9",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          1024
+        ],
+        "mat1": [
+          1024,
+          1024
+        ],
+        "mat2": [
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        true,
+        false
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::bfloat16::10",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          1024
+        ],
+        "mat1": [
+          1024,
+          1024
+        ],
+        "mat2": [
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        false,
+        true
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::bfloat16::11",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          1024
+        ],
+        "mat1": [
+          1024,
+          1024
+        ],
+        "mat2": [
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        true,
+        true
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::bfloat16::12",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          2048
+        ],
+        "mat1": [
+          2048,
+          2048
+        ],
+        "mat2": [
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        false,
+        false
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::bfloat16::13",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          2048
+        ],
+        "mat1": [
+          2048,
+          2048
+        ],
+        "mat2": [
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        true,
+        false
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::bfloat16::14",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          2048
+        ],
+        "mat1": [
+          2048,
+          2048
+        ],
+        "mat2": [
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        false,
+        true
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::bfloat16::15",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          2048
+        ],
+        "mat1": [
+          2048,
+          2048
+        ],
+        "mat2": [
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        true,
+        true
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::bfloat16::16",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        false,
+        false
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::bfloat16::17",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        true,
+        false
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::bfloat16::18",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        false,
+        true
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation",
+      "case_id": "benchmark/test_addmm_activation.py::test_addmm_activation::core::bfloat16::19",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        true,
+        true
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation_out::core::float16::0",
+      "dtype": "torch.float16",
+      "shape": {
+        "b": 2,
+        "m": 384,
+        "n": 384,
+        "k": 384
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_out_legacy",
+      "binding": [
+        2,
+        384,
+        384,
+        384
+      ],
+      "record_shape_key": "[2, 384, 384, 384]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation_out::core::float16::1",
+      "dtype": "torch.float16",
+      "shape": {
+        "b": 2,
+        "m": 4096,
+        "n": 4096,
+        "k": 4096
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_out_legacy",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation_out::core::float16::2",
+      "dtype": "torch.float16",
+      "shape": {
+        "b": 16,
+        "m": 1024,
+        "n": 1024,
+        "k": 1024
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_out_legacy",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation_out::core::float16::3",
+      "dtype": "torch.float16",
+      "shape": {
+        "b": 16,
+        "m": 2048,
+        "n": 2048,
+        "k": 2048
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_out_legacy",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation_out::core::float16::4",
+      "dtype": "torch.float16",
+      "shape": {
+        "b": 16,
+        "m": 4096,
+        "n": 4096,
+        "k": 4096
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_out_legacy",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation_out::core::float32::0",
+      "dtype": "torch.float32",
+      "shape": {
+        "b": 2,
+        "m": 384,
+        "n": 384,
+        "k": 384
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_out_legacy",
+      "binding": [
+        2,
+        384,
+        384,
+        384
+      ],
+      "record_shape_key": "[2, 384, 384, 384]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation_out::core::float32::1",
+      "dtype": "torch.float32",
+      "shape": {
+        "b": 2,
+        "m": 4096,
+        "n": 4096,
+        "k": 4096
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_out_legacy",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation_out::core::float32::2",
+      "dtype": "torch.float32",
+      "shape": {
+        "b": 16,
+        "m": 1024,
+        "n": 1024,
+        "k": 1024
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_out_legacy",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation_out::core::float32::3",
+      "dtype": "torch.float32",
+      "shape": {
+        "b": 16,
+        "m": 2048,
+        "n": 2048,
+        "k": 2048
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_out_legacy",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation_out::core::float32::4",
+      "dtype": "torch.float32",
+      "shape": {
+        "b": 16,
+        "m": 4096,
+        "n": 4096,
+        "k": 4096
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_out_legacy",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation_out::core::bfloat16::0",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "b": 2,
+        "m": 384,
+        "n": 384,
+        "k": 384
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_out_legacy",
+      "binding": [
+        2,
+        384,
+        384,
+        384
+      ],
+      "record_shape_key": "[2, 384, 384, 384]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation_out::core::bfloat16::1",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "b": 2,
+        "m": 4096,
+        "n": 4096,
+        "k": 4096
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_out_legacy",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation_out::core::bfloat16::2",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "b": 16,
+        "m": 1024,
+        "n": 1024,
+        "k": 1024
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_out_legacy",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation_out::core::bfloat16::3",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "b": 16,
+        "m": 2048,
+        "n": 2048,
+        "k": 2048
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_out_legacy",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test__addmm_activation.py::test_addmm_activation_out::core::bfloat16::4",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "b": 16,
+        "m": 4096,
+        "n": 4096,
+        "k": 4096
+      },
+      "params": {
+        "b_column_major": false
+      },
+      "module": "b03_activation_out_legacy",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float16::0",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          384
+        ],
+        "mat1": [
+          384,
+          384
+        ],
+        "mat2": [
+          384,
+          384
+        ],
+        "out": [
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        false,
+        false
+      ],
+      "record_shape_key": "[2, 384, 384, 384, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float16::1",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          384
+        ],
+        "mat1": [
+          384,
+          384
+        ],
+        "mat2": [
+          384,
+          384
+        ],
+        "out": [
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        true,
+        false
+      ],
+      "record_shape_key": "[2, 384, 384, 384, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float16::2",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          384
+        ],
+        "mat1": [
+          384,
+          384
+        ],
+        "mat2": [
+          384,
+          384
+        ],
+        "out": [
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        false,
+        true
+      ],
+      "record_shape_key": "[2, 384, 384, 384, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float16::3",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          384
+        ],
+        "mat1": [
+          384,
+          384
+        ],
+        "mat2": [
+          384,
+          384
+        ],
+        "out": [
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        true,
+        true
+      ],
+      "record_shape_key": "[2, 384, 384, 384, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float16::4",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ],
+        "out": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        false,
+        false
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float16::5",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ],
+        "out": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        true,
+        false
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float16::6",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ],
+        "out": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        false,
+        true
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float16::7",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ],
+        "out": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        true,
+        true
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float16::8",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          1024
+        ],
+        "mat1": [
+          1024,
+          1024
+        ],
+        "mat2": [
+          1024,
+          1024
+        ],
+        "out": [
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        false,
+        false
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float16::9",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          1024
+        ],
+        "mat1": [
+          1024,
+          1024
+        ],
+        "mat2": [
+          1024,
+          1024
+        ],
+        "out": [
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        true,
+        false
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float16::10",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          1024
+        ],
+        "mat1": [
+          1024,
+          1024
+        ],
+        "mat2": [
+          1024,
+          1024
+        ],
+        "out": [
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        false,
+        true
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float16::11",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          1024
+        ],
+        "mat1": [
+          1024,
+          1024
+        ],
+        "mat2": [
+          1024,
+          1024
+        ],
+        "out": [
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        true,
+        true
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float16::12",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          2048
+        ],
+        "mat1": [
+          2048,
+          2048
+        ],
+        "mat2": [
+          2048,
+          2048
+        ],
+        "out": [
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        false,
+        false
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float16::13",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          2048
+        ],
+        "mat1": [
+          2048,
+          2048
+        ],
+        "mat2": [
+          2048,
+          2048
+        ],
+        "out": [
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        true,
+        false
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float16::14",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          2048
+        ],
+        "mat1": [
+          2048,
+          2048
+        ],
+        "mat2": [
+          2048,
+          2048
+        ],
+        "out": [
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        false,
+        true
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float16::15",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          2048
+        ],
+        "mat1": [
+          2048,
+          2048
+        ],
+        "mat2": [
+          2048,
+          2048
+        ],
+        "out": [
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        true,
+        true
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float16::16",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ],
+        "out": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        false,
+        false
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float16::17",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ],
+        "out": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        true,
+        false
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float16::18",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ],
+        "out": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        false,
+        true
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float16::19",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ],
+        "out": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        true,
+        true
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float32::0",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          384
+        ],
+        "mat1": [
+          384,
+          384
+        ],
+        "mat2": [
+          384,
+          384
+        ],
+        "out": [
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        false,
+        false
+      ],
+      "record_shape_key": "[2, 384, 384, 384, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float32::1",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          384
+        ],
+        "mat1": [
+          384,
+          384
+        ],
+        "mat2": [
+          384,
+          384
+        ],
+        "out": [
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        true,
+        false
+      ],
+      "record_shape_key": "[2, 384, 384, 384, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float32::2",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          384
+        ],
+        "mat1": [
+          384,
+          384
+        ],
+        "mat2": [
+          384,
+          384
+        ],
+        "out": [
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        false,
+        true
+      ],
+      "record_shape_key": "[2, 384, 384, 384, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float32::3",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          384
+        ],
+        "mat1": [
+          384,
+          384
+        ],
+        "mat2": [
+          384,
+          384
+        ],
+        "out": [
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        true,
+        true
+      ],
+      "record_shape_key": "[2, 384, 384, 384, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float32::4",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ],
+        "out": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        false,
+        false
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float32::5",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ],
+        "out": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        true,
+        false
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float32::6",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ],
+        "out": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        false,
+        true
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float32::7",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ],
+        "out": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        true,
+        true
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float32::8",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          1024
+        ],
+        "mat1": [
+          1024,
+          1024
+        ],
+        "mat2": [
+          1024,
+          1024
+        ],
+        "out": [
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        false,
+        false
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float32::9",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          1024
+        ],
+        "mat1": [
+          1024,
+          1024
+        ],
+        "mat2": [
+          1024,
+          1024
+        ],
+        "out": [
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        true,
+        false
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float32::10",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          1024
+        ],
+        "mat1": [
+          1024,
+          1024
+        ],
+        "mat2": [
+          1024,
+          1024
+        ],
+        "out": [
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        false,
+        true
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float32::11",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          1024
+        ],
+        "mat1": [
+          1024,
+          1024
+        ],
+        "mat2": [
+          1024,
+          1024
+        ],
+        "out": [
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        true,
+        true
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float32::12",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          2048
+        ],
+        "mat1": [
+          2048,
+          2048
+        ],
+        "mat2": [
+          2048,
+          2048
+        ],
+        "out": [
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        false,
+        false
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float32::13",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          2048
+        ],
+        "mat1": [
+          2048,
+          2048
+        ],
+        "mat2": [
+          2048,
+          2048
+        ],
+        "out": [
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        true,
+        false
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float32::14",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          2048
+        ],
+        "mat1": [
+          2048,
+          2048
+        ],
+        "mat2": [
+          2048,
+          2048
+        ],
+        "out": [
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        false,
+        true
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float32::15",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          2048
+        ],
+        "mat1": [
+          2048,
+          2048
+        ],
+        "mat2": [
+          2048,
+          2048
+        ],
+        "out": [
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        true,
+        true
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float32::16",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ],
+        "out": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        false,
+        false
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float32::17",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ],
+        "out": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        true,
+        false
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float32::18",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ],
+        "out": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        false,
+        true
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::float32::19",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ],
+        "out": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        true,
+        true
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::bfloat16::0",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          384
+        ],
+        "mat1": [
+          384,
+          384
+        ],
+        "mat2": [
+          384,
+          384
+        ],
+        "out": [
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        false,
+        false
+      ],
+      "record_shape_key": "[2, 384, 384, 384, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::bfloat16::1",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          384
+        ],
+        "mat1": [
+          384,
+          384
+        ],
+        "mat2": [
+          384,
+          384
+        ],
+        "out": [
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        true,
+        false
+      ],
+      "record_shape_key": "[2, 384, 384, 384, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::bfloat16::2",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          384
+        ],
+        "mat1": [
+          384,
+          384
+        ],
+        "mat2": [
+          384,
+          384
+        ],
+        "out": [
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        false,
+        true
+      ],
+      "record_shape_key": "[2, 384, 384, 384, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::bfloat16::3",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          384
+        ],
+        "mat1": [
+          384,
+          384
+        ],
+        "mat2": [
+          384,
+          384
+        ],
+        "out": [
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        true,
+        true
+      ],
+      "record_shape_key": "[2, 384, 384, 384, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::bfloat16::4",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ],
+        "out": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        false,
+        false
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::bfloat16::5",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ],
+        "out": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        true,
+        false
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::bfloat16::6",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ],
+        "out": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        false,
+        true
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::bfloat16::7",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ],
+        "out": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        true,
+        true
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::bfloat16::8",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          1024
+        ],
+        "mat1": [
+          1024,
+          1024
+        ],
+        "mat2": [
+          1024,
+          1024
+        ],
+        "out": [
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        false,
+        false
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::bfloat16::9",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          1024
+        ],
+        "mat1": [
+          1024,
+          1024
+        ],
+        "mat2": [
+          1024,
+          1024
+        ],
+        "out": [
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        true,
+        false
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::bfloat16::10",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          1024
+        ],
+        "mat1": [
+          1024,
+          1024
+        ],
+        "mat2": [
+          1024,
+          1024
+        ],
+        "out": [
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        false,
+        true
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::bfloat16::11",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          1024
+        ],
+        "mat1": [
+          1024,
+          1024
+        ],
+        "mat2": [
+          1024,
+          1024
+        ],
+        "out": [
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        true,
+        true
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::bfloat16::12",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          2048
+        ],
+        "mat1": [
+          2048,
+          2048
+        ],
+        "mat2": [
+          2048,
+          2048
+        ],
+        "out": [
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        false,
+        false
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::bfloat16::13",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          2048
+        ],
+        "mat1": [
+          2048,
+          2048
+        ],
+        "mat2": [
+          2048,
+          2048
+        ],
+        "out": [
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        true,
+        false
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::bfloat16::14",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          2048
+        ],
+        "mat1": [
+          2048,
+          2048
+        ],
+        "mat2": [
+          2048,
+          2048
+        ],
+        "out": [
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        false,
+        true
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::bfloat16::15",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          2048
+        ],
+        "mat1": [
+          2048,
+          2048
+        ],
+        "mat2": [
+          2048,
+          2048
+        ],
+        "out": [
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        true,
+        true
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::bfloat16::16",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ],
+        "out": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        false,
+        false
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, False, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::bfloat16::17",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ],
+        "out": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": false
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        true,
+        false
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, True, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::bfloat16::18",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ],
+        "out": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        false,
+        true
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, False, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "_addmm_activation_out",
+      "case_id": "benchmark/test_addmm_activation_out.py::test_addmm_activation_out::core::bfloat16::19",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          4096
+        ],
+        "mat1": [
+          4096,
+          4096
+        ],
+        "mat2": [
+          4096,
+          4096
+        ],
+        "out": [
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true,
+        "use_gelu": true
+      },
+      "module": "b03_activation_out",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        true,
+        true
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, True, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::float16::0",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          384,
+          384
+        ],
+        "batch1": [
+          2,
+          384,
+          384
+        ],
+        "batch2": [
+          2,
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": false
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        false
+      ],
+      "record_shape_key": "[2, 384, 384, 384, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::float16::1",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          384,
+          384
+        ],
+        "batch1": [
+          2,
+          384,
+          384
+        ],
+        "batch2": [
+          2,
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": true
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        true
+      ],
+      "record_shape_key": "[2, 384, 384, 384, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::float16::2",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          4096,
+          4096
+        ],
+        "batch1": [
+          2,
+          4096,
+          4096
+        ],
+        "batch2": [
+          2,
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        false
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::float16::3",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          4096,
+          4096
+        ],
+        "batch1": [
+          2,
+          4096,
+          4096
+        ],
+        "batch2": [
+          2,
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        true
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::float16::4",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          1024,
+          1024
+        ],
+        "batch1": [
+          16,
+          1024,
+          1024
+        ],
+        "batch2": [
+          16,
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": false
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        false
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::float16::5",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          1024,
+          1024
+        ],
+        "batch1": [
+          16,
+          1024,
+          1024
+        ],
+        "batch2": [
+          16,
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": true
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        true
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::float16::6",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          2048,
+          2048
+        ],
+        "batch1": [
+          16,
+          2048,
+          2048
+        ],
+        "batch2": [
+          16,
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": false
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        false
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::float16::7",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          2048,
+          2048
+        ],
+        "batch1": [
+          16,
+          2048,
+          2048
+        ],
+        "batch2": [
+          16,
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": true
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        true
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::float16::8",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          4096,
+          4096
+        ],
+        "batch1": [
+          16,
+          4096,
+          4096
+        ],
+        "batch2": [
+          16,
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        false
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::float16::9",
+      "dtype": "torch.float16",
+      "shape": {
+        "self": [
+          4096,
+          4096
+        ],
+        "batch1": [
+          16,
+          4096,
+          4096
+        ],
+        "batch2": [
+          16,
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        true
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::float32::0",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          384,
+          384
+        ],
+        "batch1": [
+          2,
+          384,
+          384
+        ],
+        "batch2": [
+          2,
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": false
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        false
+      ],
+      "record_shape_key": "[2, 384, 384, 384, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::float32::1",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          384,
+          384
+        ],
+        "batch1": [
+          2,
+          384,
+          384
+        ],
+        "batch2": [
+          2,
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": true
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        true
+      ],
+      "record_shape_key": "[2, 384, 384, 384, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::float32::2",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          4096,
+          4096
+        ],
+        "batch1": [
+          2,
+          4096,
+          4096
+        ],
+        "batch2": [
+          2,
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        false
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::float32::3",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          4096,
+          4096
+        ],
+        "batch1": [
+          2,
+          4096,
+          4096
+        ],
+        "batch2": [
+          2,
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        true
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::float32::4",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          1024,
+          1024
+        ],
+        "batch1": [
+          16,
+          1024,
+          1024
+        ],
+        "batch2": [
+          16,
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": false
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        false
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::float32::5",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          1024,
+          1024
+        ],
+        "batch1": [
+          16,
+          1024,
+          1024
+        ],
+        "batch2": [
+          16,
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": true
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        true
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::float32::6",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          2048,
+          2048
+        ],
+        "batch1": [
+          16,
+          2048,
+          2048
+        ],
+        "batch2": [
+          16,
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": false
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        false
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::float32::7",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          2048,
+          2048
+        ],
+        "batch1": [
+          16,
+          2048,
+          2048
+        ],
+        "batch2": [
+          16,
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": true
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        true
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::float32::8",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          4096,
+          4096
+        ],
+        "batch1": [
+          16,
+          4096,
+          4096
+        ],
+        "batch2": [
+          16,
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        false
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::float32::9",
+      "dtype": "torch.float32",
+      "shape": {
+        "self": [
+          4096,
+          4096
+        ],
+        "batch1": [
+          16,
+          4096,
+          4096
+        ],
+        "batch2": [
+          16,
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        true
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::bfloat16::0",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          384,
+          384
+        ],
+        "batch1": [
+          2,
+          384,
+          384
+        ],
+        "batch2": [
+          2,
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": false
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        false
+      ],
+      "record_shape_key": "[2, 384, 384, 384, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::bfloat16::1",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          384,
+          384
+        ],
+        "batch1": [
+          2,
+          384,
+          384
+        ],
+        "batch2": [
+          2,
+          384,
+          384
+        ]
+      },
+      "params": {
+        "column_major": true
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        2,
+        384,
+        384,
+        384,
+        true
+      ],
+      "record_shape_key": "[2, 384, 384, 384, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::bfloat16::2",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          4096,
+          4096
+        ],
+        "batch1": [
+          2,
+          4096,
+          4096
+        ],
+        "batch2": [
+          2,
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        false
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::bfloat16::3",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          4096,
+          4096
+        ],
+        "batch1": [
+          2,
+          4096,
+          4096
+        ],
+        "batch2": [
+          2,
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        2,
+        4096,
+        4096,
+        4096,
+        true
+      ],
+      "record_shape_key": "[2, 4096, 4096, 4096, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::bfloat16::4",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          1024,
+          1024
+        ],
+        "batch1": [
+          16,
+          1024,
+          1024
+        ],
+        "batch2": [
+          16,
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": false
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        false
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::bfloat16::5",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          1024,
+          1024
+        ],
+        "batch1": [
+          16,
+          1024,
+          1024
+        ],
+        "batch2": [
+          16,
+          1024,
+          1024
+        ]
+      },
+      "params": {
+        "column_major": true
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        16,
+        1024,
+        1024,
+        1024,
+        true
+      ],
+      "record_shape_key": "[16, 1024, 1024, 1024, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::bfloat16::6",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          2048,
+          2048
+        ],
+        "batch1": [
+          16,
+          2048,
+          2048
+        ],
+        "batch2": [
+          16,
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": false
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        false
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::bfloat16::7",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          2048,
+          2048
+        ],
+        "batch1": [
+          16,
+          2048,
+          2048
+        ],
+        "batch2": [
+          16,
+          2048,
+          2048
+        ]
+      },
+      "params": {
+        "column_major": true
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        16,
+        2048,
+        2048,
+        2048,
+        true
+      ],
+      "record_shape_key": "[16, 2048, 2048, 2048, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::bfloat16::8",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          4096,
+          4096
+        ],
+        "batch1": [
+          16,
+          4096,
+          4096
+        ],
+        "batch2": [
+          16,
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": false
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        false
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, False]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    },
+    {
+      "op_name": "addbmm",
+      "case_id": "benchmark/test_addbmm.py::test_addbmm::core::bfloat16::9",
+      "dtype": "torch.bfloat16",
+      "shape": {
+        "self": [
+          4096,
+          4096
+        ],
+        "batch1": [
+          16,
+          4096,
+          4096
+        ],
+        "batch2": [
+          16,
+          4096,
+          4096
+        ]
+      },
+      "params": {
+        "column_major": true
+      },
+      "module": "b03_addbmm",
+      "binding": [
+        16,
+        4096,
+        4096,
+        4096,
+        true
+      ],
+      "record_shape_key": "[16, 4096, 4096, 4096, True]",
+      "site_membership": [
+        "h20",
+        "suiyuan"
+      ]
+    }
+  ]
+}
