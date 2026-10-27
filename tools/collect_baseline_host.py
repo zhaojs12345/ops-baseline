@@ -17,6 +17,7 @@ import time
 from pathlib import Path
 
 OPERATORS = (
+    "_histogramdd_from_bin_cts",
     "_to_sparse_semi_structured",
     "_use_cudnn_ctc_loss",
     "fbgemm_linear_fp16_weight_fp32_activation",
@@ -179,7 +180,13 @@ def main(argv=None):
         },
     }
     for operator in dict.fromkeys(args.operators):
-        module = source / "benchmark" / f"test_{operator}.py"
+        # This source file also contains the independent out overload.
+        histogram = operator == "_histogramdd_from_bin_cts"
+        filename = (
+            "test_histogramdd_from_bin_cts.py" if histogram else f"test_{operator}.py"
+        )
+        module = source / "benchmark" / filename
+        selection = ["-m", "underscore_histogramdd_from_bin_cts"] if histogram else []
         target = work / f"{operator}.json"
         env["HOST_BASELINE_OPERATOR"] = operator
         command = [
@@ -187,6 +194,7 @@ def main(argv=None):
             "-m",
             "pytest",
             str(module),
+            *selection,
             "-q",
             "--tb=short",
             "--level",
@@ -206,6 +214,7 @@ def main(argv=None):
             "-m",
             "pytest",
             str(module),
+            *selection,
             "-q",
             "--tb=short",
             "--level",

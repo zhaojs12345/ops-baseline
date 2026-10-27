@@ -3,11 +3,63 @@
 Patches only the throwaway collector process; the FlagGems checkout is unmodified.
 """
 
+import ast
 import hashlib
+import inspect
+import json
 import os
 import platform
+import sys
 import time
 from pathlib import Path
+
+_HISTOGRAM_WRAPPER_AST_SHA256 = (
+    "5f19fcb4a8386beeb92dd3847e8f40290354fe3614134efc29f72e703db8439b"
+)
+TRANSFER_OPERATORS = {"_to_sparse_semi_structured", "_histogramdd_from_bin_cts"}
+
+
+def reviewed_histogram_wrapper(op):
+    """Recognize only the original native CPU dispatch/transfer wrapper."""
+    name = "benchmark.test_histogramdd_from_bin_cts"
+    module = sys.modules.get(name)
+    if (
+        module is None
+        or getattr(module, "_cpu_reference", None) is not op
+        or getattr(op, "__module__", None) != name
+    ):
+        return False
+    try:
+        tree = ast.parse(inspect.getsource(op))
+    except (OSError, TypeError, SyntaxError):
+        return False
+    if len(tree.body) != 1 or not isinstance(tree.body[0], ast.FunctionDef):
+        return False
+    # The JSON AST encoding is stable across Python's ast.dump formatting
+    # changes. Ordinary-function type_params was added in Python 3.12.
+    for node in ast.walk(tree.body[0]):
+        if getattr(node, "type_params", []):
+            return False
+
+    def canonical(value):
+        if isinstance(value, ast.AST):
+            return [
+                type(value).__name__,
+                [
+                    [key, canonical(item)]
+                    for key, item in ast.iter_fields(value)
+                    if key != "type_params"
+                ],
+            ]
+        if isinstance(value, list):
+            return [canonical(item) for item in value]
+        return value
+
+    try:
+        source = json.dumps(canonical(tree.body[0]), separators=(",", ":")).encode()
+    except (TypeError, ValueError):
+        return False
+    return hashlib.sha256(source).hexdigest() == _HISTOGRAM_WRAPPER_AST_SHA256
 
 
 def describe_inputs(value):
@@ -88,13 +140,22 @@ def pytest_collection_modifyitems(config, items):
         "timer": "torch.utils.benchmark.Timer",
         "min_run_time_seconds": minimum,
     }
+    if operator == "_histogramdd_from_bin_cts":
+        environment["cuda_device_uuid"] = str(torch.cuda.get_device_properties(0).uuid)
+        environment["cuda_visible_devices"] = os.environ.get("CUDA_VISIBLE_DEVICES")
 
     def host_latency(self, op, *args, **kwargs):
+        histogram_wrapper = (
+            operator == "_histogramdd_from_bin_cts" and reviewed_histogram_wrapper(op)
+        )
         if (
             not base.Config.reference_only
             or self.op_name != operator
             or op is not self.torch_op
-            or not isinstance(op, (torch._ops.OpOverloadPacket, torch._ops.OpOverload))
+            or not (
+                isinstance(op, (torch._ops.OpOverloadPacket, torch._ops.OpOverload))
+                or histogram_wrapper
+            )
         ):
             raise ValueError(
                 "Host collection only accepts the original native reference"
@@ -102,7 +163,7 @@ def pytest_collection_modifyitems(config, items):
         # Packing is host work reached through CUDA dispatch, including its
         # internal D2H/H2D transfers. The CTC predicate launches no computation:
         # a CUDA synchronization there would measure unrelated device work.
-        synchronize = operator == "_to_sparse_semi_structured"
+        synchronize = operator == "_to_sparse_semi_structured" or histogram_wrapper
         if synchronize:
             torch.cuda.synchronize()
 
@@ -141,7 +202,11 @@ def pytest_collection_modifyitems(config, items):
         active[0]["host_measurement"] = {
             "kind": kind,
             "environment": environment,
-            "native_api": str(op),
+            "native_api": (
+                "aten._histogramdd_from_bin_cts.default"
+                if histogram_wrapper
+                else str(op)
+            ),
             "inputs": input_contract(operator, args, kwargs),
             "synchronized_cuda": synchronize,
             "number_per_run": measurement.number_per_run,
@@ -153,6 +218,12 @@ def pytest_collection_modifyitems(config, items):
                 else None
             ),
         }
+        if histogram_wrapper:
+            active[0]["host_measurement"]["reference_wrapper"] = {
+                "source_ast_sha256": _HISTOGRAM_WRAPPER_AST_SHA256,
+                "source_ast_scheme": "json_ast_without_empty_type_params_v1",
+                "kind": "original native CPU histogram dispatch plus D2H/H2D transfers",
+            }
         return measurement.median * 1000
 
     # Operator-local classes may override get_latency. Instrument those too,

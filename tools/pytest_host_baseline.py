@@ -1,4 +1,4 @@
-"""Opt-in host-baseline replay for the six documented FlagGems operators.
+"""Opt-in host-baseline replay for the documented FlagGems host operators.
 
 Usage: PYTHONPATH=/path/to/ops-baseline/tools:$PYTHONPATH pytest ... \
     -p pytest_host_baseline --host-baseline /path/to/host.json --mode operator
@@ -18,7 +18,11 @@ from functools import cached_property
 from pathlib import Path
 
 from collect_baseline_host import OPERATORS
-from host_baseline_plugin import input_contract
+from host_baseline_plugin import (
+    TRANSFER_OPERATORS,
+    _HISTOGRAM_WRAPPER_AST_SHA256,
+    input_contract,
+)
 
 
 def pytest_addoption(parser):
@@ -37,7 +41,7 @@ def _canonical(value):
                 "accelerator"
                 if key == "device"
                 and isinstance(item, str)
-                and item.split(":")[0] in {"cuda", "npu"}
+                and item.split(":")[0] in {"cuda", "npu", "gcu"}
                 else _canonical(item)
             )
             for key, item in value.items()
@@ -94,7 +98,7 @@ class HostArtifact:
         measurement = record["host_measurement"]
         expected_kind = (
             "cuda_dispatch_host_with_transfers"
-            if operator == "_to_sparse_semi_structured"
+            if operator in TRANSFER_OPERATORS
             else (
                 "cuda_dispatch_host_predicate"
                 if operator == "_use_cudnn_ctc_loss"
@@ -122,11 +126,9 @@ class HostArtifact:
             }
         ):
             raise ValueError("Host record has no valid native source provenance")
-        if measurement["synchronized_cuda"] is not (
-            operator == "_to_sparse_semi_structured"
-        ):
+        if measurement["synchronized_cuda"] is not (operator in TRANSFER_OPERATORS):
             raise ValueError("Host baseline synchronization scope is inconsistent")
-        if operator in {"_to_sparse_semi_structured", "_use_cudnn_ctc_loss"}:
+        if operator in TRANSFER_OPERATORS | {"_use_cudnn_ctc_loss"}:
             gpu = measurement["environment"]["cuda_device"]
             if (
                 not isinstance(gpu, str)
@@ -135,6 +137,14 @@ class HostArtifact:
             ):
                 raise ValueError(
                     "CUDA-dispatch host baseline lacks its actual NVIDIA environment"
+                )
+        if operator == "_histogramdd_from_bin_cts":
+            if (
+                measurement.get("reference_wrapper", {}).get("source_ast_sha256")
+                != _HISTOGRAM_WRAPPER_AST_SHA256
+            ):
+                raise ValueError(
+                    "Host histogram requires the reviewed original native wrapper"
                 )
         actual = input_contract(operator, args, kwargs)
         if _canonical(actual) != _canonical(measurement["inputs"]):
@@ -189,7 +199,7 @@ def pytest_collection_modifyitems(config, items):
                 "threads": 1,
                 "input_threads": torch.get_num_threads(),
                 "cpu_info": cpu_info,
-                "synchronized_accelerator": operator == "_to_sparse_semi_structured",
+                "synchronized_accelerator": operator in TRANSFER_OPERATORS,
                 "timer": "torch.utils.benchmark.Timer(perf_counter)",
                 "target_vendor": flag_gems.vendor_name,
                 "target_device": str(flag_gems.device),
@@ -232,11 +242,11 @@ def pytest_collection_modifyitems(config, items):
 
             def call():
                 result = op(*args, **kwargs)
-                if operator == "_to_sparse_semi_structured":
+                if operator in TRANSFER_OPERATORS:
                     base.torch_device_fn.synchronize()
                 return result
 
-            if operator == "_to_sparse_semi_structured":
+            if operator in TRANSFER_OPERATORS:
                 base.torch_device_fn.synchronize()
             return (
                 Timer(
