@@ -140,7 +140,8 @@ class HostArtifact:
                 )
         if operator == "_histogramdd_from_bin_cts":
             if (
-                measurement.get("reference_wrapper", {}).get("source_ast_sha256")
+                measurement["native_api"] != "aten._histogramdd_from_bin_cts.default"
+                or measurement.get("reference_wrapper", {}).get("source_ast_sha256")
                 != _HISTOGRAM_WRAPPER_AST_SHA256
             ):
                 raise ValueError(
@@ -188,6 +189,7 @@ def pytest_collection_modifyitems(config, items):
         baseline_source: dict | None = None
 
     def adapt(cls, operator):
+        original_latency = cls.get_latency
         original_measure = cls._measure_input
         original_reference = cls._run_reference_cases
 
@@ -206,6 +208,8 @@ def pytest_collection_modifyitems(config, items):
             }
 
         def latency(self, op, *args, **kwargs):
+            if self.op_name != operator:
+                return original_latency(self, op, *args, **kwargs)
             importing = base.Config.reference_only or getattr(
                 self, "_host_native_pending", False
             )
@@ -261,6 +265,8 @@ def pytest_collection_modifyitems(config, items):
             )
 
         def measure(self, input, case_id=None):
+            if self.op_name != operator:
+                return original_measure(self, input, case_id)
             if (
                 self.is_backward
                 or base.Config.skip_native
@@ -292,6 +298,8 @@ def pytest_collection_modifyitems(config, items):
                 self._host_native_pending = False
 
         def reference(self, case_ids):
+            if self.op_name != operator:
+                return original_reference(self, case_ids)
             if base.Config.skip_native or self.is_backward:
                 raise ValueError(
                     "External host reference needs a forward native baseline"
@@ -315,6 +323,8 @@ def pytest_collection_modifyitems(config, items):
     for item in items:
         module = item.module
         operator = module.__name__.rsplit(".", 1)[-1].removeprefix("test_")
+        if module.__name__ == "benchmark.test_histogramdd_from_bin_cts":
+            operator = "_histogramdd_from_bin_cts"
         if operator not in OPERATORS or not module.__name__.startswith("benchmark."):
             continue
         for cls in list(vars(module).values()):

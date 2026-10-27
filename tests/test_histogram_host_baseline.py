@@ -1,6 +1,7 @@
 """Native-wrapper collection, overload selection and cross-device host replay."""
 
 import contextlib
+from dataclasses import dataclass
 import io
 import json
 from pathlib import Path
@@ -30,6 +31,65 @@ WRAPPER = """def _cpu_reference(inp, *, bins, range=None, weight=None, density=F
 
 
 class HistogramHostTests(unittest.TestCase):
+    def test_actual_histogram_module_hook_preserves_out_overload(self):
+        @dataclass
+        class Metrics:
+            latency: float | None = None
+
+        calls = []
+
+        class Benchmark:
+            def get_latency(self, *args, **kwargs):
+                calls.append(("latency", args, kwargs))
+                return "original-latency"
+
+            def _measure_input(self, *args):
+                calls.append(("measure", args))
+                return "original-measure"
+
+            def _run_reference_cases(self, *args):
+                calls.append(("reference", args))
+                return "original-reference"
+
+        base = types.ModuleType("benchmark.base")
+        base.Benchmark = Benchmark
+        base.BenchmarkMetrics = Metrics
+        package = types.ModuleType("benchmark")
+        package.base = base
+        package.consts = types.ModuleType("benchmark.consts")
+        module = types.ModuleType("benchmark.test_histogramdd_from_bin_cts")
+        cls = type(
+            "HistogramddFromBinCtsBenchmark",
+            (Benchmark,),
+            {"__module__": module.__name__},
+        )
+        module.HistogramddFromBinCtsBenchmark = cls
+        original_read_text = Path.read_text
+        with patch.dict(
+            sys.modules,
+            {"benchmark": package, "flag_gems": types.ModuleType("flag_gems")},
+        ), patch.object(
+            Path,
+            "read_text",
+            lambda path, *args, **kwargs: "unit CPU fixture"
+            if str(path) == "/proc/cpuinfo"
+            else original_read_text(path, *args, **kwargs),
+        ):
+            replay.pytest_collection_modifyitems(
+                types.SimpleNamespace(getoption=lambda name: "/unused/deferred.json"),
+                [types.SimpleNamespace(module=module)],
+            )
+        self.assertTrue(cls._external_host_adapted)
+        out = cls()
+        out.op_name = OP + "_out"
+        # No baseline, timer or Config may be touched for the shared out class.
+        self.assertEqual(out.get_latency("out-call", 7), "original-latency")
+        self.assertEqual(out._measure_input("input", "case"), "original-measure")
+        self.assertEqual(out._run_reference_cases(["out-case"]), "original-reference")
+        self.assertEqual(
+            [entry[0] for entry in calls], ["latency", "measure", "reference"]
+        )
+
     def test_only_original_native_wrapper_is_eligible(self):
         name = "benchmark.test_histogramdd_from_bin_cts"
         with tempfile.TemporaryDirectory() as tmp:
@@ -193,6 +253,7 @@ class HistogramHostTests(unittest.TestCase):
             ("kind", "cuda_kernel"),
             ("synchronized_cuda", False),
             ("native_api", "python.custom_histogram"),
+            ("native_api", "aten._histogramdd_from_bin_cts.out"),
         ]:
             data = self.artifact()
             data["operators"][OP][0]["host_measurement"][field] = bad
