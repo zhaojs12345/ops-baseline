@@ -1,0 +1,131 @@
+{
+  "status": "PASS_ACTUAL_NATIVE_H800_EXACT_CURRENT_CORE_12",
+  "utc": "2026-10-27T18:05:05.850821+00:00",
+  "artifact": "op_pytorch_h800_adaptive_avg_pool3d_backward_core_20261028.json",
+  "artifact_sha256": "8211d460ad8ab12a15443ab4d16bccd0ba044dc6b1c55d746867df6893ee4651",
+  "measured_source_commit": "c8c928287c1c01e74601d163e5ba6a9fafb93af6",
+  "native_schema": "aten::_adaptive_avg_pool3d_backward.default",
+  "canonical_operator": "_adaptive_avg_pool3d_backward",
+  "actual_recipe_source_commit": "2ff0931a646b97ec98ebd50642b5889619125a6b",
+  "final_flag_gems_integration_source": "1c14e61e0ec40e750a978141e21b90fae2c6a23b",
+  "input_builder_sha256": "6658ad2c7da71d182bb2a0137ba1de5e0880b12b003e9a8aa5e3afa2a2ace6c1",
+  "producer_module_sha256": "53f4aec05e9ff6409ed4ff4be58b8dd9aa22d9b9e3dcbda9fa99ff44d769b74f",
+  "completed_native_records": 12,
+  "physical_gpu": "4",
+  "environment": {
+    "schema_version": 1,
+    "collected_at_utc": "2026-10-27T18:02:22.540201+00:00",
+    "hardware": {
+      "gpu": {
+        "name": "NVIDIA H800",
+        "uuid": "fd660a7d-352c-6699-9e93-74c8ea136095",
+        "total_memory_bytes": 85017624576,
+        "total_memory_gib": 79.18,
+        "compute_capability": "9.0",
+        "multiprocessor_count": 132,
+        "cuda_device_index": 0,
+        "driver_version": "580.105.08"
+      },
+      "cpu_model": "Intel(R) Xeon(R) Platinum 8468V",
+      "cpu_architecture": "x86_64",
+      "cpu_socket_count": 2,
+      "physical_cpu_core_count": 96,
+      "logical_cpu_count": 192,
+      "cpu_threads_per_core": 2,
+      "numa_node_count": 2,
+      "process_cpu_affinity_count": 192,
+      "hypervisor_vendor": null
+    },
+    "software": {
+      "os": "Linux",
+      "os_release": "5.15.0-78-generic",
+      "machine": "x86_64",
+      "python": "3.12.3",
+      "packages": {
+        "torch": "2.8.0a0+5228986c39.nv25.5",
+        "triton": "3.6.0",
+        "vllm": null,
+        "sglang": null
+      },
+      "torch_cuda_version": "12.9",
+      "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Apr__9_19:24:57_PDT_2025\nCuda compilation tools, release 12.9, V12.9.41\nBuild cuda_12.9.r12.9/compiler.35813241_0",
+      "ncu_version": "NVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2025 NVIDIA Corporation\nVersion 2025.2.0.0 (build 35613519) (public-release)"
+    },
+    "source": {
+      "git_commit": "c8c928287c1c01e74601d163e5ba6a9fafb93af6",
+      "git_branch": "HEAD",
+      "git_dirty": false
+    },
+    "run": {
+      "repo": "pytorch",
+      "device": null,
+      "ncu_enabled": false,
+      "report_dir": "/data/tj/workspace/blocked581-b16-pool3d-h800-v1-20261028/native-collect-v1/pool3d-h800.json.work/_adaptive_avg_pool3d_backward/11e5bc36f8c7459f8957f11daabe804b/ncu_reports",
+      "output_path": "/data/tj/workspace/blocked581-b16-pool3d-h800-v1-20261028/native-collect-v1/pool3d-h800.json.work/_adaptive_avg_pool3d_backward/11e5bc36f8c7459f8957f11daabe804b/result.json",
+      "op_timeout_seconds": 600.0,
+      "reference_chip": "H800",
+      "only": [
+        "_adaptive_avg_pool3d_backward"
+      ],
+      "whitelist": null,
+      "blacklist": null,
+      "selected_ops": [
+        "_adaptive_avg_pool3d_backward"
+      ],
+      "latency_warmup_ms": 25,
+      "latency_rep_ms": 100,
+      "ncu_warmup_calls": 3
+    },
+    "environment_variables": {
+      "CUDA_VISIBLE_DEVICES": "4",
+      "CUDA_DEVICE_ORDER": null
+    }
+  },
+  "source_before_after_clean": true,
+  "selector": {
+    "OPS_BASELINE_ADAPTIVE_AVG_POOL3D_CURRENT_CORE": "1"
+  },
+  "command": [
+    "/usr/bin/python3",
+    "tools/collect_baseline_nvidia.py",
+    "--repo",
+    "pytorch",
+    "--ops",
+    "_adaptive_avg_pool3d_backward",
+    "--devices",
+    "4",
+    "--no-ncu",
+    "--op-timeout",
+    "600",
+    "--output",
+    "/data/tj/workspace/blocked581-b16-pool3d-h800-v1-20261028/native-collect-v1/pool3d-h800.json"
+  ],
+  "original_source_recipe_controls": {
+    "legacy": 12,
+    "current": 12,
+    "source_rng_consumption_and_input_bytes_equal": true,
+    "input_and_output_ABI_readonly": true,
+    "native_CUDA_vs_CPU64": true,
+    "invalid_selector_rejected": 4,
+    "no_random_seed_reset": true
+  },
+  "collection_interference": {
+    "foreign_or_unproven_holders_during": [],
+    "before_idle": true,
+    "after_no_holder": true,
+    "after_gpu_utilization": "0 %",
+    "may_publish_as_clean_subject_to_artifact_source_review": true,
+    "raw_not_rewritten": true
+  },
+  "no_ncu": "Only real native latency was collected; zero-valued NCU fields were not measured hardware metrics.",
+  "legacy_default": "No selector or0 retains original9d57 forward/ones gradient recipe; current1 profile is explicit opt-in and old catalog entries remain unchanged.",
+  "evidence_sha256": {
+    "pool3d-h800-artifact-audit-v1.json": "2a541652533d1a4fc768fabf7b32c7e191a0d953bc038a4cca891ae5db1d6814",
+    "pool3d-h800-pipeline-v1/controls-result.json": "1e878f6bc0440941eb99cf0eda30e29965f92213601db811a28f8608d684c34b",
+    "pool3d-h800-pipeline-v1/collector-result.json": "74f600d0838bd98d9a8284b802e279ecb4a7a881c68d5bfe9b9b8e3711715061",
+    "pool3d-h800-pipeline-v1/interference-assessment.json": "f684c671208606b67762979c133a6dcf4026cea6258585a9b3c4bc1e7f090830",
+    "pool3d-h800-pipeline-v1/collector-before.json": "84098214743947e970d9eb486e6dd9760a450f72d216abd38c31fa265d2b9b1d",
+    "pool3d-h800-pipeline-v1/collector-after.json": "7ee9e65d8e80789cc9f5c027b4e11dbd5910536e3205bcf84dd66d40fcdba5e3",
+    "pool3d-legacy-catalog-four-tests-v2.json": "fde72aafc97e96c0c56e3c3cbc6eb5dce8da748082c3e6b2a5c6fa2fe8a9f21f"
+  }
+}
