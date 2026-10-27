@@ -12198,6 +12198,21 @@
         "torch.float32",
         "torch.bfloat16"
       ]
+    },
+    "softplus_backward": {
+      "source_file": "benchmark/test_softplus.py",
+      "source_test": "test_softplus_backward",
+      "line": 38,
+      "native": "torch.autograd.grad(prepared torch.nn.functional.softplus forward graph)",
+      "dtype_expression": "consts.FLOAT_DTYPES",
+      "shape_source": "UnaryPointwiseBenchmark",
+      "family": "base.UnaryPointwiseBenchmark",
+      "cases": 5,
+      "dtypes": [
+        "torch.float16",
+        "torch.float32",
+        "torch.bfloat16"
+      ]
     }
   },
   "validation": {
