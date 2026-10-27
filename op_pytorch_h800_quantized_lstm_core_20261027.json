@@ -1,0 +1,1999 @@
+{
+  "_collection": {
+    "configuration": {
+      "repo": "pytorch",
+      "operators": [
+        "quantized_lstm"
+      ],
+      "devices": [
+        "0"
+      ],
+      "ncu_enabled": false,
+      "op_timeout": 3600.0,
+      "reference_chip": "H800",
+      "source_sha256": "4b6fcf214888328eafb71469b968a6798e0a245de61bc39a42bed4f61d478ab3",
+      "report_dir": null
+    },
+    "started_at_utc": "2026-10-27T15:11:16.136465+00:00",
+    "tasks": {
+      "quantized_lstm": {
+        "status": "completed",
+        "device": "0",
+        "returncode": 0,
+        "log": "/data/tj/workspace/ops-b09-lstm-h800-v1-20261027/runs/quantized_lstm_h800.json.work/quantized_lstm/c7df4a67b9144662ad073975cf58d41f/collector.log",
+        "result": "/data/tj/workspace/ops-b09-lstm-h800-v1-20261027/runs/quantized_lstm_h800.json.work/quantized_lstm/c7df4a67b9144662ad073975cf58d41f/result.json"
+      }
+    },
+    "interrupted": false,
+    "attempt_started_at_utc": "2026-10-27T15:11:16.136544+00:00",
+    "finished_at_utc": "2026-10-27T15:12:00.358558+00:00"
+  },
+  "_environments": {
+    "0": {
+      "schema_version": 1,
+      "collected_at_utc": "2026-10-27T15:11:47.027449+00:00",
+      "hardware": {
+        "gpu": {
+          "name": "NVIDIA H800",
+          "uuid": "afb40f3d-fc19-f064-dd8d-04757c275de2",
+          "total_memory_bytes": 85017624576,
+          "total_memory_gib": 79.18,
+          "compute_capability": "9.0",
+          "multiprocessor_count": 132,
+          "cuda_device_index": 0,
+          "driver_version": "580.105.08"
+        },
+        "cpu_model": "Intel(R) Xeon(R) Platinum 8468V",
+        "cpu_architecture": "x86_64",
+        "cpu_socket_count": 2,
+        "physical_cpu_core_count": 96,
+        "logical_cpu_count": 192,
+        "cpu_threads_per_core": 2,
+        "numa_node_count": 2,
+        "process_cpu_affinity_count": 192,
+        "hypervisor_vendor": null
+      },
+      "software": {
+        "os": "Linux",
+        "os_release": "5.15.0-78-generic",
+        "machine": "x86_64",
+        "python": "3.12.3",
+        "packages": {
+          "torch": "2.8.0a0+5228986c39.nv25.5",
+          "triton": "3.6.0",
+          "vllm": null,
+          "sglang": null
+        },
+        "torch_cuda_version": "12.9",
+        "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Apr__9_19:24:57_PDT_2025\nCuda compilation tools, release 12.9, V12.9.41\nBuild cuda_12.9.r12.9/compiler.35813241_0",
+        "ncu_version": "NVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2025 NVIDIA Corporation\nVersion 2025.2.0.0 (build 35613519) (public-release)"
+      },
+      "source": {
+        "git_commit": "f629b9aa704ec6c57a46b1336ad72e86c75f9a50",
+        "git_branch": "HEAD",
+        "git_dirty": false
+      },
+      "run": {
+        "repo": "pytorch",
+        "device": null,
+        "ncu_enabled": false,
+        "report_dir": "/data/tj/workspace/ops-b09-lstm-h800-v1-20261027/runs/quantized_lstm_h800.json.work/quantized_lstm/c7df4a67b9144662ad073975cf58d41f/ncu_reports",
+        "output_path": "/data/tj/workspace/ops-b09-lstm-h800-v1-20261027/runs/quantized_lstm_h800.json.work/quantized_lstm/c7df4a67b9144662ad073975cf58d41f/result.json",
+        "op_timeout_seconds": 3600.0,
+        "reference_chip": "H800",
+        "only": [
+          "quantized_lstm"
+        ],
+        "whitelist": null,
+        "blacklist": null,
+        "selected_ops": [
+          "quantized_lstm"
+        ],
+        "latency_warmup_ms": 25,
+        "latency_rep_ms": 100,
+        "ncu_warmup_calls": 3
+      },
+      "environment_variables": {
+        "CUDA_VISIBLE_DEVICES": "0",
+        "CUDA_DEVICE_ORDER": null
+      }
+    }
+  },
+  "quantized_lstm": {
+    "native_api": "ops.quantized_lstm",
+    "shapes": {
+      "[4, 32, 256, 256]": {
+        "torch.float16": {
+          "config": {
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    256
+                  ],
+                  "dtype": "torch.float16",
+                  "stride": [
+                    8192,
+                    256,
+                    1
+                  ],
+                  "requires_grad": false
+                },
+                [
+                  {
+                    "shape": [
+                      1,
+                      32,
+                      256
+                    ],
+                    "dtype": "torch.float16",
+                    "stride": [
+                      8192,
+                      256,
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      1,
+                      32,
+                      256
+                    ],
+                    "dtype": "torch.float16",
+                    "stride": [
+                      8192,
+                      256,
+                      1
+                    ],
+                    "requires_grad": false
+                  }
+                ],
+                [
+                  {
+                    "shape": [
+                      1024,
+                      256
+                    ],
+                    "dtype": "torch.float16",
+                    "stride": [
+                      256,
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      1024,
+                      256
+                    ],
+                    "dtype": "torch.float16",
+                    "stride": [
+                      256,
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      1024
+                    ],
+                    "dtype": "torch.float16",
+                    "stride": [
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      1024
+                    ],
+                    "dtype": "torch.float16",
+                    "stride": [
+                      1
+                    ],
+                    "requires_grad": false
+                  }
+                ],
+                true,
+                1,
+                0.0,
+                false,
+                false,
+                false
+              ],
+              "kwargs": {}
+            },
+            "recipe": {
+              "source_commit": "ac9a1f703757537a3d54cc1ac1febeca410316c0",
+              "source_file": "benchmark/test_quantized_lstm.py",
+              "seed": 0,
+              "quantized_engine": "fbgemm",
+              "weight_distribution": "randn * 0.3",
+              "bias_distribution": "randn * 0.1",
+              "weight_qscheme": "per_tensor_affine",
+              "weight_qdtype": "torch.qint8",
+              "weight_zero_point": 0,
+              "weight_scale": "max(abs(weight).max().item() / 127, 1e-8)",
+              "rounding": "linear_prepack -> linear_unpack -> dequantize -> input dtype",
+              "native_expression": "torch._VF.lstm(value, hx, deq, *flags)",
+              "packed_params": "CPU ScriptObjects used by candidate only, excluded from original floating native reference"
+            },
+            "case_id": "benchmark/test_quantized_lstm.py::test_quantized_lstm::core::float16::0"
+          },
+          "T_us": 266.74972381053107,
+          "latency_ms": 0.2667497238105311
+        },
+        "torch.float32": {
+          "config": {
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    256
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    8192,
+                    256,
+                    1
+                  ],
+                  "requires_grad": false
+                },
+                [
+                  {
+                    "shape": [
+                      1,
+                      32,
+                      256
+                    ],
+                    "dtype": "torch.float32",
+                    "stride": [
+                      8192,
+                      256,
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      1,
+                      32,
+                      256
+                    ],
+                    "dtype": "torch.float32",
+                    "stride": [
+                      8192,
+                      256,
+                      1
+                    ],
+                    "requires_grad": false
+                  }
+                ],
+                [
+                  {
+                    "shape": [
+                      1024,
+                      256
+                    ],
+                    "dtype": "torch.float32",
+                    "stride": [
+                      256,
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      1024,
+                      256
+                    ],
+                    "dtype": "torch.float32",
+                    "stride": [
+                      256,
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      1024
+                    ],
+                    "dtype": "torch.float32",
+                    "stride": [
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      1024
+                    ],
+                    "dtype": "torch.float32",
+                    "stride": [
+                      1
+                    ],
+                    "requires_grad": false
+                  }
+                ],
+                true,
+                1,
+                0.0,
+                false,
+                false,
+                false
+              ],
+              "kwargs": {}
+            },
+            "recipe": {
+              "source_commit": "ac9a1f703757537a3d54cc1ac1febeca410316c0",
+              "source_file": "benchmark/test_quantized_lstm.py",
+              "seed": 0,
+              "quantized_engine": "fbgemm",
+              "weight_distribution": "randn * 0.3",
+              "bias_distribution": "randn * 0.1",
+              "weight_qscheme": "per_tensor_affine",
+              "weight_qdtype": "torch.qint8",
+              "weight_zero_point": 0,
+              "weight_scale": "max(abs(weight).max().item() / 127, 1e-8)",
+              "rounding": "linear_prepack -> linear_unpack -> dequantize -> input dtype",
+              "native_expression": "torch._VF.lstm(value, hx, deq, *flags)",
+              "packed_params": "CPU ScriptObjects used by candidate only, excluded from original floating native reference"
+            },
+            "case_id": "benchmark/test_quantized_lstm.py::test_quantized_lstm::core::float32::0"
+          },
+          "T_us": 248.9995644309304,
+          "latency_ms": 0.2489995644309304
+        },
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    256
+                  ],
+                  "dtype": "torch.bfloat16",
+                  "stride": [
+                    8192,
+                    256,
+                    1
+                  ],
+                  "requires_grad": false
+                },
+                [
+                  {
+                    "shape": [
+                      1,
+                      32,
+                      256
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "stride": [
+                      8192,
+                      256,
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      1,
+                      32,
+                      256
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "stride": [
+                      8192,
+                      256,
+                      1
+                    ],
+                    "requires_grad": false
+                  }
+                ],
+                [
+                  {
+                    "shape": [
+                      1024,
+                      256
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "stride": [
+                      256,
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      1024,
+                      256
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "stride": [
+                      256,
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      1024
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "stride": [
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      1024
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "stride": [
+                      1
+                    ],
+                    "requires_grad": false
+                  }
+                ],
+                true,
+                1,
+                0.0,
+                false,
+                false,
+                false
+              ],
+              "kwargs": {}
+            },
+            "recipe": {
+              "source_commit": "ac9a1f703757537a3d54cc1ac1febeca410316c0",
+              "source_file": "benchmark/test_quantized_lstm.py",
+              "seed": 0,
+              "quantized_engine": "fbgemm",
+              "weight_distribution": "randn * 0.3",
+              "bias_distribution": "randn * 0.1",
+              "weight_qscheme": "per_tensor_affine",
+              "weight_qdtype": "torch.qint8",
+              "weight_zero_point": 0,
+              "weight_scale": "max(abs(weight).max().item() / 127, 1e-8)",
+              "rounding": "linear_prepack -> linear_unpack -> dequantize -> input dtype",
+              "native_expression": "torch._VF.lstm(value, hx, deq, *flags)",
+              "packed_params": "CPU ScriptObjects used by candidate only, excluded from original floating native reference"
+            },
+            "case_id": "benchmark/test_quantized_lstm.py::test_quantized_lstm::core::bfloat16::0"
+          },
+          "T_us": 102.0303699429962,
+          "latency_ms": 0.1020303699429962
+        }
+      },
+      "[4, 64, 512, 512]": {
+        "torch.float16": {
+          "config": {
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    64,
+                    512
+                  ],
+                  "dtype": "torch.float16",
+                  "stride": [
+                    32768,
+                    512,
+                    1
+                  ],
+                  "requires_grad": false
+                },
+                [
+                  {
+                    "shape": [
+                      1,
+                      64,
+                      512
+                    ],
+                    "dtype": "torch.float16",
+                    "stride": [
+                      32768,
+                      512,
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      1,
+                      64,
+                      512
+                    ],
+                    "dtype": "torch.float16",
+                    "stride": [
+                      32768,
+                      512,
+                      1
+                    ],
+                    "requires_grad": false
+                  }
+                ],
+                [
+                  {
+                    "shape": [
+                      2048,
+                      512
+                    ],
+                    "dtype": "torch.float16",
+                    "stride": [
+                      512,
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      2048,
+                      512
+                    ],
+                    "dtype": "torch.float16",
+                    "stride": [
+                      512,
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      2048
+                    ],
+                    "dtype": "torch.float16",
+                    "stride": [
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      2048
+                    ],
+                    "dtype": "torch.float16",
+                    "stride": [
+                      1
+                    ],
+                    "requires_grad": false
+                  }
+                ],
+                true,
+                1,
+                0.0,
+                false,
+                false,
+                false
+              ],
+              "kwargs": {}
+            },
+            "recipe": {
+              "source_commit": "ac9a1f703757537a3d54cc1ac1febeca410316c0",
+              "source_file": "benchmark/test_quantized_lstm.py",
+              "seed": 0,
+              "quantized_engine": "fbgemm",
+              "weight_distribution": "randn * 0.3",
+              "bias_distribution": "randn * 0.1",
+              "weight_qscheme": "per_tensor_affine",
+              "weight_qdtype": "torch.qint8",
+              "weight_zero_point": 0,
+              "weight_scale": "max(abs(weight).max().item() / 127, 1e-8)",
+              "rounding": "linear_prepack -> linear_unpack -> dequantize -> input dtype",
+              "native_expression": "torch._VF.lstm(value, hx, deq, *flags)",
+              "packed_params": "CPU ScriptObjects used by candidate only, excluded from original floating native reference"
+            },
+            "case_id": "benchmark/test_quantized_lstm.py::test_quantized_lstm::core::float16::1"
+          },
+          "T_us": 196.00314247821058,
+          "latency_ms": 0.19600314247821057
+        },
+        "torch.float32": {
+          "config": {
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    64,
+                    512
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    32768,
+                    512,
+                    1
+                  ],
+                  "requires_grad": false
+                },
+                [
+                  {
+                    "shape": [
+                      1,
+                      64,
+                      512
+                    ],
+                    "dtype": "torch.float32",
+                    "stride": [
+                      32768,
+                      512,
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      1,
+                      64,
+                      512
+                    ],
+                    "dtype": "torch.float32",
+                    "stride": [
+                      32768,
+                      512,
+                      1
+                    ],
+                    "requires_grad": false
+                  }
+                ],
+                [
+                  {
+                    "shape": [
+                      2048,
+                      512
+                    ],
+                    "dtype": "torch.float32",
+                    "stride": [
+                      512,
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      2048,
+                      512
+                    ],
+                    "dtype": "torch.float32",
+                    "stride": [
+                      512,
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      2048
+                    ],
+                    "dtype": "torch.float32",
+                    "stride": [
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      2048
+                    ],
+                    "dtype": "torch.float32",
+                    "stride": [
+                      1
+                    ],
+                    "requires_grad": false
+                  }
+                ],
+                true,
+                1,
+                0.0,
+                false,
+                false,
+                false
+              ],
+              "kwargs": {}
+            },
+            "recipe": {
+              "source_commit": "ac9a1f703757537a3d54cc1ac1febeca410316c0",
+              "source_file": "benchmark/test_quantized_lstm.py",
+              "seed": 0,
+              "quantized_engine": "fbgemm",
+              "weight_distribution": "randn * 0.3",
+              "bias_distribution": "randn * 0.1",
+              "weight_qscheme": "per_tensor_affine",
+              "weight_qdtype": "torch.qint8",
+              "weight_zero_point": 0,
+              "weight_scale": "max(abs(weight).max().item() / 127, 1e-8)",
+              "rounding": "linear_prepack -> linear_unpack -> dequantize -> input dtype",
+              "native_expression": "torch._VF.lstm(value, hx, deq, *flags)",
+              "packed_params": "CPU ScriptObjects used by candidate only, excluded from original floating native reference"
+            },
+            "case_id": "benchmark/test_quantized_lstm.py::test_quantized_lstm::core::float32::1"
+          },
+          "T_us": 246.4269015243498,
+          "latency_ms": 0.2464269015243498
+        },
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    64,
+                    512
+                  ],
+                  "dtype": "torch.bfloat16",
+                  "stride": [
+                    32768,
+                    512,
+                    1
+                  ],
+                  "requires_grad": false
+                },
+                [
+                  {
+                    "shape": [
+                      1,
+                      64,
+                      512
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "stride": [
+                      32768,
+                      512,
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      1,
+                      64,
+                      512
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "stride": [
+                      32768,
+                      512,
+                      1
+                    ],
+                    "requires_grad": false
+                  }
+                ],
+                [
+                  {
+                    "shape": [
+                      2048,
+                      512
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "stride": [
+                      512,
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      2048,
+                      512
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "stride": [
+                      512,
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      2048
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "stride": [
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      2048
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "stride": [
+                      1
+                    ],
+                    "requires_grad": false
+                  }
+                ],
+                true,
+                1,
+                0.0,
+                false,
+                false,
+                false
+              ],
+              "kwargs": {}
+            },
+            "recipe": {
+              "source_commit": "ac9a1f703757537a3d54cc1ac1febeca410316c0",
+              "source_file": "benchmark/test_quantized_lstm.py",
+              "seed": 0,
+              "quantized_engine": "fbgemm",
+              "weight_distribution": "randn * 0.3",
+              "bias_distribution": "randn * 0.1",
+              "weight_qscheme": "per_tensor_affine",
+              "weight_qdtype": "torch.qint8",
+              "weight_zero_point": 0,
+              "weight_scale": "max(abs(weight).max().item() / 127, 1e-8)",
+              "rounding": "linear_prepack -> linear_unpack -> dequantize -> input dtype",
+              "native_expression": "torch._VF.lstm(value, hx, deq, *flags)",
+              "packed_params": "CPU ScriptObjects used by candidate only, excluded from original floating native reference"
+            },
+            "case_id": "benchmark/test_quantized_lstm.py::test_quantized_lstm::core::bfloat16::1"
+          },
+          "T_us": 101.58868448475921,
+          "latency_ms": 0.10158868448475922
+        }
+      },
+      "[8, 64, 256, 256]": {
+        "torch.float16": {
+          "config": {
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    8,
+                    64,
+                    256
+                  ],
+                  "dtype": "torch.float16",
+                  "stride": [
+                    16384,
+                    256,
+                    1
+                  ],
+                  "requires_grad": false
+                },
+                [
+                  {
+                    "shape": [
+                      1,
+                      64,
+                      256
+                    ],
+                    "dtype": "torch.float16",
+                    "stride": [
+                      16384,
+                      256,
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      1,
+                      64,
+                      256
+                    ],
+                    "dtype": "torch.float16",
+                    "stride": [
+                      16384,
+                      256,
+                      1
+                    ],
+                    "requires_grad": false
+                  }
+                ],
+                [
+                  {
+                    "shape": [
+                      1024,
+                      256
+                    ],
+                    "dtype": "torch.float16",
+                    "stride": [
+                      256,
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      1024,
+                      256
+                    ],
+                    "dtype": "torch.float16",
+                    "stride": [
+                      256,
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      1024
+                    ],
+                    "dtype": "torch.float16",
+                    "stride": [
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      1024
+                    ],
+                    "dtype": "torch.float16",
+                    "stride": [
+                      1
+                    ],
+                    "requires_grad": false
+                  }
+                ],
+                true,
+                1,
+                0.0,
+                false,
+                false,
+                false
+              ],
+              "kwargs": {}
+            },
+            "recipe": {
+              "source_commit": "ac9a1f703757537a3d54cc1ac1febeca410316c0",
+              "source_file": "benchmark/test_quantized_lstm.py",
+              "seed": 0,
+              "quantized_engine": "fbgemm",
+              "weight_distribution": "randn * 0.3",
+              "bias_distribution": "randn * 0.1",
+              "weight_qscheme": "per_tensor_affine",
+              "weight_qdtype": "torch.qint8",
+              "weight_zero_point": 0,
+              "weight_scale": "max(abs(weight).max().item() / 127, 1e-8)",
+              "rounding": "linear_prepack -> linear_unpack -> dequantize -> input dtype",
+              "native_expression": "torch._VF.lstm(value, hx, deq, *flags)",
+              "packed_params": "CPU ScriptObjects used by candidate only, excluded from original floating native reference"
+            },
+            "case_id": "benchmark/test_quantized_lstm.py::test_quantized_lstm::core::float16::2"
+          },
+          "T_us": 196.93150433580195,
+          "latency_ms": 0.19693150433580195
+        },
+        "torch.float32": {
+          "config": {
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    8,
+                    64,
+                    256
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    16384,
+                    256,
+                    1
+                  ],
+                  "requires_grad": false
+                },
+                [
+                  {
+                    "shape": [
+                      1,
+                      64,
+                      256
+                    ],
+                    "dtype": "torch.float32",
+                    "stride": [
+                      16384,
+                      256,
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      1,
+                      64,
+                      256
+                    ],
+                    "dtype": "torch.float32",
+                    "stride": [
+                      16384,
+                      256,
+                      1
+                    ],
+                    "requires_grad": false
+                  }
+                ],
+                [
+                  {
+                    "shape": [
+                      1024,
+                      256
+                    ],
+                    "dtype": "torch.float32",
+                    "stride": [
+                      256,
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      1024,
+                      256
+                    ],
+                    "dtype": "torch.float32",
+                    "stride": [
+                      256,
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      1024
+                    ],
+                    "dtype": "torch.float32",
+                    "stride": [
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      1024
+                    ],
+                    "dtype": "torch.float32",
+                    "stride": [
+                      1
+                    ],
+                    "requires_grad": false
+                  }
+                ],
+                true,
+                1,
+                0.0,
+                false,
+                false,
+                false
+              ],
+              "kwargs": {}
+            },
+            "recipe": {
+              "source_commit": "ac9a1f703757537a3d54cc1ac1febeca410316c0",
+              "source_file": "benchmark/test_quantized_lstm.py",
+              "seed": 0,
+              "quantized_engine": "fbgemm",
+              "weight_distribution": "randn * 0.3",
+              "bias_distribution": "randn * 0.1",
+              "weight_qscheme": "per_tensor_affine",
+              "weight_qdtype": "torch.qint8",
+              "weight_zero_point": 0,
+              "weight_scale": "max(abs(weight).max().item() / 127, 1e-8)",
+              "rounding": "linear_prepack -> linear_unpack -> dequantize -> input dtype",
+              "native_expression": "torch._VF.lstm(value, hx, deq, *flags)",
+              "packed_params": "CPU ScriptObjects used by candidate only, excluded from original floating native reference"
+            },
+            "case_id": "benchmark/test_quantized_lstm.py::test_quantized_lstm::core::float32::2"
+          },
+          "T_us": 282.49482372227834,
+          "latency_ms": 0.28249482372227835
+        },
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    8,
+                    64,
+                    256
+                  ],
+                  "dtype": "torch.bfloat16",
+                  "stride": [
+                    16384,
+                    256,
+                    1
+                  ],
+                  "requires_grad": false
+                },
+                [
+                  {
+                    "shape": [
+                      1,
+                      64,
+                      256
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "stride": [
+                      16384,
+                      256,
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      1,
+                      64,
+                      256
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "stride": [
+                      16384,
+                      256,
+                      1
+                    ],
+                    "requires_grad": false
+                  }
+                ],
+                [
+                  {
+                    "shape": [
+                      1024,
+                      256
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "stride": [
+                      256,
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      1024,
+                      256
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "stride": [
+                      256,
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      1024
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "stride": [
+                      1
+                    ],
+                    "requires_grad": false
+                  },
+                  {
+                    "shape": [
+                      1024
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "stride": [
+                      1
+                    ],
+                    "requires_grad": false
+                  }
+                ],
+                true,
+                1,
+                0.0,
+                false,
+                false,
+                false
+              ],
+              "kwargs": {}
+            },
+            "recipe": {
+              "source_commit": "ac9a1f703757537a3d54cc1ac1febeca410316c0",
+              "source_file": "benchmark/test_quantized_lstm.py",
+              "seed": 0,
+              "quantized_engine": "fbgemm",
+              "weight_distribution": "randn * 0.3",
+              "bias_distribution": "randn * 0.1",
+              "weight_qscheme": "per_tensor_affine",
+              "weight_qdtype": "torch.qint8",
+              "weight_zero_point": 0,
+              "weight_scale": "max(abs(weight).max().item() / 127, 1e-8)",
+              "rounding": "linear_prepack -> linear_unpack -> dequantize -> input dtype",
+              "native_expression": "torch._VF.lstm(value, hx, deq, *flags)",
+              "packed_params": "CPU ScriptObjects used by candidate only, excluded from original floating native reference"
+            },
+            "case_id": "benchmark/test_quantized_lstm.py::test_quantized_lstm::core::bfloat16::2"
+          },
+          "T_us": 230.9523830398584,
+          "latency_ms": 0.2309523830398584
+        }
+      }
+    }
+  },
+  "_environment": {
+    "schema_version": 1,
+    "collected_at_utc": "2026-10-27T15:11:47.027449+00:00",
+    "hardware": {
+      "gpu": {
+        "name": "NVIDIA H800",
+        "uuid": "afb40f3d-fc19-f064-dd8d-04757c275de2",
+        "total_memory_bytes": 85017624576,
+        "total_memory_gib": 79.18,
+        "compute_capability": "9.0",
+        "multiprocessor_count": 132,
+        "cuda_device_index": 0,
+        "driver_version": "580.105.08"
+      },
+      "cpu_model": "Intel(R) Xeon(R) Platinum 8468V",
+      "cpu_architecture": "x86_64",
+      "cpu_socket_count": 2,
+      "physical_cpu_core_count": 96,
+      "logical_cpu_count": 192,
+      "cpu_threads_per_core": 2,
+      "numa_node_count": 2,
+      "process_cpu_affinity_count": 192,
+      "hypervisor_vendor": null
+    },
+    "software": {
+      "os": "Linux",
+      "os_release": "5.15.0-78-generic",
+      "machine": "x86_64",
+      "python": "3.12.3",
+      "packages": {
+        "torch": "2.8.0a0+5228986c39.nv25.5",
+        "triton": "3.6.0",
+        "vllm": null,
+        "sglang": null
+      },
+      "torch_cuda_version": "12.9",
+      "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Apr__9_19:24:57_PDT_2025\nCuda compilation tools, release 12.9, V12.9.41\nBuild cuda_12.9.r12.9/compiler.35813241_0",
+      "ncu_version": "NVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2025 NVIDIA Corporation\nVersion 2025.2.0.0 (build 35613519) (public-release)"
+    },
+    "source": {
+      "git_commit": "f629b9aa704ec6c57a46b1336ad72e86c75f9a50",
+      "git_branch": "HEAD",
+      "git_dirty": false
+    },
+    "run": {
+      "repo": "pytorch",
+      "device": null,
+      "ncu_enabled": false,
+      "report_dir": "/data/tj/workspace/ops-b09-lstm-h800-v1-20261027/runs/quantized_lstm_h800.json.work/quantized_lstm/c7df4a67b9144662ad073975cf58d41f/ncu_reports",
+      "output_path": "/data/tj/workspace/ops-b09-lstm-h800-v1-20261027/runs/quantized_lstm_h800.json.work/quantized_lstm/c7df4a67b9144662ad073975cf58d41f/result.json",
+      "op_timeout_seconds": 3600.0,
+      "reference_chip": "H800",
+      "only": [
+        "quantized_lstm"
+      ],
+      "whitelist": null,
+      "blacklist": null,
+      "selected_ops": [
+        "quantized_lstm"
+      ],
+      "latency_warmup_ms": 25,
+      "latency_rep_ms": 100,
+      "ncu_warmup_calls": 3
+    },
+    "environment_variables": {
+      "CUDA_VISIBLE_DEVICES": "0",
+      "CUDA_DEVICE_ORDER": null
+    }
+  },
+  "_scaling_factors": {
+    "_note": "factor = vendor_peak / H800_peak\uff1bnull \u8868\u793a\u5206\u5b50\u6216\u5206\u6bcd\u7f3a\u5931\uff1bnominal/measured \u5404\u4e00\u5957\u3002\u4f9b flaggems-vllm \u8de8\u82af\u7247\u5f52\u4e00\u5316\u5bf9\u6bd4\u4f7f\u7528\u3002",
+    "reference_chip": "H800",
+    "source_specs": "hardware_specs.json",
+    "chips": [
+      {
+        "vendor": "nvidia",
+        "vendor_zh": "\u82f1\u4f1f\u8fbe",
+        "chip": "H800",
+        "nominal": {
+          "bandwidth_gbps": 1.0,
+          "tensor": {
+            "bf16": 1.0,
+            "fp16": 1.0,
+            "fp32": 1.0,
+            "tf32": 1.0,
+            "int8": 1.0,
+            "fp64": 1.0,
+            "fp8": 1.0
+          },
+          "vector": {
+            "bf16": 1.0,
+            "fp16": 1.0,
+            "fp32": 1.0,
+            "int8": null,
+            "fp64": 1.0,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 1.0,
+          "tensor": {
+            "bf16": 1.0,
+            "fp16": 1.0,
+            "fp32": 1.0,
+            "tf32": 1.0,
+            "int8": 1.0,
+            "fp64": 1.0,
+            "fp8": 1.0
+          },
+          "vector": {
+            "bf16": 1.0,
+            "fp16": 1.0,
+            "fp32": 1.0,
+            "int8": 1.0,
+            "fp64": 1.0,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "nvidia",
+        "vendor_zh": "\u82f1\u4f1f\u8fbe",
+        "chip": "H100",
+        "nominal": {
+          "bandwidth_gbps": 1.0,
+          "tensor": {
+            "bf16": 1.000404,
+            "fp16": 1.000404,
+            "fp32": 1.0,
+            "tf32": 1.000404,
+            "int8": 0.999949,
+            "fp64": 66.9,
+            "fp8": 0.999949
+          },
+          "vector": {
+            "bf16": 0.998507,
+            "fp16": 0.998507,
+            "fp32": 0.998507,
+            "int8": null,
+            "fp64": 33.5,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 1.0,
+          "tensor": {
+            "bf16": 0.992845,
+            "fp16": 1.043176,
+            "fp32": 0.999938,
+            "tf32": 0.964256,
+            "int8": 0.988143,
+            "fp64": 58.895238,
+            "fp8": 1.048244
+          },
+          "vector": {
+            "bf16": 0.999955,
+            "fp16": 0.99997,
+            "fp32": 0.992604,
+            "int8": 1.0003,
+            "fp64": 29.44689,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "t-head",
+        "vendor_zh": "\u5e73\u5934\u54e5",
+        "chip": "PPU-ZW810E",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.662759,
+          "tensor": {
+            "bf16": 0.058651,
+            "fp16": 0.062691,
+            "fp32": 0.538868,
+            "tf32": 0.075912,
+            "int8": 0.027883,
+            "fp64": 6.597143,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": 0.828975,
+            "fp16": 0.828837,
+            "fp32": 0.416839,
+            "int8": 0.206073,
+            "fp64": 6.120574,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "t-head",
+        "vendor_zh": "\u5e73\u5934\u54e5",
+        "chip": "m890",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.781483,
+          "tensor": {
+            "bf16": 0.281445,
+            "fp16": 0.300869,
+            "fp32": 0.257819,
+            "tf32": 0.161166,
+            "int8": null,
+            "fp64": null,
+            "fp8": 0.042014
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": 0.194236,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "enflame",
+        "vendor_zh": "\u71e7\u539f",
+        "chip": "S60",
+        "nominal": {
+          "bandwidth_gbps": 0.200597,
+          "tensor": {
+            "bf16": 0.132457,
+            "fp16": 0.132457,
+            "fp32": 0.478326,
+            "tf32": null,
+            "int8": 0.13239,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.150325,
+          "tensor": {
+            "bf16": 0.135388,
+            "fp16": 0.144762,
+            "fp32": 0.672654,
+            "tf32": null,
+            "int8": 0.134391,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": 0.026166,
+            "fp16": 0.026197,
+            "fp32": 0.029496,
+            "int8": 0.013308,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "ascend",
+        "vendor_zh": "\u534e\u4e3a",
+        "chip": "Atlas 800T A3",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": 0.760364,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.951084,
+          "tensor": {
+            "bf16": 0.761695,
+            "fp16": 0.839078,
+            "fp32": 4.098971,
+            "tf32": null,
+            "int8": 0.756027,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "metax",
+        "vendor_zh": "\u6c90\u66e6",
+        "chip": "C550",
+        "nominal": {
+          "bandwidth_gbps": 0.537313,
+          "tensor": {
+            "bf16": 0.323559,
+            "fp16": 0.323559,
+            "fp32": 0.597907,
+            "tf32": 0.323559,
+            "int8": 0.323396,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.472532,
+          "tensor": {
+            "bf16": 0.285784,
+            "fp16": 0.298125,
+            "fp32": 0.816461,
+            "tf32": 0.265815,
+            "int8": 0.291016,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": 0.136079,
+            "fp32": 0.541991,
+            "int8": 0.068039,
+            "fp64": 2.166507,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "kunlunxin",
+        "vendor_zh": "\u6606\u4ed1\u82af",
+        "chip": "P900",
+        "nominal": {
+          "bandwidth_gbps": 0.776119,
+          "tensor": {
+            "bf16": 0.353893,
+            "fp16": 0.353893,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.791,
+          "tensor": {
+            "bf16": 0.357504,
+            "fp16": 0.389264,
+            "fp32": 2.853909,
+            "tf32": 0.278234,
+            "int8": 0.33308,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "kunlunxin",
+        "vendor_zh": "\u6606\u4ed1\u82af",
+        "chip": "P800",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": 0.032261,
+            "fp16": 0.03449,
+            "fp32": null,
+            "tf32": 0.062035,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "mthreads",
+        "vendor_zh": "\u6469\u5c14",
+        "chip": "MTT-S5000",
+        "nominal": {
+          "bandwidth_gbps": 0.477612,
+          "tensor": {
+            "bf16": 0.434783,
+            "fp16": 0.434783,
+            "fp32": 0.433483,
+            "tf32": 0.434783,
+            "int8": 0.434563,
+            "fp64": 14.5,
+            "fp8": 0.434563
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.423867,
+          "tensor": {
+            "bf16": 0.46863,
+            "fp16": 0.499849,
+            "fp32": 0.585391,
+            "tf32": 0.449552,
+            "int8": 0.463452,
+            "fp64": 13.533333,
+            "fp8": 0.504517
+          },
+          "vector": {
+            "bf16": 0.285102,
+            "fp16": 0.284926,
+            "fp32": 0.255336,
+            "int8": 0.095037,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "hygon",
+        "vendor_zh": "\u6d77\u5149",
+        "chip": "BW1000",
+        "nominal": {
+          "bandwidth_gbps": 0.537313,
+          "tensor": {
+            "bf16": 0.485339,
+            "fp16": 0.485339,
+            "fp32": 0.896861,
+            "tf32": 0.485339,
+            "int8": 0.485093,
+            "fp64": 30.0,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.47352,
+          "tensor": {
+            "bf16": 0.494279,
+            "fp16": 0.526445,
+            "fp32": 1.253704,
+            "tf32": 0.475373,
+            "int8": 0.490587,
+            "fp64": 29.009524,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": 0.109955,
+            "fp16": 0.45465,
+            "fp32": 0.228884,
+            "int8": 0.114093,
+            "fp64": 14.488038,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "iluvatar",
+        "vendor_zh": "\u5929\u6570",
+        "chip": "BI-V150",
+        "nominal": {
+          "bandwidth_gbps": 0.477612,
+          "tensor": {
+            "bf16": 0.258847,
+            "fp16": 0.258847,
+            "fp32": 0.956652,
+            "tf32": null,
+            "int8": 0.388075,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.356378,
+          "tensor": {
+            "bf16": 0.220302,
+            "fp16": 0.234676,
+            "fp32": 0.940123,
+            "tf32": null,
+            "int8": 0.391076,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": 0.461253,
+            "fp16": 0.469367,
+            "fp32": 0.230722,
+            "int8": 0.11987,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "tsingmicro",
+        "vendor_zh": "\u6e05\u5fae\u667a\u80fd",
+        "chip": "TX8110",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "tsingmicro",
+        "vendor_zh": "\u6e05\u5fae\u667a\u80fd",
+        "chip": "REX1032",
+        "nominal": {
+          "bandwidth_gbps": 0.238806,
+          "tensor": {
+            "bf16": 0.517695,
+            "fp16": 0.517695,
+            "fp32": 0.179372,
+            "tf32": 1.035389,
+            "int8": 0.517433,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.197353,
+          "tensor": {
+            "bf16": 0.525497,
+            "fp16": 0.561805,
+            "fp32": 0.251029,
+            "tf32": 0.892402,
+            "int8": 0.521583,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "cambricon",
+        "vendor_zh": "\u5bd2\u6b66\u7eaa",
+        "chip": "MLU590-M9DE",
+        "nominal": {
+          "bandwidth_gbps": 0.671642,
+          "tensor": {
+            "bf16": 0.33367,
+            "fp16": 0.33367,
+            "fp32": 1.233184,
+            "tf32": 0.33367,
+            "int8": 0.333502,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.625387,
+          "tensor": {
+            "bf16": 0.316304,
+            "fp16": 0.338258,
+            "fp32": 1.604938,
+            "tf32": 0.307205,
+            "int8": 0.312064,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      }
+    ]
+  },
+  "_latency_only_normalization": {
+    "raw_sha256": "1b1c12317726d8ecb5697711626048252770ef9db7eaf551b314bc3afd36c0e7",
+    "removed_uncollected_ncu_fields": [
+      "B_mem",
+      "F_cuda",
+      "F_tensor",
+      "U_bottle_neck",
+      "U_cuda",
+      "U_mem",
+      "U_tensor",
+      "bottle_neck_unit",
+      "bottleneck",
+      "bottleneck_util",
+      "cuda_flops",
+      "flops_cuda_core",
+      "flops_tensor_core",
+      "memory_bytes",
+      "num_kernels",
+      "per_kernel",
+      "report_path",
+      "sm_utilization",
+      "util_cuda_core",
+      "util_memory_bw",
+      "util_tensor_core"
+    ],
+    "reason": "--no-ncu collection: omit zero/unavailable placeholders; only actual latency and full input/recipe configuration published",
+    "collection_source_commit": "f629b9aa704ec6c57a46b1336ad72e86c75f9a50"
+  }
+}

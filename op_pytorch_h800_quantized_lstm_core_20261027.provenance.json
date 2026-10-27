@@ -1,0 +1,165 @@
+{
+  "operator": "quantized_lstm",
+  "native": "original FlagGems floating torch._VF.lstm baseline with packed int8 weights dequantized and cast to input dtype; not dynamic quantized_lstm arithmetic",
+  "collection_source_commit": "f629b9aa704ec6c57a46b1336ad72e86c75f9a50",
+  "source_files_checked": 1147,
+  "original_flaggems_commit": "ac9a1f703757537a3d54cc1ac1febeca410316c0",
+  "records": 9,
+  "raw_sha256": "1b1c12317726d8ecb5697711626048252770ef9db7eaf551b314bc3afd36c0e7",
+  "published_sha256": "c4a6aad47f220eeca1ad6ef8c5a705b4311e633486b30cc361432d7b21207fbc",
+  "controls": {
+    "status": "PASS_EXACT_ORIGINAL_BUILDER_AND_NATIVE",
+    "original_benchmark_sha256": "5f00b4f2a4d05ffc2ef38f4fda9686fe0ef36425c77221261cfc3555b43bc65d",
+    "checks": [
+      {
+        "shape": [
+          4,
+          32,
+          256,
+          256
+        ],
+        "dtype": "torch.float16",
+        "case_id": "benchmark/test_quantized_lstm.py::test_quantized_lstm::core::float16::0",
+        "inputs_bit_identical": true,
+        "native_output_bit_identical": true
+      },
+      {
+        "shape": [
+          4,
+          32,
+          256,
+          256
+        ],
+        "dtype": "torch.float32",
+        "case_id": "benchmark/test_quantized_lstm.py::test_quantized_lstm::core::float32::0",
+        "inputs_bit_identical": true,
+        "native_output_bit_identical": true
+      },
+      {
+        "shape": [
+          4,
+          32,
+          256,
+          256
+        ],
+        "dtype": "torch.bfloat16",
+        "case_id": "benchmark/test_quantized_lstm.py::test_quantized_lstm::core::bfloat16::0",
+        "inputs_bit_identical": true,
+        "native_output_bit_identical": true
+      },
+      {
+        "shape": [
+          4,
+          64,
+          512,
+          512
+        ],
+        "dtype": "torch.float16",
+        "case_id": "benchmark/test_quantized_lstm.py::test_quantized_lstm::core::float16::1",
+        "inputs_bit_identical": true,
+        "native_output_bit_identical": true
+      },
+      {
+        "shape": [
+          4,
+          64,
+          512,
+          512
+        ],
+        "dtype": "torch.float32",
+        "case_id": "benchmark/test_quantized_lstm.py::test_quantized_lstm::core::float32::1",
+        "inputs_bit_identical": true,
+        "native_output_bit_identical": true
+      },
+      {
+        "shape": [
+          4,
+          64,
+          512,
+          512
+        ],
+        "dtype": "torch.bfloat16",
+        "case_id": "benchmark/test_quantized_lstm.py::test_quantized_lstm::core::bfloat16::1",
+        "inputs_bit_identical": true,
+        "native_output_bit_identical": true
+      },
+      {
+        "shape": [
+          8,
+          64,
+          256,
+          256
+        ],
+        "dtype": "torch.float16",
+        "case_id": "benchmark/test_quantized_lstm.py::test_quantized_lstm::core::float16::2",
+        "inputs_bit_identical": true,
+        "native_output_bit_identical": true
+      },
+      {
+        "shape": [
+          8,
+          64,
+          256,
+          256
+        ],
+        "dtype": "torch.float32",
+        "case_id": "benchmark/test_quantized_lstm.py::test_quantized_lstm::core::float32::2",
+        "inputs_bit_identical": true,
+        "native_output_bit_identical": true
+      },
+      {
+        "shape": [
+          8,
+          64,
+          256,
+          256
+        ],
+        "dtype": "torch.bfloat16",
+        "case_id": "benchmark/test_quantized_lstm.py::test_quantized_lstm::core::bfloat16::2",
+        "inputs_bit_identical": true,
+        "native_output_bit_identical": true
+      }
+    ]
+  },
+  "raw_source_before": {
+    "head": "f629b9aa704ec6c57a46b1336ad72e86c75f9a50",
+    "checked": 1147,
+    "mismatches": [],
+    "git_status": ""
+  },
+  "raw_source_after": {
+    "head": "f629b9aa704ec6c57a46b1336ad72e86c75f9a50",
+    "checked": 1147,
+    "mismatches": [],
+    "git_status": ""
+  },
+  "no_ncu": true,
+  "removed_fields": [
+    "B_mem",
+    "F_cuda",
+    "F_tensor",
+    "U_bottle_neck",
+    "U_cuda",
+    "U_mem",
+    "U_tensor",
+    "bottle_neck_unit",
+    "bottleneck",
+    "bottleneck_util",
+    "cuda_flops",
+    "flops_cuda_core",
+    "flops_tensor_core",
+    "memory_bytes",
+    "num_kernels",
+    "per_kernel",
+    "report_path",
+    "sm_utilization",
+    "util_cuda_core",
+    "util_memory_bw",
+    "util_tensor_core"
+  ],
+  "limits": [
+    "Latency-only native H800 data. No FLOP, traffic, utilization or kernel metrics were measured.",
+    "Native arguments preserve original value/hx/dequantized weights/flags. Packed CPU ScriptObjects are excluded only because the original native baseline discards them.",
+    "GPU input distributions and full configuration match; separate-machine random CUDA payloads are not asserted byte-identical."
+  ]
+}
