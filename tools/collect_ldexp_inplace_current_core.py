@@ -154,7 +154,6 @@ def main():
         return measure_fresh(args, warmup=warmup, rep=rep, torch=torch, native=native)
 
     original_do_bench = triton.testing.do_bench
-    triton.testing.do_bench = fresh_do_bench
     # Use the same top-level module name as the official ops discovery path.
     sys.path.insert(0, str(ROOT / 'ops/pytorch'))
     op_module = importlib.import_module(OP_NAME)
@@ -163,6 +162,7 @@ def main():
     sys.argv = [str(COLLECTOR), *argv]
     code = 1
     try:
+        triton.testing.do_bench = fresh_do_bench
         with op_module._fresh_timing_scope(triton.testing, fresh_do_bench):
             runpy.run_path(str(COLLECTOR), run_name='__main__')
     except SystemExit as error:
