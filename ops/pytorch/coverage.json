@@ -9,12 +9,12 @@
     "named_benchmark_constructors": 1805,
     "unique_benchmark_names": 1694,
     "operator_config_ids": 1443,
-    "added_operators": 813,
+    "added_operators": 814,
     "existing_silu": 1,
-    "added_descriptors": 5229,
-    "pending_records": 1085,
+    "added_descriptors": 5238,
+    "pending_records": 1084,
     "pending_categories": {
-      "custom_input_or_state": 393,
+      "custom_input_or_state": 392,
       "host_or_no_kernel": 96,
       "meta_enumeration_unavailable": 20,
       "manual_input_review": 105,
@@ -5532,15 +5532,6 @@
       "category": "external_dependency"
     },
     {
-      "op": "median",
-      "source_file": "benchmark/test_median.py",
-      "source_test": "test_median",
-      "line": 74,
-      "native": "torch.median",
-      "reason": "unresolved dependency: self",
-      "category": "custom_input_or_state"
-    },
-    {
       "op": "median_out",
       "source_file": "benchmark/test_median.py",
       "source_test": "test_median_out",
@@ -10584,6 +10575,12 @@
       "source_commit": "9d57a23b4386bd669152a935fe88a96db907da7c",
       "scope": "core",
       "note": "Native CUDA recipe; sparse_mask fixes the sampled mask with explicit replay identity"
+    },
+    {
+      "op": "median",
+      "source_commit": "9d57a23b4386bd669152a935fe88a96db907da7c",
+      "scope": "core",
+      "note": "Reviewed MedianNoDimBenchmark input iterator: nine source shapes, five original dtypes, unseeded floating randn / full-iinfo CPU randint then target transfer. No dim/out overloads. Operator-local explicit selector adds a separate current Suiyuan seed-0 five-shape profile; default remains pinned legacy. No new GPU validation is claimed by this catalog entry."
     }
   ]
 }
