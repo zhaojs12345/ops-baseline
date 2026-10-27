@@ -200,9 +200,9 @@
   },
   "publication_commit_is_not_the_measured_source": true,
   "target_functional_validation": {
-    "correctness_actual_source": "2017f681855e4bb8dc6047f6bddbd43b6a82a61a",
+    "correctness_actual_source": "2552fc69bf52ffefa6923db50a7411a3daaad17a",
     "benchmark_actual_source": "6ae58bef75e41e9833ffe81e4486d31101aaf6d6",
-    "benchmark_loaded_byte_bridge_sha256": "91c1130b4b8a82cf5a6836f5f12f69693eb1f871098ef44ed44f1771cd88d25d",
+    "benchmark_loaded_byte_bridge_sha256": "287c80bfba9c68c624d301bcf18295eade21a85259fa7049033a29287de034be",
     "benchmark_changed_correctness_file_never_loaded_in_all_12_reused_phases": true,
     "numeric_full_default_and_CPU_passes": 720,
     "precise_capability_or_existing_skips": 26,
@@ -213,9 +213,12 @@
     "SUI_actual_core_seconds": 1889.8220891952515,
     "SUI_candidate_native_API_is_CPUfallback_not_independent_GPU_kernel": true,
     "CPU_oracle_Double_routes_are_functional_self_comparison": true,
-    "context": "/Users/tao/benchmark/context/blocked581-20261027/b13-data-api/median-double-fixture-v1",
-    "final_validation_file": "final-validation-v1.json",
-    "final_validation_sha256": "13408e973e36bcabbb49bbb27cf81a91e44304a353e65e8fd8a1c034739986ef",
-    "independent_reviews": "required separately before publication; not claimed by this author proof"
+    "context": "/Users/tao/benchmark/context/blocked581-20261027/b13-data-api/median-storage-identity-v2",
+    "final_validation_file": "final-validation-v2.json",
+    "final_validation_sha256": "24393a01a65ee39b1c95ab9ce7393e229605f75a06234c35234acbb069b583be",
+    "independent_reviews": "required separately before publication; not claimed by this author proof",
+    "readonly_storage_identity_false_green_fixed": true,
+    "prior_2017_data_publication_proof_preserved_in_own_frozen_worktree": "f5d4f1ad66d04f3c5780a53e3f04b48f634dbd54",
+    "no_H800_recollection_or_artifact_change": true
   }
 }
