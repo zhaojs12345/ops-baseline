@@ -1,0 +1,161 @@
+{
+  "status": "PASS_NATIVE_H800_ASCEND_ROW_MAJOR_EIGHT_F32",
+  "artifact_sha256": "cd3f94a27557f672194b989ad53211a81a923c572458200fa0048d5e8e7a32dd",
+  "measured_source_commit": "a6646f15023574ecd6d29e464d316f2851651252",
+  "publication_is_distinct_commit": true,
+  "flag_gems_final_head": "35f2fd956b053624f7ad16c8cf5bdb6f2cb0da12",
+  "actual_recipe_origin": "0b3c96ae2624ed17f85c1499f4ecf64899ec3dcb",
+  "input_builder_sha256": "65ab582417c249d275c752645cf920ab432cd64eff1ef18a55022659dc6f2242",
+  "producer_selector": {
+    "OPS_BASELINE_CHOLESKY_ASCEND_CORE": "1"
+  },
+  "layout_profile": "ascend-native-factor-row-major/v1",
+  "native_api": "torch.cholesky_inverse",
+  "completed_native_records": 8,
+  "dtype": "torch.float32",
+  "shape_order": [
+    [
+      2,
+      2
+    ],
+    [
+      4,
+      4
+    ],
+    [
+      8,
+      8
+    ],
+    [
+      16,
+      16
+    ],
+    [
+      32,
+      32
+    ],
+    [
+      64,
+      64
+    ],
+    [
+      128,
+      128
+    ],
+    [
+      256,
+      256
+    ]
+  ],
+  "physical_gpu": "6",
+  "environment": {
+    "schema_version": 1,
+    "collected_at_utc": "2026-10-27T12:33:46.582890+00:00",
+    "hardware": {
+      "gpu": {
+        "name": "NVIDIA H800",
+        "uuid": "f76856dc-d02f-95a0-dc05-054190d1ea7d",
+        "total_memory_bytes": 85017624576,
+        "total_memory_gib": 79.18,
+        "compute_capability": "9.0",
+        "multiprocessor_count": 132,
+        "cuda_device_index": 0,
+        "driver_version": "580.105.08"
+      },
+      "cpu_model": "Intel(R) Xeon(R) Platinum 8468V",
+      "cpu_architecture": "x86_64",
+      "cpu_socket_count": 2,
+      "physical_cpu_core_count": 96,
+      "logical_cpu_count": 192,
+      "cpu_threads_per_core": 2,
+      "numa_node_count": 2,
+      "process_cpu_affinity_count": 192,
+      "hypervisor_vendor": null
+    },
+    "software": {
+      "os": "Linux",
+      "os_release": "5.15.0-78-generic",
+      "machine": "x86_64",
+      "python": "3.12.3",
+      "packages": {
+        "torch": "2.8.0a0+5228986c39.nv25.5",
+        "triton": "3.6.0",
+        "vllm": null,
+        "sglang": null
+      },
+      "torch_cuda_version": "12.9",
+      "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Apr__9_19:24:57_PDT_2025\nCuda compilation tools, release 12.9, V12.9.41\nBuild cuda_12.9.r12.9/compiler.35813241_0",
+      "ncu_version": "NVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2025 NVIDIA Corporation\nVersion 2025.2.0.0 (build 35613519) (public-release)"
+    },
+    "source": {
+      "git_commit": "a6646f15023574ecd6d29e464d316f2851651252",
+      "git_branch": "HEAD",
+      "git_dirty": false
+    },
+    "run": {
+      "repo": "pytorch",
+      "device": null,
+      "ncu_enabled": false,
+      "report_dir": "/data/tj/workspace/blocked581-20261027-b10-cholesky-baseline-h800-v1/cholesky_inverse_h800.json.work/cholesky_inverse/64db3c211b91422587c496a1780a1615/ncu_reports",
+      "output_path": "/data/tj/workspace/blocked581-20261027-b10-cholesky-baseline-h800-v1/cholesky_inverse_h800.json.work/cholesky_inverse/64db3c211b91422587c496a1780a1615/result.json",
+      "op_timeout_seconds": 1800.0,
+      "reference_chip": "H800",
+      "only": [
+        "cholesky_inverse"
+      ],
+      "whitelist": null,
+      "blacklist": null,
+      "selected_ops": [
+        "cholesky_inverse"
+      ],
+      "latency_warmup_ms": 25,
+      "latency_rep_ms": 100,
+      "ncu_warmup_calls": 3
+    },
+    "environment_variables": {
+      "CUDA_VISIBLE_DEVICES": "6",
+      "CUDA_DEVICE_ORDER": null
+    }
+  },
+  "source_before_after_clean": true,
+  "command": [
+    "/usr/bin/python3",
+    "tools/collect_baseline_nvidia.py",
+    "--repo",
+    "pytorch",
+    "--ops",
+    "cholesky_inverse",
+    "--devices",
+    "6",
+    "--no-ncu",
+    "--output",
+    "/data/tj/workspace/blocked581-20261027-b10-cholesky-baseline-h800-v1/cholesky_inverse_h800.json"
+  ],
+  "original_wrapper": "cd /data/tj/workspace/blocked581-20261027-b10-cholesky-baseline-h800-v1/source && env OPS_BASELINE_CHOLESKY_ASCEND_CORE=1 OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 /usr/bin/python3 tools/collect_baseline_nvidia.py --repo pytorch --ops cholesky_inverse --devices 6 --no-ncu --output /data/tj/workspace/blocked581-20261027-b10-cholesky-baseline-h800-v1/cholesky_inverse_h800.json > /data/tj/workspace/blocked581-20261027-b10-cholesky-baseline-h800-v1/collection.log 2>&1; status=$?; printf '%s\\n' \"$status\" > /data/tj/workspace/blocked581-20261027-b10-cholesky-baseline-h800-v1/collection.exit",
+  "actual_source_input_and_output_controls": 8,
+  "target_layout_unchanged": true,
+  "cross_vendor_rng_tensorbytes_not_claimed_equal": true,
+  "legacy_default_export_contract_records": 16,
+  "existing_legacy_tests_exit": 0,
+  "consumer_same_callable_host_positives": 8,
+  "consumer_host_malformed_rejections": 37,
+  "host_timer_controls_are_not_measurements": true,
+  "raw_evidence": {
+    "h800-native-collection-root-approval-v1.json": "69d9db7826e03c4f61aae98af1851ebdf2ecd2dbc0c7466849bc059a27d9a9f2",
+    "h800-collection-v1/occupancy.json": "87059a8b38bf3216189cef742274a6d16dc1d1a3fa49b7211fe8f18979618d78",
+    "h800-collection-v1/clone.json": "6212f4deb68de632a430dcf4c2b07db2a0b487308393841ba93b2668fe62c3d9",
+    "h800-collection-v1/actual-input-control.json": "60120628fa4c30f94108f3f183ee5df2def416f9d8ee5587b89374c0907f0a5d",
+    "h800-collection-v1/launch-command.json": "f24bf3a1f98ba1ad38746fac8aded7240f58e3adab3109253afdeb5da8e50de4",
+    "h800-collection-v1/terminal-source-v1.json": "0f2f817695ef6da6b16add1dd594334283458414e09a72a2eea55767627aa8fa",
+    "h800-collection-v1/runtime.tar.gz": "572f5b762f4d63d63687ad5b3b7651ea6656995380a0051f21d72948e01cff5d",
+    "producer-optin-controls-v2.json": "7793b1461ac3afed796296fd5a8075f1bad16597ccdbc8839666a2bd0eb10105",
+    "producer-legacy-tests-v2.json": "1bf55c856c2c1cbe137acb3fbf781afc46bbd54f55d1beee482100d34aad1ee8",
+    "consumer-source-controls-v1.json": "6bdf9a74a00e00b51cbfd2de48e80acb6788ced717c1ab2e31f19726f51163e8",
+    "recipe-origin-to-final-builder-proof-v1.json": "d69c7d6c1e517448653ef62c912b5b104b87c05b629303cf557a24e9180ba505"
+  },
+  "limitations": [
+    "Latency-only --no-ncu; hardware counter placeholders are not measured.",
+    "Ascend profile measures real H800 native inverse with row-major factor; target builder layout is unchanged.",
+    "Only Ascend needs this static reference; no extra Iluvatar profile collected."
+  ]
+}
