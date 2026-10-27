@@ -13,14 +13,17 @@
 # limitations under the License.
 
 
-"""nuclear_norm: PyTorch native baseline from FlagGems kernelgen-dev.
-Source commit: 9d57a23b4386bd669152a935fe88a96db907da7c
-Benchmark: benchmark/test_nuclear_norm.py:50 (test_nuclear_norm)
-Native expression: torch.nuclear_norm
-Input construction: upstream benchmark helpers/base class, CORE only.
-Shape source: benchmark/core_shapes.yaml GenericBenchmark2DOnly or explicit class descriptors.
-Comprehensive-only shapes are not imported.
+"""Native nuclear_norm baseline, retaining the historical default catalog.
+
+Legacy source: 9d57a23b4386bd669152a935fe88a96db907da7c; default grid,
+input construction and metadata remain the original _kernelgen contract.
+Explicit OPS_BASELINE_NUCLEAR_NORM_CURRENT_CORE=1 selects the exact six float32
+core cases from FlagGems ac9a1f703757537a3d54cc1ac1febeca410316c0 instead.
+Use a fresh output (not --resume across grid modes); preserve this selector in
+collection launch/provenance. No shared catalog or collector change is needed.
 """
+
+import os
 
 import torch
 
@@ -33,12 +36,66 @@ def nuclear_norm_input_fn(shape, cur_dtype, device):
     yield (inp,)
 
 
-def _resolve_native():
+def _resolve_legacy_native():
     return torch.nuclear_norm
 
 
+OP_NAME = "nuclear_norm"
 DTYPES = [torch.float32]
+IS_INPLACE = False
+SHAPES = [(16, 16), (32, 32), (64, 64), (128, 128), (256, 256), (512, 512)]
 
-_inputs = nuclear_norm_input_fn
 
-globals().update(export_contract("nuclear_norm", DTYPES, _resolve_native, _inputs))
+def native():
+    return torch.nuclear_norm
+
+
+def grid():
+    return [{"shape": list(shape)} for shape in SHAPES]
+
+
+def key_shape(binding):
+    return list(binding["shape"])
+
+
+def build_inputs(binding, dtype, device):
+    if dtype != torch.float32 or tuple(binding["shape"]) not in SHAPES:
+        raise ValueError("Expected an original float32 nuclear_norm core case")
+    torch.manual_seed(0)
+    inp = torch.randn(tuple(binding["shape"]), dtype=dtype, device=device)
+    return (inp,), {"keepdim": False}
+
+
+def config(binding, dtype):
+    shape = list(binding["shape"])
+    if dtype != torch.float32 or tuple(shape) not in SHAPES:
+        raise ValueError("Expected an original float32 nuclear_norm core case")
+    return {
+        "inputs": {
+            "args": [
+                {
+                    "shape": shape,
+                    "dtype": str(dtype),
+                    "stride": [shape[1], 1],
+                    "requires_grad": False,
+                }
+            ],
+            "kwargs": {"keepdim": False},
+        },
+        "grid_contract": "flaggems-ac9-core6",
+        "reference_implementation": "torch.nuclear_norm",
+        "input_recipe": "torch.manual_seed(0);torch.randn(shape,dtype=torch.float32,device=device)",
+        "output_aliases": [],
+    }
+
+
+_grid_mode = os.environ.get("OPS_BASELINE_NUCLEAR_NORM_CURRENT_CORE", "0")
+if _grid_mode == "0":
+    # The default retains exact old shapes, kwargs and pinned source metadata.
+    globals().update(
+        export_contract(
+            "nuclear_norm", DTYPES, _resolve_legacy_native, nuclear_norm_input_fn
+        )
+    )
+elif _grid_mode != "1":
+    raise ValueError("OPS_BASELINE_NUCLEAR_NORM_CURRENT_CORE must be 0 or 1")
