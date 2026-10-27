@@ -1,0 +1,506 @@
+{
+  "status": "PASS_VERIFIED_NATIVE_H800_CUDNN_BN_SNAPSHOT",
+  "artifact_sha256": "2e803d267c55e6fa4ecd928af2e584aeb18c2dae9475345078e31c3ad35a2c05",
+  "collection_source_commit": "adbe29bfbddc2becce9322497fca45d3d7810df4",
+  "collection_source_module_sha256": "00b6b35979870bca211b847cd56b4004b9e72ee0f9b6103400bf107996de8210",
+  "source_clean_before_after": true,
+  "flag_gems_input_recipe_source": "6b9c9afd971e50a9e99ae31d73d816ca8b79560d",
+  "flag_gems_actual_builder_sha256": "acce93b32b5d669f49f136a364e0ee906cfb4e3032da48b6ae315c8bd278fa81",
+  "controller_environment": {
+    "OPS_BASELINE_CUDNN_BN_CURRENT_CORE": "1"
+  },
+  "command": [
+    "/usr/bin/python3",
+    "tools/collect_baseline_nvidia.py",
+    "--repo",
+    "pytorch",
+    "--ops",
+    "cudnn_batch_norm_backward",
+    "--devices",
+    "6",
+    "--no-ncu",
+    "--output",
+    "/data/tj/workspace/blocked581-20261027-b06-cudnn-baseline-h800-v2/cudnn_batch_norm_backward_h800.json"
+  ],
+  "wrapper": "cd /data/tj/workspace/blocked581-20261027-b06-cudnn-baseline-h800-v2/source && env OPS_BASELINE_CUDNN_BN_CURRENT_CORE=1 OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 /usr/bin/python3 tools/collect_baseline_nvidia.py --repo pytorch --ops cudnn_batch_norm_backward --devices 6 --no-ncu --output /data/tj/workspace/blocked581-20261027-b06-cudnn-baseline-h800-v2/cudnn_batch_norm_backward_h800.json > /data/tj/workspace/blocked581-20261027-b06-cudnn-baseline-h800-v2/collection.log 2>&1; status=$?; printf '%s\\n' \"$status\" > /data/tj/workspace/blocked581-20261027-b06-cudnn-baseline-h800-v2/collection.exit",
+  "remote_root": "/data/tj/workspace/blocked581-20261027-b06-cudnn-baseline-h800-v2",
+  "physical_gpu": 6,
+  "container": "flaggems_test_tj",
+  "environment": {
+    "schema_version": 1,
+    "collected_at_utc": "2026-10-27T10:36:07.115811+00:00",
+    "hardware": {
+      "gpu": {
+        "name": "NVIDIA H800",
+        "uuid": "f76856dc-d02f-95a0-dc05-054190d1ea7d",
+        "total_memory_bytes": 85017624576,
+        "total_memory_gib": 79.18,
+        "compute_capability": "9.0",
+        "multiprocessor_count": 132,
+        "cuda_device_index": 0,
+        "driver_version": "580.105.08"
+      },
+      "cpu_model": "Intel(R) Xeon(R) Platinum 8468V",
+      "cpu_architecture": "x86_64",
+      "cpu_socket_count": 2,
+      "physical_cpu_core_count": 96,
+      "logical_cpu_count": 192,
+      "cpu_threads_per_core": 2,
+      "numa_node_count": 2,
+      "process_cpu_affinity_count": 192,
+      "hypervisor_vendor": null
+    },
+    "software": {
+      "os": "Linux",
+      "os_release": "5.15.0-78-generic",
+      "machine": "x86_64",
+      "python": "3.12.3",
+      "packages": {
+        "torch": "2.8.0a0+5228986c39.nv25.5",
+        "triton": "3.6.0",
+        "vllm": null,
+        "sglang": null
+      },
+      "torch_cuda_version": "12.9",
+      "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Apr__9_19:24:57_PDT_2025\nCuda compilation tools, release 12.9, V12.9.41\nBuild cuda_12.9.r12.9/compiler.35813241_0",
+      "ncu_version": "NVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2025 NVIDIA Corporation\nVersion 2025.2.0.0 (build 35613519) (public-release)"
+    },
+    "source": {
+      "git_commit": "adbe29bfbddc2becce9322497fca45d3d7810df4",
+      "git_branch": "HEAD",
+      "git_dirty": false
+    },
+    "run": {
+      "repo": "pytorch",
+      "device": null,
+      "ncu_enabled": false,
+      "report_dir": "/data/tj/workspace/blocked581-20261027-b06-cudnn-baseline-h800-v2/cudnn_batch_norm_backward_h800.json.work/cudnn_batch_norm_backward/a00788bc549345b6bc9b653651b31a07/ncu_reports",
+      "output_path": "/data/tj/workspace/blocked581-20261027-b06-cudnn-baseline-h800-v2/cudnn_batch_norm_backward_h800.json.work/cudnn_batch_norm_backward/a00788bc549345b6bc9b653651b31a07/result.json",
+      "op_timeout_seconds": 1800.0,
+      "reference_chip": "H800",
+      "only": [
+        "cudnn_batch_norm_backward"
+      ],
+      "whitelist": null,
+      "blacklist": null,
+      "selected_ops": [
+        "cudnn_batch_norm_backward"
+      ],
+      "latency_warmup_ms": 25,
+      "latency_rep_ms": 100,
+      "ncu_warmup_calls": 3
+    },
+    "environment_variables": {
+      "CUDA_VISIBLE_DEVICES": "6",
+      "CUDA_DEVICE_ORDER": null
+    }
+  },
+  "records": [
+    {
+      "shape_key": "[16, 16, 64]",
+      "dtype": "torch.float16",
+      "T_us": 6.48930157809832,
+      "config": {
+        "inputs": {
+          "args": [
+            {
+              "shape": [
+                16,
+                16,
+                64
+              ],
+              "dtype": "torch.float16",
+              "stride": [
+                1024,
+                64,
+                1
+              ],
+              "requires_grad": false
+            },
+            {
+              "shape": [
+                16,
+                16,
+                64
+              ],
+              "dtype": "torch.float16",
+              "stride": [
+                1024,
+                64,
+                1
+              ],
+              "requires_grad": false
+            },
+            {
+              "shape": [
+                16
+              ],
+              "dtype": "torch.float32",
+              "stride": [
+                1
+              ],
+              "requires_grad": false
+            },
+            null,
+            null,
+            {
+              "shape": [
+                16
+              ],
+              "dtype": "torch.float32",
+              "stride": [
+                1
+              ],
+              "requires_grad": false
+            },
+            {
+              "shape": [
+                16
+              ],
+              "dtype": "torch.float32",
+              "stride": [
+                1
+              ],
+              "requires_grad": false
+            },
+            1e-05,
+            {
+              "shape": [
+                0
+              ],
+              "dtype": "torch.uint8",
+              "stride": [
+                1
+              ],
+              "requires_grad": false
+            }
+          ],
+          "kwargs": {}
+        },
+        "benchmark": "benchmark/test_cudnn_batch_norm_backward.py",
+        "scope": "core",
+        "input_contract": "cudnn-batch-norm-backward-training-invstd/v1",
+        "grid_contract": "cudnn_batch_norm_backward.kernelgen-dev.core/v1",
+        "producer_selector": {
+          "OPS_BASELINE_CUDNN_BN_CURRENT_CORE": "1"
+        },
+        "input_builder_sha256": "acce93b32b5d669f49f136a364e0ee906cfb4e3032da48b6ae315c8bd278fa81",
+        "flag_gems_source_commit": "6b9c9afd971e50a9e99ae31d73d816ca8b79560d"
+      }
+    },
+    {
+      "shape_key": "[16, 16, 64]",
+      "dtype": "torch.float32",
+      "T_us": 7.127618385289404,
+      "config": {
+        "inputs": {
+          "args": [
+            {
+              "shape": [
+                16,
+                16,
+                64
+              ],
+              "dtype": "torch.float32",
+              "stride": [
+                1024,
+                64,
+                1
+              ],
+              "requires_grad": false
+            },
+            {
+              "shape": [
+                16,
+                16,
+                64
+              ],
+              "dtype": "torch.float32",
+              "stride": [
+                1024,
+                64,
+                1
+              ],
+              "requires_grad": false
+            },
+            {
+              "shape": [
+                16
+              ],
+              "dtype": "torch.float32",
+              "stride": [
+                1
+              ],
+              "requires_grad": false
+            },
+            null,
+            null,
+            {
+              "shape": [
+                16
+              ],
+              "dtype": "torch.float32",
+              "stride": [
+                1
+              ],
+              "requires_grad": false
+            },
+            {
+              "shape": [
+                16
+              ],
+              "dtype": "torch.float32",
+              "stride": [
+                1
+              ],
+              "requires_grad": false
+            },
+            1e-05,
+            {
+              "shape": [
+                0
+              ],
+              "dtype": "torch.uint8",
+              "stride": [
+                1
+              ],
+              "requires_grad": false
+            }
+          ],
+          "kwargs": {}
+        },
+        "benchmark": "benchmark/test_cudnn_batch_norm_backward.py",
+        "scope": "core",
+        "input_contract": "cudnn-batch-norm-backward-training-invstd/v1",
+        "grid_contract": "cudnn_batch_norm_backward.kernelgen-dev.core/v1",
+        "producer_selector": {
+          "OPS_BASELINE_CUDNN_BN_CURRENT_CORE": "1"
+        },
+        "input_builder_sha256": "acce93b32b5d669f49f136a364e0ee906cfb4e3032da48b6ae315c8bd278fa81",
+        "flag_gems_source_commit": "6b9c9afd971e50a9e99ae31d73d816ca8b79560d"
+      }
+    },
+    {
+      "shape_key": "[32, 64, 56, 56]",
+      "dtype": "torch.float16",
+      "T_us": 116.74090831047035,
+      "config": {
+        "inputs": {
+          "args": [
+            {
+              "shape": [
+                32,
+                64,
+                56,
+                56
+              ],
+              "dtype": "torch.float16",
+              "stride": [
+                200704,
+                3136,
+                56,
+                1
+              ],
+              "requires_grad": false
+            },
+            {
+              "shape": [
+                32,
+                64,
+                56,
+                56
+              ],
+              "dtype": "torch.float16",
+              "stride": [
+                200704,
+                3136,
+                56,
+                1
+              ],
+              "requires_grad": false
+            },
+            {
+              "shape": [
+                64
+              ],
+              "dtype": "torch.float32",
+              "stride": [
+                1
+              ],
+              "requires_grad": false
+            },
+            null,
+            null,
+            {
+              "shape": [
+                64
+              ],
+              "dtype": "torch.float32",
+              "stride": [
+                1
+              ],
+              "requires_grad": false
+            },
+            {
+              "shape": [
+                64
+              ],
+              "dtype": "torch.float32",
+              "stride": [
+                1
+              ],
+              "requires_grad": false
+            },
+            1e-05,
+            {
+              "shape": [
+                0
+              ],
+              "dtype": "torch.uint8",
+              "stride": [
+                1
+              ],
+              "requires_grad": false
+            }
+          ],
+          "kwargs": {}
+        },
+        "benchmark": "benchmark/test_cudnn_batch_norm_backward.py",
+        "scope": "core",
+        "input_contract": "cudnn-batch-norm-backward-training-invstd/v1",
+        "grid_contract": "cudnn_batch_norm_backward.kernelgen-dev.core/v1",
+        "producer_selector": {
+          "OPS_BASELINE_CUDNN_BN_CURRENT_CORE": "1"
+        },
+        "input_builder_sha256": "acce93b32b5d669f49f136a364e0ee906cfb4e3032da48b6ae315c8bd278fa81",
+        "flag_gems_source_commit": "6b9c9afd971e50a9e99ae31d73d816ca8b79560d"
+      }
+    },
+    {
+      "shape_key": "[32, 64, 56, 56]",
+      "dtype": "torch.float32",
+      "T_us": 166.48222887842215,
+      "config": {
+        "inputs": {
+          "args": [
+            {
+              "shape": [
+                32,
+                64,
+                56,
+                56
+              ],
+              "dtype": "torch.float32",
+              "stride": [
+                200704,
+                3136,
+                56,
+                1
+              ],
+              "requires_grad": false
+            },
+            {
+              "shape": [
+                32,
+                64,
+                56,
+                56
+              ],
+              "dtype": "torch.float32",
+              "stride": [
+                200704,
+                3136,
+                56,
+                1
+              ],
+              "requires_grad": false
+            },
+            {
+              "shape": [
+                64
+              ],
+              "dtype": "torch.float32",
+              "stride": [
+                1
+              ],
+              "requires_grad": false
+            },
+            null,
+            null,
+            {
+              "shape": [
+                64
+              ],
+              "dtype": "torch.float32",
+              "stride": [
+                1
+              ],
+              "requires_grad": false
+            },
+            {
+              "shape": [
+                64
+              ],
+              "dtype": "torch.float32",
+              "stride": [
+                1
+              ],
+              "requires_grad": false
+            },
+            1e-05,
+            {
+              "shape": [
+                0
+              ],
+              "dtype": "torch.uint8",
+              "stride": [
+                1
+              ],
+              "requires_grad": false
+            }
+          ],
+          "kwargs": {}
+        },
+        "benchmark": "benchmark/test_cudnn_batch_norm_backward.py",
+        "scope": "core",
+        "input_contract": "cudnn-batch-norm-backward-training-invstd/v1",
+        "grid_contract": "cudnn_batch_norm_backward.kernelgen-dev.core/v1",
+        "producer_selector": {
+          "OPS_BASELINE_CUDNN_BN_CURRENT_CORE": "1"
+        },
+        "input_builder_sha256": "acce93b32b5d669f49f136a364e0ee906cfb4e3032da48b6ae315c8bd278fa81",
+        "flag_gems_source_commit": "6b9c9afd971e50a9e99ae31d73d816ca8b79560d"
+      }
+    }
+  ],
+  "actual_source_inputs_and_metadata_match_controls": 4,
+  "supported_native_dtypes": [
+    "torch.float16",
+    "torch.float32"
+  ],
+  "unsupported_core_dtype": {
+    "dtype": "torch.bfloat16",
+    "original_cases_preserved": 2,
+    "reason": "Actual native H800 CuDNN backward rejects both FP32weight/stats and BF16weight/stats on both current core shapes. No substitute API or CPU reference timing recorded.",
+    "evidence_file_sha256": "4e00b2b65f3dad498ec22f21c7469d7370ec1bbcfca2665515c467c002b74dbc"
+  },
+  "raw_evidence": {
+    "h800-collection-v2/launch-command.json": "2ca42e0a7cd26d49c65197f0f7312bc87252da4fe9ea5377dc4720df58a9f9af",
+    "h800-collection-v2/actual-input-control.json": "fa4e25f5c3357be6dec28cbac8378730386233f1e22506dff89d90e3ee9070e4",
+    "h800-collection-v2/terminal-source-v2.json": "1ca2b5154b5e87100009a01ea167c6e305565d1cfcf3bd05762222a848ac1ed7",
+    "h800-collection-v2/runtime.tar.gz": "2fd60084baa59d3414bd5aca0f6a52546a4ecc09620fc8d08e92158dff142682",
+    "h800-collection-v2/runtime/collection.log": "507e8f2aec26f7de85e4bbe200dbbf6b60e1ae1b31db19deae5f4810aee3d269",
+    "producer-optin-controls-v2.json": "eddb32434474670c623042d461ba4f6a9f2c36f7a5e0d987197eb7aa3a9198b3",
+    "legacy-contract-green-v4.json": "fcc25f9ba4346ea9e6923a97808d7c975ff67a73b1ba9c1aa14caee6ef2b1d39"
+  },
+  "legacy_default": "Original export_contract five-shape FP32 pinned catalog remains default. Explicit selector1 current-core run only. Shared catalog/old snapshots unchanged.",
+  "historical_not_delivered": {
+    "source": "f199536722e005d7d0398d27fbeb25027a0009ab",
+    "artifact_sha256": "53e82c1181d84c28333778d75e654e22b8ebf018af6e52062d065cd4bf26da43"
+  },
+  "limits": [
+    "Latency-only --no-ncu does not measure hardware-counter placeholders.",
+    "Actual tensor distributions/configuration match; backend RNG payloads need not be identical.",
+    "Unsupported BF16 has no fabricated/CPU latency. CPU mathematical-oracle tests are correctness bootstrap only."
+  ]
+}
