@@ -1,0 +1,382 @@
+{
+  "schema_version": "ops-baseline.native-float-power-out-h800/v1",
+  "artifact": "op_pytorch_h800_float_power_out_core_20261027.json",
+  "artifact_sha256": "1d9f2d8eff4ce51834a8de8b4961c1052425af1b5a186ac723dddd8f35e7df91",
+  "measured_source_commit": "8dae3fdd50b26e9be9b46622c9c5fde2b9be5e9c",
+  "publication_commit_is_separate": true,
+  "operators": [
+    "float_power_scalar_tensor_out",
+    "float_power_tensor_scalar_out",
+    "float_power_tensor_tensor_out"
+  ],
+  "native_API": "torch.ops.aten.float_power.Scalar_out / Tensor_Scalar_out / Tensor_Tensor_out",
+  "source_before_after_clean": true,
+  "hardware": "NVIDIA H800",
+  "physical_gpu": 6,
+  "completed_native_records": 45,
+  "latency_only": true,
+  "no_NCU_counters_claimed": true,
+  "flag_gems_pinned_recipe_source": "9d57a23b4386bd669152a935fe88a96db907da7c",
+  "flag_gems_target_builder_recipe_origin": "b197f259f85795b33498a9a2ef2f7ac46c5ec6bc",
+  "flag_gems_integration_checkpoint": "d6059f91fee7f9778f2d2bebce7a8d0024d213f2",
+  "target_input_builder_hashes": {
+    "float_power_scalar_tensor_out": "e2a6827401bb4cc9aacd785433d4d62576fb0e31ce89de589c7000959da2ff81",
+    "float_power_tensor_scalar_out": "c55ebe74a5e33c14440ef8af92d038b03dea8adac0d5e6af9d5d2df3c198ac9c",
+    "float_power_tensor_tensor_out": "524233832de5143a00f382f30fa653f74b44e143a6bf59abec3c4beb84886a9d"
+  },
+  "input_recipe": "Pinned original ambient unseeded rand builders, same 5 shapes x3 lowprecision input dtypes, Float64 out; fixed scalar2.0/1.234; no cross-vendor RNG payload equality claim.",
+  "actual_H800_before_collection_controls": "45 exact original/current source builder/config/native output ABI/input readonly/out identity controls passed before native tool launch.",
+  "source_contract_compatibility": "Original813 catalog/manifest entries unchanged; exactly3 genuine manually catalogued helper-dispatched pinned recipes; shared parser/_kernelgen Python unchanged; three original host compatibility tests passed.",
+  "native_collection_command": [
+    "/usr/bin/python3",
+    "tools/collect_baseline_nvidia.py",
+    "--repo",
+    "pytorch",
+    "--ops",
+    "float_power_scalar_tensor_out,float_power_tensor_scalar_out,float_power_tensor_tensor_out",
+    "--devices",
+    "6",
+    "--no-ncu",
+    "--output",
+    "/data/tj/workspace/blocked581-20261027-b15-float-power-out-baseline-h800-v1/float_power_out_h800.json"
+  ],
+  "raw_evidence": {
+    "h800-collection-v1/actual-input-control.json": "a901af99efee9f1b0fb01fe97341dbd48e448465438dd06b3e24e0a3c121ad3c",
+    "h800-collection-v1/clone.json": "a21a9913fdbe3eb1440088db72c964de2bd9fd800a051a227ac77b37004a313b",
+    "h800-collection-v1/launch-command.json": "c39c7f05ee9d417827c2f6ce319b4f0b4d7b1931309d78d309d8dde4d884afb0",
+    "h800-collection-v1/launch.json": "2a309aec0ca5fac95a62153138d8f9307a71b6020432a88895f69085248d86b3",
+    "h800-collection-v1/occupancy-before-collector.json": "1f6e94ed0c753366788bf76a53b7b8ca06544c90a5c0c54c159db2407fe9bc59",
+    "h800-collection-v1/occupancy.json": "c6be343c639235fac55d5e8adda7095e4bc5e7e2ab5aa31374e3b75bd20a1f3e",
+    "h800-collection-v1/runtime/collection.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "h800-collection-v1/runtime/collection.log": "6e94dc0297fa4b78dae5082018d223ad601aa7c2076751e78e9b03e5a66982bb",
+    "h800-collection-v1/runtime/float_power_out_h800.json": "1d9f2d8eff4ce51834a8de8b4961c1052425af1b5a186ac723dddd8f35e7df91",
+    "h800-collection-v1/runtime/float_power_out_h800.json.lock": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "h800-collection-v1/runtime/float_power_out_h800.json.work/float_power_scalar_tensor_out/468fbaf91bff4765a42e0008087496f3/collector.log": "9e02d0e84c86fe721bb6f9a959f8577d508963ff91f054f79ae59c90302f1d5a",
+    "h800-collection-v1/runtime/float_power_out_h800.json.work/float_power_scalar_tensor_out/468fbaf91bff4765a42e0008087496f3/result.json": "c8c7ee988fd1de518f00ccec2a87acb8647d39fb7b1e83ae0c8ccf6a62d03552",
+    "h800-collection-v1/runtime/float_power_out_h800.json.work/float_power_tensor_scalar_out/4e2782c9958c4a96a094c7a6be7f0ebd/collector.log": "92289af74f3da48f67d37ba6a439d3c679bbff3840cd069328a36844e7759e6f",
+    "h800-collection-v1/runtime/float_power_out_h800.json.work/float_power_tensor_scalar_out/4e2782c9958c4a96a094c7a6be7f0ebd/result.json": "a6c2c0ef123937584588a4de0d0ba738ea243f2fdabd4e1c6454b6fbc77013e0",
+    "h800-collection-v1/runtime/float_power_out_h800.json.work/float_power_tensor_tensor_out/74cb9cff3ef0468b8c7f24ae53d52630/collector.log": "200ce60b61f2138e4fd6ec4d70bfb2f2ca5bba4ebf6c37fec560b1806b917ab3",
+    "h800-collection-v1/runtime/float_power_out_h800.json.work/float_power_tensor_tensor_out/74cb9cff3ef0468b8c7f24ae53d52630/result.json": "ecec832249cc27fcd67f5976c155c14f0fbdc0e4fac727e6e98601a0c92a79a2",
+    "h800-collection-v1/runtime.tar.gz": "a397c94217d561dd863f4649d366598cc98519ad40e156134b3dde34c546733c",
+    "h800-collection-v1/stage.json": "7c15c7ee0d03ad977de483168e25c75119577aad45292bf66fba061e4a641275",
+    "h800-collection-v1/terminal-source-v1.json": "07365170e25762f9737939ae2d9b654377f80f99be7ca45291e3f30ac63f01cf"
+  },
+  "records": [
+    {
+      "operator": "float_power_scalar_tensor_out",
+      "shape": "[4]",
+      "dtype": "torch.float16",
+      "T_us": 12.692115255686174,
+      "latency_ms": 0.012692115255686174
+    },
+    {
+      "operator": "float_power_scalar_tensor_out",
+      "shape": "[4]",
+      "dtype": "torch.float32",
+      "T_us": 12.652328879844903,
+      "latency_ms": 0.012652328879844903
+    },
+    {
+      "operator": "float_power_scalar_tensor_out",
+      "shape": "[4]",
+      "dtype": "torch.bfloat16",
+      "T_us": 13.77211885360692,
+      "latency_ms": 0.01377211885360692
+    },
+    {
+      "operator": "float_power_scalar_tensor_out",
+      "shape": "[1024]",
+      "dtype": "torch.float16",
+      "T_us": 19.221028617146064,
+      "latency_ms": 0.019221028617146065
+    },
+    {
+      "operator": "float_power_scalar_tensor_out",
+      "shape": "[1024]",
+      "dtype": "torch.float32",
+      "T_us": 20.13610585735749,
+      "latency_ms": 0.02013610585735749
+    },
+    {
+      "operator": "float_power_scalar_tensor_out",
+      "shape": "[1024]",
+      "dtype": "torch.bfloat16",
+      "T_us": 20.681727675677198,
+      "latency_ms": 0.0206817276756772
+    },
+    {
+      "operator": "float_power_scalar_tensor_out",
+      "shape": "[65536]",
+      "dtype": "torch.float16",
+      "T_us": 27.203196522159892,
+      "latency_ms": 0.02720319652215989
+    },
+    {
+      "operator": "float_power_scalar_tensor_out",
+      "shape": "[65536]",
+      "dtype": "torch.float32",
+      "T_us": 25.514343799771492,
+      "latency_ms": 0.02551434379977149
+    },
+    {
+      "operator": "float_power_scalar_tensor_out",
+      "shape": "[65536]",
+      "dtype": "torch.bfloat16",
+      "T_us": 26.071269601664465,
+      "latency_ms": 0.026071269601664466
+    },
+    {
+      "operator": "float_power_scalar_tensor_out",
+      "shape": "[512, 512]",
+      "dtype": "torch.float16",
+      "T_us": 60.83338139511699,
+      "latency_ms": 0.06083338139511699
+    },
+    {
+      "operator": "float_power_scalar_tensor_out",
+      "shape": "[512, 512]",
+      "dtype": "torch.float32",
+      "T_us": 59.47354985162234,
+      "latency_ms": 0.059473549851622336
+    },
+    {
+      "operator": "float_power_scalar_tensor_out",
+      "shape": "[512, 512]",
+      "dtype": "torch.bfloat16",
+      "T_us": 59.86266290352128,
+      "latency_ms": 0.05986266290352128
+    },
+    {
+      "operator": "float_power_scalar_tensor_out",
+      "shape": "[2048, 2048]",
+      "dtype": "torch.float16",
+      "T_us": 731.9606567015413,
+      "latency_ms": 0.7319606567015413
+    },
+    {
+      "operator": "float_power_scalar_tensor_out",
+      "shape": "[2048, 2048]",
+      "dtype": "torch.float32",
+      "T_us": 733.3419010287425,
+      "latency_ms": 0.7333419010287425
+    },
+    {
+      "operator": "float_power_scalar_tensor_out",
+      "shape": "[2048, 2048]",
+      "dtype": "torch.bfloat16",
+      "T_us": 732.3464912469269,
+      "latency_ms": 0.732346491246927
+    },
+    {
+      "operator": "float_power_tensor_scalar_out",
+      "shape": "[4]",
+      "dtype": "torch.float16",
+      "T_us": 10.966109078038821,
+      "latency_ms": 0.010966109078038822
+    },
+    {
+      "operator": "float_power_tensor_scalar_out",
+      "shape": "[4]",
+      "dtype": "torch.float32",
+      "T_us": 10.832683752836608,
+      "latency_ms": 0.010832683752836608
+    },
+    {
+      "operator": "float_power_tensor_scalar_out",
+      "shape": "[4]",
+      "dtype": "torch.bfloat16",
+      "T_us": 10.870105263083838,
+      "latency_ms": 0.010870105263083837
+    },
+    {
+      "operator": "float_power_tensor_scalar_out",
+      "shape": "[1024]",
+      "dtype": "torch.float16",
+      "T_us": 33.195958096573044,
+      "latency_ms": 0.033195958096573046
+    },
+    {
+      "operator": "float_power_tensor_scalar_out",
+      "shape": "[1024]",
+      "dtype": "torch.float32",
+      "T_us": 33.057995342733406,
+      "latency_ms": 0.033057995342733404
+    },
+    {
+      "operator": "float_power_tensor_scalar_out",
+      "shape": "[1024]",
+      "dtype": "torch.bfloat16",
+      "T_us": 33.55162520947445,
+      "latency_ms": 0.03355162520947445
+    },
+    {
+      "operator": "float_power_tensor_scalar_out",
+      "shape": "[65536]",
+      "dtype": "torch.float16",
+      "T_us": 34.468286693726526,
+      "latency_ms": 0.03446828669372653
+    },
+    {
+      "operator": "float_power_tensor_scalar_out",
+      "shape": "[65536]",
+      "dtype": "torch.float32",
+      "T_us": 34.25949131211433,
+      "latency_ms": 0.03425949131211433
+    },
+    {
+      "operator": "float_power_tensor_scalar_out",
+      "shape": "[65536]",
+      "dtype": "torch.bfloat16",
+      "T_us": 34.9210944369365,
+      "latency_ms": 0.0349210944369365
+    },
+    {
+      "operator": "float_power_tensor_scalar_out",
+      "shape": "[512, 512]",
+      "dtype": "torch.float16",
+      "T_us": 56.85773512322298,
+      "latency_ms": 0.05685773512322298
+    },
+    {
+      "operator": "float_power_tensor_scalar_out",
+      "shape": "[512, 512]",
+      "dtype": "torch.float32",
+      "T_us": 57.22759163358829,
+      "latency_ms": 0.05722759163358829
+    },
+    {
+      "operator": "float_power_tensor_scalar_out",
+      "shape": "[512, 512]",
+      "dtype": "torch.bfloat16",
+      "T_us": 56.92035753758593,
+      "latency_ms": 0.05692035753758593
+    },
+    {
+      "operator": "float_power_tensor_scalar_out",
+      "shape": "[2048, 2048]",
+      "dtype": "torch.float16",
+      "T_us": 730.1692366600037,
+      "latency_ms": 0.7301692366600037
+    },
+    {
+      "operator": "float_power_tensor_scalar_out",
+      "shape": "[2048, 2048]",
+      "dtype": "torch.float32",
+      "T_us": 731.9520003482943,
+      "latency_ms": 0.7319520003482943
+    },
+    {
+      "operator": "float_power_tensor_scalar_out",
+      "shape": "[2048, 2048]",
+      "dtype": "torch.bfloat16",
+      "T_us": 730.5667637809505,
+      "latency_ms": 0.7305667637809505
+    },
+    {
+      "operator": "float_power_tensor_tensor_out",
+      "shape": "[4]",
+      "dtype": "torch.float16",
+      "T_us": 18.252000119537115,
+      "latency_ms": 0.018252000119537114
+    },
+    {
+      "operator": "float_power_tensor_tensor_out",
+      "shape": "[4]",
+      "dtype": "torch.float32",
+      "T_us": 13.855553279488774,
+      "latency_ms": 0.013855553279488774
+    },
+    {
+      "operator": "float_power_tensor_tensor_out",
+      "shape": "[4]",
+      "dtype": "torch.bfloat16",
+      "T_us": 13.786937445729563,
+      "latency_ms": 0.013786937445729563
+    },
+    {
+      "operator": "float_power_tensor_tensor_out",
+      "shape": "[1024]",
+      "dtype": "torch.float16",
+      "T_us": 41.284025090295565,
+      "latency_ms": 0.041284025090295565
+    },
+    {
+      "operator": "float_power_tensor_tensor_out",
+      "shape": "[1024]",
+      "dtype": "torch.float32",
+      "T_us": 40.402907316373806,
+      "latency_ms": 0.040402907316373804
+    },
+    {
+      "operator": "float_power_tensor_tensor_out",
+      "shape": "[1024]",
+      "dtype": "torch.bfloat16",
+      "T_us": 41.67753848115505,
+      "latency_ms": 0.041677538481155046
+    },
+    {
+      "operator": "float_power_tensor_tensor_out",
+      "shape": "[65536]",
+      "dtype": "torch.float16",
+      "T_us": 43.38220090828978,
+      "latency_ms": 0.04338220090828978
+    },
+    {
+      "operator": "float_power_tensor_tensor_out",
+      "shape": "[65536]",
+      "dtype": "torch.float32",
+      "T_us": 43.67596985917698,
+      "latency_ms": 0.04367596985917698
+    },
+    {
+      "operator": "float_power_tensor_tensor_out",
+      "shape": "[65536]",
+      "dtype": "torch.bfloat16",
+      "T_us": 43.72215425470837,
+      "latency_ms": 0.04372215425470837
+    },
+    {
+      "operator": "float_power_tensor_tensor_out",
+      "shape": "[512, 512]",
+      "dtype": "torch.float16",
+      "T_us": 66.8485289937383,
+      "latency_ms": 0.0668485289937383
+    },
+    {
+      "operator": "float_power_tensor_tensor_out",
+      "shape": "[512, 512]",
+      "dtype": "torch.float32",
+      "T_us": 66.74620376420236,
+      "latency_ms": 0.06674620376420236
+    },
+    {
+      "operator": "float_power_tensor_tensor_out",
+      "shape": "[512, 512]",
+      "dtype": "torch.bfloat16",
+      "T_us": 65.69399719089047,
+      "latency_ms": 0.06569399719089047
+    },
+    {
+      "operator": "float_power_tensor_tensor_out",
+      "shape": "[2048, 2048]",
+      "dtype": "torch.float16",
+      "T_us": 774.6838618969095,
+      "latency_ms": 0.7746838618969095
+    },
+    {
+      "operator": "float_power_tensor_tensor_out",
+      "shape": "[2048, 2048]",
+      "dtype": "torch.float32",
+      "T_us": 778.267311124966,
+      "latency_ms": 0.778267311124966
+    },
+    {
+      "operator": "float_power_tensor_tensor_out",
+      "shape": "[2048, 2048]",
+      "dtype": "torch.bfloat16",
+      "T_us": 776.92110528206,
+      "latency_ms": 0.77692110528206
+    }
+  ],
+  "target_gate_status": "Target full8+KGS acceptance is separately pending; CPU-stub consumer controls are not target timing measurements."
+}
