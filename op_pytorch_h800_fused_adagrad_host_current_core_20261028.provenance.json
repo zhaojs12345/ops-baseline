@@ -1,0 +1,31 @@
+{
+  "status": "PASS_VERIFIED_ADAGRAD_CPU_NATIVE_H800_TRANSFERS",
+  "execution_kind": "native_cpu_with_device_transfers",
+  "artifact_sha256": "6fb36802c09121f6c5b5d4aac38428f724c90a4d154ef8920571e6d0194bd129",
+  "collection_source": "aaf09163fd13be4b2daad1d2d6e024d38c073335",
+  "source_files": 1148,
+  "native_records": 8,
+  "native_input_source": "ac9a1f703757537a3d54cc1ac1febeca410316c0",
+  "source_before_after_exact": true,
+  "raw_proofs": {
+    "source-before.json": "bf9f54306489f8c7fa991553a73ea1193bcbd2ddb6bf63d7c10dd85b7380e56c",
+    "source-after.json": "9fcc1b0bc64bc9e421f22a3c078b9e909e4a203b053c93447ec6ef4e742f1369",
+    "flaggems-source-before.json": "808e5839754bbe1c053fe99772aa2933fe986b4a6ffe43e4f335589c08e823c0",
+    "flaggems-source-after.json": "808e5839754bbe1c053fe99772aa2933fe986b4a6ffe43e4f335589c08e823c0",
+    "preflight.json": "3bd100898471cebcc8deca121a42da26a56eeff9a4ce24da5fff5b1f2ed27334",
+    "idle-before.json": "4b1dca197fdca7c8e1826bbdb4aa02f34083c6c3639b97742abb125626602e88",
+    "idle-after.json": "bbc1382e7ecaf2d9112727f416fa60755ccc0f7b4630eb9008aa9dcaa83c5c92",
+    "DONE.json": "151152ad5e5f3c2b69557a1d4ff547736ee02bcd487f213ca68b49e126f3e14f"
+  },
+  "entrypoint_bridge_source": "2c948f9d53f44be9106662f80b7eb044d317f59f",
+  "entrypoint_bridge_proof_sha256": "d2d21607e5691b7d0c22a7767b264d5fa8c01d20b0f08b0c8f52e73cc8b185c2",
+  "safe_entry_controls_sha256": "17981e5ebbf9efadb2663c58449cbd9cd922568ed427752f3c06c911449ba75c",
+  "remeasured": false,
+  "limits": [
+    "Actual CPU-native API plus H800 device transfers and sync, not GPU kernel latency.",
+    "Every warmup/sample clones full original state outside measurement; host sample raw ns retained.",
+    "Original aaf source/data unchanged; entry factory safety bridge alone selects explicit host_native.",
+    "Only eight original F32 shape/mode recipes; cross-chip GPU random payload equality not claimed.",
+    "Sampled idle boundaries only, no continuous exclusivity claim; no NCU or GPU scaling."
+  ]
+}
