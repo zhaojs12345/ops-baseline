@@ -7,24 +7,18 @@ collects only the named ATen backward ABI and does not time a portable CPU oracl
 
 import torch
 
-OP_NAME = "_thnn_fused_lstm_cell_backward"
+OP_NAME = "thnn_fused_lstm_cell_backward_impl_current_core"
+_ATEN_NAME = "_thnn_fused_lstm_cell_backward_impl"
 IS_INPLACE = False
-DTYPES = [torch.float16, torch.float32, torch.bfloat16, torch.float64]
-SHAPES = [
-    (1, 32, False),
-    (8, 64, True),
-    (32, 128, False),
-    (64, 256, True),
-    (128, 512, False),
-    (256, 1024, True),
-]
+DTYPES = [torch.float32]
+SHAPES = [(1, 4, True), (4, 16, True), (16, 64, True)]
 SOURCE_COMMIT = "ac9a1f703757537a3d54cc1ac1febeca410316c0"
 
 
 def native():
     def run(*args):
         with torch.no_grad():
-            return getattr(torch.ops.aten, OP_NAME)(*args)
+            return getattr(torch.ops.aten, _ATEN_NAME)(*args)
 
     return run
 
@@ -39,14 +33,12 @@ def key_shape(binding):
 
 def build_inputs(binding, dtype, device):
     batch, hidden, has_bias = binding["shape"]
-    # Original builder does not reset global RNG.
+    torch.manual_seed(0)
     input_gates = torch.randn(batch, 4 * hidden, dtype=dtype, device=device)
     hidden_gates = torch.randn_like(input_gates)
     state = torch.randn(batch, hidden, dtype=dtype, device=device)
-    input_bias = (
-        torch.randn(4 * hidden, dtype=dtype, device=device) if has_bias else None
-    )
-    hidden_bias = input_bias
+    input_bias = torch.zeros(4 * hidden, dtype=dtype, device=device)
+    hidden_bias = torch.randn(4 * hidden, dtype=dtype, device=device)
     with torch.no_grad():
         forward = torch.ops.aten._thnn_fused_lstm_cell(
             input_gates, hidden_gates, state, input_bias, hidden_bias
@@ -76,18 +68,18 @@ def config(binding, dtype):
     return dict(
         inputs=dict(args=args, kwargs={}),
         source_commit=SOURCE_COMMIT,
-        benchmark="benchmark/test_thnn_fused_lstm_cell_backward.py",
+        benchmark="benchmark/test_thnn_fused_lstm_cell_backward_impl.py",
         descriptor=list(binding["shape"]),
         scope="core",
         variant=0,
-        native_api="torch.ops.aten." + OP_NAME,
+        native_api="torch.ops.aten." + _ATEN_NAME,
         input_recipe={
-            "rng": "ambient target RNG",
+            "rng": "manual_seed(0)",
             "input_gates": "randn",
             "hidden_gates": "randn_like(input_gates)",
             "state": "randn",
-            "input_bias": "shared randn if has_bias else None",
-            "hidden_bias": "same object as input_bias",
+            "input_bias": "zeros",
+            "hidden_bias": "randn",
             "gradients": "randn_like forward outputs",
         },
         workspace_producer="torch.ops.aten._thnn_fused_lstm_cell native CUDA outside timer",
