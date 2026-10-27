@@ -1,0 +1,202 @@
+{
+  "schema": "ops-baseline.native-h800-measurement-proof/v1",
+  "operator": "median",
+  "native_api": "ops.median / torch.ops.aten.median.default",
+  "artifact": "op_pytorch_h800_median_suiyuan_core_20261028.json",
+  "artifact_sha256": "90837247d6c610e4bbbabfeaa3032b6cb522b230286d4c6bebea8fa14372d023",
+  "measured_source_commit": "f31df74943936769a3a27ccf8411aefa378784e7",
+  "measured_source_clean": true,
+  "measured_regular_tracked_files": 1147,
+  "producer_module_sha256": "d72d94301435196ff1d7b878094b3fbe1c032755f6ae2e272525645069a4c6bc",
+  "producer_selector": {
+    "OPS_BASELINE_MEDIAN_SUIYUAN_CORE": "1"
+  },
+  "original_grid_contract": "median.suiyuan.kernelgen-dev.core/v1",
+  "original_shapes": [
+    [
+      1073741824
+    ],
+    [
+      64,
+      64
+    ],
+    [
+      4096,
+      4096
+    ],
+    [
+      64,
+      512,
+      512
+    ],
+    [
+      1024,
+      1024,
+      1024
+    ]
+  ],
+  "original_dtypes": [
+    "torch.float16",
+    "torch.float32",
+    "torch.bfloat16",
+    "torch.int16",
+    "torch.int32"
+  ],
+  "records": 25,
+  "original_large_cases_executed": true,
+  "actual_native_controls25_source_rng_all_values_and_readonly_ABI": true,
+  "independent_CPU_native_small64x64_dtype_controls": 5,
+  "full25_independent_CPU_gold_claimed": false,
+  "latency_only_no_NCU": true,
+  "NCU_zero_fields_not_measured_compute_or_memory": true,
+  "physical_GPU4_only": true,
+  "device_name": "NVIDIA H800",
+  "GPU_uuid": "GPU-fd660a7d-352c-6699-9e93-74c8ea136095",
+  "collector_exit": 0,
+  "no_foreign_or_unproven_holders_during_monitored_window": true,
+  "monitors_do_not_modify_other_workloads": true,
+  "source1147_before_after_unchanged": true,
+  "actual_environment": {
+    "schema_version": 1,
+    "collected_at_utc": "2026-10-27T18:12:43.469267+00:00",
+    "hardware": {
+      "gpu": {
+        "name": "NVIDIA H800",
+        "uuid": "fd660a7d-352c-6699-9e93-74c8ea136095",
+        "total_memory_bytes": 85017624576,
+        "total_memory_gib": 79.18,
+        "compute_capability": "9.0",
+        "multiprocessor_count": 132,
+        "cuda_device_index": 0,
+        "driver_version": "580.105.08"
+      },
+      "cpu_model": "Intel(R) Xeon(R) Platinum 8468V",
+      "cpu_architecture": "x86_64",
+      "cpu_socket_count": 2,
+      "physical_cpu_core_count": 96,
+      "logical_cpu_count": 192,
+      "cpu_threads_per_core": 2,
+      "numa_node_count": 2,
+      "process_cpu_affinity_count": 192,
+      "hypervisor_vendor": null
+    },
+    "software": {
+      "os": "Linux",
+      "os_release": "5.15.0-78-generic",
+      "machine": "x86_64",
+      "python": "3.12.3",
+      "packages": {
+        "torch": "2.8.0a0+5228986c39.nv25.5",
+        "triton": "3.6.0",
+        "vllm": null,
+        "sglang": null
+      },
+      "torch_cuda_version": "12.9",
+      "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Apr__9_19:24:57_PDT_2025\nCuda compilation tools, release 12.9, V12.9.41\nBuild cuda_12.9.r12.9/compiler.35813241_0",
+      "ncu_version": "NVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2025 NVIDIA Corporation\nVersion 2025.2.0.0 (build 35613519) (public-release)"
+    },
+    "source": {
+      "git_commit": "f31df74943936769a3a27ccf8411aefa378784e7",
+      "git_branch": "HEAD",
+      "git_dirty": false
+    },
+    "run": {
+      "repo": "pytorch",
+      "device": null,
+      "ncu_enabled": false,
+      "report_dir": "/data/tj/workspace/blocked581-median-h800-current25-v1-20261028/median-h800.json.work/median/2210548386b445789e02fb39fb5f172a/ncu_reports",
+      "output_path": "/data/tj/workspace/blocked581-median-h800-current25-v1-20261028/median-h800.json.work/median/2210548386b445789e02fb39fb5f172a/result.json",
+      "op_timeout_seconds": 3600.0,
+      "reference_chip": "H800",
+      "only": [
+        "median"
+      ],
+      "whitelist": null,
+      "blacklist": null,
+      "selected_ops": [
+        "median"
+      ],
+      "latency_warmup_ms": 25,
+      "latency_rep_ms": 100,
+      "ncu_warmup_calls": 3
+    },
+    "environment_variables": {
+      "CUDA_VISIBLE_DEVICES": "4",
+      "CUDA_DEVICE_ORDER": null
+    }
+  },
+  "actual_collector_command": [
+    "/usr/bin/python3",
+    "tools/collect_baseline_nvidia.py",
+    "--repo",
+    "pytorch",
+    "--ops",
+    "median",
+    "--devices",
+    "4",
+    "--no-ncu",
+    "--op-timeout",
+    "3600",
+    "--output",
+    "/data/tj/workspace/blocked581-median-h800-current25-v1-20261028/median-h800.json"
+  ],
+  "measurement_evidence_context": "/Users/tao/benchmark/context/blocked581-20261027/b13-data-api/median-double-fixture-v1",
+  "evidence_sha256": {
+    "h800-current25-v1/artifact-verification-v1.json": "7538272e84b88b658dfcec1d1ebc0c5f84861188e5cd0b1fcddd3cf17dd9b149",
+    "h800-current25-v1/clone.json": "62a1631d41b4de5c447b148176fd2be51c62e86878b10a2fabbf8cdd7eb569df",
+    "h800-current25-v1/collector-after.json": "45bcf30af53c4c68cb0a3a50b91fdb66dd379c0914e1e91a063f5ae4847dc621",
+    "h800-current25-v1/collector-during-0.json": "cbe568714a29468210f8a46e30a33d7b913d594a857edf9e855cd633a7b381bb",
+    "h800-current25-v1/collector-during-1.json": "959316b891a05ac85e3d45a34daaeceb9b084d7236c532ed329d0db3e82019d8",
+    "h800-current25-v1/collector-during-2.json": "e82706551ec1d9f3592b30fee8b5a51eefe4989659a5b6b212182d1ea113e8c0",
+    "h800-current25-v1/collector-during-3.json": "e59bf17a5e252b022f12f4210c546e49adc893b0feedbabeea829e3a485f111a",
+    "h800-current25-v1/collector-during-4.json": "0ae411793567d4b06446905b85e049dbaf816d181825bf99ab2d93ee305ed215",
+    "h800-current25-v1/collector-during-5.json": "f0b718bfc3877fc88b7776c13b45f854608aa4e81d697dc0ba942202b56f5c56",
+    "h800-current25-v1/collector-during-6.json": "bd204e47528262e20b4abc0f2ee2ef97016e4869c0ae3a517f45841139ac4c38",
+    "h800-current25-v1/collector-during-7.json": "a2d99af309ffe610e7f99ffa0ae9a9930a3ddb59b45a9805f10847c947e698ac",
+    "h800-current25-v1/collector-during-8.json": "f4c90a93f4ddcb04a863526a638a54503502128127633585320390006bc0c450",
+    "h800-current25-v1/collector-launch.json": "4ea8709518e924696c7b14bb14400a9977bbf8e196435045f916b8bb3d2818a1",
+    "h800-current25-v1/collector-result.json": "1917a572583c33f962b5d341ef8f056a079e90343cac4b88fafdd5c2d2ef7522",
+    "h800-current25-v1/controls-after.json": "13110ba1a5f0ee4b406f60ff0f515d6561cbe125cd19b80cc86ee9798f5b515d",
+    "h800-current25-v1/controls-during-0.json": "125fc8914675122c47b8b39a7482d50c9da29603927b52bfb9c539c69b69c54e",
+    "h800-current25-v1/controls-during-1.json": "78d14bdcfb95a9c573333be56d124ba6f5d863f4143a952afeeac34fef4dc9ed",
+    "h800-current25-v1/controls-during-10.json": "c3208da3b768dd65cea2ebe750787a5fc0aa3cbefcb001ee7b49ca8bf59c54f7",
+    "h800-current25-v1/controls-during-11.json": "f97d1a88d4599e65f8125673bcba14db8ba3fafe8feb80706b01c98570c66c34",
+    "h800-current25-v1/controls-during-2.json": "2d31bd117a705eac6a3c1ba5531263bf56178fc2dd830586c526fd9c170c16d6",
+    "h800-current25-v1/controls-during-3.json": "a6b2a26a3123d563430b9134f8ab0b59ef92eebf28e99f3f75e2ff170b43d8d1",
+    "h800-current25-v1/controls-during-4.json": "ced979d8e092b9d7588a8e090b9a1a499583be5d3402a8d5534eebc6a9b020d7",
+    "h800-current25-v1/controls-during-5.json": "aede814942f8335e6a617aa37e18b2c4d4a2299c55657abffe61b51175745da4",
+    "h800-current25-v1/controls-during-6.json": "8261c0c9c84de58db3be5f9d89c3b2d368285182b8665f35b58a1f40bff7e4cd",
+    "h800-current25-v1/controls-during-7.json": "67bd0720af21fdb02ae5650cd883dd0041f84603fe24c9530e57f6a692506e7e",
+    "h800-current25-v1/controls-during-8.json": "5f13b15509f02d73f04227fb272041589d05880e5896093ffdb0cac05fe6f3ec",
+    "h800-current25-v1/controls-during-9.json": "d865488a2b407cb1f92115c3e43fed2aa5ceefed18e9d45e74dc2194701d1317",
+    "h800-current25-v1/controls-launch.json": "fab21e34b600c0fd6ef5f209acd707278e8ae3871b7bd8048c3423f1acdd0b77",
+    "h800-current25-v1/controls-result.json": "94c4e69302bf11dc88d1caf8c0824f5069da15682164f2dd18a37eb9d6485ae3",
+    "h800-current25-v1/controls-verification.json": "fbe59f485d86347a8bb39eef86907fbf716f64d9964e77ccf51b5084d1b3eac3",
+    "h800-current25-v1/export-receipt.json": "dc9799ec420d61732e2befefb6c208ffa9d03e5a4b073148ff75b666376f9e4b",
+    "h800-current25-v1/fresh-before-collector.json": "90a80c4418db1f8e0faa57373d91eb1653855d387607916187bd410cf943fa39",
+    "h800-current25-v1/fresh0.json": "a9a0baad6d7b7eb7ad30f224b27e652b13a025c311aa529456de35e06ddbc9b2",
+    "h800-current25-v1/fresh1.json": "058ab20491e7422fabdf0879a33f529a88fde9049f6a83ed316ef88dba79c739",
+    "h800-current25-v1/fresh2.json": "a5b4e3694bcd006cca1f30a81b6a14aabd5251d598a961b8d2b2ba2810c09e4f",
+    "h800-current25-v1/fresh3-before-controls.json": "4be9ee8ad45707f98526068bf6f7127883cab3ff5eb0ea9bab41d13a05de0136",
+    "h800-current25-v1/h800-config.json": "98d89c8481c7a0cc7e7f85788048d871055462f84cd559737d59ef2a752cc3d0",
+    "h800-current25-v1/holders0.json": "8518ba89ed52bae7d8be0c6535def2e4b04aca20c70d3a41f387eafcab5a5f41",
+    "h800-current25-v1/native-progress-observation-v1.json": "05030f77f8701b0a80cba2932933999819859b4d5cc8df60d34aedf1e9c3d04b",
+    "h800-current25-v1/runtime/collector-DONE.json": "fb37a12b1902d6786f308a8914f2354f0176f43c4a07ff2ccdd731aa7acdd63d",
+    "h800-current25-v1/runtime/collector-owner.json": "baa164487b920c4064f7827835a51cd37b1208153011cd22b65ddb07a66d908e",
+    "h800-current25-v1/runtime/controls-DONE.json": "1dd79444833904e2a86f513ab18d072198fb16aa098291600eec003294f33ae2",
+    "h800-current25-v1/runtime/controls-events.jsonl": "9ee81117457b92e4b0fed4723f5b0d6c2f11bf616bbce71292993a56cfabbdd1",
+    "h800-current25-v1/runtime/controls-owner.json": "3b9b56918ec221d4b8a4188c0437992b27a98a1cec870a22f1b4303e34b148f0",
+    "h800-current25-v1/runtime/controls-result.json": "cb006f9f71c19991cdf7b8b5b30cb44dcea75c2aec2490510d383cca6284b0c2",
+    "h800-current25-v1/runtime/controls-source-after.json": "758dda9682185ab6085baa24966745c96b3260efc08cb71552388a1f811ce2dc",
+    "h800-current25-v1/runtime/controls-source-before.json": "758dda9682185ab6085baa24966745c96b3260efc08cb71552388a1f811ce2dc",
+    "h800-current25-v1/runtime/h800-config.json": "98d89c8481c7a0cc7e7f85788048d871055462f84cd559737d59ef2a752cc3d0",
+    "h800-current25-v1/runtime/h800_median_controls_v1.py": "7ddd906d38d1c4c7d68b9edc15e53a848e85723bec45337cedc9c9cff6c86471",
+    "h800-current25-v1/runtime/median-h800.json": "90837247d6c610e4bbbabfeaa3032b6cb522b230286d4c6bebea8fa14372d023",
+    "h800-current25-v1/runtime/median-h800.json.work/median/2210548386b445789e02fb39fb5f172a/result.json": "7a6c662e4ef4014ee3d60121058582535ced2deb5cc50b76f07b050916166190",
+    "h800-current25-v1/runtime/owned_phase.py": "6979b463f9c9d2b4bed626a8532671c41f52b6dff40a3436594be280243a8ee1",
+    "h800-current25-v1/stage.json": "5b23b160e659977ea06ade1b64ba6c08dccfa4fc45d0868d82c1e9c0bd1ca7aa",
+    "h800-current25-v1/staged-source-support.json": "0d83fad1f24248e68e6d41977061d72613d53e69b55129682696c3c4658f703b",
+    "h800-current25-v1/terminal-source-proof.json": "ee3c9b4adf49aecd9ea3e5563d6d75fbb36e3e7ba6ada35f8db727408e110656"
+  },
+  "publication_commit_is_not_the_measured_source": true
+}
