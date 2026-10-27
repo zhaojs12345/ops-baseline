@@ -1,0 +1,998 @@
+{
+  "status": "PASS_NATIVE_H800_18_FULL_API_CORE_CASES",
+  "collection_source_commit": "e66b1d176ddbeb0536e95d73e43091a893ce12a4",
+  "published_sha256": "ffbb929aed78076a539976fbf09f8c4533ec32af14e2d6f75d084f69fbbab11a",
+  "raw_sha256": "217bfe383db5dca90cc837029435f2c34a97a4ca4b4a99c463d4d01370f1e4c0",
+  "records": 18,
+  "physical_gpu": 0,
+  "ncu_enabled": false,
+  "controls": {
+    "status": "PASS_ALL_ORIGINAL_18_NATIVE_FLASH_CONTROLS",
+    "rows": [
+      {
+        "case_id": "benchmark/test_scaled_dot_product_attention.py::test_scaled_dot_product_flash_attention::core::float16::0",
+        "descriptor": [
+          4,
+          32,
+          1024,
+          128
+        ],
+        "dtype": "torch.float16",
+        "original_inputs_bit_identical": true,
+        "original_native_output_and_lse_bit_identical": true,
+        "aux_metadata": [
+          {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.uint64",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [],
+            "dtype": "torch.uint64",
+            "stride": [],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [
+              0
+            ],
+            "dtype": "torch.float16",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          }
+        ]
+      },
+      {
+        "case_id": "benchmark/test_scaled_dot_product_attention.py::test_scaled_dot_product_flash_attention::core::bfloat16::0",
+        "descriptor": [
+          4,
+          32,
+          1024,
+          128
+        ],
+        "dtype": "torch.bfloat16",
+        "original_inputs_bit_identical": true,
+        "original_native_output_and_lse_bit_identical": true,
+        "aux_metadata": [
+          {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.uint64",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [],
+            "dtype": "torch.uint64",
+            "stride": [],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [
+              0
+            ],
+            "dtype": "torch.bfloat16",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          }
+        ]
+      },
+      {
+        "case_id": "benchmark/test_scaled_dot_product_attention.py::test_scaled_dot_product_flash_attention::core::float16::1",
+        "descriptor": [
+          4,
+          32,
+          2048,
+          128
+        ],
+        "dtype": "torch.float16",
+        "original_inputs_bit_identical": true,
+        "original_native_output_and_lse_bit_identical": true,
+        "aux_metadata": [
+          {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.uint64",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [],
+            "dtype": "torch.uint64",
+            "stride": [],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [
+              0
+            ],
+            "dtype": "torch.float16",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          }
+        ]
+      },
+      {
+        "case_id": "benchmark/test_scaled_dot_product_attention.py::test_scaled_dot_product_flash_attention::core::bfloat16::1",
+        "descriptor": [
+          4,
+          32,
+          2048,
+          128
+        ],
+        "dtype": "torch.bfloat16",
+        "original_inputs_bit_identical": true,
+        "original_native_output_and_lse_bit_identical": true,
+        "aux_metadata": [
+          {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.uint64",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [],
+            "dtype": "torch.uint64",
+            "stride": [],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [
+              0
+            ],
+            "dtype": "torch.bfloat16",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          }
+        ]
+      },
+      {
+        "case_id": "benchmark/test_scaled_dot_product_attention.py::test_scaled_dot_product_flash_attention::core::float16::2",
+        "descriptor": [
+          4,
+          32,
+          4096,
+          128
+        ],
+        "dtype": "torch.float16",
+        "original_inputs_bit_identical": true,
+        "original_native_output_and_lse_bit_identical": true,
+        "aux_metadata": [
+          {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.uint64",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [],
+            "dtype": "torch.uint64",
+            "stride": [],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [
+              0
+            ],
+            "dtype": "torch.float16",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          }
+        ]
+      },
+      {
+        "case_id": "benchmark/test_scaled_dot_product_attention.py::test_scaled_dot_product_flash_attention::core::bfloat16::2",
+        "descriptor": [
+          4,
+          32,
+          4096,
+          128
+        ],
+        "dtype": "torch.bfloat16",
+        "original_inputs_bit_identical": true,
+        "original_native_output_and_lse_bit_identical": true,
+        "aux_metadata": [
+          {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.uint64",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [],
+            "dtype": "torch.uint64",
+            "stride": [],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [
+              0
+            ],
+            "dtype": "torch.bfloat16",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          }
+        ]
+      },
+      {
+        "case_id": "benchmark/test_scaled_dot_product_attention.py::test_scaled_dot_product_flash_attention::core::float16::3",
+        "descriptor": [
+          4,
+          32,
+          8192,
+          128
+        ],
+        "dtype": "torch.float16",
+        "original_inputs_bit_identical": true,
+        "original_native_output_and_lse_bit_identical": true,
+        "aux_metadata": [
+          {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.uint64",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [],
+            "dtype": "torch.uint64",
+            "stride": [],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [
+              0
+            ],
+            "dtype": "torch.float16",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          }
+        ]
+      },
+      {
+        "case_id": "benchmark/test_scaled_dot_product_attention.py::test_scaled_dot_product_flash_attention::core::bfloat16::3",
+        "descriptor": [
+          4,
+          32,
+          8192,
+          128
+        ],
+        "dtype": "torch.bfloat16",
+        "original_inputs_bit_identical": true,
+        "original_native_output_and_lse_bit_identical": true,
+        "aux_metadata": [
+          {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.uint64",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [],
+            "dtype": "torch.uint64",
+            "stride": [],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [
+              0
+            ],
+            "dtype": "torch.bfloat16",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          }
+        ]
+      },
+      {
+        "case_id": "benchmark/test_scaled_dot_product_flash_attention.py::test_scaled_dot_product_flash_attention::core::float16::0",
+        "descriptor": [
+          1,
+          2,
+          128,
+          128,
+          64,
+          false,
+          0.0,
+          false,
+          "default"
+        ],
+        "dtype": "torch.float16",
+        "original_inputs_bit_identical": true,
+        "original_native_output_and_lse_bit_identical": true,
+        "aux_metadata": [
+          {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.uint64",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [],
+            "dtype": "torch.uint64",
+            "stride": [],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [
+              0
+            ],
+            "dtype": "torch.float16",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          }
+        ]
+      },
+      {
+        "case_id": "benchmark/test_scaled_dot_product_flash_attention.py::test_scaled_dot_product_flash_attention::core::bfloat16::0",
+        "descriptor": [
+          1,
+          2,
+          128,
+          128,
+          64,
+          false,
+          0.0,
+          false,
+          "default"
+        ],
+        "dtype": "torch.bfloat16",
+        "original_inputs_bit_identical": true,
+        "original_native_output_and_lse_bit_identical": true,
+        "aux_metadata": [
+          {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.uint64",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [],
+            "dtype": "torch.uint64",
+            "stride": [],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [
+              0
+            ],
+            "dtype": "torch.bfloat16",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          }
+        ]
+      },
+      {
+        "case_id": "benchmark/test_scaled_dot_product_flash_attention.py::test_scaled_dot_product_flash_attention::core::float16::1",
+        "descriptor": [
+          2,
+          4,
+          256,
+          256,
+          64,
+          true,
+          0.0,
+          false,
+          "explicit"
+        ],
+        "dtype": "torch.float16",
+        "original_inputs_bit_identical": true,
+        "original_native_output_and_lse_bit_identical": true,
+        "aux_metadata": [
+          {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.uint64",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [],
+            "dtype": "torch.uint64",
+            "stride": [],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [
+              0
+            ],
+            "dtype": "torch.float16",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          }
+        ]
+      },
+      {
+        "case_id": "benchmark/test_scaled_dot_product_flash_attention.py::test_scaled_dot_product_flash_attention::core::bfloat16::1",
+        "descriptor": [
+          2,
+          4,
+          256,
+          256,
+          64,
+          true,
+          0.0,
+          false,
+          "explicit"
+        ],
+        "dtype": "torch.bfloat16",
+        "original_inputs_bit_identical": true,
+        "original_native_output_and_lse_bit_identical": true,
+        "aux_metadata": [
+          {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.uint64",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [],
+            "dtype": "torch.uint64",
+            "stride": [],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [
+              0
+            ],
+            "dtype": "torch.bfloat16",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          }
+        ]
+      },
+      {
+        "case_id": "benchmark/test_scaled_dot_product_flash_attention.py::test_scaled_dot_product_flash_attention::core::float16::2",
+        "descriptor": [
+          1,
+          8,
+          128,
+          512,
+          128,
+          false,
+          0.0,
+          false,
+          "explicit"
+        ],
+        "dtype": "torch.float16",
+        "original_inputs_bit_identical": true,
+        "original_native_output_and_lse_bit_identical": true,
+        "aux_metadata": [
+          {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.uint64",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [],
+            "dtype": "torch.uint64",
+            "stride": [],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [
+              0
+            ],
+            "dtype": "torch.float16",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          }
+        ]
+      },
+      {
+        "case_id": "benchmark/test_scaled_dot_product_flash_attention.py::test_scaled_dot_product_flash_attention::core::bfloat16::2",
+        "descriptor": [
+          1,
+          8,
+          128,
+          512,
+          128,
+          false,
+          0.0,
+          false,
+          "explicit"
+        ],
+        "dtype": "torch.bfloat16",
+        "original_inputs_bit_identical": true,
+        "original_native_output_and_lse_bit_identical": true,
+        "aux_metadata": [
+          {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.uint64",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [],
+            "dtype": "torch.uint64",
+            "stride": [],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [
+              0
+            ],
+            "dtype": "torch.bfloat16",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          }
+        ]
+      },
+      {
+        "case_id": "benchmark/test_scaled_dot_product_flash_attention.py::test_scaled_dot_product_flash_attention::core::float16::3",
+        "descriptor": [
+          1,
+          8,
+          1,
+          1024,
+          128,
+          false,
+          0.0,
+          false,
+          "default"
+        ],
+        "dtype": "torch.float16",
+        "original_inputs_bit_identical": true,
+        "original_native_output_and_lse_bit_identical": true,
+        "aux_metadata": [
+          {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.uint64",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [],
+            "dtype": "torch.uint64",
+            "stride": [],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [
+              0
+            ],
+            "dtype": "torch.float16",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          }
+        ]
+      },
+      {
+        "case_id": "benchmark/test_scaled_dot_product_flash_attention.py::test_scaled_dot_product_flash_attention::core::bfloat16::3",
+        "descriptor": [
+          1,
+          8,
+          1,
+          1024,
+          128,
+          false,
+          0.0,
+          false,
+          "default"
+        ],
+        "dtype": "torch.bfloat16",
+        "original_inputs_bit_identical": true,
+        "original_native_output_and_lse_bit_identical": true,
+        "aux_metadata": [
+          {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.uint64",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [],
+            "dtype": "torch.uint64",
+            "stride": [],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [
+              0
+            ],
+            "dtype": "torch.bfloat16",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          }
+        ]
+      },
+      {
+        "case_id": "benchmark/test_scaled_dot_product_flash_attention.py::test_scaled_dot_product_flash_attention::core::float16::4",
+        "descriptor": [
+          1,
+          2,
+          128,
+          128,
+          64,
+          false,
+          0.2,
+          true,
+          "explicit"
+        ],
+        "dtype": "torch.float16",
+        "original_inputs_bit_identical": true,
+        "original_native_output_and_lse_bit_identical": true,
+        "aux_metadata": [
+          {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.uint64",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [],
+            "dtype": "torch.uint64",
+            "stride": [],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [
+              1,
+              2,
+              128,
+              128
+            ],
+            "dtype": "torch.float16",
+            "stride": [
+              32768,
+              16384,
+              128,
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          }
+        ]
+      },
+      {
+        "case_id": "benchmark/test_scaled_dot_product_flash_attention.py::test_scaled_dot_product_flash_attention::core::bfloat16::4",
+        "descriptor": [
+          1,
+          2,
+          128,
+          128,
+          64,
+          false,
+          0.2,
+          true,
+          "explicit"
+        ],
+        "dtype": "torch.bfloat16",
+        "original_inputs_bit_identical": true,
+        "original_native_output_and_lse_bit_identical": true,
+        "aux_metadata": [
+          {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.uint64",
+            "stride": [
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [],
+            "dtype": "torch.uint64",
+            "stride": [],
+            "requires_grad": false,
+            "device": "cuda:0"
+          },
+          {
+            "shape": [
+              1,
+              2,
+              128,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "stride": [
+              32768,
+              16384,
+              128,
+              1
+            ],
+            "requires_grad": false,
+            "device": "cuda:0"
+          }
+        ]
+      }
+    ],
+    "torch": "2.8.0a0+5228986c39.nv25.05",
+    "gpu_name": "NVIDIA H800",
+    "gpu_uuid": "afb40f3d-fc19-f064-dd8d-04757c275de2"
+  },
+  "source_before": {
+    "head": "e66b1d176ddbeb0536e95d73e43091a893ce12a4",
+    "checked": 1147,
+    "mismatches": [],
+    "git_status": ""
+  },
+  "source_after": {
+    "head": "e66b1d176ddbeb0536e95d73e43091a893ce12a4",
+    "checked": 1147,
+    "mismatches": [],
+    "git_status": ""
+  },
+  "idle_observations": [
+    {
+      "time": 1793117867.62427,
+      "selected_row": [
+        "0",
+        "GPU-afb40f3d-fc19-f064-dd8d-04757c275de2",
+        "NVIDIA H800",
+        "42353",
+        "0"
+      ],
+      "apps": "GPU-afb40f3d-fc19-f064-dd8d-04757c275de2, 1563017, 42344, [Not Found]\nGPU-79cdb2ad-8b89-514c-84fa-2e9c6ce698aa, 1563018, 42380, [Not Found]\nGPU-f71a6457-0dba-3807-5973-e98752701911, 1563019, 42344, [Not Found]\nGPU-7d545def-d5ba-4424-b859-2067806337c2, 1563020, 42380, [Not Found]\nGPU-fd660a7d-352c-6699-9e93-74c8ea136095, 1563021, 42344, [Not Found]\nGPU-e41d3c5d-c479-0214-300f-536c384b7422, 1563022, 42380, [Not Found]\nGPU-f76856dc-d02f-95a0-dc05-054190d1ea7d, 1563024, 42344, [Not Found]\nGPU-555633f8-c39c-bb8a-d549-791cb8451f44, 1563025, 42380, [Not Found]\n",
+      "idle": false,
+      "consecutive": 0
+    },
+    {
+      "time": 1793117900.1973171,
+      "selected_row": [
+        "0",
+        "GPU-afb40f3d-fc19-f064-dd8d-04757c275de2",
+        "NVIDIA H800",
+        "43691",
+        "96"
+      ],
+      "apps": "GPU-afb40f3d-fc19-f064-dd8d-04757c275de2, 1563017, 43682, [Not Found]\nGPU-79cdb2ad-8b89-514c-84fa-2e9c6ce698aa, 1563018, 43700, [Not Found]\nGPU-f71a6457-0dba-3807-5973-e98752701911, 1563019, 43682, [Not Found]\nGPU-7d545def-d5ba-4424-b859-2067806337c2, 1563020, 43700, [Not Found]\nGPU-fd660a7d-352c-6699-9e93-74c8ea136095, 1563021, 43682, [Not Found]\nGPU-e41d3c5d-c479-0214-300f-536c384b7422, 1563022, 43700, [Not Found]\nGPU-f76856dc-d02f-95a0-dc05-054190d1ea7d, 1563024, 43682, [Not Found]\nGPU-555633f8-c39c-bb8a-d549-791cb8451f44, 1563025, 43700, [Not Found]\n",
+      "idle": false,
+      "consecutive": 0
+    },
+    {
+      "time": 1793117934.585033,
+      "selected_row": [
+        "0",
+        "GPU-afb40f3d-fc19-f064-dd8d-04757c275de2",
+        "NVIDIA H800",
+        "4",
+        "0"
+      ],
+      "apps": "",
+      "idle": true,
+      "consecutive": 1
+    },
+    {
+      "time": 1793117967.3310888,
+      "selected_row": [
+        "0",
+        "GPU-afb40f3d-fc19-f064-dd8d-04757c275de2",
+        "NVIDIA H800",
+        "43459",
+        "0"
+      ],
+      "apps": "GPU-afb40f3d-fc19-f064-dd8d-04757c275de2, 1569477, 43786, [Not Found]\nGPU-79cdb2ad-8b89-514c-84fa-2e9c6ce698aa, 1569492, 44370, [Not Found]\nGPU-f71a6457-0dba-3807-5973-e98752701911, 1569499, 43786, [Not Found]\nGPU-7d545def-d5ba-4424-b859-2067806337c2, 1569506, 44370, [Not Found]\nGPU-fd660a7d-352c-6699-9e93-74c8ea136095, 1569512, 43786, [Not Found]\nGPU-e41d3c5d-c479-0214-300f-536c384b7422, 1569520, 44370, [Not Found]\nGPU-f76856dc-d02f-95a0-dc05-054190d1ea7d, 1569528, 43786, [Not Found]\nGPU-555633f8-c39c-bb8a-d549-791cb8451f44, 1569541, 44370, [Not Found]\n",
+      "idle": false,
+      "consecutive": 0
+    },
+    {
+      "time": 1793118005.5141351,
+      "selected_row": [
+        "0",
+        "GPU-afb40f3d-fc19-f064-dd8d-04757c275de2",
+        "NVIDIA H800",
+        "2",
+        "0"
+      ],
+      "apps": "",
+      "idle": true,
+      "consecutive": 1
+    },
+    {
+      "time": 1793118038.128335,
+      "selected_row": [
+        "0",
+        "GPU-afb40f3d-fc19-f064-dd8d-04757c275de2",
+        "NVIDIA H800",
+        "43795",
+        "94"
+      ],
+      "apps": "GPU-afb40f3d-fc19-f064-dd8d-04757c275de2, 1578403, 43786, [Not Found]\nGPU-79cdb2ad-8b89-514c-84fa-2e9c6ce698aa, 1578404, 44370, [Not Found]\nGPU-f71a6457-0dba-3807-5973-e98752701911, 1578405, 43786, [Not Found]\nGPU-7d545def-d5ba-4424-b859-2067806337c2, 1578406, 44370, [Not Found]\nGPU-fd660a7d-352c-6699-9e93-74c8ea136095, 1578407, 43786, [Not Found]\nGPU-e41d3c5d-c479-0214-300f-536c384b7422, 1578408, 44370, [Not Found]\nGPU-f76856dc-d02f-95a0-dc05-054190d1ea7d, 1578410, 43786, [Not Found]\nGPU-555633f8-c39c-bb8a-d549-791cb8451f44, 1578411, 44370, [Not Found]\n",
+      "idle": false,
+      "consecutive": 0
+    },
+    {
+      "time": 1793118070.486588,
+      "selected_row": [
+        "0",
+        "GPU-afb40f3d-fc19-f064-dd8d-04757c275de2",
+        "NVIDIA H800",
+        "4",
+        "0"
+      ],
+      "apps": "",
+      "idle": true,
+      "consecutive": 1
+    },
+    {
+      "time": 1793118110.178996,
+      "selected_row": [
+        "0",
+        "GPU-afb40f3d-fc19-f064-dd8d-04757c275de2",
+        "NVIDIA H800",
+        "1",
+        "0"
+      ],
+      "apps": "",
+      "idle": true,
+      "consecutive": 2
+    },
+    {
+      "time": 1793118153.418611,
+      "selected_row": [
+        "0",
+        "GPU-afb40f3d-fc19-f064-dd8d-04757c275de2",
+        "NVIDIA H800",
+        "1",
+        "0"
+      ],
+      "apps": "",
+      "idle": true,
+      "consecutive": 3
+    }
+  ],
+  "original_precollection_block": {
+    "status": "NO_COLLECTION_PRECONDITION_FAILED",
+    "source_head": "e66b1d176ddbeb0536e95d73e43091a893ce12a4",
+    "controls": "PASS_ALL_ORIGINAL_18_NATIVE_FLASH_CONTROLS",
+    "occupancy_sha256": "dd7aa57ee55a3e71641e963fcc283145afc3ab87df0ad4e34d40beb5a5df2311",
+    "reason": "Foreign processes filled all eight GPUs after controls. Stage stopped before official collector launch; no foreign process was signalled."
+  },
+  "limits": [
+    "The first staging attempt stopped before collector launch because foreign jobs occupied all cards. It is not a collection.",
+    "The official collection started only after three observations with no GPU0 process and near-zero memory/utilization. No foreign process was stopped.",
+    "The full original Enflame core grid has four generic shapes, including8192, plus five explicit cases, times two dtypes.",
+    "All18 original builder inputs and full native output/LSE replays matched bitwise on H800; independent-machine random CUDA payloads are not claimed equal.",
+    "NCU was disabled; unmeasured metrics are omitted."
+  ]
+}
