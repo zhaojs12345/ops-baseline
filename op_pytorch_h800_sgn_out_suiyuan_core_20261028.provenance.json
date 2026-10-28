@@ -1,0 +1,76 @@
+{
+  "schema": "ops-baseline.sgn-out-current-h800-provenance/v1",
+  "operator": "sgn_out",
+  "measured_source_commit": "468659cd07d68ddc33a365ab31533b53b79f00b2",
+  "tool_commit": "189d35db2284729d07fcefd393464d1bb9e1e208",
+  "tool_PR_dependency": "https://github.com/zhaojs12345/ops-baseline/pull/60",
+  "publication_is_descendant_of_measured_source": true,
+  "publication_only_adds_these_static_files": true,
+  "legacy_default_exports_unchanged": true,
+  "explicit_selector": "OPS_BASELINE_SGN_OUT_PROFILE",
+  "profiles": {
+    "current-shared": {
+      "file": "op_pytorch_h800_sgn_out_suiyuan_shared_core_20261028.json",
+      "sha256": "ec637fb78f0308257ff3d159907961af3d9a297f892173fdba497982fd688991",
+      "records": 15,
+      "benchmark_node": "benchmark/test_sgn.py::test_sgn_out",
+      "fresh_inputs": false
+    },
+    "current-fresh": {
+      "file": "op_pytorch_h800_sgn_out_suiyuan_fresh_core_20261028.json",
+      "sha256": "cc7d62cc4b48052fbcdc1b58930e5c9aa22538b6120df7173d04b8d80232e4ef",
+      "records": 15,
+      "benchmark_node": "benchmark/test_sgn_out.py::test_sgn_out",
+      "fresh_inputs": true
+    }
+  },
+  "manifest": {
+    "file": "op_pytorch_h800_sgn_out_suiyuan_profiles_20261028.json",
+    "sha256": "90f778b405de31a012c0344afc54357b1e96b74973042c69b5a82ab1636ad86c"
+  },
+  "full_original_CUDA_recipe_controls": 30,
+  "controls_report_sha256": "50dfccdebc784e2be4f10274cba8e322cdb68552ac0c8250082d1e20be8fe9ec",
+  "controls_include": [
+    "actual original source helpers and producer full input UInt8 equality",
+    "actual CPU and CUDA RNG state equality after each builder",
+    "full native output UInt8 equality and input readonly/Out identity/metadata",
+    "fresh clones independent of own input/Out storage and copy own exact bytes",
+    "separately allocated undefined Out buffers never compared or filled",
+    "trusted same-native-API CPU sampling, not independent mathematical oracle"
+  ],
+  "physical_gpu": "NVIDIA H800",
+  "physical_device": 1,
+  "gpu_uuid": "GPU-79cdb2ad-8b89-514c-84fa-2e9c6ce698aa",
+  "collection_command": "tools/collect_baseline_nvidia.py --repo pytorch --ops sgn_out --devices 1 --no-ncu --op-timeout 900 --output <separate-profile-artifact>",
+  "selectors": {
+    "current-shared": {
+      "OPS_BASELINE_SGN_OUT_PROFILE": "current-shared"
+    },
+    "current-fresh": {
+      "OPS_BASELINE_SGN_OUT_PROFILE": "current-fresh"
+    }
+  },
+  "timer_boundaries": {
+    "current-shared": "unchanged raw native torch.sgn via existing triton.testing.do_bench warmup25/rep100",
+    "current-fresh": "raw native torch.ops.aten.sgn.out only between actual CUDA events; original recursive input/out clones and device synchronize precede each start; arithmetic mean, warmup25ms/measured100ms"
+  },
+  "formal_timer_contains_no_probe_notes_or_ABI_assertions": true,
+  "NCU_collected": false,
+  "latency_units": {
+    "latency_ms": "milliseconds",
+    "T_us": "microseconds"
+  },
+  "source_before_after": {
+    "ops_files": 1147,
+    "flaggems_recipe_files": 8297,
+    "clean_measured_git_source": true
+  },
+  "resource_checks": "Two stable idle checks10seconds apart and immediate perphase fresh query; periodic GPU UUID/process observations during collection, then idle; no observed unproven holders during either successful collection",
+  "qualification": [
+    "The earlier diagnostic probe instrumented native boundaries and was not a formal baseline; these two official collectors use uninstrumented native callables",
+    "Source/builders are matched on H800; same RNG recipe does not establish cross-vendor tensor byte identity",
+    "Initial GPU0 resource hold and SSH expiry after completed controls are retained as preparation/transport history; no failed operator result was relabeled",
+    "Current shared collected once successfully; fresh collected once successfully after resource-only waiting; completed controls and shared records were never recollected",
+    "These artifacts do not by themselves complete SGNOut FlagGems multi-backend acceptance or validate an optimized candidate"
+  ]
+}
