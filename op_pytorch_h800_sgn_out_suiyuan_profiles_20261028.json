@@ -1,0 +1,26 @@
+{
+  "_sgn_out_profiles": {
+    "schema": "ops-baseline.sgn-out-current-profiles/v1",
+    "operator": "sgn_out",
+    "producer_commit": "468659cd07d68ddc33a365ab31533b53b79f00b2",
+    "tool_commit": "189d35db2284729d07fcefd393464d1bb9e1e208",
+    "original_flaggems_recipe_commit": "2ff0931a646b97ec98ebd50642b5889619125a6b",
+    "original_target_catalog_sha256": "1b94eaf06aeb416d9c2c4102939ba7aa062e801144f575586310b71b13ff7bad",
+    "profiles": {
+      "current-shared": {
+        "file": "op_pytorch_h800_sgn_out_suiyuan_shared_core_20261028.json",
+        "sha256": "ec637fb78f0308257ff3d159907961af3d9a297f892173fdba497982fd688991",
+        "records": 15,
+        "benchmark_node": "benchmark/test_sgn.py::test_sgn_out",
+        "fresh_inputs": false
+      },
+      "current-fresh": {
+        "file": "op_pytorch_h800_sgn_out_suiyuan_fresh_core_20261028.json",
+        "sha256": "cc7d62cc4b48052fbcdc1b58930e5c9aa22538b6120df7173d04b8d80232e4ef",
+        "records": 15,
+        "benchmark_node": "benchmark/test_sgn_out.py::test_sgn_out",
+        "fresh_inputs": true
+      }
+    }
+  }
+}
