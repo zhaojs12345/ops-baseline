@@ -17,6 +17,7 @@ import torch
 OP_NAME = "mrotary_embedding"
 DTYPES = [torch.bfloat16]
 IS_INPLACE = True
+BENCH_RETURN_MODE = "median"  # Match SGLang's NVIDIA kernel timer.
 
 
 def _path(name):

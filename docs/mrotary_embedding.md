@@ -38,17 +38,24 @@ in-place callable on preallocated tensors; input/cache construction is excluded.
 `op_sglang_mrotary_h800_perf_baseline.json` contains the six actual H800 records
 collected on 2026-10-29, including NCU per-kernel records, full input configuration,
 source hashes and `_environment`. The first attempt's overlong report filenames
-failed profiling; this snapshot is exclusively the successful second attempt
-using hashed keys. No failed first-attempt records were merged into it.
+failed profiling; this snapshot is exclusively the final median-statistic attempt
+using hashed v2 keys. No failed first-attempt records were merged into it.
 
-Measured latencies span about 4.74–17.13 microseconds. NCU selects memory bandwidth
+Measured latencies span about 5.66–6.26 microseconds. NCU selects memory bandwidth
 as the largest observed resource utilization, but utilization is only about
 0.1–0.2% for these tiny cases. Consequently, peak-bandwidth scaling has limited
 predictive value for this workload; retain the measured times and distinguish
 raw ratios from the modeled `vs Base` comparison.
 
 Six raw `.ncu-rep` reports are retained in the original run directory
-`/data/tj/workspace/sglang-mrotary-cross-20261029/ncu-v2` on H800 and in the local
-validation archive `ncu-v2.tar.gz` (SHA256
-`08aba36393e4d331825a906ca7bdd655217a4b65a8d7d0690b687d685cf04e3b`).
+`/data/tj/workspace/sglang-mrotary-median-20261029/ncu` on H800 and in the local
+validation archive `ncu-median.tar.gz` (SHA256
+`083e5f24df41e87cc2269cbbc5cd0fd718bf77dc1b92d5cbb1b0112dd6318fe7`).
 The native function ASTs were verified unchanged from FlagGems-sglang PR #247.
+
+This recipe sets `BENCH_RETURN_MODE="median"` to match the SGLang kernel timer.
+The collector forwards this option only for recipes that declare it; existing
+recipes retain their original default statistic. Timing metadata is recorded
+with these six records. Earlier mean-statistic trials are retained as evidence,
+but are not the published snapshot. The `mrotary-v2-` key version pins this
+median comparison contract and cannot match the earlier trial keys.

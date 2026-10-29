@@ -1,11 +1,11 @@
 {
   "_environment": {
     "schema_version": 1,
-    "collected_at_utc": "2026-10-29T09:02:37.128953+00:00",
+    "collected_at_utc": "2026-10-29T09:26:39.474233+00:00",
     "hardware": {
       "gpu": {
         "name": "NVIDIA H800",
-        "uuid": "afb40f3d-fc19-f064-dd8d-04757c275de2",
+        "uuid": "79cdb2ad-8b89-514c-84fa-2e9c6ce698aa",
         "total_memory_bytes": 85017624576,
         "total_memory_gib": 79.18,
         "compute_capability": "9.0",
@@ -45,10 +45,10 @@
     },
     "run": {
       "repo": "sglang",
-      "device": "0",
+      "device": "1",
       "ncu_enabled": true,
-      "report_dir": "/data/tj/workspace/sglang-mrotary-cross-20261029/ncu-v2",
-      "output_path": "/data/tj/workspace/sglang-mrotary-cross-20261029/op_sglang_mrotary_h800_v2.json",
+      "report_dir": "/data/tj/workspace/sglang-mrotary-median-20261029/ncu",
+      "output_path": "/data/tj/workspace/sglang-mrotary-median-20261029/op_sglang_mrotary_h800_median.json",
       "op_timeout_seconds": 1800,
       "reference_chip": "H800",
       "only": [
@@ -64,7 +64,7 @@
       "ncu_warmup_calls": 3
     },
     "environment_variables": {
-      "CUDA_VISIBLE_DEVICES": "0",
+      "CUDA_VISIBLE_DEVICES": "1",
       "CUDA_DEVICE_ORDER": null
     }
   },
@@ -753,7 +753,7 @@
   "mrotary_embedding": {
     "native_api": "ops.mrotary_embedding",
     "shapes": {
-      "mrotary-v1-9b046483215bf1d6288adcd2dd2e43332089afb964e0bcfba3374c0315177a2b": {
+      "mrotary-v2-9b046483215bf1d6288adcd2dd2e43332089afb964e0bcfba3374c0315177a2b": {
         "torch.bfloat16": {
           "config": {
             "inputs": {
@@ -861,18 +861,18 @@
               "upstream": "sglang v0.5.11",
               "upstream_blob": "0a8dc2c33c7bbb2acb7e02b10796d210c5c079fc",
               "native_sha256": "3d925d9da864bdcdb93cf802e1566a01e773ab3598c3e967b144ec92a67847e7",
-              "cases_sha256": "067b25f42cd2d0b4c3e4407a6eec0fb856fd507b077d3f872978e0f2605b40bf"
+              "cases_sha256": "ffe9d74e6e98c38a88dd842ee43f73216912b2079a52f7b6fb381704f8ad617a"
             }
           },
-          "T_us": 4.958568705708043,
-          "latency_ms": 0.004958568705708042,
+          "T_us": 6.047999951988459,
+          "latency_ms": 0.006047999951988459,
           "F_cuda": 92160.0,
           "F_tensor": 0.0,
-          "B_mem": 26368.0,
-          "U_cuda": 0.142214,
-          "U_tensor": 0.052242,
-          "U_mem": 0.24020500000000003,
-          "U_bottle_neck": 0.24020500000000003,
+          "B_mem": 26624.0,
+          "U_cuda": 0.146941,
+          "U_tensor": 0.053978,
+          "U_mem": 0.25,
+          "U_bottle_neck": 0.25,
           "bottle_neck_unit": "mem",
           "num_kernels": 1,
           "per_kernel": [
@@ -880,27 +880,33 @@
               "name": "_triton_mrope_forward_fused",
               "F_cuda": 92160.0,
               "F_tensor": 0.0,
-              "B_mem": 26368.0,
-              "U_cuda": 0.142214,
-              "U_tensor": 0.052242,
-              "U_mem": 0.240205,
-              "T_us": 4.958568705708043
+              "B_mem": 26624.0,
+              "U_cuda": 0.146941,
+              "U_tensor": 0.053978,
+              "U_mem": 0.25,
+              "T_us": 6.047999951988459
             }
           ],
           "flops_cuda_core": 92160.0,
           "flops_tensor_core": 0.0,
-          "memory_bytes": 26368.0,
-          "util_cuda_core": 0.0014221400000000001,
-          "util_tensor_core": 0.00052242,
-          "util_memory_bw": 0.00240205,
+          "memory_bytes": 26624.0,
+          "util_cuda_core": 0.00146941,
+          "util_tensor_core": 0.00053978,
+          "util_memory_bw": 0.0025,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.00240205,
+          "bottleneck_util": 0.0025,
           "cuda_flops": 92160.0,
-          "sm_utilization": 0.00503555,
-          "report_path": "/data/tj/workspace/sglang-mrotary-cross-20261029/ncu-v2/mrotary_embedding_mxrxoxtxaxrxyx-xvx1x-x9xbx0x4x6x4x8x3x2x1x5xbxfx1xdx6x2x8x8xaxdxcxdx2xdxdx2xex4x3x3x3x2x0x8x9xaxfxbx9x6x4xex0xbxcxfxbxax3x3x7x4xcx0x3x1x5x1x7x7xax2xb_bfloat16.ncu-rep"
+          "sm_utilization": 0.0052029,
+          "report_path": "/data/tj/workspace/sglang-mrotary-median-20261029/ncu/mrotary_embedding_mxrxoxtxaxrxyx-xvx2x-x9xbx0x4x6x4x8x3x2x1x5xbxfx1xdx6x2x8x8xaxdxcxdx2xdxdx2xex4x3x3x3x2x0x8x9xaxfxbx9x6x4xex0xbxcxfxbxax3x3x7x4xcx0x3x1x5x1x7x7xax2xb_bfloat16.ncu-rep",
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "median",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
         }
       },
-      "mrotary-v1-e2b7fe1d7110def209cf4cc5d2a7c49632c04bc16a7f672e8383ed04b4e8d636": {
+      "mrotary-v2-e2b7fe1d7110def209cf4cc5d2a7c49632c04bc16a7f672e8383ed04b4e8d636": {
         "torch.bfloat16": {
           "config": {
             "inputs": {
@@ -1008,18 +1014,18 @@
               "upstream": "sglang v0.5.11",
               "upstream_blob": "0a8dc2c33c7bbb2acb7e02b10796d210c5c079fc",
               "native_sha256": "3d925d9da864bdcdb93cf802e1566a01e773ab3598c3e967b144ec92a67847e7",
-              "cases_sha256": "067b25f42cd2d0b4c3e4407a6eec0fb856fd507b077d3f872978e0f2605b40bf"
+              "cases_sha256": "ffe9d74e6e98c38a88dd842ee43f73216912b2079a52f7b6fb381704f8ad617a"
             }
           },
-          "T_us": 4.740843081980002,
-          "latency_ms": 0.0047408430819800024,
+          "T_us": 5.791999865323305,
+          "latency_ms": 0.005791999865323305,
           "F_cuda": 4608.0,
           "F_tensor": 0.0,
           "B_mem": 6144.0,
-          "U_cuda": 0.006567999999999999,
-          "U_tensor": 0.002627,
-          "U_mem": 0.05597,
-          "U_bottle_neck": 0.05597,
+          "U_cuda": 0.006883,
+          "U_tensor": 0.002753,
+          "U_mem": 0.058685,
+          "U_bottle_neck": 0.058685,
           "bottle_neck_unit": "mem",
           "num_kernels": 1,
           "per_kernel": [
@@ -1028,26 +1034,32 @@
               "F_cuda": 4608.0,
               "F_tensor": 0.0,
               "B_mem": 6144.0,
-              "U_cuda": 0.006568,
-              "U_tensor": 0.002627,
-              "U_mem": 0.05597,
-              "T_us": 4.740843081980002
+              "U_cuda": 0.006883,
+              "U_tensor": 0.002753,
+              "U_mem": 0.058685,
+              "T_us": 5.791999865323305
             }
           ],
           "flops_cuda_core": 4608.0,
           "flops_tensor_core": 0.0,
           "memory_bytes": 6144.0,
-          "util_cuda_core": 6.568e-05,
-          "util_tensor_core": 2.627e-05,
-          "util_memory_bw": 0.0005597,
+          "util_cuda_core": 6.883e-05,
+          "util_tensor_core": 2.753e-05,
+          "util_memory_bw": 0.00058685,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.0005597,
+          "bottleneck_util": 0.00058685,
           "cuda_flops": 4608.0,
-          "sm_utilization": 0.00024011,
-          "report_path": "/data/tj/workspace/sglang-mrotary-cross-20261029/ncu-v2/mrotary_embedding_mxrxoxtxaxrxyx-xvx1x-xex2xbx7xfxex1xdx7x1x1x0xdxexfx2x0x9xcxfx4xcxcx5xdx2xax7xcx4x9x6x3x2xcx0x4xbxcx1x6xax7xfx6x7x2xex8x3x8x3xexdx0x4xbx4xex8xdx6x3x6_bfloat16.ncu-rep"
+          "sm_utilization": 0.0002516,
+          "report_path": "/data/tj/workspace/sglang-mrotary-median-20261029/ncu/mrotary_embedding_mxrxoxtxaxrxyx-xvx2x-xex2xbx7xfxex1xdx7x1x1x0xdxexfx2x0x9xcxfx4xcxcx5xdx2xax7xcx4x9x6x3x2xcx0x4xbxcx1x6xax7xfx6x7x2xex8x3x8x3xexdx0x4xbx4xex8xdx6x3x6_bfloat16.ncu-rep",
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "median",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
         }
       },
-      "mrotary-v1-89f79c8c374210b13a7ddf03eb0f55aeebb02bc39f8b67cca84924db1451e18d": {
+      "mrotary-v2-89f79c8c374210b13a7ddf03eb0f55aeebb02bc39f8b67cca84924db1451e18d": {
         "torch.bfloat16": {
           "config": {
             "inputs": {
@@ -1155,312 +1167,18 @@
               "upstream": "sglang v0.5.11",
               "upstream_blob": "0a8dc2c33c7bbb2acb7e02b10796d210c5c079fc",
               "native_sha256": "3d925d9da864bdcdb93cf802e1566a01e773ab3598c3e967b144ec92a67847e7",
-              "cases_sha256": "067b25f42cd2d0b4c3e4407a6eec0fb856fd507b077d3f872978e0f2605b40bf"
+              "cases_sha256": "ffe9d74e6e98c38a88dd842ee43f73216912b2079a52f7b6fb381704f8ad617a"
             }
           },
-          "T_us": 16.01355934934619,
-          "latency_ms": 0.016013559349346188,
-          "F_cuda": 56320.0,
-          "F_tensor": 0.0,
-          "B_mem": 20736.0,
-          "U_cuda": 0.11369900000000001,
-          "U_tensor": 0.028425,
-          "U_mem": 0.185033,
-          "U_bottle_neck": 0.185033,
-          "bottle_neck_unit": "mem",
-          "num_kernels": 1,
-          "per_kernel": [
-            {
-              "name": "_triton_mrope_forward_fused",
-              "F_cuda": 56320.0,
-              "F_tensor": 0.0,
-              "B_mem": 20736.0,
-              "U_cuda": 0.113699,
-              "U_tensor": 0.028425,
-              "U_mem": 0.185033,
-              "T_us": 16.01355934934619
-            }
-          ],
-          "flops_cuda_core": 56320.0,
-          "flops_tensor_core": 0.0,
-          "memory_bytes": 20736.0,
-          "util_cuda_core": 0.00113699,
-          "util_tensor_core": 0.00028425,
-          "util_memory_bw": 0.00185033,
-          "bottleneck": "memory_bw",
-          "bottleneck_util": 0.00185033,
-          "cuda_flops": 56320.0,
-          "sm_utilization": 0.0042495,
-          "report_path": "/data/tj/workspace/sglang-mrotary-cross-20261029/ncu-v2/mrotary_embedding_mxrxoxtxaxrxyx-xvx1x-x8x9xfx7x9xcx8xcx3x7x4x2x1x0xbx1x3xax7xdxdxfx0x3xexbx0xfx5x5xaxexexbxbx0x2xbxcx3x9xfx8xbx6x7xcxcxax8x4x9x2x4xdxbx1x4x5x1xex1x8xd_bfloat16.ncu-rep"
-        }
-      },
-      "mrotary-v1-ae04c09b10da768257ba49eda2c433372270c927b49c1d4474b9a63440611ffd": {
-        "torch.bfloat16": {
-          "config": {
-            "inputs": {
-              "q": {
-                "shape": [
-                  1,
-                  1024
-                ],
-                "stride": [
-                  1024,
-                  1
-                ],
-                "dtype": "torch.bfloat16",
-                "storage_offset": 0
-              },
-              "k": {
-                "shape": [
-                  1,
-                  256
-                ],
-                "stride": [
-                  256,
-                  1
-                ],
-                "dtype": "torch.bfloat16",
-                "storage_offset": 0
-              },
-              "cos_sin_cache": {
-                "shape": [
-                  262400,
-                  64
-                ],
-                "stride": [
-                  64,
-                  1
-                ],
-                "dtype": "torch.bfloat16",
-                "storage_offset": 0
-              },
-              "positions": {
-                "shape": [
-                  3,
-                  1
-                ],
-                "stride": [
-                  1,
-                  1
-                ],
-                "dtype": "torch.int64",
-                "storage_offset": 0
-              },
-              "mrope_section": {
-                "scalar": [
-                  11,
-                  11,
-                  10
-                ]
-              },
-              "head_size": {
-                "scalar": 256
-              },
-              "rotary_dim": {
-                "scalar": 64
-              },
-              "mrope_interleaved": {
-                "scalar": true
-              },
-              "mrope_interleaved_glm": {
-                "scalar": false
-              },
-              "is_neox_style": {
-                "scalar": true
-              },
-              "axis_map": {
-                "scalar": null
-              }
-            },
-            "outputs": {
-              "q": {
-                "shape": [
-                  1,
-                  1024
-                ],
-                "stride": [
-                  1024,
-                  1
-                ],
-                "dtype": "torch.bfloat16",
-                "storage_offset": 0
-              },
-              "k": {
-                "shape": [
-                  1,
-                  256
-                ],
-                "stride": [
-                  256,
-                  1
-                ],
-                "dtype": "torch.bfloat16",
-                "storage_offset": 0
-              }
-            },
-            "source": {
-              "upstream": "sglang v0.5.11",
-              "upstream_blob": "0a8dc2c33c7bbb2acb7e02b10796d210c5c079fc",
-              "native_sha256": "3d925d9da864bdcdb93cf802e1566a01e773ab3598c3e967b144ec92a67847e7",
-              "cases_sha256": "067b25f42cd2d0b4c3e4407a6eec0fb856fd507b077d3f872978e0f2605b40bf"
-            }
-          },
-          "T_us": 16.33065013249546,
-          "latency_ms": 0.01633065013249546,
-          "F_cuda": 2816.0,
-          "F_tensor": 0.0,
-          "B_mem": 5632.0,
-          "U_cuda": 0.005378,
-          "U_tensor": 0.001494,
-          "U_mem": 0.05280300000000001,
-          "U_bottle_neck": 0.05280300000000001,
-          "bottle_neck_unit": "mem",
-          "num_kernels": 1,
-          "per_kernel": [
-            {
-              "name": "_triton_mrope_forward_fused",
-              "F_cuda": 2816.0,
-              "F_tensor": 0.0,
-              "B_mem": 5632.0,
-              "U_cuda": 0.005378,
-              "U_tensor": 0.001494,
-              "U_mem": 0.052803,
-              "T_us": 16.33065013249546
-            }
-          ],
-          "flops_cuda_core": 2816.0,
-          "flops_tensor_core": 0.0,
-          "memory_bytes": 5632.0,
-          "util_cuda_core": 5.378e-05,
-          "util_tensor_core": 1.4940000000000001e-05,
-          "util_memory_bw": 0.0005280300000000001,
-          "bottleneck": "memory_bw",
-          "bottleneck_util": 0.0005280300000000001,
-          "cuda_flops": 2816.0,
-          "sm_utilization": 0.0002099,
-          "report_path": "/data/tj/workspace/sglang-mrotary-cross-20261029/ncu-v2/mrotary_embedding_mxrxoxtxaxrxyx-xvx1x-xaxex0x4xcx0x9xbx1x0xdxax7x6x8x2x5x7xbxax4x9xexdxax2xcx4x3x3x3x7x2x2x7x0xcx9x2x7xbx4x9xcx1xdx4x4x7x4xbx9xax6x3x4x4x0x6x1x1xfxfxd_bfloat16.ncu-rep"
-        }
-      },
-      "mrotary-v1-9c404391ac9482960dd5f2d60d24d10f2283456e5395e208722017bdbc9e6822": {
-        "torch.bfloat16": {
-          "config": {
-            "inputs": {
-              "q": {
-                "shape": [
-                  20,
-                  1024
-                ],
-                "stride": [
-                  1024,
-                  1
-                ],
-                "dtype": "torch.bfloat16",
-                "storage_offset": 0
-              },
-              "k": {
-                "shape": [
-                  20,
-                  256
-                ],
-                "stride": [
-                  256,
-                  1
-                ],
-                "dtype": "torch.bfloat16",
-                "storage_offset": 0
-              },
-              "cos_sin_cache": {
-                "shape": [
-                  262400,
-                  64
-                ],
-                "stride": [
-                  64,
-                  1
-                ],
-                "dtype": "torch.bfloat16",
-                "storage_offset": 0
-              },
-              "positions": {
-                "shape": [
-                  3,
-                  20
-                ],
-                "stride": [
-                  512,
-                  1
-                ],
-                "dtype": "torch.int64",
-                "storage_offset": 0
-              },
-              "mrope_section": {
-                "scalar": [
-                  11,
-                  11,
-                  10
-                ]
-              },
-              "head_size": {
-                "scalar": 256
-              },
-              "rotary_dim": {
-                "scalar": 64
-              },
-              "mrope_interleaved": {
-                "scalar": true
-              },
-              "mrope_interleaved_glm": {
-                "scalar": false
-              },
-              "is_neox_style": {
-                "scalar": true
-              },
-              "axis_map": {
-                "scalar": null
-              }
-            },
-            "outputs": {
-              "q": {
-                "shape": [
-                  20,
-                  1024
-                ],
-                "stride": [
-                  1024,
-                  1
-                ],
-                "dtype": "torch.bfloat16",
-                "storage_offset": 0
-              },
-              "k": {
-                "shape": [
-                  20,
-                  256
-                ],
-                "stride": [
-                  256,
-                  1
-                ],
-                "dtype": "torch.bfloat16",
-                "storage_offset": 0
-              }
-            },
-            "source": {
-              "upstream": "sglang v0.5.11",
-              "upstream_blob": "0a8dc2c33c7bbb2acb7e02b10796d210c5c079fc",
-              "native_sha256": "3d925d9da864bdcdb93cf802e1566a01e773ab3598c3e967b144ec92a67847e7",
-              "cases_sha256": "067b25f42cd2d0b4c3e4407a6eec0fb856fd507b077d3f872978e0f2605b40bf"
-            }
-          },
-          "T_us": 17.133656701469047,
-          "latency_ms": 0.017133656701469047,
+          "T_us": 6.144000217318535,
+          "latency_ms": 0.006144000217318535,
           "F_cuda": 56320.0,
           "F_tensor": 0.0,
           "B_mem": 20480.0,
-          "U_cuda": 0.115116,
-          "U_tensor": 0.028779,
-          "U_mem": 0.18423,
-          "U_bottle_neck": 0.18423,
+          "U_cuda": 0.11152900000000002,
+          "U_tensor": 0.027882,
+          "U_mem": 0.178571,
+          "U_bottle_neck": 0.178571,
           "bottle_neck_unit": "mem",
           "num_kernels": 1,
           "per_kernel": [
@@ -1469,26 +1187,338 @@
               "F_cuda": 56320.0,
               "F_tensor": 0.0,
               "B_mem": 20480.0,
-              "U_cuda": 0.115116,
-              "U_tensor": 0.028779,
-              "U_mem": 0.18423,
-              "T_us": 17.133656701469047
+              "U_cuda": 0.111529,
+              "U_tensor": 0.027882,
+              "U_mem": 0.178571,
+              "T_us": 6.144000217318535
             }
           ],
           "flops_cuda_core": 56320.0,
           "flops_tensor_core": 0.0,
           "memory_bytes": 20480.0,
-          "util_cuda_core": 0.00115116,
-          "util_tensor_core": 0.00028779,
-          "util_memory_bw": 0.0018423,
+          "util_cuda_core": 0.0011152900000000001,
+          "util_tensor_core": 0.00027882,
+          "util_memory_bw": 0.00178571,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.0018423,
+          "bottleneck_util": 0.00178571,
           "cuda_flops": 56320.0,
-          "sm_utilization": 0.00430244,
-          "report_path": "/data/tj/workspace/sglang-mrotary-cross-20261029/ncu-v2/mrotary_embedding_mxrxoxtxaxrxyx-xvx1x-x9xcx4x0x4x3x9x1xaxcx9x4x8x2x9x6x0xdxdx5xfx2xdx6x0xdx2x4xdx1x0xfx2x2x8x3x4x5x6xex5x3x9x5xex2x0x8x7x2x2x0x1x7xbxdxbxcx9xex6x8x2x2_bfloat16.ncu-rep"
+          "sm_utilization": 0.00416839,
+          "report_path": "/data/tj/workspace/sglang-mrotary-median-20261029/ncu/mrotary_embedding_mxrxoxtxaxrxyx-xvx2x-x8x9xfx7x9xcx8xcx3x7x4x2x1x0xbx1x3xax7xdxdxfx0x3xexbx0xfx5x5xaxexexbxbx0x2xbxcx3x9xfx8xbx6x7xcxcxax8x4x9x2x4xdxbx1x4x5x1xex1x8xd_bfloat16.ncu-rep",
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "median",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
         }
       },
-      "mrotary-v1-61cbf3abeb6e750530bc34727e7f8efb66e63343ebb395e254c68a7fdc669055": {
+      "mrotary-v2-ae04c09b10da768257ba49eda2c433372270c927b49c1d4474b9a63440611ffd": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "q": {
+                "shape": [
+                  1,
+                  1024
+                ],
+                "stride": [
+                  1024,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "k": {
+                "shape": [
+                  1,
+                  256
+                ],
+                "stride": [
+                  256,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "cos_sin_cache": {
+                "shape": [
+                  262400,
+                  64
+                ],
+                "stride": [
+                  64,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "positions": {
+                "shape": [
+                  3,
+                  1
+                ],
+                "stride": [
+                  1,
+                  1
+                ],
+                "dtype": "torch.int64",
+                "storage_offset": 0
+              },
+              "mrope_section": {
+                "scalar": [
+                  11,
+                  11,
+                  10
+                ]
+              },
+              "head_size": {
+                "scalar": 256
+              },
+              "rotary_dim": {
+                "scalar": 64
+              },
+              "mrope_interleaved": {
+                "scalar": true
+              },
+              "mrope_interleaved_glm": {
+                "scalar": false
+              },
+              "is_neox_style": {
+                "scalar": true
+              },
+              "axis_map": {
+                "scalar": null
+              }
+            },
+            "outputs": {
+              "q": {
+                "shape": [
+                  1,
+                  1024
+                ],
+                "stride": [
+                  1024,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "k": {
+                "shape": [
+                  1,
+                  256
+                ],
+                "stride": [
+                  256,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              }
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "upstream_blob": "0a8dc2c33c7bbb2acb7e02b10796d210c5c079fc",
+              "native_sha256": "3d925d9da864bdcdb93cf802e1566a01e773ab3598c3e967b144ec92a67847e7",
+              "cases_sha256": "ffe9d74e6e98c38a88dd842ee43f73216912b2079a52f7b6fb381704f8ad617a"
+            }
+          },
+          "T_us": 5.663999821990728,
+          "latency_ms": 0.005663999821990728,
+          "F_cuda": 2816.0,
+          "F_tensor": 0.0,
+          "B_mem": 5888.0,
+          "U_cuda": 0.00546,
+          "U_tensor": 0.001517,
+          "U_mem": 0.055889999999999995,
+          "U_bottle_neck": 0.055889999999999995,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 1,
+          "per_kernel": [
+            {
+              "name": "_triton_mrope_forward_fused",
+              "F_cuda": 2816.0,
+              "F_tensor": 0.0,
+              "B_mem": 5888.0,
+              "U_cuda": 0.00546,
+              "U_tensor": 0.001517,
+              "U_mem": 0.05589,
+              "T_us": 5.663999821990728
+            }
+          ],
+          "flops_cuda_core": 2816.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 5888.0,
+          "util_cuda_core": 5.46e-05,
+          "util_tensor_core": 1.5169999999999999e-05,
+          "util_memory_bw": 0.0005589,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.0005589,
+          "cuda_flops": 2816.0,
+          "sm_utilization": 0.00021309,
+          "report_path": "/data/tj/workspace/sglang-mrotary-median-20261029/ncu/mrotary_embedding_mxrxoxtxaxrxyx-xvx2x-xaxex0x4xcx0x9xbx1x0xdxax7x6x8x2x5x7xbxax4x9xexdxax2xcx4x3x3x3x7x2x2x7x0xcx9x2x7xbx4x9xcx1xdx4x4x7x4xbx9xax6x3x4x4x0x6x1x1xfxfxd_bfloat16.ncu-rep",
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "median",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        }
+      },
+      "mrotary-v2-9c404391ac9482960dd5f2d60d24d10f2283456e5395e208722017bdbc9e6822": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "q": {
+                "shape": [
+                  20,
+                  1024
+                ],
+                "stride": [
+                  1024,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "k": {
+                "shape": [
+                  20,
+                  256
+                ],
+                "stride": [
+                  256,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "cos_sin_cache": {
+                "shape": [
+                  262400,
+                  64
+                ],
+                "stride": [
+                  64,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "positions": {
+                "shape": [
+                  3,
+                  20
+                ],
+                "stride": [
+                  512,
+                  1
+                ],
+                "dtype": "torch.int64",
+                "storage_offset": 0
+              },
+              "mrope_section": {
+                "scalar": [
+                  11,
+                  11,
+                  10
+                ]
+              },
+              "head_size": {
+                "scalar": 256
+              },
+              "rotary_dim": {
+                "scalar": 64
+              },
+              "mrope_interleaved": {
+                "scalar": true
+              },
+              "mrope_interleaved_glm": {
+                "scalar": false
+              },
+              "is_neox_style": {
+                "scalar": true
+              },
+              "axis_map": {
+                "scalar": null
+              }
+            },
+            "outputs": {
+              "q": {
+                "shape": [
+                  20,
+                  1024
+                ],
+                "stride": [
+                  1024,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "k": {
+                "shape": [
+                  20,
+                  256
+                ],
+                "stride": [
+                  256,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              }
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "upstream_blob": "0a8dc2c33c7bbb2acb7e02b10796d210c5c079fc",
+              "native_sha256": "3d925d9da864bdcdb93cf802e1566a01e773ab3598c3e967b144ec92a67847e7",
+              "cases_sha256": "ffe9d74e6e98c38a88dd842ee43f73216912b2079a52f7b6fb381704f8ad617a"
+            }
+          },
+          "T_us": 6.255999905988574,
+          "latency_ms": 0.006255999905988574,
+          "F_cuda": 56320.0,
+          "F_tensor": 0.0,
+          "B_mem": 20992.0,
+          "U_cuda": 0.11917099999999999,
+          "U_tensor": 0.029793,
+          "U_mem": 0.195164,
+          "U_bottle_neck": 0.195164,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 1,
+          "per_kernel": [
+            {
+              "name": "_triton_mrope_forward_fused",
+              "F_cuda": 56320.0,
+              "F_tensor": 0.0,
+              "B_mem": 20992.0,
+              "U_cuda": 0.119171,
+              "U_tensor": 0.029793,
+              "U_mem": 0.195164,
+              "T_us": 6.255999905988574
+            }
+          ],
+          "flops_cuda_core": 56320.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 20992.0,
+          "util_cuda_core": 0.00119171,
+          "util_tensor_core": 0.00029793,
+          "util_memory_bw": 0.0019516400000000001,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.0019516400000000001,
+          "cuda_flops": 56320.0,
+          "sm_utilization": 0.00445403,
+          "report_path": "/data/tj/workspace/sglang-mrotary-median-20261029/ncu/mrotary_embedding_mxrxoxtxaxrxyx-xvx2x-x9xcx4x0x4x3x9x1xaxcx9x4x8x2x9x6x0xdxdx5xfx2xdx6x0xdx2x4xdx1x0xfx2x2x8x3x4x5x6xex5x3x9x5xex2x0x8x7x2x2x0x1x7xbxdxbxcx9xex6x8x2x2_bfloat16.ncu-rep",
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "median",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        }
+      },
+      "mrotary-v2-61cbf3abeb6e750530bc34727e7f8efb66e63343ebb395e254c68a7fdc669055": {
         "torch.bfloat16": {
           "config": {
             "inputs": {
@@ -1596,18 +1626,18 @@
               "upstream": "sglang v0.5.11",
               "upstream_blob": "0a8dc2c33c7bbb2acb7e02b10796d210c5c079fc",
               "native_sha256": "3d925d9da864bdcdb93cf802e1566a01e773ab3598c3e967b144ec92a67847e7",
-              "cases_sha256": "067b25f42cd2d0b4c3e4407a6eec0fb856fd507b077d3f872978e0f2605b40bf"
+              "cases_sha256": "ffe9d74e6e98c38a88dd842ee43f73216912b2079a52f7b6fb381704f8ad617a"
             }
           },
-          "T_us": 15.428078437813609,
-          "latency_ms": 0.015428078437813608,
+          "T_us": 5.95200015231967,
+          "latency_ms": 0.00595200015231967,
           "F_cuda": 2816.0,
           "F_tensor": 0.0,
-          "B_mem": 5888.0,
-          "U_cuda": 0.005874,
-          "U_tensor": 0.001468,
-          "U_mem": 0.05436799999999999,
-          "U_bottle_neck": 0.05436799999999999,
+          "B_mem": 6144.0,
+          "U_cuda": 0.005893,
+          "U_tensor": 0.001473,
+          "U_mem": 0.056732,
+          "U_bottle_neck": 0.056732,
           "bottle_neck_unit": "mem",
           "num_kernels": 1,
           "per_kernel": [
@@ -1615,24 +1645,30 @@
               "name": "_triton_mrope_forward_fused",
               "F_cuda": 2816.0,
               "F_tensor": 0.0,
-              "B_mem": 5888.0,
-              "U_cuda": 0.005874,
-              "U_tensor": 0.001468,
-              "U_mem": 0.054368,
-              "T_us": 15.428078437813609
+              "B_mem": 6144.0,
+              "U_cuda": 0.005893,
+              "U_tensor": 0.001473,
+              "U_mem": 0.056732,
+              "T_us": 5.95200015231967
             }
           ],
           "flops_cuda_core": 2816.0,
           "flops_tensor_core": 0.0,
-          "memory_bytes": 5888.0,
-          "util_cuda_core": 5.874e-05,
-          "util_tensor_core": 1.4679999999999998e-05,
-          "util_memory_bw": 0.0005436799999999999,
+          "memory_bytes": 6144.0,
+          "util_cuda_core": 5.893e-05,
+          "util_tensor_core": 1.473e-05,
+          "util_memory_bw": 0.00056732,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.0005436799999999999,
+          "bottleneck_util": 0.00056732,
           "cuda_flops": 2816.0,
-          "sm_utilization": 0.00021951999999999999,
-          "report_path": "/data/tj/workspace/sglang-mrotary-cross-20261029/ncu-v2/mrotary_embedding_mxrxoxtxaxrxyx-xvx1x-x6x1xcxbxfx3xaxbxexbx6xex7x5x0x5x3x0xbxcx3x4x7x2x7xex7xfx8xexfxbx6x6xex6x3x3x4x3xexbxbx3x9x5xex2x5x4xcx6x8xax7xfxdxcx6x6x9x0x5x5_bfloat16.ncu-rep"
+          "sm_utilization": 0.00022026,
+          "report_path": "/data/tj/workspace/sglang-mrotary-median-20261029/ncu/mrotary_embedding_mxrxoxtxaxrxyx-xvx2x-x6x1xcxbxfx3xaxbxexbx6xex7x5x0x5x3x0xbxcx3x4x7x2x7xex7xfx8xexfxbx6x6xex6x3x3x4x3xexbxbx3x9x5xex2x5x4xcx6x8xax7xfxdxcx6x6x9x0x5x5_bfloat16.ncu-rep",
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "median",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
         }
       }
     }
