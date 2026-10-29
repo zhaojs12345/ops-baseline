@@ -1,14 +1,14 @@
 """Exact hidden four-output ATen solve; PPU core dtype subset, not solve_ex.
 
 Source: FlagGems 2a3a455fa9eef530dc11a6b96ff333ffb47235fd,
-benchmark/test__linalg_solve_ex.py. Nine descriptors, two left modes, both
-original PPU-supported dtypes. No RNG seed/cap/precision change is introduced.
+benchmark/test__linalg_solve_ex.py. Nine descriptors, two left modes, all four
+original current PPU-supported dtypes. No RNG seed/cap/precision change is introduced.
 """
 
 import torch
 
 OP_NAME = "_linalg_solve_ex"
-DTYPES = [torch.float32, torch.complex64]
+DTYPES = [torch.float32, torch.complex64, torch.float64, torch.complex128]
 IS_INPLACE = False
 _SOURCE = "2a3a455fa9eef530dc11a6b96ff333ffb47235fd"
 _DESCRIPTORS = [
