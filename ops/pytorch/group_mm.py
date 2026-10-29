@@ -11,6 +11,7 @@ import torch
 OP_NAME = "group_mm"
 DTYPES = [torch.bfloat16]
 IS_INPLACE = False
+BENCH_RETURN_MODE = "median"
 _SHAPES = [(16, 512, 2048), (16, 2560, 2048), (64, 2048, 128)]
 
 
