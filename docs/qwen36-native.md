@@ -21,8 +21,9 @@ python tools/collect_baseline_nvidia.py --repo sglang_qwen36 --device 0 \
 
 The functions selected by the native adapter include CUDA/FlashInfer and Triton
 implementations. TopK's native configuration is prepared outside the timer.
-Each profile selects median `triton.testing.do_bench` timing, matching the target
-benchmark. Keys hash full tensor geometry (including stride and storage offset),
+Each profile selects median `triton.testing.do_bench` timing, matching the CUDA
+benchmark path. Other target backends retain their existing timers (Ascend uses
+`do_bench_npu`). Keys hash full tensor geometry (including stride and storage offset),
 scalar/configuration ABI and timing mode. GDN pools retain their documented full
 sizes. Configuration records contain input geometry, upstream revision and the
 shared workload source SHA256. Collection `_environment` describes the actual
