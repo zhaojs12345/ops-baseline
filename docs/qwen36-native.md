@@ -31,3 +31,25 @@ host/software/run; examine it alongside per-case NCU records before comparing.
 Pass the resulting JSON through target FlagGems-sglang benchmark `--base-data`.
 Only equal configuration keys should match; locally timed Torch reference-as-
 candidate results validate the pipeline, not an optimized kernel.
+
+## Published H800 snapshot
+
+`op_sglang_qwen36_h800_perf_baseline.json` contains all seven interfaces and 28
+core records collected on H800 with median latency and NCU counters. Each record
+has a positive kernel count and retained raw `.ncu-rep` evidence. `_provenance`
+binds the raw collection hash, exact remote/local source file hashes and Git
+revisions, original native source specification and golden dataset manifest.
+The collector's Git fields remain null for the tar-staged remote checkout;
+verified source provenance is recorded separately rather than inventing Git
+state on that host.
+
+The legacy collector summary excludes underscore-prefixed keys when counting
+operators, so it prints six for this snapshot. The named
+`_fused_moe_kernel_sequence` entry is a real seventh operator and is retained;
+consumers must use the requested operator key. The companion benchmark checks
+all 28 configuration keys directly.
+
+Golden data for these core cases was generated on H800 and uploaded to the fresh
+KS3 prefix `op-verify/sglang-qwen36/20261030-native-v1`. Ascend replay of those
+same inputs passed 28/28 with no skips. This validates the portable Torch oracle;
+it does not establish performance of a new backend candidate.
