@@ -851,6 +851,53 @@ def _select_ops(discovered, only=None, whitelist=None, blacklist=None):
     return selected
 
 
+def _ops_latency_ms(op_module, op, args, kwargs, ncu_enabled, timing_options=None):
+    """Own the CUDA clock; optional preparation runs before every start event."""
+    prepare = getattr(op_module, "prepare_sample", None)
+    if prepare is None:
+        return triton.testing.do_bench(
+            lambda: op(*args, **kwargs), warmup=25, rep=100,
+            **(timing_options or {}))
+    if timing_options:
+        raise ValueError("prepare_sample owns mean timing; return-mode overrides are unsupported")
+    if not callable(prepare):
+        raise TypeError("prepare_sample must be callable")
+    if ncu_enabled:
+        raise ValueError("prepare_sample is supported only with --no-ncu")
+    import math
+
+    def sample():
+        prepared = prepare(args, kwargs)
+        if not isinstance(prepared, tuple) or len(prepared) != 2:
+            raise TypeError("prepare_sample must return (args, kwargs)")
+        sample_args, sample_kwargs = prepared
+        if not isinstance(sample_args, (tuple, list)) or not isinstance(sample_kwargs, dict):
+            raise TypeError("prepared args/kwargs have invalid container types")
+        torch.cuda.synchronize()
+        start = torch.cuda.Event(enable_timing=True)
+        end = torch.cuda.Event(enable_timing=True)
+        start.record()
+        result = op(*sample_args, **sample_kwargs)
+        end.record()
+        end.synchronize()
+        elapsed = start.elapsed_time(end)
+        del result
+        if type(elapsed) not in (int, float) or not math.isfinite(elapsed) or elapsed <= 0:
+            raise RuntimeError("Prepared native timer returned a nonpositive/nonfinite latency")
+        return elapsed
+
+    warmup_elapsed = 0.0
+    while warmup_elapsed < 25:
+        warmup_elapsed += sample()
+    measured = []
+    elapsed = 0.0
+    while not measured or elapsed < 100:
+        value = sample()
+        measured.append(value)
+        elapsed += value
+    return sum(measured) / len(measured)
+
+
 def _collect_one_op_ops(op_module, ncu_enabled, report_dir,
                         results=None, output_path=None, ops_dir=None):
     """采集单个方案B（自定义 ops）算子；native 解析不到则返回 None（跳过）。
@@ -862,6 +909,11 @@ def _collect_one_op_ops(op_module, ncu_enabled, report_dir,
     if ops_dir is None:
         ops_dir = OPS_DIR
     op_name = op_module.OP_NAME
+    prepare = getattr(op_module, "prepare_sample", None)
+    if prepare is not None and not callable(prepare):
+        raise TypeError("prepare_sample must be callable")
+    if prepare is not None and ncu_enabled:
+        raise ValueError("prepare_sample is supported only with --no-ncu")
     mod_name = op_module.__name__
     op = op_module.native()
     if op is None:
@@ -902,9 +954,8 @@ def _collect_one_op_ops(op_module, ncu_enabled, report_dir,
             timing_options = {}
             if hasattr(op_module, "BENCH_RETURN_MODE"):
                 timing_options["return_mode"] = op_module.BENCH_RETURN_MODE
-            latency_ms = triton.testing.do_bench(
-                lambda: op(*args, **kwargs), warmup=25, rep=100,
-                **timing_options)
+            latency_ms = _ops_latency_ms(
+                op_module, op, args, kwargs, ncu_enabled, timing_options)
             if ncu_enabled:
                 # NCU 子进程会用 build_inputs 再分配一份实参。大 E MoE（如
                 # e256_h7168 权重单份就 ~22GB）主、子进程两份叠加会超显存，导致
