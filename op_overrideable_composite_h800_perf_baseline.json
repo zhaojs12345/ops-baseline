@@ -1,0 +1,6488 @@
+{
+  "_collection": {
+    "configuration": {
+      "repo": "pytorch",
+      "operators": [
+        "_scaled_dot_product_fused_attention_overrideable"
+      ],
+      "devices": [
+        "0"
+      ],
+      "ncu_enabled": false,
+      "op_timeout": 7200.0,
+      "reference_chip": "H800",
+      "source_sha256": "b2dd6b1762a7dbfc755f95528cc1499d5420fba37e9f1a4bf6d0fecd2ec4303a",
+      "report_dir": "/data/tj/workspace/ops-overrideable124-output-20261029-v1/ncu-unused"
+    },
+    "started_at_utc": "2026-10-29T15:38:42.421592+00:00",
+    "tasks": {
+      "_scaled_dot_product_fused_attention_overrideable": {
+        "status": "completed",
+        "device": "0",
+        "returncode": 0,
+        "log": "/data/tj/workspace/ops-overrideable124-output-20261029-v1/overrideable124-native-composite-h800.json.work/_scaled_dot_product_fused_attention_overrideable/0ba7402184554b8c93f46e5e62aab357/collector.log",
+        "result": "/data/tj/workspace/ops-overrideable124-output-20261029-v1/overrideable124-native-composite-h800.json.work/_scaled_dot_product_fused_attention_overrideable/0ba7402184554b8c93f46e5e62aab357/result.json"
+      }
+    },
+    "interrupted": false,
+    "attempt_started_at_utc": "2026-10-29T15:38:42.421669+00:00",
+    "finished_at_utc": "2026-10-29T15:38:59.854668+00:00"
+  },
+  "_environments": {
+    "0": {
+      "schema_version": 1,
+      "collected_at_utc": "2026-10-29T15:38:45.276188+00:00",
+      "hardware": {
+        "gpu": {
+          "name": "NVIDIA H800",
+          "uuid": "afb40f3d-fc19-f064-dd8d-04757c275de2",
+          "total_memory_bytes": 85017624576,
+          "total_memory_gib": 79.18,
+          "compute_capability": "9.0",
+          "multiprocessor_count": 132,
+          "cuda_device_index": 0,
+          "driver_version": "580.105.08"
+        },
+        "cpu_model": "Intel(R) Xeon(R) Platinum 8468V",
+        "cpu_architecture": "x86_64",
+        "cpu_socket_count": 2,
+        "physical_cpu_core_count": 96,
+        "logical_cpu_count": 192,
+        "cpu_threads_per_core": 2,
+        "numa_node_count": 2,
+        "process_cpu_affinity_count": 192,
+        "hypervisor_vendor": null
+      },
+      "software": {
+        "os": "Linux",
+        "os_release": "5.15.0-78-generic",
+        "machine": "x86_64",
+        "python": "3.12.3",
+        "packages": {
+          "torch": "2.8.0a0+5228986c39.nv25.5",
+          "triton": "3.6.0",
+          "vllm": null,
+          "sglang": null
+        },
+        "torch_cuda_version": "12.9",
+        "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Apr__9_19:24:57_PDT_2025\nCuda compilation tools, release 12.9, V12.9.41\nBuild cuda_12.9.r12.9/compiler.35813241_0",
+        "ncu_version": "NVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2025 NVIDIA Corporation\nVersion 2025.2.0.0 (build 35613519) (public-release)"
+      },
+      "source": {
+        "git_commit": "cd263d21c3ad5bfc541ba3f68afa5a76a9c453cd",
+        "git_branch": "HEAD",
+        "git_dirty": false
+      },
+      "run": {
+        "repo": "pytorch",
+        "device": null,
+        "ncu_enabled": false,
+        "report_dir": "/data/tj/workspace/ops-overrideable124-output-20261029-v1/ncu-unused/overrideable124-native-composite-h800.json-54b2d21a8e059414/_scaled_dot_product_fused_attention_overrideable/0ba7402184554b8c93f46e5e62aab357",
+        "output_path": "/data/tj/workspace/ops-overrideable124-output-20261029-v1/overrideable124-native-composite-h800.json.work/_scaled_dot_product_fused_attention_overrideable/0ba7402184554b8c93f46e5e62aab357/result.json",
+        "op_timeout_seconds": 7200.0,
+        "reference_chip": "H800",
+        "only": [
+          "_scaled_dot_product_fused_attention_overrideable"
+        ],
+        "whitelist": null,
+        "blacklist": null,
+        "selected_ops": [
+          "_scaled_dot_product_fused_attention_overrideable"
+        ],
+        "latency_warmup_ms": 25,
+        "latency_rep_ms": 100,
+        "ncu_warmup_calls": 3
+      },
+      "environment_variables": {
+        "CUDA_VISIBLE_DEVICES": "0",
+        "CUDA_DEVICE_ORDER": null
+      }
+    }
+  },
+  "_scaled_dot_product_fused_attention_overrideable": {
+    "native_api": "ops._scaled_dot_product_fused_attention_overrideable",
+    "shapes": {
+      "{'shape': [4, 32, 1024, 64], 'is_causal': False}": {
+        "torch.float16": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                1024,
+                64
+              ],
+              "is_causal": false
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    64
+                  ],
+                  "stride": [
+                    2097152,
+                    65536,
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    64
+                  ],
+                  "stride": [
+                    2097152,
+                    65536,
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    64
+                  ],
+                  "stride": [
+                    2097152,
+                    65536,
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                false,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  1024,
+                  64
+                ],
+                "dtype": "torch.float16"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  1024
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 1024
+              },
+              {
+                "name": "max_k",
+                "value": 1024
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.float16"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 381.5964950274115,
+          "latency_ms": 0.3815964950274115,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float32": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                1024,
+                64
+              ],
+              "is_causal": false
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    64
+                  ],
+                  "stride": [
+                    2097152,
+                    65536,
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    64
+                  ],
+                  "stride": [
+                    2097152,
+                    65536,
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    64
+                  ],
+                  "stride": [
+                    2097152,
+                    65536,
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                false,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  1024,
+                  64
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  1024
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 1024
+              },
+              {
+                "name": "max_k",
+                "value": 1024
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.float32"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 1173.0114432829846,
+          "latency_ms": 1.1730114432829846,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.bfloat16": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                1024,
+                64
+              ],
+              "is_causal": false
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    64
+                  ],
+                  "stride": [
+                    2097152,
+                    65536,
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    64
+                  ],
+                  "stride": [
+                    2097152,
+                    65536,
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    64
+                  ],
+                  "stride": [
+                    2097152,
+                    65536,
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                false,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  1024,
+                  64
+                ],
+                "dtype": "torch.bfloat16"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  1024
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 1024
+              },
+              {
+                "name": "max_k",
+                "value": 1024
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.bfloat16"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 379.1572354081589,
+          "latency_ms": 0.3791572354081589,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "{'shape': [4, 32, 1024, 128], 'is_causal': False}": {
+        "torch.float16": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                1024,
+                128
+              ],
+              "is_causal": false
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    128
+                  ],
+                  "stride": [
+                    4194304,
+                    131072,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    128
+                  ],
+                  "stride": [
+                    4194304,
+                    131072,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    128
+                  ],
+                  "stride": [
+                    4194304,
+                    131072,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                false,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  1024,
+                  128
+                ],
+                "dtype": "torch.float16"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  1024
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 1024
+              },
+              {
+                "name": "max_k",
+                "value": 1024
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.float16"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 539.7321991622448,
+          "latency_ms": 0.5397321991622448,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float32": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                1024,
+                128
+              ],
+              "is_causal": false
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    128
+                  ],
+                  "stride": [
+                    4194304,
+                    131072,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    128
+                  ],
+                  "stride": [
+                    4194304,
+                    131072,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    128
+                  ],
+                  "stride": [
+                    4194304,
+                    131072,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                false,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  1024,
+                  128
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  1024
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 1024
+              },
+              {
+                "name": "max_k",
+                "value": 1024
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.float32"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 1683.721131512097,
+          "latency_ms": 1.683721131512097,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.bfloat16": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                1024,
+                128
+              ],
+              "is_causal": false
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    128
+                  ],
+                  "stride": [
+                    4194304,
+                    131072,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    128
+                  ],
+                  "stride": [
+                    4194304,
+                    131072,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    128
+                  ],
+                  "stride": [
+                    4194304,
+                    131072,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                false,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  1024,
+                  128
+                ],
+                "dtype": "torch.bfloat16"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  1024
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 1024
+              },
+              {
+                "name": "max_k",
+                "value": 1024
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.bfloat16"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 532.6342700440207,
+          "latency_ms": 0.5326342700440206,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "{'shape': [4, 32, 2048, 128], 'is_causal': False}": {
+        "torch.float16": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                2048,
+                128
+              ],
+              "is_causal": false
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    2048,
+                    128
+                  ],
+                  "stride": [
+                    8388608,
+                    262144,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    2048,
+                    128
+                  ],
+                  "stride": [
+                    8388608,
+                    262144,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    2048,
+                    128
+                  ],
+                  "stride": [
+                    8388608,
+                    262144,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                false,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  2048,
+                  128
+                ],
+                "dtype": "torch.float16"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  2048
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 2048
+              },
+              {
+                "name": "max_k",
+                "value": 2048
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.float16"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 1762.276746608593,
+          "latency_ms": 1.762276746608593,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float32": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                2048,
+                128
+              ],
+              "is_causal": false
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    2048,
+                    128
+                  ],
+                  "stride": [
+                    8388608,
+                    262144,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    2048,
+                    128
+                  ],
+                  "stride": [
+                    8388608,
+                    262144,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    2048,
+                    128
+                  ],
+                  "stride": [
+                    8388608,
+                    262144,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                false,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  2048,
+                  128
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  2048
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 2048
+              },
+              {
+                "name": "max_k",
+                "value": 2048
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.float32"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 6186.988830566406,
+          "latency_ms": 6.186988830566406,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.bfloat16": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                2048,
+                128
+              ],
+              "is_causal": false
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    2048,
+                    128
+                  ],
+                  "stride": [
+                    8388608,
+                    262144,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    2048,
+                    128
+                  ],
+                  "stride": [
+                    8388608,
+                    262144,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    2048,
+                    128
+                  ],
+                  "stride": [
+                    8388608,
+                    262144,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                false,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  2048,
+                  128
+                ],
+                "dtype": "torch.bfloat16"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  2048
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 2048
+              },
+              {
+                "name": "max_k",
+                "value": 2048
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.bfloat16"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 1746.1730935356834,
+          "latency_ms": 1.7461730935356834,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "{'shape': [4, 32, 4096, 128], 'is_causal': False}": {
+        "torch.float16": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                4096,
+                128
+              ],
+              "is_causal": false
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    4096,
+                    128
+                  ],
+                  "stride": [
+                    16777216,
+                    524288,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    4096,
+                    128
+                  ],
+                  "stride": [
+                    16777216,
+                    524288,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    4096,
+                    128
+                  ],
+                  "stride": [
+                    16777216,
+                    524288,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                false,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  4096,
+                  128
+                ],
+                "dtype": "torch.float16"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  4096
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 4096
+              },
+              {
+                "name": "max_k",
+                "value": 4096
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.float16"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 6431.106058756511,
+          "latency_ms": 6.4311060587565105,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float32": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                4096,
+                128
+              ],
+              "is_causal": false
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    4096,
+                    128
+                  ],
+                  "stride": [
+                    16777216,
+                    524288,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    4096,
+                    128
+                  ],
+                  "stride": [
+                    16777216,
+                    524288,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    4096,
+                    128
+                  ],
+                  "stride": [
+                    16777216,
+                    524288,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                false,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  4096,
+                  128
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  4096
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 4096
+              },
+              {
+                "name": "max_k",
+                "value": 4096
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.float32"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 23192.30365753174,
+          "latency_ms": 23.19230365753174,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.bfloat16": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                4096,
+                128
+              ],
+              "is_causal": false
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    4096,
+                    128
+                  ],
+                  "stride": [
+                    16777216,
+                    524288,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    4096,
+                    128
+                  ],
+                  "stride": [
+                    16777216,
+                    524288,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    4096,
+                    128
+                  ],
+                  "stride": [
+                    16777216,
+                    524288,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                false,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  4096,
+                  128
+                ],
+                "dtype": "torch.bfloat16"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  4096
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 4096
+              },
+              {
+                "name": "max_k",
+                "value": 4096
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.bfloat16"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 6315.327994028727,
+          "latency_ms": 6.315327994028727,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "{'shape': [4, 32, 8192, 128], 'is_causal': False}": {
+        "torch.float16": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                8192,
+                128
+              ],
+              "is_causal": false
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    8192,
+                    128
+                  ],
+                  "stride": [
+                    33554432,
+                    1048576,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    8192,
+                    128
+                  ],
+                  "stride": [
+                    33554432,
+                    1048576,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    8192,
+                    128
+                  ],
+                  "stride": [
+                    33554432,
+                    1048576,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                false,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  8192,
+                  128
+                ],
+                "dtype": "torch.float16"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  8192
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 8192
+              },
+              {
+                "name": "max_k",
+                "value": 8192
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.float16"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 25480.112075805664,
+          "latency_ms": 25.480112075805664,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float32": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                8192,
+                128
+              ],
+              "is_causal": false
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    8192,
+                    128
+                  ],
+                  "stride": [
+                    33554432,
+                    1048576,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    8192,
+                    128
+                  ],
+                  "stride": [
+                    33554432,
+                    1048576,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    8192,
+                    128
+                  ],
+                  "stride": [
+                    33554432,
+                    1048576,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                false,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  8192,
+                  128
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  8192
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 8192
+              },
+              {
+                "name": "max_k",
+                "value": 8192
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.float32"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 93547.93548583984,
+          "latency_ms": 93.54793548583984,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.bfloat16": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                8192,
+                128
+              ],
+              "is_causal": false
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    8192,
+                    128
+                  ],
+                  "stride": [
+                    33554432,
+                    1048576,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    8192,
+                    128
+                  ],
+                  "stride": [
+                    33554432,
+                    1048576,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    8192,
+                    128
+                  ],
+                  "stride": [
+                    33554432,
+                    1048576,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                false,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  8192,
+                  128
+                ],
+                "dtype": "torch.bfloat16"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  8192
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 8192
+              },
+              {
+                "name": "max_k",
+                "value": 8192
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.bfloat16"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 24525.047779083252,
+          "latency_ms": 24.525047779083252,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "{'shape': [4, 32, 1024, 64], 'is_causal': True}": {
+        "torch.float16": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                1024,
+                64
+              ],
+              "is_causal": true
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    64
+                  ],
+                  "stride": [
+                    2097152,
+                    65536,
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    64
+                  ],
+                  "stride": [
+                    2097152,
+                    65536,
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    64
+                  ],
+                  "stride": [
+                    2097152,
+                    65536,
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                true,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  1024,
+                  64
+                ],
+                "dtype": "torch.float16"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  1024
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 1024
+              },
+              {
+                "name": "max_k",
+                "value": 1024
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.float16"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 274.09554347395897,
+          "latency_ms": 0.274095543473959,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float32": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                1024,
+                64
+              ],
+              "is_causal": true
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    64
+                  ],
+                  "stride": [
+                    2097152,
+                    65536,
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    64
+                  ],
+                  "stride": [
+                    2097152,
+                    65536,
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    64
+                  ],
+                  "stride": [
+                    2097152,
+                    65536,
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                true,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  1024,
+                  64
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  1024
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 1024
+              },
+              {
+                "name": "max_k",
+                "value": 1024
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.float32"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 741.9066682457924,
+          "latency_ms": 0.7419066682457924,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.bfloat16": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                1024,
+                64
+              ],
+              "is_causal": true
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    64
+                  ],
+                  "stride": [
+                    2097152,
+                    65536,
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    64
+                  ],
+                  "stride": [
+                    2097152,
+                    65536,
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    64
+                  ],
+                  "stride": [
+                    2097152,
+                    65536,
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                true,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  1024,
+                  64
+                ],
+                "dtype": "torch.bfloat16"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  1024
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 1024
+              },
+              {
+                "name": "max_k",
+                "value": 1024
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.bfloat16"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 278.78711907872224,
+          "latency_ms": 0.2787871190787222,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "{'shape': [4, 32, 1024, 128], 'is_causal': True}": {
+        "torch.float16": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                1024,
+                128
+              ],
+              "is_causal": true
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    128
+                  ],
+                  "stride": [
+                    4194304,
+                    131072,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    128
+                  ],
+                  "stride": [
+                    4194304,
+                    131072,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    128
+                  ],
+                  "stride": [
+                    4194304,
+                    131072,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                true,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  1024,
+                  128
+                ],
+                "dtype": "torch.float16"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  1024
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 1024
+              },
+              {
+                "name": "max_k",
+                "value": 1024
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.float16"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 390.3178873489488,
+          "latency_ms": 0.3903178873489488,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float32": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                1024,
+                128
+              ],
+              "is_causal": true
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    128
+                  ],
+                  "stride": [
+                    4194304,
+                    131072,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    128
+                  ],
+                  "stride": [
+                    4194304,
+                    131072,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    128
+                  ],
+                  "stride": [
+                    4194304,
+                    131072,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                true,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  1024,
+                  128
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  1024
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 1024
+              },
+              {
+                "name": "max_k",
+                "value": 1024
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.float32"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 1023.3141316307916,
+          "latency_ms": 1.0233141316307917,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.bfloat16": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                1024,
+                128
+              ],
+              "is_causal": true
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    128
+                  ],
+                  "stride": [
+                    4194304,
+                    131072,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    128
+                  ],
+                  "stride": [
+                    4194304,
+                    131072,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    1024,
+                    128
+                  ],
+                  "stride": [
+                    4194304,
+                    131072,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                true,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  1024,
+                  128
+                ],
+                "dtype": "torch.bfloat16"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  1024
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 1024
+              },
+              {
+                "name": "max_k",
+                "value": 1024
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.bfloat16"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 380.931096829577,
+          "latency_ms": 0.380931096829577,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "{'shape': [4, 32, 2048, 128], 'is_causal': True}": {
+        "torch.float16": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                2048,
+                128
+              ],
+              "is_causal": true
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    2048,
+                    128
+                  ],
+                  "stride": [
+                    8388608,
+                    262144,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    2048,
+                    128
+                  ],
+                  "stride": [
+                    8388608,
+                    262144,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    2048,
+                    128
+                  ],
+                  "stride": [
+                    8388608,
+                    262144,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                true,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  2048,
+                  128
+                ],
+                "dtype": "torch.float16"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  2048
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 2048
+              },
+              {
+                "name": "max_k",
+                "value": 2048
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.float16"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 1050.9690913287075,
+          "latency_ms": 1.0509690913287075,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float32": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                2048,
+                128
+              ],
+              "is_causal": true
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    2048,
+                    128
+                  ],
+                  "stride": [
+                    8388608,
+                    262144,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    2048,
+                    128
+                  ],
+                  "stride": [
+                    8388608,
+                    262144,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    2048,
+                    128
+                  ],
+                  "stride": [
+                    8388608,
+                    262144,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                true,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  2048,
+                  128
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  2048
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 2048
+              },
+              {
+                "name": "max_k",
+                "value": 2048
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.float32"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 3371.3451283318655,
+          "latency_ms": 3.3713451283318654,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.bfloat16": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                2048,
+                128
+              ],
+              "is_causal": true
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    2048,
+                    128
+                  ],
+                  "stride": [
+                    8388608,
+                    262144,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    2048,
+                    128
+                  ],
+                  "stride": [
+                    8388608,
+                    262144,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    2048,
+                    128
+                  ],
+                  "stride": [
+                    8388608,
+                    262144,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                true,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  2048,
+                  128
+                ],
+                "dtype": "torch.bfloat16"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  2048
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 2048
+              },
+              {
+                "name": "max_k",
+                "value": 2048
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.bfloat16"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 1052.1050921895287,
+          "latency_ms": 1.0521050921895287,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "{'shape': [4, 32, 4096, 128], 'is_causal': True}": {
+        "torch.float16": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                4096,
+                128
+              ],
+              "is_causal": true
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    4096,
+                    128
+                  ],
+                  "stride": [
+                    16777216,
+                    524288,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    4096,
+                    128
+                  ],
+                  "stride": [
+                    16777216,
+                    524288,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    4096,
+                    128
+                  ],
+                  "stride": [
+                    16777216,
+                    524288,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                true,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  4096,
+                  128
+                ],
+                "dtype": "torch.float16"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  4096
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 4096
+              },
+              {
+                "name": "max_k",
+                "value": 4096
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.float16"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 3504.9517154693604,
+          "latency_ms": 3.5049517154693604,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float32": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                4096,
+                128
+              ],
+              "is_causal": true
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    4096,
+                    128
+                  ],
+                  "stride": [
+                    16777216,
+                    524288,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    4096,
+                    128
+                  ],
+                  "stride": [
+                    16777216,
+                    524288,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    4096,
+                    128
+                  ],
+                  "stride": [
+                    16777216,
+                    524288,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                true,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  4096,
+                  128
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  4096
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 4096
+              },
+              {
+                "name": "max_k",
+                "value": 4096
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.float32"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 12207.071900367737,
+          "latency_ms": 12.207071900367737,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.bfloat16": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                4096,
+                128
+              ],
+              "is_causal": true
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    4096,
+                    128
+                  ],
+                  "stride": [
+                    16777216,
+                    524288,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    4096,
+                    128
+                  ],
+                  "stride": [
+                    16777216,
+                    524288,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    4096,
+                    128
+                  ],
+                  "stride": [
+                    16777216,
+                    524288,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                true,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  4096,
+                  128
+                ],
+                "dtype": "torch.bfloat16"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  4096
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 4096
+              },
+              {
+                "name": "max_k",
+                "value": 4096
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.bfloat16"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 3524.7314146586828,
+          "latency_ms": 3.5247314146586826,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "{'shape': [4, 32, 8192, 128], 'is_causal': True}": {
+        "torch.float16": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                8192,
+                128
+              ],
+              "is_causal": true
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    8192,
+                    128
+                  ],
+                  "stride": [
+                    33554432,
+                    1048576,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    8192,
+                    128
+                  ],
+                  "stride": [
+                    33554432,
+                    1048576,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    8192,
+                    128
+                  ],
+                  "stride": [
+                    33554432,
+                    1048576,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float16",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                true,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  8192,
+                  128
+                ],
+                "dtype": "torch.float16"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  8192
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 8192
+              },
+              {
+                "name": "max_k",
+                "value": 8192
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.float16"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 12824.978283473423,
+          "latency_ms": 12.824978283473424,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float32": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                8192,
+                128
+              ],
+              "is_causal": true
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    8192,
+                    128
+                  ],
+                  "stride": [
+                    33554432,
+                    1048576,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    8192,
+                    128
+                  ],
+                  "stride": [
+                    33554432,
+                    1048576,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    8192,
+                    128
+                  ],
+                  "stride": [
+                    33554432,
+                    1048576,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.float32",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                true,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  8192,
+                  128
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  8192
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 8192
+              },
+              {
+                "name": "max_k",
+                "value": 8192
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.float32"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 46944.65637207031,
+          "latency_ms": 46.94465637207031,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.bfloat16": {
+          "config": {
+            "native_expression": "native_ATen_efficient_attention_dense_dropout0_nine_tuple",
+            "literal_overrideable_stub": false,
+            "math_API": "aten::_scaled_dot_product_efficient_attention",
+            "logsumexp_convention": "log2 = native natural LSE * LOG2E; trim padding; contiguous",
+            "metadata_recipe": "existing dense p0 API cum_seq[0,L]*B int32, maxQ=maxK=L, seed/offset target int64[0], debugempty",
+            "source_commit": "2a3a455fa9eef530dc11a6b96ff333ffb47235fd",
+            "source_benchmark_sha256": "47e8b5cc73898f03a300e1dce5892c1333d3eab3cd26a40490a8f13e11241799",
+            "source_builder_ast_sha256": "43f272587d2de9c060cac48a2ef2bd50e4b9557632f37da2f073c3c37326f5e8",
+            "benchmark": "benchmark/test_scaled_dot_product_fused_attention_overrideable.py",
+            "builder": "_build_inputs_fn",
+            "scope": "core",
+            "descriptor": {
+              "shape": [
+                4,
+                32,
+                8192,
+                128
+              ],
+              "is_causal": true
+            },
+            "recipe": {
+              "query": "torch.randn",
+              "key": "torch.randn",
+              "value": "torch.randn",
+              "on_requested_device": true,
+              "seed": "original unseeded builder"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4,
+                    32,
+                    8192,
+                    128
+                  ],
+                  "stride": [
+                    33554432,
+                    1048576,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    8192,
+                    128
+                  ],
+                  "stride": [
+                    33554432,
+                    1048576,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4,
+                    32,
+                    8192,
+                    128
+                  ],
+                  "stride": [
+                    33554432,
+                    1048576,
+                    128,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "dtype": "torch.bfloat16",
+                  "requires_grad": false
+                },
+                null,
+                0.0,
+                true,
+                false
+              ],
+              "kwargs": {
+                "scale": null
+              }
+            },
+            "outputs": [
+              {
+                "name": "output",
+                "shape": [
+                  4,
+                  32,
+                  8192,
+                  128
+                ],
+                "dtype": "torch.bfloat16"
+              },
+              {
+                "name": "logsumexp",
+                "shape": [
+                  4,
+                  32,
+                  8192
+                ],
+                "dtype": "torch.float32",
+                "base": 2
+              },
+              {
+                "name": "cum_seq_q",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "cum_seq_k",
+                "shape": [
+                  4,
+                  2
+                ],
+                "dtype": "torch.int32"
+              },
+              {
+                "name": "max_q",
+                "value": 8192
+              },
+              {
+                "name": "max_k",
+                "value": 8192
+              },
+              {
+                "name": "philox_seed",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "philox_offset",
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.int64"
+              },
+              {
+                "name": "debug_attn_mask",
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.bfloat16"
+              }
+            ],
+            "effects": {
+              "mutates": [],
+              "returns_alias_of": {}
+            }
+          },
+          "T_us": 13168.772561209542,
+          "latency_ms": 13.168772561209542,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      }
+    }
+  },
+  "_environment": {
+    "schema_version": 1,
+    "collected_at_utc": "2026-10-29T15:38:45.276188+00:00",
+    "hardware": {
+      "gpu": {
+        "name": "NVIDIA H800",
+        "uuid": "afb40f3d-fc19-f064-dd8d-04757c275de2",
+        "total_memory_bytes": 85017624576,
+        "total_memory_gib": 79.18,
+        "compute_capability": "9.0",
+        "multiprocessor_count": 132,
+        "cuda_device_index": 0,
+        "driver_version": "580.105.08"
+      },
+      "cpu_model": "Intel(R) Xeon(R) Platinum 8468V",
+      "cpu_architecture": "x86_64",
+      "cpu_socket_count": 2,
+      "physical_cpu_core_count": 96,
+      "logical_cpu_count": 192,
+      "cpu_threads_per_core": 2,
+      "numa_node_count": 2,
+      "process_cpu_affinity_count": 192,
+      "hypervisor_vendor": null
+    },
+    "software": {
+      "os": "Linux",
+      "os_release": "5.15.0-78-generic",
+      "machine": "x86_64",
+      "python": "3.12.3",
+      "packages": {
+        "torch": "2.8.0a0+5228986c39.nv25.5",
+        "triton": "3.6.0",
+        "vllm": null,
+        "sglang": null
+      },
+      "torch_cuda_version": "12.9",
+      "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Apr__9_19:24:57_PDT_2025\nCuda compilation tools, release 12.9, V12.9.41\nBuild cuda_12.9.r12.9/compiler.35813241_0",
+      "ncu_version": "NVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2025 NVIDIA Corporation\nVersion 2025.2.0.0 (build 35613519) (public-release)"
+    },
+    "source": {
+      "git_commit": "cd263d21c3ad5bfc541ba3f68afa5a76a9c453cd",
+      "git_branch": "HEAD",
+      "git_dirty": false
+    },
+    "run": {
+      "repo": "pytorch",
+      "device": null,
+      "ncu_enabled": false,
+      "report_dir": "/data/tj/workspace/ops-overrideable124-output-20261029-v1/ncu-unused/overrideable124-native-composite-h800.json-54b2d21a8e059414/_scaled_dot_product_fused_attention_overrideable/0ba7402184554b8c93f46e5e62aab357",
+      "output_path": "/data/tj/workspace/ops-overrideable124-output-20261029-v1/overrideable124-native-composite-h800.json.work/_scaled_dot_product_fused_attention_overrideable/0ba7402184554b8c93f46e5e62aab357/result.json",
+      "op_timeout_seconds": 7200.0,
+      "reference_chip": "H800",
+      "only": [
+        "_scaled_dot_product_fused_attention_overrideable"
+      ],
+      "whitelist": null,
+      "blacklist": null,
+      "selected_ops": [
+        "_scaled_dot_product_fused_attention_overrideable"
+      ],
+      "latency_warmup_ms": 25,
+      "latency_rep_ms": 100,
+      "ncu_warmup_calls": 3
+    },
+    "environment_variables": {
+      "CUDA_VISIBLE_DEVICES": "0",
+      "CUDA_DEVICE_ORDER": null
+    }
+  },
+  "_scaling_factors": {
+    "_note": "factor = vendor_peak / H800_peak；null 表示分子或分母缺失；nominal/measured 各一套。供 flaggems-vllm 跨芯片归一化对比使用。",
+    "reference_chip": "H800",
+    "source_specs": "hardware_specs.json",
+    "chips": [
+      {
+        "vendor": "nvidia",
+        "vendor_zh": "英伟达",
+        "chip": "H800",
+        "nominal": {
+          "bandwidth_gbps": 1.0,
+          "tensor": {
+            "bf16": 1.0,
+            "fp16": 1.0,
+            "fp32": 1.0,
+            "tf32": 1.0,
+            "int8": 1.0,
+            "fp64": 1.0,
+            "fp8": 1.0
+          },
+          "vector": {
+            "bf16": 1.0,
+            "fp16": 1.0,
+            "fp32": 1.0,
+            "int8": null,
+            "fp64": 1.0,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 1.0,
+          "tensor": {
+            "bf16": 1.0,
+            "fp16": 1.0,
+            "fp32": 1.0,
+            "tf32": 1.0,
+            "int8": 1.0,
+            "fp64": 1.0,
+            "fp8": 1.0
+          },
+          "vector": {
+            "bf16": 1.0,
+            "fp16": 1.0,
+            "fp32": 1.0,
+            "int8": 1.0,
+            "fp64": 1.0,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "nvidia",
+        "vendor_zh": "英伟达",
+        "chip": "H100",
+        "nominal": {
+          "bandwidth_gbps": 1.0,
+          "tensor": {
+            "bf16": 1.000404,
+            "fp16": 1.000404,
+            "fp32": 1.0,
+            "tf32": 1.000404,
+            "int8": 0.999949,
+            "fp64": 66.9,
+            "fp8": 0.999949
+          },
+          "vector": {
+            "bf16": 0.998507,
+            "fp16": 0.998507,
+            "fp32": 0.998507,
+            "int8": null,
+            "fp64": 33.5,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 1.0,
+          "tensor": {
+            "bf16": 0.992845,
+            "fp16": 1.043176,
+            "fp32": 0.999938,
+            "tf32": 0.964256,
+            "int8": 0.988143,
+            "fp64": 58.895238,
+            "fp8": 1.048244
+          },
+          "vector": {
+            "bf16": 0.999955,
+            "fp16": 0.99997,
+            "fp32": 0.992604,
+            "int8": 1.0003,
+            "fp64": 29.44689,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "t-head",
+        "vendor_zh": "平头哥",
+        "chip": "PPU-ZW810E",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.662759,
+          "tensor": {
+            "bf16": 0.058651,
+            "fp16": 0.062691,
+            "fp32": 0.538868,
+            "tf32": 0.075912,
+            "int8": 0.027883,
+            "fp64": 6.597143,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": 0.828975,
+            "fp16": 0.828837,
+            "fp32": 0.416839,
+            "int8": 0.206073,
+            "fp64": 6.120574,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "t-head",
+        "vendor_zh": "平头哥",
+        "chip": "m890",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.781483,
+          "tensor": {
+            "bf16": 0.281445,
+            "fp16": 0.300869,
+            "fp32": 0.257819,
+            "tf32": 0.161166,
+            "int8": null,
+            "fp64": null,
+            "fp8": 0.042014
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": 0.194236,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "enflame",
+        "vendor_zh": "燧原",
+        "chip": "S60",
+        "nominal": {
+          "bandwidth_gbps": 0.200597,
+          "tensor": {
+            "bf16": 0.132457,
+            "fp16": 0.132457,
+            "fp32": 0.478326,
+            "tf32": null,
+            "int8": 0.13239,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.150325,
+          "tensor": {
+            "bf16": 0.135388,
+            "fp16": 0.144762,
+            "fp32": 0.672654,
+            "tf32": null,
+            "int8": 0.134391,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": 0.026166,
+            "fp16": 0.026197,
+            "fp32": 0.029496,
+            "int8": 0.013308,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "ascend",
+        "vendor_zh": "华为",
+        "chip": "Atlas 800T A3",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": 0.760364,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.951084,
+          "tensor": {
+            "bf16": 0.761695,
+            "fp16": 0.839078,
+            "fp32": 4.098971,
+            "tf32": null,
+            "int8": 0.756027,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "metax",
+        "vendor_zh": "沐曦",
+        "chip": "C550",
+        "nominal": {
+          "bandwidth_gbps": 0.537313,
+          "tensor": {
+            "bf16": 0.323559,
+            "fp16": 0.323559,
+            "fp32": 0.597907,
+            "tf32": 0.323559,
+            "int8": 0.323396,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.472532,
+          "tensor": {
+            "bf16": 0.285784,
+            "fp16": 0.298125,
+            "fp32": 0.816461,
+            "tf32": 0.265815,
+            "int8": 0.291016,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": 0.136079,
+            "fp32": 0.541991,
+            "int8": 0.068039,
+            "fp64": 2.166507,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "kunlunxin",
+        "vendor_zh": "昆仑芯",
+        "chip": "P900",
+        "nominal": {
+          "bandwidth_gbps": 0.776119,
+          "tensor": {
+            "bf16": 0.353893,
+            "fp16": 0.353893,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.791,
+          "tensor": {
+            "bf16": 0.357504,
+            "fp16": 0.389264,
+            "fp32": 2.853909,
+            "tf32": 0.278234,
+            "int8": 0.33308,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "kunlunxin",
+        "vendor_zh": "昆仑芯",
+        "chip": "P800",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": 0.032261,
+            "fp16": 0.03449,
+            "fp32": null,
+            "tf32": 0.062035,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "mthreads",
+        "vendor_zh": "摩尔",
+        "chip": "MTT-S5000",
+        "nominal": {
+          "bandwidth_gbps": 0.477612,
+          "tensor": {
+            "bf16": 0.434783,
+            "fp16": 0.434783,
+            "fp32": 0.433483,
+            "tf32": 0.434783,
+            "int8": 0.434563,
+            "fp64": 14.5,
+            "fp8": 0.434563
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.423867,
+          "tensor": {
+            "bf16": 0.46863,
+            "fp16": 0.499849,
+            "fp32": 0.585391,
+            "tf32": 0.449552,
+            "int8": 0.463452,
+            "fp64": 13.533333,
+            "fp8": 0.504517
+          },
+          "vector": {
+            "bf16": 0.285102,
+            "fp16": 0.284926,
+            "fp32": 0.255336,
+            "int8": 0.095037,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "hygon",
+        "vendor_zh": "海光",
+        "chip": "BW1000",
+        "nominal": {
+          "bandwidth_gbps": 0.537313,
+          "tensor": {
+            "bf16": 0.485339,
+            "fp16": 0.485339,
+            "fp32": 0.896861,
+            "tf32": 0.485339,
+            "int8": 0.485093,
+            "fp64": 30.0,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.47352,
+          "tensor": {
+            "bf16": 0.494279,
+            "fp16": 0.526445,
+            "fp32": 1.253704,
+            "tf32": 0.475373,
+            "int8": 0.490587,
+            "fp64": 29.009524,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": 0.109955,
+            "fp16": 0.45465,
+            "fp32": 0.228884,
+            "int8": 0.114093,
+            "fp64": 14.488038,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "iluvatar",
+        "vendor_zh": "天数",
+        "chip": "BI-V150",
+        "nominal": {
+          "bandwidth_gbps": 0.477612,
+          "tensor": {
+            "bf16": 0.258847,
+            "fp16": 0.258847,
+            "fp32": 0.956652,
+            "tf32": null,
+            "int8": 0.388075,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.356378,
+          "tensor": {
+            "bf16": 0.220302,
+            "fp16": 0.234676,
+            "fp32": 0.940123,
+            "tf32": null,
+            "int8": 0.391076,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": 0.461253,
+            "fp16": 0.469367,
+            "fp32": 0.230722,
+            "int8": 0.11987,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "tsingmicro",
+        "vendor_zh": "清微智能",
+        "chip": "TX8110",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "tsingmicro",
+        "vendor_zh": "清微智能",
+        "chip": "REX1032",
+        "nominal": {
+          "bandwidth_gbps": 0.238806,
+          "tensor": {
+            "bf16": 0.517695,
+            "fp16": 0.517695,
+            "fp32": 0.179372,
+            "tf32": 1.035389,
+            "int8": 0.517433,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.197353,
+          "tensor": {
+            "bf16": 0.525497,
+            "fp16": 0.561805,
+            "fp32": 0.251029,
+            "tf32": 0.892402,
+            "int8": 0.521583,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "cambricon",
+        "vendor_zh": "寒武纪",
+        "chip": "MLU590-M9DE",
+        "nominal": {
+          "bandwidth_gbps": 0.671642,
+          "tensor": {
+            "bf16": 0.33367,
+            "fp16": 0.33367,
+            "fp32": 1.233184,
+            "tf32": 0.33367,
+            "int8": 0.333502,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.625387,
+          "tensor": {
+            "bf16": 0.316304,
+            "fp16": 0.338258,
+            "fp32": 1.604938,
+            "tf32": 0.307205,
+            "int8": 0.312064,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      }
+    ]
+  }
+}
