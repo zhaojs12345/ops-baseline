@@ -1,0 +1,1728 @@
+{
+  "_collection": {
+    "configuration": {
+      "repo": "pytorch",
+      "operators": [
+        "orgqr_current_core"
+      ],
+      "devices": [
+        "0"
+      ],
+      "ncu_enabled": false,
+      "op_timeout": 1800.0,
+      "reference_chip": "H800",
+      "source_sha256": "ba53cee2eda10694298361cab619c0be4ad42214e1c14b4687b21ec62e646253",
+      "report_dir": "/data/tj/workspace/ops-orgqr-current-output-20261030-v1/ncu-unused"
+    },
+    "started_at_utc": "2026-10-30T09:08:59.515964+00:00",
+    "tasks": {
+      "orgqr_current_core": {
+        "status": "completed",
+        "device": "0",
+        "returncode": 0,
+        "log": "/data/tj/workspace/ops-orgqr-current-output-20261030-v1/orgqr-current-h800.json.work/orgqr_current_core/753c5330b3194bbe9cbf1da258570bbf/collector.log",
+        "result": "/data/tj/workspace/ops-orgqr-current-output-20261030-v1/orgqr-current-h800.json.work/orgqr_current_core/753c5330b3194bbe9cbf1da258570bbf/result.json"
+      }
+    },
+    "interrupted": false,
+    "attempt_started_at_utc": "2026-10-30T09:08:59.516040+00:00",
+    "finished_at_utc": "2026-10-30T09:09:12.928084+00:00"
+  },
+  "_environments": {
+    "0": {
+      "schema_version": 1,
+      "collected_at_utc": "2026-10-30T09:09:02.428059+00:00",
+      "hardware": {
+        "gpu": {
+          "name": "NVIDIA H800",
+          "uuid": "afb40f3d-fc19-f064-dd8d-04757c275de2",
+          "total_memory_bytes": 85017624576,
+          "total_memory_gib": 79.18,
+          "compute_capability": "9.0",
+          "multiprocessor_count": 132,
+          "cuda_device_index": 0,
+          "driver_version": "580.105.08"
+        },
+        "cpu_model": "Intel(R) Xeon(R) Platinum 8468V",
+        "cpu_architecture": "x86_64",
+        "cpu_socket_count": 2,
+        "physical_cpu_core_count": 96,
+        "logical_cpu_count": 192,
+        "cpu_threads_per_core": 2,
+        "numa_node_count": 2,
+        "process_cpu_affinity_count": 192,
+        "hypervisor_vendor": null
+      },
+      "software": {
+        "os": "Linux",
+        "os_release": "5.15.0-78-generic",
+        "machine": "x86_64",
+        "python": "3.12.3",
+        "packages": {
+          "torch": "2.8.0a0+5228986c39.nv25.5",
+          "triton": "3.6.0",
+          "vllm": null,
+          "sglang": null
+        },
+        "torch_cuda_version": "12.9",
+        "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Apr__9_19:24:57_PDT_2025\nCuda compilation tools, release 12.9, V12.9.41\nBuild cuda_12.9.r12.9/compiler.35813241_0",
+        "ncu_version": "NVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2025 NVIDIA Corporation\nVersion 2025.2.0.0 (build 35613519) (public-release)"
+      },
+      "source": {
+        "git_commit": "76125c6b7fb92a0131b43b01aa4dd520e1268aaf",
+        "git_branch": "HEAD",
+        "git_dirty": false
+      },
+      "run": {
+        "repo": "pytorch",
+        "device": null,
+        "ncu_enabled": false,
+        "report_dir": "/data/tj/workspace/ops-orgqr-current-output-20261030-v1/ncu-unused/orgqr-current-h800.json-6ab9ea74d0a48ee4/orgqr_current_core/753c5330b3194bbe9cbf1da258570bbf",
+        "output_path": "/data/tj/workspace/ops-orgqr-current-output-20261030-v1/orgqr-current-h800.json.work/orgqr_current_core/753c5330b3194bbe9cbf1da258570bbf/result.json",
+        "op_timeout_seconds": 1800.0,
+        "reference_chip": "H800",
+        "only": [
+          "orgqr_current_core"
+        ],
+        "whitelist": null,
+        "blacklist": null,
+        "selected_ops": [
+          "orgqr_current_core"
+        ],
+        "latency_warmup_ms": 25,
+        "latency_rep_ms": 100,
+        "ncu_warmup_calls": 3
+      },
+      "environment_variables": {
+        "CUDA_VISIBLE_DEVICES": "0",
+        "CUDA_DEVICE_ORDER": null
+      }
+    }
+  },
+  "orgqr_current_core": {
+    "native_api": "ops.orgqr_current_core",
+    "shapes": {
+      "[16, 8]": {
+        "torch.float32": {
+          "config": {
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    16,
+                    8
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    1,
+                    16
+                  ],
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    8
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    1
+                  ],
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "source_commit": "9c280800abb30b0fa3e1c073d564fc4b6d97d1cd",
+            "benchmark": "benchmark/test_orgqr.py",
+            "scope": "core",
+            "descriptor": [
+              16,
+              8
+            ],
+            "variant": 0,
+            "input_recipe": {
+              "matrix": "torch.randn(shape,dtype,device)",
+              "factorization": "torch.geqrf(matrix) outside timed call",
+              "rng_policy": "consume caller RNG stream; no per-case seed reset",
+              "native": "torch.orgqr(input,tau)"
+            },
+            "producer_sample": {
+              "rng_device_type": "cuda",
+              "rng_state_before_hex": "6d7d4b4806da15000400000000000000",
+              "input_sha256": [
+                "bd0be61a5540421cbad44047322d796afbf8e11f7a287197b9c14a74838d7872",
+                "514a09740c357c3f28753fc608900eaff36e0be9c02894fc87cc0e3671fa6cf9"
+              ],
+              "input_bytes": [
+                512,
+                32
+              ]
+            }
+          },
+          "T_us": 53.21742984208655,
+          "latency_ms": 0.05321742984208655,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null,
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "mean",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        },
+        "torch.float64": {
+          "config": {
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    16,
+                    8
+                  ],
+                  "dtype": "torch.float64",
+                  "stride": [
+                    1,
+                    16
+                  ],
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    8
+                  ],
+                  "dtype": "torch.float64",
+                  "stride": [
+                    1
+                  ],
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "source_commit": "9c280800abb30b0fa3e1c073d564fc4b6d97d1cd",
+            "benchmark": "benchmark/test_orgqr.py",
+            "scope": "core",
+            "descriptor": [
+              16,
+              8
+            ],
+            "variant": 0,
+            "input_recipe": {
+              "matrix": "torch.randn(shape,dtype,device)",
+              "factorization": "torch.geqrf(matrix) outside timed call",
+              "rng_policy": "consume caller RNG stream; no per-case seed reset",
+              "native": "torch.orgqr(input,tau)"
+            },
+            "producer_sample": {
+              "rng_device_type": "cuda",
+              "rng_state_before_hex": "6d7d4b4806da15000800000000000000",
+              "input_sha256": [
+                "ded9527bb866ec41c44dca4e9b9b4ba7b24a22bc9016e60d599d75a5269ab24c",
+                "daa83bbe3888281d290ec224be6b7659909da45051c0a84b384b166a74862b11"
+              ],
+              "input_bytes": [
+                1024,
+                64
+              ]
+            }
+          },
+          "T_us": 44.02864720445097,
+          "latency_ms": 0.04402864720445097,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null,
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "mean",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        }
+      },
+      "[32, 16]": {
+        "torch.float32": {
+          "config": {
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    32,
+                    16
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    1,
+                    32
+                  ],
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    16
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    1
+                  ],
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "source_commit": "9c280800abb30b0fa3e1c073d564fc4b6d97d1cd",
+            "benchmark": "benchmark/test_orgqr.py",
+            "scope": "core",
+            "descriptor": [
+              32,
+              16
+            ],
+            "variant": 0,
+            "input_recipe": {
+              "matrix": "torch.randn(shape,dtype,device)",
+              "factorization": "torch.geqrf(matrix) outside timed call",
+              "rng_policy": "consume caller RNG stream; no per-case seed reset",
+              "native": "torch.orgqr(input,tau)"
+            },
+            "producer_sample": {
+              "rng_device_type": "cuda",
+              "rng_state_before_hex": "6d7d4b4806da15000c00000000000000",
+              "input_sha256": [
+                "34d60d9411b5584f7b9d53405d0ec101ea993642b52148de0701af93ee7d38b8",
+                "5875ff397fd3b898b355680ea66a43395c6913d1301fe1e93cda9b49e20c1dd8"
+              ],
+              "input_bytes": [
+                2048,
+                64
+              ]
+            }
+          },
+          "T_us": 33.7637183059689,
+          "latency_ms": 0.0337637183059689,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null,
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "mean",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        },
+        "torch.float64": {
+          "config": {
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    32,
+                    16
+                  ],
+                  "dtype": "torch.float64",
+                  "stride": [
+                    1,
+                    32
+                  ],
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    16
+                  ],
+                  "dtype": "torch.float64",
+                  "stride": [
+                    1
+                  ],
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "source_commit": "9c280800abb30b0fa3e1c073d564fc4b6d97d1cd",
+            "benchmark": "benchmark/test_orgqr.py",
+            "scope": "core",
+            "descriptor": [
+              32,
+              16
+            ],
+            "variant": 0,
+            "input_recipe": {
+              "matrix": "torch.randn(shape,dtype,device)",
+              "factorization": "torch.geqrf(matrix) outside timed call",
+              "rng_policy": "consume caller RNG stream; no per-case seed reset",
+              "native": "torch.orgqr(input,tau)"
+            },
+            "producer_sample": {
+              "rng_device_type": "cuda",
+              "rng_state_before_hex": "6d7d4b4806da15001000000000000000",
+              "input_sha256": [
+                "1f5e66fe124905914761a55497ddfb7eafda15c65a6d9c0b80713ead276474c6",
+                "459fc78257a1b1f69bf98b327f57af74a73595c0fab38a4f10304541ed887563"
+              ],
+              "input_bytes": [
+                4096,
+                128
+              ]
+            }
+          },
+          "T_us": 56.79085714539059,
+          "latency_ms": 0.05679085714539059,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null,
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "mean",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        }
+      },
+      "[64, 32]": {
+        "torch.float32": {
+          "config": {
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    64,
+                    32
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    1,
+                    64
+                  ],
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    32
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    1
+                  ],
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "source_commit": "9c280800abb30b0fa3e1c073d564fc4b6d97d1cd",
+            "benchmark": "benchmark/test_orgqr.py",
+            "scope": "core",
+            "descriptor": [
+              64,
+              32
+            ],
+            "variant": 0,
+            "input_recipe": {
+              "matrix": "torch.randn(shape,dtype,device)",
+              "factorization": "torch.geqrf(matrix) outside timed call",
+              "rng_policy": "consume caller RNG stream; no per-case seed reset",
+              "native": "torch.orgqr(input,tau)"
+            },
+            "producer_sample": {
+              "rng_device_type": "cuda",
+              "rng_state_before_hex": "6d7d4b4806da15001400000000000000",
+              "input_sha256": [
+                "5b41549cd2c75b58761560a5fe6c2197dae61bb6add0bfad6245fdec7849da64",
+                "a27e1bf12811a960811a34639107c15ee8b5840ac842eaea2d22bd939b2d14bb"
+              ],
+              "input_bytes": [
+                8192,
+                128
+              ]
+            }
+          },
+          "T_us": 49.90241525434413,
+          "latency_ms": 0.04990241525434413,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null,
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "mean",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        },
+        "torch.float64": {
+          "config": {
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    64,
+                    32
+                  ],
+                  "dtype": "torch.float64",
+                  "stride": [
+                    1,
+                    64
+                  ],
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    32
+                  ],
+                  "dtype": "torch.float64",
+                  "stride": [
+                    1
+                  ],
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "source_commit": "9c280800abb30b0fa3e1c073d564fc4b6d97d1cd",
+            "benchmark": "benchmark/test_orgqr.py",
+            "scope": "core",
+            "descriptor": [
+              64,
+              32
+            ],
+            "variant": 0,
+            "input_recipe": {
+              "matrix": "torch.randn(shape,dtype,device)",
+              "factorization": "torch.geqrf(matrix) outside timed call",
+              "rng_policy": "consume caller RNG stream; no per-case seed reset",
+              "native": "torch.orgqr(input,tau)"
+            },
+            "producer_sample": {
+              "rng_device_type": "cuda",
+              "rng_state_before_hex": "6d7d4b4806da15001800000000000000",
+              "input_sha256": [
+                "59dd85909e7ed83a93ceecccd7cf214b666da17961a11cee1186bc9963e55545",
+                "5ea8ca36b3864471af0f152e9536c83804e4563b2043890d453580bc5d940b3a"
+              ],
+              "input_bytes": [
+                16384,
+                256
+              ]
+            }
+          },
+          "T_us": 82.20525399440585,
+          "latency_ms": 0.08220525399440586,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null,
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "mean",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        }
+      },
+      "[128, 64]": {
+        "torch.float32": {
+          "config": {
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    128,
+                    64
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    1,
+                    128
+                  ],
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    64
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    1
+                  ],
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "source_commit": "9c280800abb30b0fa3e1c073d564fc4b6d97d1cd",
+            "benchmark": "benchmark/test_orgqr.py",
+            "scope": "core",
+            "descriptor": [
+              128,
+              64
+            ],
+            "variant": 0,
+            "input_recipe": {
+              "matrix": "torch.randn(shape,dtype,device)",
+              "factorization": "torch.geqrf(matrix) outside timed call",
+              "rng_policy": "consume caller RNG stream; no per-case seed reset",
+              "native": "torch.orgqr(input,tau)"
+            },
+            "producer_sample": {
+              "rng_device_type": "cuda",
+              "rng_state_before_hex": "6d7d4b4806da15001c00000000000000",
+              "input_sha256": [
+                "a58eb83850778155b4ba407ebdf4edc2b6e0db007ac9f5515559dffb87da1b0e",
+                "dd8c4e036e6302546ca80fe338f9bdb6e72195c913d985f39ebd8c0e9b7a987f"
+              ],
+              "input_bytes": [
+                32768,
+                256
+              ]
+            }
+          },
+          "T_us": 52.07932152353462,
+          "latency_ms": 0.052079321523534616,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null,
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "mean",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        },
+        "torch.float64": {
+          "config": {
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    128,
+                    64
+                  ],
+                  "dtype": "torch.float64",
+                  "stride": [
+                    1,
+                    128
+                  ],
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    64
+                  ],
+                  "dtype": "torch.float64",
+                  "stride": [
+                    1
+                  ],
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "source_commit": "9c280800abb30b0fa3e1c073d564fc4b6d97d1cd",
+            "benchmark": "benchmark/test_orgqr.py",
+            "scope": "core",
+            "descriptor": [
+              128,
+              64
+            ],
+            "variant": 0,
+            "input_recipe": {
+              "matrix": "torch.randn(shape,dtype,device)",
+              "factorization": "torch.geqrf(matrix) outside timed call",
+              "rng_policy": "consume caller RNG stream; no per-case seed reset",
+              "native": "torch.orgqr(input,tau)"
+            },
+            "producer_sample": {
+              "rng_device_type": "cuda",
+              "rng_state_before_hex": "6d7d4b4806da15002000000000000000",
+              "input_sha256": [
+                "15a1a5dfe9c37e82f70ece41dc7c3c3e5011baf69a33ea3d2a121b668b651001",
+                "42bc02bfe76485fca833e86590daa594601e43e02bc5146bbaff91b33bfe83e0"
+              ],
+              "input_bytes": [
+                65536,
+                512
+              ]
+            }
+          },
+          "T_us": 128.6898604092084,
+          "latency_ms": 0.12868986040920838,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null,
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "mean",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        }
+      },
+      "[128, 128]": {
+        "torch.float32": {
+          "config": {
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    128,
+                    128
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    1,
+                    128
+                  ],
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    128
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    1
+                  ],
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "source_commit": "9c280800abb30b0fa3e1c073d564fc4b6d97d1cd",
+            "benchmark": "benchmark/test_orgqr.py",
+            "scope": "core",
+            "descriptor": [
+              128,
+              128
+            ],
+            "variant": 0,
+            "input_recipe": {
+              "matrix": "torch.randn(shape,dtype,device)",
+              "factorization": "torch.geqrf(matrix) outside timed call",
+              "rng_policy": "consume caller RNG stream; no per-case seed reset",
+              "native": "torch.orgqr(input,tau)"
+            },
+            "producer_sample": {
+              "rng_device_type": "cuda",
+              "rng_state_before_hex": "6d7d4b4806da15002400000000000000",
+              "input_sha256": [
+                "41694276c5de82e3787aebbe9638af069e025ebd3dbd61997c1f6149cc077f73",
+                "50262b06d69b011086b57f002e60e4430193707a027666eaf83a6ad036e9a1fb"
+              ],
+              "input_bytes": [
+                65536,
+                512
+              ]
+            }
+          },
+          "T_us": 61.477541133309856,
+          "latency_ms": 0.06147754113330985,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null,
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "mean",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        },
+        "torch.float64": {
+          "config": {
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    128,
+                    128
+                  ],
+                  "dtype": "torch.float64",
+                  "stride": [
+                    1,
+                    128
+                  ],
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    128
+                  ],
+                  "dtype": "torch.float64",
+                  "stride": [
+                    1
+                  ],
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "source_commit": "9c280800abb30b0fa3e1c073d564fc4b6d97d1cd",
+            "benchmark": "benchmark/test_orgqr.py",
+            "scope": "core",
+            "descriptor": [
+              128,
+              128
+            ],
+            "variant": 0,
+            "input_recipe": {
+              "matrix": "torch.randn(shape,dtype,device)",
+              "factorization": "torch.geqrf(matrix) outside timed call",
+              "rng_policy": "consume caller RNG stream; no per-case seed reset",
+              "native": "torch.orgqr(input,tau)"
+            },
+            "producer_sample": {
+              "rng_device_type": "cuda",
+              "rng_state_before_hex": "6d7d4b4806da15002800000000000000",
+              "input_sha256": [
+                "9f5dc3c07ece1bfb7f54537c41d74dbf139d15e5679985025d0c342860bca5c9",
+                "94671d0b206746989c33a3adc0505ebdcb0df04ed433822abc3c5ff5393a8b73"
+              ],
+              "input_bytes": [
+                131072,
+                1024
+              ]
+            }
+          },
+          "T_us": 229.2577005457133,
+          "latency_ms": 0.22925770054571332,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null,
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "mean",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        }
+      }
+    }
+  },
+  "_environment": {
+    "schema_version": 1,
+    "collected_at_utc": "2026-10-30T09:09:02.428059+00:00",
+    "hardware": {
+      "gpu": {
+        "name": "NVIDIA H800",
+        "uuid": "afb40f3d-fc19-f064-dd8d-04757c275de2",
+        "total_memory_bytes": 85017624576,
+        "total_memory_gib": 79.18,
+        "compute_capability": "9.0",
+        "multiprocessor_count": 132,
+        "cuda_device_index": 0,
+        "driver_version": "580.105.08"
+      },
+      "cpu_model": "Intel(R) Xeon(R) Platinum 8468V",
+      "cpu_architecture": "x86_64",
+      "cpu_socket_count": 2,
+      "physical_cpu_core_count": 96,
+      "logical_cpu_count": 192,
+      "cpu_threads_per_core": 2,
+      "numa_node_count": 2,
+      "process_cpu_affinity_count": 192,
+      "hypervisor_vendor": null
+    },
+    "software": {
+      "os": "Linux",
+      "os_release": "5.15.0-78-generic",
+      "machine": "x86_64",
+      "python": "3.12.3",
+      "packages": {
+        "torch": "2.8.0a0+5228986c39.nv25.5",
+        "triton": "3.6.0",
+        "vllm": null,
+        "sglang": null
+      },
+      "torch_cuda_version": "12.9",
+      "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Apr__9_19:24:57_PDT_2025\nCuda compilation tools, release 12.9, V12.9.41\nBuild cuda_12.9.r12.9/compiler.35813241_0",
+      "ncu_version": "NVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2025 NVIDIA Corporation\nVersion 2025.2.0.0 (build 35613519) (public-release)"
+    },
+    "source": {
+      "git_commit": "76125c6b7fb92a0131b43b01aa4dd520e1268aaf",
+      "git_branch": "HEAD",
+      "git_dirty": false
+    },
+    "run": {
+      "repo": "pytorch",
+      "device": null,
+      "ncu_enabled": false,
+      "report_dir": "/data/tj/workspace/ops-orgqr-current-output-20261030-v1/ncu-unused/orgqr-current-h800.json-6ab9ea74d0a48ee4/orgqr_current_core/753c5330b3194bbe9cbf1da258570bbf",
+      "output_path": "/data/tj/workspace/ops-orgqr-current-output-20261030-v1/orgqr-current-h800.json.work/orgqr_current_core/753c5330b3194bbe9cbf1da258570bbf/result.json",
+      "op_timeout_seconds": 1800.0,
+      "reference_chip": "H800",
+      "only": [
+        "orgqr_current_core"
+      ],
+      "whitelist": null,
+      "blacklist": null,
+      "selected_ops": [
+        "orgqr_current_core"
+      ],
+      "latency_warmup_ms": 25,
+      "latency_rep_ms": 100,
+      "ncu_warmup_calls": 3
+    },
+    "environment_variables": {
+      "CUDA_VISIBLE_DEVICES": "0",
+      "CUDA_DEVICE_ORDER": null
+    }
+  },
+  "_scaling_factors": {
+    "_note": "factor = vendor_peak / H800_peak；null 表示分子或分母缺失；nominal/measured 各一套。供 flaggems-vllm 跨芯片归一化对比使用。",
+    "reference_chip": "H800",
+    "source_specs": "hardware_specs.json",
+    "chips": [
+      {
+        "vendor": "nvidia",
+        "vendor_zh": "英伟达",
+        "chip": "H800",
+        "nominal": {
+          "bandwidth_gbps": 1.0,
+          "tensor": {
+            "bf16": 1.0,
+            "fp16": 1.0,
+            "fp32": 1.0,
+            "tf32": 1.0,
+            "int8": 1.0,
+            "fp64": 1.0,
+            "fp8": 1.0
+          },
+          "vector": {
+            "bf16": 1.0,
+            "fp16": 1.0,
+            "fp32": 1.0,
+            "int8": null,
+            "fp64": 1.0,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 1.0,
+          "tensor": {
+            "bf16": 1.0,
+            "fp16": 1.0,
+            "fp32": 1.0,
+            "tf32": 1.0,
+            "int8": 1.0,
+            "fp64": 1.0,
+            "fp8": 1.0
+          },
+          "vector": {
+            "bf16": 1.0,
+            "fp16": 1.0,
+            "fp32": 1.0,
+            "int8": 1.0,
+            "fp64": 1.0,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "nvidia",
+        "vendor_zh": "英伟达",
+        "chip": "H100",
+        "nominal": {
+          "bandwidth_gbps": 1.0,
+          "tensor": {
+            "bf16": 1.000404,
+            "fp16": 1.000404,
+            "fp32": 1.0,
+            "tf32": 1.000404,
+            "int8": 0.999949,
+            "fp64": 66.9,
+            "fp8": 0.999949
+          },
+          "vector": {
+            "bf16": 0.998507,
+            "fp16": 0.998507,
+            "fp32": 0.998507,
+            "int8": null,
+            "fp64": 33.5,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 1.0,
+          "tensor": {
+            "bf16": 0.992845,
+            "fp16": 1.043176,
+            "fp32": 0.999938,
+            "tf32": 0.964256,
+            "int8": 0.988143,
+            "fp64": 58.895238,
+            "fp8": 1.048244
+          },
+          "vector": {
+            "bf16": 0.999955,
+            "fp16": 0.99997,
+            "fp32": 0.992604,
+            "int8": 1.0003,
+            "fp64": 29.44689,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "t-head",
+        "vendor_zh": "平头哥",
+        "chip": "PPU-ZW810E",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.662759,
+          "tensor": {
+            "bf16": 0.058651,
+            "fp16": 0.062691,
+            "fp32": 0.538868,
+            "tf32": 0.075912,
+            "int8": 0.027883,
+            "fp64": 6.597143,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": 0.828975,
+            "fp16": 0.828837,
+            "fp32": 0.416839,
+            "int8": 0.206073,
+            "fp64": 6.120574,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "t-head",
+        "vendor_zh": "平头哥",
+        "chip": "m890",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.781483,
+          "tensor": {
+            "bf16": 0.281445,
+            "fp16": 0.300869,
+            "fp32": 0.257819,
+            "tf32": 0.161166,
+            "int8": null,
+            "fp64": null,
+            "fp8": 0.042014
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": 0.194236,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "enflame",
+        "vendor_zh": "燧原",
+        "chip": "S60",
+        "nominal": {
+          "bandwidth_gbps": 0.200597,
+          "tensor": {
+            "bf16": 0.132457,
+            "fp16": 0.132457,
+            "fp32": 0.478326,
+            "tf32": null,
+            "int8": 0.13239,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.150325,
+          "tensor": {
+            "bf16": 0.135388,
+            "fp16": 0.144762,
+            "fp32": 0.672654,
+            "tf32": null,
+            "int8": 0.134391,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": 0.026166,
+            "fp16": 0.026197,
+            "fp32": 0.029496,
+            "int8": 0.013308,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "ascend",
+        "vendor_zh": "华为",
+        "chip": "Atlas 800T A3",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": 0.760364,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.951084,
+          "tensor": {
+            "bf16": 0.761695,
+            "fp16": 0.839078,
+            "fp32": 4.098971,
+            "tf32": null,
+            "int8": 0.756027,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "metax",
+        "vendor_zh": "沐曦",
+        "chip": "C550",
+        "nominal": {
+          "bandwidth_gbps": 0.537313,
+          "tensor": {
+            "bf16": 0.323559,
+            "fp16": 0.323559,
+            "fp32": 0.597907,
+            "tf32": 0.323559,
+            "int8": 0.323396,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.472532,
+          "tensor": {
+            "bf16": 0.285784,
+            "fp16": 0.298125,
+            "fp32": 0.816461,
+            "tf32": 0.265815,
+            "int8": 0.291016,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": 0.136079,
+            "fp32": 0.541991,
+            "int8": 0.068039,
+            "fp64": 2.166507,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "kunlunxin",
+        "vendor_zh": "昆仑芯",
+        "chip": "P900",
+        "nominal": {
+          "bandwidth_gbps": 0.776119,
+          "tensor": {
+            "bf16": 0.353893,
+            "fp16": 0.353893,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.791,
+          "tensor": {
+            "bf16": 0.357504,
+            "fp16": 0.389264,
+            "fp32": 2.853909,
+            "tf32": 0.278234,
+            "int8": 0.33308,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "kunlunxin",
+        "vendor_zh": "昆仑芯",
+        "chip": "P800",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": 0.032261,
+            "fp16": 0.03449,
+            "fp32": null,
+            "tf32": 0.062035,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "mthreads",
+        "vendor_zh": "摩尔",
+        "chip": "MTT-S5000",
+        "nominal": {
+          "bandwidth_gbps": 0.477612,
+          "tensor": {
+            "bf16": 0.434783,
+            "fp16": 0.434783,
+            "fp32": 0.433483,
+            "tf32": 0.434783,
+            "int8": 0.434563,
+            "fp64": 14.5,
+            "fp8": 0.434563
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.423867,
+          "tensor": {
+            "bf16": 0.46863,
+            "fp16": 0.499849,
+            "fp32": 0.585391,
+            "tf32": 0.449552,
+            "int8": 0.463452,
+            "fp64": 13.533333,
+            "fp8": 0.504517
+          },
+          "vector": {
+            "bf16": 0.285102,
+            "fp16": 0.284926,
+            "fp32": 0.255336,
+            "int8": 0.095037,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "hygon",
+        "vendor_zh": "海光",
+        "chip": "BW1000",
+        "nominal": {
+          "bandwidth_gbps": 0.537313,
+          "tensor": {
+            "bf16": 0.485339,
+            "fp16": 0.485339,
+            "fp32": 0.896861,
+            "tf32": 0.485339,
+            "int8": 0.485093,
+            "fp64": 30.0,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.47352,
+          "tensor": {
+            "bf16": 0.494279,
+            "fp16": 0.526445,
+            "fp32": 1.253704,
+            "tf32": 0.475373,
+            "int8": 0.490587,
+            "fp64": 29.009524,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": 0.109955,
+            "fp16": 0.45465,
+            "fp32": 0.228884,
+            "int8": 0.114093,
+            "fp64": 14.488038,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "iluvatar",
+        "vendor_zh": "天数",
+        "chip": "BI-V150",
+        "nominal": {
+          "bandwidth_gbps": 0.477612,
+          "tensor": {
+            "bf16": 0.258847,
+            "fp16": 0.258847,
+            "fp32": 0.956652,
+            "tf32": null,
+            "int8": 0.388075,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.356378,
+          "tensor": {
+            "bf16": 0.220302,
+            "fp16": 0.234676,
+            "fp32": 0.940123,
+            "tf32": null,
+            "int8": 0.391076,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": 0.461253,
+            "fp16": 0.469367,
+            "fp32": 0.230722,
+            "int8": 0.11987,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "tsingmicro",
+        "vendor_zh": "清微智能",
+        "chip": "TX8110",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "tsingmicro",
+        "vendor_zh": "清微智能",
+        "chip": "REX1032",
+        "nominal": {
+          "bandwidth_gbps": 0.238806,
+          "tensor": {
+            "bf16": 0.517695,
+            "fp16": 0.517695,
+            "fp32": 0.179372,
+            "tf32": 1.035389,
+            "int8": 0.517433,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.197353,
+          "tensor": {
+            "bf16": 0.525497,
+            "fp16": 0.561805,
+            "fp32": 0.251029,
+            "tf32": 0.892402,
+            "int8": 0.521583,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "cambricon",
+        "vendor_zh": "寒武纪",
+        "chip": "MLU590-M9DE",
+        "nominal": {
+          "bandwidth_gbps": 0.671642,
+          "tensor": {
+            "bf16": 0.33367,
+            "fp16": 0.33367,
+            "fp32": 1.233184,
+            "tf32": 0.33367,
+            "int8": 0.333502,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.625387,
+          "tensor": {
+            "bf16": 0.316304,
+            "fp16": 0.338258,
+            "fp32": 1.604938,
+            "tf32": 0.307205,
+            "int8": 0.312064,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      }
+    ]
+  }
+}
