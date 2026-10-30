@@ -1,0 +1,4890 @@
+{
+  "_collection": {
+    "configuration": {
+      "repo": "pytorch",
+      "operators": [
+        "nextafter_inplace_legacy_core",
+        "nextafter_inplace_own_core"
+      ],
+      "devices": [
+        "0"
+      ],
+      "ncu_enabled": false,
+      "op_timeout": 1800.0,
+      "reference_chip": "H800",
+      "source_sha256": "24ea8bf2dd0ad8f0f837ea9c8d5b840ebc9a0990ace48ab69e73cfd2b6f2dddd",
+      "report_dir": "/data/tj/workspace/ops-nextafter-prepared-output-20261030-v1/ncu-unused"
+    },
+    "started_at_utc": "2026-10-29T23:40:40.913273+00:00",
+    "tasks": {
+      "nextafter_inplace_legacy_core": {
+        "status": "completed",
+        "device": "0",
+        "returncode": 0,
+        "log": "/data/tj/workspace/ops-nextafter-prepared-output-20261030-v1/nextafter-prepared-h800.json.work/nextafter_inplace_legacy_core/b697aa3445b94c4a85ebaed0da00ebd6/collector.log",
+        "result": "/data/tj/workspace/ops-nextafter-prepared-output-20261030-v1/nextafter-prepared-h800.json.work/nextafter_inplace_legacy_core/b697aa3445b94c4a85ebaed0da00ebd6/result.json"
+      },
+      "nextafter_inplace_own_core": {
+        "status": "completed",
+        "device": "0",
+        "returncode": 0,
+        "log": "/data/tj/workspace/ops-nextafter-prepared-output-20261030-v1/nextafter-prepared-h800.json.work/nextafter_inplace_own_core/628e5db19c4a484b882f154b4f4df2fc/collector.log",
+        "result": "/data/tj/workspace/ops-nextafter-prepared-output-20261030-v1/nextafter-prepared-h800.json.work/nextafter_inplace_own_core/628e5db19c4a484b882f154b4f4df2fc/result.json"
+      }
+    },
+    "interrupted": false,
+    "attempt_started_at_utc": "2026-10-29T23:40:40.913350+00:00",
+    "finished_at_utc": "2026-10-29T23:41:14.963444+00:00"
+  },
+  "_environments": {
+    "0": {
+      "schema_version": 1,
+      "collected_at_utc": "2026-10-29T23:40:59.879940+00:00",
+      "hardware": {
+        "gpu": {
+          "name": "NVIDIA H800",
+          "uuid": "afb40f3d-fc19-f064-dd8d-04757c275de2",
+          "total_memory_bytes": 85017624576,
+          "total_memory_gib": 79.18,
+          "compute_capability": "9.0",
+          "multiprocessor_count": 132,
+          "cuda_device_index": 0,
+          "driver_version": "580.105.08"
+        },
+        "cpu_model": "Intel(R) Xeon(R) Platinum 8468V",
+        "cpu_architecture": "x86_64",
+        "cpu_socket_count": 2,
+        "physical_cpu_core_count": 96,
+        "logical_cpu_count": 192,
+        "cpu_threads_per_core": 2,
+        "numa_node_count": 2,
+        "process_cpu_affinity_count": 192,
+        "hypervisor_vendor": null
+      },
+      "software": {
+        "os": "Linux",
+        "os_release": "5.15.0-78-generic",
+        "machine": "x86_64",
+        "python": "3.12.3",
+        "packages": {
+          "torch": "2.8.0a0+5228986c39.nv25.5",
+          "triton": "3.6.0",
+          "vllm": null,
+          "sglang": null
+        },
+        "torch_cuda_version": "12.9",
+        "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Apr__9_19:24:57_PDT_2025\nCuda compilation tools, release 12.9, V12.9.41\nBuild cuda_12.9.r12.9/compiler.35813241_0",
+        "ncu_version": "NVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2025 NVIDIA Corporation\nVersion 2025.2.0.0 (build 35613519) (public-release)"
+      },
+      "source": {
+        "git_commit": "edcf1d0b609106402861d5c95c38534828de7763",
+        "git_branch": "HEAD",
+        "git_dirty": false
+      },
+      "run": {
+        "repo": "pytorch",
+        "device": null,
+        "ncu_enabled": false,
+        "report_dir": "/data/tj/workspace/ops-nextafter-prepared-output-20261030-v1/ncu-unused/nextafter-prepared-h800.json-9f413ceac774c5ed/nextafter_inplace_own_core/628e5db19c4a484b882f154b4f4df2fc",
+        "output_path": "/data/tj/workspace/ops-nextafter-prepared-output-20261030-v1/nextafter-prepared-h800.json.work/nextafter_inplace_own_core/628e5db19c4a484b882f154b4f4df2fc/result.json",
+        "op_timeout_seconds": 1800.0,
+        "reference_chip": "H800",
+        "only": [
+          "nextafter_inplace_own_core"
+        ],
+        "whitelist": null,
+        "blacklist": null,
+        "selected_ops": [
+          "nextafter_inplace_own_core"
+        ],
+        "latency_warmup_ms": 25,
+        "latency_rep_ms": 100,
+        "ncu_warmup_calls": 3
+      },
+      "environment_variables": {
+        "CUDA_VISIBLE_DEVICES": "0",
+        "CUDA_DEVICE_ORDER": null
+      }
+    }
+  },
+  "nextafter_inplace_legacy_core": {
+    "native_api": "ops.nextafter_inplace_legacy_core",
+    "shapes": {
+      "[1073741824]": {
+        "torch.float16": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter.py",
+            "original_case_id": "benchmark/test_nextafter.py::test_nextafter_::core::float16::0",
+            "ordinal": 0,
+            "origin": "legacy",
+            "original_shape": {
+              "inputs": [
+                [
+                  1073741824
+                ],
+                [
+                  1073741824
+                ]
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              1073741824
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_legacy_case_fn": "d3c26b4539f52d505c7af05e8296fdc680de03bed0129156e143571ce775ba3c",
+              "_legacy_build_inputs_fn": "e442184d59fa4a31a5c0a9631a653bb0b0650b785516f76b9c90d3e01a3fdba9"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    1073741824
+                  ],
+                  "dtype": "torch.float16",
+                  "stride": [
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    1073741824
+                  ],
+                  "dtype": "torch.float16",
+                  "stride": [
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": null,
+              "dtype": "torch.float16",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 2080.449950938322,
+          "latency_ms": 2.080449950938322,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float32": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter.py",
+            "original_case_id": "benchmark/test_nextafter.py::test_nextafter_::core::float32::0",
+            "ordinal": 0,
+            "origin": "legacy",
+            "original_shape": {
+              "inputs": [
+                [
+                  1073741824
+                ],
+                [
+                  1073741824
+                ]
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              1073741824
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_legacy_case_fn": "d3c26b4539f52d505c7af05e8296fdc680de03bed0129156e143571ce775ba3c",
+              "_legacy_build_inputs_fn": "e442184d59fa4a31a5c0a9631a653bb0b0650b785516f76b9c90d3e01a3fdba9"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    1073741824
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    1073741824
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": null,
+              "dtype": "torch.float32",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 4164.515857696533,
+          "latency_ms": 4.164515857696533,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.bfloat16": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter.py",
+            "original_case_id": "benchmark/test_nextafter.py::test_nextafter_::core::bfloat16::0",
+            "ordinal": 0,
+            "origin": "legacy",
+            "original_shape": {
+              "inputs": [
+                [
+                  1073741824
+                ],
+                [
+                  1073741824
+                ]
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              1073741824
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_legacy_case_fn": "d3c26b4539f52d505c7af05e8296fdc680de03bed0129156e143571ce775ba3c",
+              "_legacy_build_inputs_fn": "e442184d59fa4a31a5c0a9631a653bb0b0650b785516f76b9c90d3e01a3fdba9"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    1073741824
+                  ],
+                  "dtype": "torch.bfloat16",
+                  "stride": [
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    1073741824
+                  ],
+                  "dtype": "torch.bfloat16",
+                  "stride": [
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": null,
+              "dtype": "torch.bfloat16",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 2080.1103893591435,
+          "latency_ms": 2.0801103893591435,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "[64, 64]": {
+        "torch.float16": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter.py",
+            "original_case_id": "benchmark/test_nextafter.py::test_nextafter_::core::float16::1",
+            "ordinal": 1,
+            "origin": "legacy",
+            "original_shape": {
+              "inputs": [
+                [
+                  64,
+                  64
+                ],
+                [
+                  64,
+                  64
+                ]
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              64,
+              64
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_legacy_case_fn": "d3c26b4539f52d505c7af05e8296fdc680de03bed0129156e143571ce775ba3c",
+              "_legacy_build_inputs_fn": "e442184d59fa4a31a5c0a9631a653bb0b0650b785516f76b9c90d3e01a3fdba9"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    64,
+                    64
+                  ],
+                  "dtype": "torch.float16",
+                  "stride": [
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    64,
+                    64
+                  ],
+                  "dtype": "torch.float16",
+                  "stride": [
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": null,
+              "dtype": "torch.float16",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 12.276450781439303,
+          "latency_ms": 0.012276450781439303,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float32": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter.py",
+            "original_case_id": "benchmark/test_nextafter.py::test_nextafter_::core::float32::1",
+            "ordinal": 1,
+            "origin": "legacy",
+            "original_shape": {
+              "inputs": [
+                [
+                  64,
+                  64
+                ],
+                [
+                  64,
+                  64
+                ]
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              64,
+              64
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_legacy_case_fn": "d3c26b4539f52d505c7af05e8296fdc680de03bed0129156e143571ce775ba3c",
+              "_legacy_build_inputs_fn": "e442184d59fa4a31a5c0a9631a653bb0b0650b785516f76b9c90d3e01a3fdba9"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    64,
+                    64
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    64,
+                    64
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": null,
+              "dtype": "torch.float32",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 12.307359100510386,
+          "latency_ms": 0.012307359100510385,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.bfloat16": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter.py",
+            "original_case_id": "benchmark/test_nextafter.py::test_nextafter_::core::bfloat16::1",
+            "ordinal": 1,
+            "origin": "legacy",
+            "original_shape": {
+              "inputs": [
+                [
+                  64,
+                  64
+                ],
+                [
+                  64,
+                  64
+                ]
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              64,
+              64
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_legacy_case_fn": "d3c26b4539f52d505c7af05e8296fdc680de03bed0129156e143571ce775ba3c",
+              "_legacy_build_inputs_fn": "e442184d59fa4a31a5c0a9631a653bb0b0650b785516f76b9c90d3e01a3fdba9"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    64,
+                    64
+                  ],
+                  "dtype": "torch.bfloat16",
+                  "stride": [
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    64,
+                    64
+                  ],
+                  "dtype": "torch.bfloat16",
+                  "stride": [
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": null,
+              "dtype": "torch.bfloat16",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 12.346358514034455,
+          "latency_ms": 0.012346358514034454,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "[4096, 4096]": {
+        "torch.float16": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter.py",
+            "original_case_id": "benchmark/test_nextafter.py::test_nextafter_::core::float16::2",
+            "ordinal": 2,
+            "origin": "legacy",
+            "original_shape": {
+              "inputs": [
+                [
+                  4096,
+                  4096
+                ],
+                [
+                  4096,
+                  4096
+                ]
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              4096,
+              4096
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_legacy_case_fn": "d3c26b4539f52d505c7af05e8296fdc680de03bed0129156e143571ce775ba3c",
+              "_legacy_build_inputs_fn": "e442184d59fa4a31a5c0a9631a653bb0b0650b785516f76b9c90d3e01a3fdba9"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4096,
+                    4096
+                  ],
+                  "dtype": "torch.float16",
+                  "stride": [
+                    4096,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4096,
+                    4096
+                  ],
+                  "dtype": "torch.float16",
+                  "stride": [
+                    4096,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": null,
+              "dtype": "torch.float16",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 39.728177970273805,
+          "latency_ms": 0.0397281779702738,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float32": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter.py",
+            "original_case_id": "benchmark/test_nextafter.py::test_nextafter_::core::float32::2",
+            "ordinal": 2,
+            "origin": "legacy",
+            "original_shape": {
+              "inputs": [
+                [
+                  4096,
+                  4096
+                ],
+                [
+                  4096,
+                  4096
+                ]
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              4096,
+              4096
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_legacy_case_fn": "d3c26b4539f52d505c7af05e8296fdc680de03bed0129156e143571ce775ba3c",
+              "_legacy_build_inputs_fn": "e442184d59fa4a31a5c0a9631a653bb0b0650b785516f76b9c90d3e01a3fdba9"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4096,
+                    4096
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    4096,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4096,
+                    4096
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    4096,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": null,
+              "dtype": "torch.float32",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 72.69546443184969,
+          "latency_ms": 0.07269546443184968,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.bfloat16": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter.py",
+            "original_case_id": "benchmark/test_nextafter.py::test_nextafter_::core::bfloat16::2",
+            "ordinal": 2,
+            "origin": "legacy",
+            "original_shape": {
+              "inputs": [
+                [
+                  4096,
+                  4096
+                ],
+                [
+                  4096,
+                  4096
+                ]
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              4096,
+              4096
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_legacy_case_fn": "d3c26b4539f52d505c7af05e8296fdc680de03bed0129156e143571ce775ba3c",
+              "_legacy_build_inputs_fn": "e442184d59fa4a31a5c0a9631a653bb0b0650b785516f76b9c90d3e01a3fdba9"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4096,
+                    4096
+                  ],
+                  "dtype": "torch.bfloat16",
+                  "stride": [
+                    4096,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4096,
+                    4096
+                  ],
+                  "dtype": "torch.bfloat16",
+                  "stride": [
+                    4096,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": null,
+              "dtype": "torch.bfloat16",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 39.65534662722974,
+          "latency_ms": 0.03965534662722974,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "[64, 512, 512]": {
+        "torch.float16": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter.py",
+            "original_case_id": "benchmark/test_nextafter.py::test_nextafter_::core::float16::3",
+            "ordinal": 3,
+            "origin": "legacy",
+            "original_shape": {
+              "inputs": [
+                [
+                  64,
+                  512,
+                  512
+                ],
+                [
+                  64,
+                  512,
+                  512
+                ]
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              64,
+              512,
+              512
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_legacy_case_fn": "d3c26b4539f52d505c7af05e8296fdc680de03bed0129156e143571ce775ba3c",
+              "_legacy_build_inputs_fn": "e442184d59fa4a31a5c0a9631a653bb0b0650b785516f76b9c90d3e01a3fdba9"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    64,
+                    512,
+                    512
+                  ],
+                  "dtype": "torch.float16",
+                  "stride": [
+                    262144,
+                    512,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    64,
+                    512,
+                    512
+                  ],
+                  "dtype": "torch.float16",
+                  "stride": [
+                    262144,
+                    512,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": null,
+              "dtype": "torch.float16",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 39.92694288402974,
+          "latency_ms": 0.039926942884029745,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float32": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter.py",
+            "original_case_id": "benchmark/test_nextafter.py::test_nextafter_::core::float32::3",
+            "ordinal": 3,
+            "origin": "legacy",
+            "original_shape": {
+              "inputs": [
+                [
+                  64,
+                  512,
+                  512
+                ],
+                [
+                  64,
+                  512,
+                  512
+                ]
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              64,
+              512,
+              512
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_legacy_case_fn": "d3c26b4539f52d505c7af05e8296fdc680de03bed0129156e143571ce775ba3c",
+              "_legacy_build_inputs_fn": "e442184d59fa4a31a5c0a9631a653bb0b0650b785516f76b9c90d3e01a3fdba9"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    64,
+                    512,
+                    512
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    262144,
+                    512,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    64,
+                    512,
+                    512
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    262144,
+                    512,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": null,
+              "dtype": "torch.float32",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 72.66790940870646,
+          "latency_ms": 0.07266790940870646,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.bfloat16": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter.py",
+            "original_case_id": "benchmark/test_nextafter.py::test_nextafter_::core::bfloat16::3",
+            "ordinal": 3,
+            "origin": "legacy",
+            "original_shape": {
+              "inputs": [
+                [
+                  64,
+                  512,
+                  512
+                ],
+                [
+                  64,
+                  512,
+                  512
+                ]
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              64,
+              512,
+              512
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_legacy_case_fn": "d3c26b4539f52d505c7af05e8296fdc680de03bed0129156e143571ce775ba3c",
+              "_legacy_build_inputs_fn": "e442184d59fa4a31a5c0a9631a653bb0b0650b785516f76b9c90d3e01a3fdba9"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    64,
+                    512,
+                    512
+                  ],
+                  "dtype": "torch.bfloat16",
+                  "stride": [
+                    262144,
+                    512,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    64,
+                    512,
+                    512
+                  ],
+                  "dtype": "torch.bfloat16",
+                  "stride": [
+                    262144,
+                    512,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": null,
+              "dtype": "torch.bfloat16",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 39.9545249218494,
+          "latency_ms": 0.0399545249218494,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "[1024, 1024, 1024]": {
+        "torch.float16": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter.py",
+            "original_case_id": "benchmark/test_nextafter.py::test_nextafter_::core::float16::4",
+            "ordinal": 4,
+            "origin": "legacy",
+            "original_shape": {
+              "inputs": [
+                [
+                  1024,
+                  1024,
+                  1024
+                ],
+                [
+                  1024,
+                  1024,
+                  1024
+                ]
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              1024,
+              1024,
+              1024
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_legacy_case_fn": "d3c26b4539f52d505c7af05e8296fdc680de03bed0129156e143571ce775ba3c",
+              "_legacy_build_inputs_fn": "e442184d59fa4a31a5c0a9631a653bb0b0650b785516f76b9c90d3e01a3fdba9"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    1024,
+                    1024,
+                    1024
+                  ],
+                  "dtype": "torch.float16",
+                  "stride": [
+                    1048576,
+                    1024,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    1024,
+                    1024,
+                    1024
+                  ],
+                  "dtype": "torch.float16",
+                  "stride": [
+                    1048576,
+                    1024,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": null,
+              "dtype": "torch.float16",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 2079.112500560527,
+          "latency_ms": 2.079112500560527,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float32": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter.py",
+            "original_case_id": "benchmark/test_nextafter.py::test_nextafter_::core::float32::4",
+            "ordinal": 4,
+            "origin": "legacy",
+            "original_shape": {
+              "inputs": [
+                [
+                  1024,
+                  1024,
+                  1024
+                ],
+                [
+                  1024,
+                  1024,
+                  1024
+                ]
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              1024,
+              1024,
+              1024
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_legacy_case_fn": "d3c26b4539f52d505c7af05e8296fdc680de03bed0129156e143571ce775ba3c",
+              "_legacy_build_inputs_fn": "e442184d59fa4a31a5c0a9631a653bb0b0650b785516f76b9c90d3e01a3fdba9"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    1024,
+                    1024,
+                    1024
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    1048576,
+                    1024,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    1024,
+                    1024,
+                    1024
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    1048576,
+                    1024,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": null,
+              "dtype": "torch.float32",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 4164.250869750977,
+          "latency_ms": 4.164250869750976,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.bfloat16": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter.py",
+            "original_case_id": "benchmark/test_nextafter.py::test_nextafter_::core::bfloat16::4",
+            "ordinal": 4,
+            "origin": "legacy",
+            "original_shape": {
+              "inputs": [
+                [
+                  1024,
+                  1024,
+                  1024
+                ],
+                [
+                  1024,
+                  1024,
+                  1024
+                ]
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              1024,
+              1024,
+              1024
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_legacy_case_fn": "d3c26b4539f52d505c7af05e8296fdc680de03bed0129156e143571ce775ba3c",
+              "_legacy_build_inputs_fn": "e442184d59fa4a31a5c0a9631a653bb0b0650b785516f76b9c90d3e01a3fdba9"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    1024,
+                    1024,
+                    1024
+                  ],
+                  "dtype": "torch.bfloat16",
+                  "stride": [
+                    1048576,
+                    1024,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    1024,
+                    1024,
+                    1024
+                  ],
+                  "dtype": "torch.bfloat16",
+                  "stride": [
+                    1048576,
+                    1024,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": null,
+              "dtype": "torch.bfloat16",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 2080.0424400640995,
+          "latency_ms": 2.0800424400640996,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      }
+    }
+  },
+  "_environment": {
+    "schema_version": 1,
+    "collected_at_utc": "2026-10-29T23:40:43.786970+00:00",
+    "hardware": {
+      "gpu": {
+        "name": "NVIDIA H800",
+        "uuid": "afb40f3d-fc19-f064-dd8d-04757c275de2",
+        "total_memory_bytes": 85017624576,
+        "total_memory_gib": 79.18,
+        "compute_capability": "9.0",
+        "multiprocessor_count": 132,
+        "cuda_device_index": 0,
+        "driver_version": "580.105.08"
+      },
+      "cpu_model": "Intel(R) Xeon(R) Platinum 8468V",
+      "cpu_architecture": "x86_64",
+      "cpu_socket_count": 2,
+      "physical_cpu_core_count": 96,
+      "logical_cpu_count": 192,
+      "cpu_threads_per_core": 2,
+      "numa_node_count": 2,
+      "process_cpu_affinity_count": 192,
+      "hypervisor_vendor": null
+    },
+    "software": {
+      "os": "Linux",
+      "os_release": "5.15.0-78-generic",
+      "machine": "x86_64",
+      "python": "3.12.3",
+      "packages": {
+        "torch": "2.8.0a0+5228986c39.nv25.5",
+        "triton": "3.6.0",
+        "vllm": null,
+        "sglang": null
+      },
+      "torch_cuda_version": "12.9",
+      "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Apr__9_19:24:57_PDT_2025\nCuda compilation tools, release 12.9, V12.9.41\nBuild cuda_12.9.r12.9/compiler.35813241_0",
+      "ncu_version": "NVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2025 NVIDIA Corporation\nVersion 2025.2.0.0 (build 35613519) (public-release)"
+    },
+    "source": {
+      "git_commit": "edcf1d0b609106402861d5c95c38534828de7763",
+      "git_branch": "HEAD",
+      "git_dirty": false
+    },
+    "run": {
+      "repo": "pytorch",
+      "device": null,
+      "ncu_enabled": false,
+      "report_dir": "/data/tj/workspace/ops-nextafter-prepared-output-20261030-v1/ncu-unused/nextafter-prepared-h800.json-9f413ceac774c5ed/nextafter_inplace_legacy_core/b697aa3445b94c4a85ebaed0da00ebd6",
+      "output_path": "/data/tj/workspace/ops-nextafter-prepared-output-20261030-v1/nextafter-prepared-h800.json.work/nextafter_inplace_legacy_core/b697aa3445b94c4a85ebaed0da00ebd6/result.json",
+      "op_timeout_seconds": 1800.0,
+      "reference_chip": "H800",
+      "only": [
+        "nextafter_inplace_legacy_core"
+      ],
+      "whitelist": null,
+      "blacklist": null,
+      "selected_ops": [
+        "nextafter_inplace_legacy_core"
+      ],
+      "latency_warmup_ms": 25,
+      "latency_rep_ms": 100,
+      "ncu_warmup_calls": 3
+    },
+    "environment_variables": {
+      "CUDA_VISIBLE_DEVICES": "0",
+      "CUDA_DEVICE_ORDER": null
+    }
+  },
+  "_scaling_factors": {
+    "_note": "factor = vendor_peak / H800_peak；null 表示分子或分母缺失；nominal/measured 各一套。供 flaggems-vllm 跨芯片归一化对比使用。",
+    "reference_chip": "H800",
+    "source_specs": "hardware_specs.json",
+    "chips": [
+      {
+        "vendor": "nvidia",
+        "vendor_zh": "英伟达",
+        "chip": "H800",
+        "nominal": {
+          "bandwidth_gbps": 1.0,
+          "tensor": {
+            "bf16": 1.0,
+            "fp16": 1.0,
+            "fp32": 1.0,
+            "tf32": 1.0,
+            "int8": 1.0,
+            "fp64": 1.0,
+            "fp8": 1.0
+          },
+          "vector": {
+            "bf16": 1.0,
+            "fp16": 1.0,
+            "fp32": 1.0,
+            "int8": null,
+            "fp64": 1.0,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 1.0,
+          "tensor": {
+            "bf16": 1.0,
+            "fp16": 1.0,
+            "fp32": 1.0,
+            "tf32": 1.0,
+            "int8": 1.0,
+            "fp64": 1.0,
+            "fp8": 1.0
+          },
+          "vector": {
+            "bf16": 1.0,
+            "fp16": 1.0,
+            "fp32": 1.0,
+            "int8": 1.0,
+            "fp64": 1.0,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "nvidia",
+        "vendor_zh": "英伟达",
+        "chip": "H100",
+        "nominal": {
+          "bandwidth_gbps": 1.0,
+          "tensor": {
+            "bf16": 1.000404,
+            "fp16": 1.000404,
+            "fp32": 1.0,
+            "tf32": 1.000404,
+            "int8": 0.999949,
+            "fp64": 66.9,
+            "fp8": 0.999949
+          },
+          "vector": {
+            "bf16": 0.998507,
+            "fp16": 0.998507,
+            "fp32": 0.998507,
+            "int8": null,
+            "fp64": 33.5,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 1.0,
+          "tensor": {
+            "bf16": 0.992845,
+            "fp16": 1.043176,
+            "fp32": 0.999938,
+            "tf32": 0.964256,
+            "int8": 0.988143,
+            "fp64": 58.895238,
+            "fp8": 1.048244
+          },
+          "vector": {
+            "bf16": 0.999955,
+            "fp16": 0.99997,
+            "fp32": 0.992604,
+            "int8": 1.0003,
+            "fp64": 29.44689,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "t-head",
+        "vendor_zh": "平头哥",
+        "chip": "PPU-ZW810E",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.662759,
+          "tensor": {
+            "bf16": 0.058651,
+            "fp16": 0.062691,
+            "fp32": 0.538868,
+            "tf32": 0.075912,
+            "int8": 0.027883,
+            "fp64": 6.597143,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": 0.828975,
+            "fp16": 0.828837,
+            "fp32": 0.416839,
+            "int8": 0.206073,
+            "fp64": 6.120574,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "t-head",
+        "vendor_zh": "平头哥",
+        "chip": "m890",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.781483,
+          "tensor": {
+            "bf16": 0.281445,
+            "fp16": 0.300869,
+            "fp32": 0.257819,
+            "tf32": 0.161166,
+            "int8": null,
+            "fp64": null,
+            "fp8": 0.042014
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": 0.194236,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "enflame",
+        "vendor_zh": "燧原",
+        "chip": "S60",
+        "nominal": {
+          "bandwidth_gbps": 0.200597,
+          "tensor": {
+            "bf16": 0.132457,
+            "fp16": 0.132457,
+            "fp32": 0.478326,
+            "tf32": null,
+            "int8": 0.13239,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.150325,
+          "tensor": {
+            "bf16": 0.135388,
+            "fp16": 0.144762,
+            "fp32": 0.672654,
+            "tf32": null,
+            "int8": 0.134391,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": 0.026166,
+            "fp16": 0.026197,
+            "fp32": 0.029496,
+            "int8": 0.013308,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "ascend",
+        "vendor_zh": "华为",
+        "chip": "Atlas 800T A3",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": 0.760364,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.951084,
+          "tensor": {
+            "bf16": 0.761695,
+            "fp16": 0.839078,
+            "fp32": 4.098971,
+            "tf32": null,
+            "int8": 0.756027,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "metax",
+        "vendor_zh": "沐曦",
+        "chip": "C550",
+        "nominal": {
+          "bandwidth_gbps": 0.537313,
+          "tensor": {
+            "bf16": 0.323559,
+            "fp16": 0.323559,
+            "fp32": 0.597907,
+            "tf32": 0.323559,
+            "int8": 0.323396,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.472532,
+          "tensor": {
+            "bf16": 0.285784,
+            "fp16": 0.298125,
+            "fp32": 0.816461,
+            "tf32": 0.265815,
+            "int8": 0.291016,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": 0.136079,
+            "fp32": 0.541991,
+            "int8": 0.068039,
+            "fp64": 2.166507,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "kunlunxin",
+        "vendor_zh": "昆仑芯",
+        "chip": "P900",
+        "nominal": {
+          "bandwidth_gbps": 0.776119,
+          "tensor": {
+            "bf16": 0.353893,
+            "fp16": 0.353893,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.791,
+          "tensor": {
+            "bf16": 0.357504,
+            "fp16": 0.389264,
+            "fp32": 2.853909,
+            "tf32": 0.278234,
+            "int8": 0.33308,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "kunlunxin",
+        "vendor_zh": "昆仑芯",
+        "chip": "P800",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": 0.032261,
+            "fp16": 0.03449,
+            "fp32": null,
+            "tf32": 0.062035,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "mthreads",
+        "vendor_zh": "摩尔",
+        "chip": "MTT-S5000",
+        "nominal": {
+          "bandwidth_gbps": 0.477612,
+          "tensor": {
+            "bf16": 0.434783,
+            "fp16": 0.434783,
+            "fp32": 0.433483,
+            "tf32": 0.434783,
+            "int8": 0.434563,
+            "fp64": 14.5,
+            "fp8": 0.434563
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.423867,
+          "tensor": {
+            "bf16": 0.46863,
+            "fp16": 0.499849,
+            "fp32": 0.585391,
+            "tf32": 0.449552,
+            "int8": 0.463452,
+            "fp64": 13.533333,
+            "fp8": 0.504517
+          },
+          "vector": {
+            "bf16": 0.285102,
+            "fp16": 0.284926,
+            "fp32": 0.255336,
+            "int8": 0.095037,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "hygon",
+        "vendor_zh": "海光",
+        "chip": "BW1000",
+        "nominal": {
+          "bandwidth_gbps": 0.537313,
+          "tensor": {
+            "bf16": 0.485339,
+            "fp16": 0.485339,
+            "fp32": 0.896861,
+            "tf32": 0.485339,
+            "int8": 0.485093,
+            "fp64": 30.0,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.47352,
+          "tensor": {
+            "bf16": 0.494279,
+            "fp16": 0.526445,
+            "fp32": 1.253704,
+            "tf32": 0.475373,
+            "int8": 0.490587,
+            "fp64": 29.009524,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": 0.109955,
+            "fp16": 0.45465,
+            "fp32": 0.228884,
+            "int8": 0.114093,
+            "fp64": 14.488038,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "iluvatar",
+        "vendor_zh": "天数",
+        "chip": "BI-V150",
+        "nominal": {
+          "bandwidth_gbps": 0.477612,
+          "tensor": {
+            "bf16": 0.258847,
+            "fp16": 0.258847,
+            "fp32": 0.956652,
+            "tf32": null,
+            "int8": 0.388075,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.356378,
+          "tensor": {
+            "bf16": 0.220302,
+            "fp16": 0.234676,
+            "fp32": 0.940123,
+            "tf32": null,
+            "int8": 0.391076,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": 0.461253,
+            "fp16": 0.469367,
+            "fp32": 0.230722,
+            "int8": 0.11987,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "tsingmicro",
+        "vendor_zh": "清微智能",
+        "chip": "TX8110",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "tsingmicro",
+        "vendor_zh": "清微智能",
+        "chip": "REX1032",
+        "nominal": {
+          "bandwidth_gbps": 0.238806,
+          "tensor": {
+            "bf16": 0.517695,
+            "fp16": 0.517695,
+            "fp32": 0.179372,
+            "tf32": 1.035389,
+            "int8": 0.517433,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.197353,
+          "tensor": {
+            "bf16": 0.525497,
+            "fp16": 0.561805,
+            "fp32": 0.251029,
+            "tf32": 0.892402,
+            "int8": 0.521583,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "cambricon",
+        "vendor_zh": "寒武纪",
+        "chip": "MLU590-M9DE",
+        "nominal": {
+          "bandwidth_gbps": 0.671642,
+          "tensor": {
+            "bf16": 0.33367,
+            "fp16": 0.33367,
+            "fp32": 1.233184,
+            "tf32": 0.33367,
+            "int8": 0.333502,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.625387,
+          "tensor": {
+            "bf16": 0.316304,
+            "fp16": 0.338258,
+            "fp32": 1.604938,
+            "tf32": 0.307205,
+            "int8": 0.312064,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      }
+    ]
+  },
+  "nextafter_inplace_own_core": {
+    "native_api": "ops.nextafter_inplace_own_core",
+    "shapes": {
+      "[1073741824]": {
+        "torch.float16": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter_.py",
+            "original_case_id": "benchmark/test_nextafter_.py::test_nextafter_::core::float16::0",
+            "ordinal": 0,
+            "origin": "own",
+            "original_shape": {
+              "self": [
+                1073741824
+              ],
+              "other": [
+                1073741824
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              1073741824
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_case_fn": "4d1e07d4be240475f1f4c1de7155ec73e431cb0a58242188a3f4fc90df789701",
+              "_build_inputs_fn": "a99e2b5f5789019bd6bfbf7a1e4144d2f07d13f098b8c3b80bf18c428219e067"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    1073741824
+                  ],
+                  "dtype": "torch.float16",
+                  "stride": [
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    1073741824
+                  ],
+                  "dtype": "torch.float16",
+                  "stride": [
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": 0,
+              "dtype": "torch.float16",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 2080.2442297643547,
+          "latency_ms": 2.0802442297643546,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.bfloat16": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter_.py",
+            "original_case_id": "benchmark/test_nextafter_.py::test_nextafter_::core::bfloat16::0",
+            "ordinal": 0,
+            "origin": "own",
+            "original_shape": {
+              "self": [
+                1073741824
+              ],
+              "other": [
+                1073741824
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              1073741824
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_case_fn": "4d1e07d4be240475f1f4c1de7155ec73e431cb0a58242188a3f4fc90df789701",
+              "_build_inputs_fn": "a99e2b5f5789019bd6bfbf7a1e4144d2f07d13f098b8c3b80bf18c428219e067"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    1073741824
+                  ],
+                  "dtype": "torch.bfloat16",
+                  "stride": [
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    1073741824
+                  ],
+                  "dtype": "torch.bfloat16",
+                  "stride": [
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": 0,
+              "dtype": "torch.bfloat16",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 2078.9577231115227,
+          "latency_ms": 2.0789577231115226,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float32": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter_.py",
+            "original_case_id": "benchmark/test_nextafter_.py::test_nextafter_::core::float32::0",
+            "ordinal": 0,
+            "origin": "own",
+            "original_shape": {
+              "self": [
+                1073741824
+              ],
+              "other": [
+                1073741824
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              1073741824
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_case_fn": "4d1e07d4be240475f1f4c1de7155ec73e431cb0a58242188a3f4fc90df789701",
+              "_build_inputs_fn": "a99e2b5f5789019bd6bfbf7a1e4144d2f07d13f098b8c3b80bf18c428219e067"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    1073741824
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    1073741824
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": 0,
+              "dtype": "torch.float32",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 4163.247356414795,
+          "latency_ms": 4.163247356414795,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float64": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter_.py",
+            "original_case_id": "benchmark/test_nextafter_.py::test_nextafter_::core::float64::0",
+            "ordinal": 0,
+            "origin": "own",
+            "original_shape": {
+              "self": [
+                1073741824
+              ],
+              "other": [
+                1073741824
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              1073741824
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_case_fn": "4d1e07d4be240475f1f4c1de7155ec73e431cb0a58242188a3f4fc90df789701",
+              "_build_inputs_fn": "a99e2b5f5789019bd6bfbf7a1e4144d2f07d13f098b8c3b80bf18c428219e067"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    1073741824
+                  ],
+                  "dtype": "torch.float64",
+                  "stride": [
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    1073741824
+                  ],
+                  "dtype": "torch.float64",
+                  "stride": [
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": 0,
+              "dtype": "torch.float64",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 16571.259089878626,
+          "latency_ms": 16.571259089878627,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "[64, 64]": {
+        "torch.float16": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter_.py",
+            "original_case_id": "benchmark/test_nextafter_.py::test_nextafter_::core::float16::1",
+            "ordinal": 1,
+            "origin": "own",
+            "original_shape": {
+              "self": [
+                64,
+                64
+              ],
+              "other": [
+                64,
+                64
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              64,
+              64
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_case_fn": "4d1e07d4be240475f1f4c1de7155ec73e431cb0a58242188a3f4fc90df789701",
+              "_build_inputs_fn": "a99e2b5f5789019bd6bfbf7a1e4144d2f07d13f098b8c3b80bf18c428219e067"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    64,
+                    64
+                  ],
+                  "dtype": "torch.float16",
+                  "stride": [
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    64,
+                    64
+                  ],
+                  "dtype": "torch.float16",
+                  "stride": [
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": 0,
+              "dtype": "torch.float16",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 12.048082876200597,
+          "latency_ms": 0.012048082876200598,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.bfloat16": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter_.py",
+            "original_case_id": "benchmark/test_nextafter_.py::test_nextafter_::core::bfloat16::1",
+            "ordinal": 1,
+            "origin": "own",
+            "original_shape": {
+              "self": [
+                64,
+                64
+              ],
+              "other": [
+                64,
+                64
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              64,
+              64
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_case_fn": "4d1e07d4be240475f1f4c1de7155ec73e431cb0a58242188a3f4fc90df789701",
+              "_build_inputs_fn": "a99e2b5f5789019bd6bfbf7a1e4144d2f07d13f098b8c3b80bf18c428219e067"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    64,
+                    64
+                  ],
+                  "dtype": "torch.bfloat16",
+                  "stride": [
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    64,
+                    64
+                  ],
+                  "dtype": "torch.bfloat16",
+                  "stride": [
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": 0,
+              "dtype": "torch.bfloat16",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 12.087386998476031,
+          "latency_ms": 0.012087386998476031,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float32": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter_.py",
+            "original_case_id": "benchmark/test_nextafter_.py::test_nextafter_::core::float32::1",
+            "ordinal": 1,
+            "origin": "own",
+            "original_shape": {
+              "self": [
+                64,
+                64
+              ],
+              "other": [
+                64,
+                64
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              64,
+              64
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_case_fn": "4d1e07d4be240475f1f4c1de7155ec73e431cb0a58242188a3f4fc90df789701",
+              "_build_inputs_fn": "a99e2b5f5789019bd6bfbf7a1e4144d2f07d13f098b8c3b80bf18c428219e067"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    64,
+                    64
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    64,
+                    64
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": 0,
+              "dtype": "torch.float32",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 12.093094072474715,
+          "latency_ms": 0.012093094072474714,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float64": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter_.py",
+            "original_case_id": "benchmark/test_nextafter_.py::test_nextafter_::core::float64::1",
+            "ordinal": 1,
+            "origin": "own",
+            "original_shape": {
+              "self": [
+                64,
+                64
+              ],
+              "other": [
+                64,
+                64
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              64,
+              64
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_case_fn": "4d1e07d4be240475f1f4c1de7155ec73e431cb0a58242188a3f4fc90df789701",
+              "_build_inputs_fn": "a99e2b5f5789019bd6bfbf7a1e4144d2f07d13f098b8c3b80bf18c428219e067"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    64,
+                    64
+                  ],
+                  "dtype": "torch.float64",
+                  "stride": [
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    64,
+                    64
+                  ],
+                  "dtype": "torch.float64",
+                  "stride": [
+                    64,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": 0,
+              "dtype": "torch.float64",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 12.23408858808396,
+          "latency_ms": 0.01223408858808396,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "[4096, 4096]": {
+        "torch.float16": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter_.py",
+            "original_case_id": "benchmark/test_nextafter_.py::test_nextafter_::core::float16::2",
+            "ordinal": 2,
+            "origin": "own",
+            "original_shape": {
+              "self": [
+                4096,
+                4096
+              ],
+              "other": [
+                4096,
+                4096
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              4096,
+              4096
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_case_fn": "4d1e07d4be240475f1f4c1de7155ec73e431cb0a58242188a3f4fc90df789701",
+              "_build_inputs_fn": "a99e2b5f5789019bd6bfbf7a1e4144d2f07d13f098b8c3b80bf18c428219e067"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4096,
+                    4096
+                  ],
+                  "dtype": "torch.float16",
+                  "stride": [
+                    4096,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4096,
+                    4096
+                  ],
+                  "dtype": "torch.float16",
+                  "stride": [
+                    4096,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": 0,
+              "dtype": "torch.float16",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 39.731324595215305,
+          "latency_ms": 0.039731324595215306,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.bfloat16": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter_.py",
+            "original_case_id": "benchmark/test_nextafter_.py::test_nextafter_::core::bfloat16::2",
+            "ordinal": 2,
+            "origin": "own",
+            "original_shape": {
+              "self": [
+                4096,
+                4096
+              ],
+              "other": [
+                4096,
+                4096
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              4096,
+              4096
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_case_fn": "4d1e07d4be240475f1f4c1de7155ec73e431cb0a58242188a3f4fc90df789701",
+              "_build_inputs_fn": "a99e2b5f5789019bd6bfbf7a1e4144d2f07d13f098b8c3b80bf18c428219e067"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4096,
+                    4096
+                  ],
+                  "dtype": "torch.bfloat16",
+                  "stride": [
+                    4096,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4096,
+                    4096
+                  ],
+                  "dtype": "torch.bfloat16",
+                  "stride": [
+                    4096,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": 0,
+              "dtype": "torch.bfloat16",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 39.545888534149384,
+          "latency_ms": 0.039545888534149386,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float32": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter_.py",
+            "original_case_id": "benchmark/test_nextafter_.py::test_nextafter_::core::float32::2",
+            "ordinal": 2,
+            "origin": "own",
+            "original_shape": {
+              "self": [
+                4096,
+                4096
+              ],
+              "other": [
+                4096,
+                4096
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              4096,
+              4096
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_case_fn": "4d1e07d4be240475f1f4c1de7155ec73e431cb0a58242188a3f4fc90df789701",
+              "_build_inputs_fn": "a99e2b5f5789019bd6bfbf7a1e4144d2f07d13f098b8c3b80bf18c428219e067"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4096,
+                    4096
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    4096,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4096,
+                    4096
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    4096,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": 0,
+              "dtype": "torch.float32",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 72.38284273102728,
+          "latency_ms": 0.07238284273102728,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float64": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter_.py",
+            "original_case_id": "benchmark/test_nextafter_.py::test_nextafter_::core::float64::2",
+            "ordinal": 2,
+            "origin": "own",
+            "original_shape": {
+              "self": [
+                4096,
+                4096
+              ],
+              "other": [
+                4096,
+                4096
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              4096,
+              4096
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_case_fn": "4d1e07d4be240475f1f4c1de7155ec73e431cb0a58242188a3f4fc90df789701",
+              "_build_inputs_fn": "a99e2b5f5789019bd6bfbf7a1e4144d2f07d13f098b8c3b80bf18c428219e067"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    4096,
+                    4096
+                  ],
+                  "dtype": "torch.float64",
+                  "stride": [
+                    4096,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    4096,
+                    4096
+                  ],
+                  "dtype": "torch.float64",
+                  "stride": [
+                    4096,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": 0,
+              "dtype": "torch.float64",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 268.71618396794827,
+          "latency_ms": 0.2687161839679483,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "[64, 512, 512]": {
+        "torch.float16": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter_.py",
+            "original_case_id": "benchmark/test_nextafter_.py::test_nextafter_::core::float16::3",
+            "ordinal": 3,
+            "origin": "own",
+            "original_shape": {
+              "self": [
+                64,
+                512,
+                512
+              ],
+              "other": [
+                64,
+                512,
+                512
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              64,
+              512,
+              512
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_case_fn": "4d1e07d4be240475f1f4c1de7155ec73e431cb0a58242188a3f4fc90df789701",
+              "_build_inputs_fn": "a99e2b5f5789019bd6bfbf7a1e4144d2f07d13f098b8c3b80bf18c428219e067"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    64,
+                    512,
+                    512
+                  ],
+                  "dtype": "torch.float16",
+                  "stride": [
+                    262144,
+                    512,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    64,
+                    512,
+                    512
+                  ],
+                  "dtype": "torch.float16",
+                  "stride": [
+                    262144,
+                    512,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": 0,
+              "dtype": "torch.float16",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 39.79480780373519,
+          "latency_ms": 0.03979480780373519,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.bfloat16": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter_.py",
+            "original_case_id": "benchmark/test_nextafter_.py::test_nextafter_::core::bfloat16::3",
+            "ordinal": 3,
+            "origin": "own",
+            "original_shape": {
+              "self": [
+                64,
+                512,
+                512
+              ],
+              "other": [
+                64,
+                512,
+                512
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              64,
+              512,
+              512
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_case_fn": "4d1e07d4be240475f1f4c1de7155ec73e431cb0a58242188a3f4fc90df789701",
+              "_build_inputs_fn": "a99e2b5f5789019bd6bfbf7a1e4144d2f07d13f098b8c3b80bf18c428219e067"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    64,
+                    512,
+                    512
+                  ],
+                  "dtype": "torch.bfloat16",
+                  "stride": [
+                    262144,
+                    512,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    64,
+                    512,
+                    512
+                  ],
+                  "dtype": "torch.bfloat16",
+                  "stride": [
+                    262144,
+                    512,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": 0,
+              "dtype": "torch.bfloat16",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 39.56518990217555,
+          "latency_ms": 0.03956518990217555,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float32": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter_.py",
+            "original_case_id": "benchmark/test_nextafter_.py::test_nextafter_::core::float32::3",
+            "ordinal": 3,
+            "origin": "own",
+            "original_shape": {
+              "self": [
+                64,
+                512,
+                512
+              ],
+              "other": [
+                64,
+                512,
+                512
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              64,
+              512,
+              512
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_case_fn": "4d1e07d4be240475f1f4c1de7155ec73e431cb0a58242188a3f4fc90df789701",
+              "_build_inputs_fn": "a99e2b5f5789019bd6bfbf7a1e4144d2f07d13f098b8c3b80bf18c428219e067"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    64,
+                    512,
+                    512
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    262144,
+                    512,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    64,
+                    512,
+                    512
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    262144,
+                    512,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": 0,
+              "dtype": "torch.float32",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 72.40896146911615,
+          "latency_ms": 0.07240896146911616,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float64": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter_.py",
+            "original_case_id": "benchmark/test_nextafter_.py::test_nextafter_::core::float64::3",
+            "ordinal": 3,
+            "origin": "own",
+            "original_shape": {
+              "self": [
+                64,
+                512,
+                512
+              ],
+              "other": [
+                64,
+                512,
+                512
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              64,
+              512,
+              512
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_case_fn": "4d1e07d4be240475f1f4c1de7155ec73e431cb0a58242188a3f4fc90df789701",
+              "_build_inputs_fn": "a99e2b5f5789019bd6bfbf7a1e4144d2f07d13f098b8c3b80bf18c428219e067"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    64,
+                    512,
+                    512
+                  ],
+                  "dtype": "torch.float64",
+                  "stride": [
+                    262144,
+                    512,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    64,
+                    512,
+                    512
+                  ],
+                  "dtype": "torch.float64",
+                  "stride": [
+                    262144,
+                    512,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": 0,
+              "dtype": "torch.float64",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 268.846193789154,
+          "latency_ms": 0.268846193789154,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      },
+      "[1024, 1024, 1024]": {
+        "torch.float16": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter_.py",
+            "original_case_id": "benchmark/test_nextafter_.py::test_nextafter_::core::float16::4",
+            "ordinal": 4,
+            "origin": "own",
+            "original_shape": {
+              "self": [
+                1024,
+                1024,
+                1024
+              ],
+              "other": [
+                1024,
+                1024,
+                1024
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              1024,
+              1024,
+              1024
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_case_fn": "4d1e07d4be240475f1f4c1de7155ec73e431cb0a58242188a3f4fc90df789701",
+              "_build_inputs_fn": "a99e2b5f5789019bd6bfbf7a1e4144d2f07d13f098b8c3b80bf18c428219e067"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    1024,
+                    1024,
+                    1024
+                  ],
+                  "dtype": "torch.float16",
+                  "stride": [
+                    1048576,
+                    1024,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    1024,
+                    1024,
+                    1024
+                  ],
+                  "dtype": "torch.float16",
+                  "stride": [
+                    1048576,
+                    1024,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": 0,
+              "dtype": "torch.float16",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 2079.5147856887506,
+          "latency_ms": 2.0795147856887506,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.bfloat16": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter_.py",
+            "original_case_id": "benchmark/test_nextafter_.py::test_nextafter_::core::bfloat16::4",
+            "ordinal": 4,
+            "origin": "own",
+            "original_shape": {
+              "self": [
+                1024,
+                1024,
+                1024
+              ],
+              "other": [
+                1024,
+                1024,
+                1024
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              1024,
+              1024,
+              1024
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_case_fn": "4d1e07d4be240475f1f4c1de7155ec73e431cb0a58242188a3f4fc90df789701",
+              "_build_inputs_fn": "a99e2b5f5789019bd6bfbf7a1e4144d2f07d13f098b8c3b80bf18c428219e067"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    1024,
+                    1024,
+                    1024
+                  ],
+                  "dtype": "torch.bfloat16",
+                  "stride": [
+                    1048576,
+                    1024,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    1024,
+                    1024,
+                    1024
+                  ],
+                  "dtype": "torch.bfloat16",
+                  "stride": [
+                    1048576,
+                    1024,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": 0,
+              "dtype": "torch.bfloat16",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 2078.720000325417,
+          "latency_ms": 2.078720000325417,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float32": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter_.py",
+            "original_case_id": "benchmark/test_nextafter_.py::test_nextafter_::core::float32::4",
+            "ordinal": 4,
+            "origin": "own",
+            "original_shape": {
+              "self": [
+                1024,
+                1024,
+                1024
+              ],
+              "other": [
+                1024,
+                1024,
+                1024
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              1024,
+              1024,
+              1024
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_case_fn": "4d1e07d4be240475f1f4c1de7155ec73e431cb0a58242188a3f4fc90df789701",
+              "_build_inputs_fn": "a99e2b5f5789019bd6bfbf7a1e4144d2f07d13f098b8c3b80bf18c428219e067"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    1024,
+                    1024,
+                    1024
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    1048576,
+                    1024,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    1024,
+                    1024,
+                    1024
+                  ],
+                  "dtype": "torch.float32",
+                  "stride": [
+                    1048576,
+                    1024,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": 0,
+              "dtype": "torch.float32",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 4162.868499755859,
+          "latency_ms": 4.162868499755859,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        },
+        "torch.float64": {
+          "config": {
+            "canonical_operator": "nextafter_",
+            "native_expression": "torch.Tensor.nextafter_",
+            "source_commit": "c0c8740c0d312b153c92e30511b739f49988f226",
+            "benchmark": "benchmark/test_nextafter_.py",
+            "original_case_id": "benchmark/test_nextafter_.py::test_nextafter_::core::float64::4",
+            "ordinal": 4,
+            "origin": "own",
+            "original_shape": {
+              "self": [
+                1024,
+                1024,
+                1024
+              ],
+              "other": [
+                1024,
+                1024,
+                1024
+              ]
+            },
+            "original_params": {},
+            "descriptor": [
+              1024,
+              1024,
+              1024
+            ],
+            "scope": "core",
+            "builder_AST_SHA256": {
+              "_case_fn": "4d1e07d4be240475f1f4c1de7155ec73e431cb0a58242188a3f4fc90df789701",
+              "_build_inputs_fn": "a99e2b5f5789019bd6bfbf7a1e4144d2f07d13f098b8c3b80bf18c428219e067"
+            },
+            "inputs": {
+              "args": [
+                {
+                  "shape": [
+                    1024,
+                    1024,
+                    1024
+                  ],
+                  "dtype": "torch.float64",
+                  "stride": [
+                    1048576,
+                    1024,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                },
+                {
+                  "shape": [
+                    1024,
+                    1024,
+                    1024
+                  ],
+                  "dtype": "torch.float64",
+                  "stride": [
+                    1048576,
+                    1024,
+                    1
+                  ],
+                  "storage_offset": 0,
+                  "requires_grad": false
+                }
+              ],
+              "kwargs": {}
+            },
+            "input_recipe": {
+              "generator": "torch.randn",
+              "seed": 0,
+              "dtype": "torch.float64",
+              "allocation_order": [
+                "self",
+                "other"
+              ]
+            },
+            "mutation": {
+              "mutates": [
+                "self"
+              ],
+              "readonly": [
+                "other"
+              ],
+              "result_alias": "self"
+            },
+            "timing_protocol": {
+              "prepare_sample": "clone self only; keep original other object",
+              "prepare_before_CUDA_start_event": true,
+              "native_callable": "Tensor.nextafter_",
+              "warmup_ms": 25,
+              "rep_ms": 100,
+              "return_mode": "mean",
+              "ncu": false
+            }
+          },
+          "T_us": 16570.121220179968,
+          "latency_ms": 16.570121220179967,
+          "F_cuda": 0.0,
+          "F_tensor": 0.0,
+          "B_mem": 0.0,
+          "U_cuda": 0.0,
+          "U_tensor": 0.0,
+          "U_mem": 0.0,
+          "U_bottle_neck": 0.0,
+          "bottle_neck_unit": null,
+          "num_kernels": 0,
+          "per_kernel": [],
+          "flops_cuda_core": 0.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 0.0,
+          "util_cuda_core": 0.0,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0,
+          "bottleneck": null,
+          "bottleneck_util": 0.0,
+          "cuda_flops": 0.0,
+          "sm_utilization": 0.0,
+          "report_path": null
+        }
+      }
+    }
+  }
+}
