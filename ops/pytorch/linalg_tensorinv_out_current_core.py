@@ -14,6 +14,7 @@ import torch
 OP_NAME = "linalg_tensorinv_out_current_core"
 DTYPES = [torch.float32]
 IS_INPLACE = True
+BENCH_RETURN_MODE = "mean"
 SOURCE_COMMIT = "2a3a455fa9eef530dc11a6b96ff333ffb47235fd"
 CASES = [(2, 2), (4, 4), (8, 8), (16, 16), (24, 24)]
 _samples = {}
