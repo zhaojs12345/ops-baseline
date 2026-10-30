@@ -269,6 +269,28 @@ class PreparedSampleTests(unittest.TestCase):
         self.assertFalse(h.default_calls)
 
 
+
+class CurrentMainCompatibilityTests(unittest.TestCase):
+    def test_nonhook_return_mode_is_forwarded(self):
+        h = Harness()
+        module = h.load()
+        result = module["_ops_latency_ms"](
+            types.SimpleNamespace(), lambda x, **kw: None,
+            h.args, h.kwargs, False, {"return_mode": "median"})
+        self.assertEqual(result, 2.5)
+        self.assertEqual(h.default_calls, [
+            {"warmup": 25, "rep": 100, "return_mode": "median"}])
+
+    def test_prepared_return_override_fails_before_native(self):
+        h = Harness()
+        module = h.load()
+        with self.assertRaisesRegex(ValueError, "owns mean"):
+            module["_ops_latency_ms"](
+                types.SimpleNamespace(prepare_sample=h.prepare), h.native,
+                h.args, h.kwargs, False, {"return_mode": "median"})
+        self.assertEqual(h.native_calls, 0)
+        self.assertEqual(h.log, [])
+
 if __name__ == "__main__":
     result = unittest.TextTestRunner(verbosity=2).run(
         unittest.defaultTestLoader.loadTestsFromTestCase(PreparedSampleTests)

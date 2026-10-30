@@ -1,0 +1,89 @@
+{
+  "artifact": "op_pytorch_h800_gru_native_baseline.json",
+  "artifact_sha256": "2e42eeddb4bf7fcabdb4c695aa531c10c230b51a630625def6669f99bf694adb",
+  "producer_commit": "e3776c2c1d4431da168f18577c690d7f807451e7",
+  "native_build": {
+    "observed_after_timing": "2026-10-29T07:17:57.430261+00:00",
+    "torch": "2.8.0a0+5228986c39.nv25.05",
+    "torch_git": "Unknown",
+    "cuda": "12.9",
+    "native_binary": {
+      "path": "/usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cuda.so",
+      "sha256": "46b1b0caa98e1e2c1a44041717fbadfb05eb60ecd0a6080f796675b52436b5fc"
+    },
+    "source_commit": "e3776c2c1d4431da168f18577c690d7f807451e7",
+    "artifact_sha256": "2e42eeddb4bf7fcabdb4c695aa531c10c230b51a630625def6669f99bf694adb"
+  },
+  "commands": [
+    {
+      "label": "native-check",
+      "command": [
+        "/usr/bin/python3",
+        "tools/collect_baseline_nvidia.py",
+        "--repo",
+        "pytorch",
+        "--ops",
+        "_thnn_fused_gru_cell,_thnn_fused_gru_cell_out,_thnn_fused_gru_cell_backward_out",
+        "--device",
+        "0",
+        "--check"
+      ],
+      "cwd": "/data/tj/workspace/ascend-remaining12-20261029/gru/ops-e3776c2c1d44/source",
+      "pid": 2522659,
+      "source_commit": "e3776c2c1d4431da168f18577c690d7f807451e7",
+      "environment": {
+        "CUDA_VISIBLE_DEVICES": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "OMP_NUM_THREADS": "2",
+        "MKL_NUM_THREADS": "2"
+      },
+      "started": "2026-10-29T07:02:21.941735+00:00",
+      "exit": 0,
+      "ended": "2026-10-29T07:02:46.937385+00:00"
+    },
+    {
+      "label": "official-collection",
+      "command": [
+        "/usr/bin/python3",
+        "tools/collect_baseline_nvidia.py",
+        "--repo",
+        "pytorch",
+        "--ops",
+        "_thnn_fused_gru_cell,_thnn_fused_gru_cell_out,_thnn_fused_gru_cell_backward_out",
+        "--device",
+        "0",
+        "--no-ncu",
+        "--op-timeout",
+        "900",
+        "--output",
+        "/data/tj/workspace/ascend-remaining12-20261029/gru/ops-e3776c2c1d44/op_pytorch_h800_gru_native_baseline.json",
+        "--report-dir",
+        "/data/tj/workspace/ascend-remaining12-20261029/gru/ops-e3776c2c1d44/reports"
+      ],
+      "cwd": "/data/tj/workspace/ascend-remaining12-20261029/gru/ops-e3776c2c1d44/source",
+      "pid": 2522951,
+      "source_commit": "e3776c2c1d4431da168f18577c690d7f807451e7",
+      "environment": {
+        "CUDA_VISIBLE_DEVICES": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "OMP_NUM_THREADS": "2",
+        "MKL_NUM_THREADS": "2"
+      },
+      "started": "2026-10-29T07:03:03.016242+00:00",
+      "exit": 0,
+      "ended": "2026-10-29T07:04:07.613371+00:00"
+    }
+  ],
+  "per_operator_records": {
+    "_thnn_fused_gru_cell": 24,
+    "_thnn_fused_gru_cell_out": 24,
+    "_thnn_fused_gru_cell_backward_out": 24
+  },
+  "core_flaggems_source": "b956dae66b57e94759cdd457b4f0d047221e35b9",
+  "record_kind": "Native H800 CUDA latency; no NCU counters",
+  "qualifications": [
+    "torch.version.git_version is Unknown in this actual custom build; the reported NV package identifier and libtorch_cuda SHA are retained.",
+    "The original Ascend core uses18/24 records per interface because its runtime does not expose FP64. No original target shape/dtype/params were removed.",
+    "No CPU latency is a NVIDIA baseline; target benchmark consumes exact tensor inputs/kwargs metadata."
+  ]
+}

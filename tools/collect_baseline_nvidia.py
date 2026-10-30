@@ -851,12 +851,15 @@ def _select_ops(discovered, only=None, whitelist=None, blacklist=None):
     return selected
 
 
-def _ops_latency_ms(op_module, op, args, kwargs, ncu_enabled):
+def _ops_latency_ms(op_module, op, args, kwargs, ncu_enabled, timing_options=None):
     """Own the CUDA clock; optional preparation runs before every start event."""
     prepare = getattr(op_module, "prepare_sample", None)
     if prepare is None:
         return triton.testing.do_bench(
-            lambda: op(*args, **kwargs), warmup=25, rep=100)
+            lambda: op(*args, **kwargs), warmup=25, rep=100,
+            **(timing_options or {}))
+    if timing_options:
+        raise ValueError("prepare_sample owns mean timing; return-mode overrides are unsupported")
     if not callable(prepare):
         raise TypeError("prepare_sample must be callable")
     if ncu_enabled:
@@ -948,8 +951,11 @@ def _collect_one_op_ops(op_module, ncu_enabled, report_dir,
         for dtype in dtypes:
             dtype_str = str(dtype)
             args, kwargs = op_module.build_inputs(binding, dtype, "cuda")
+            timing_options = {}
+            if hasattr(op_module, "BENCH_RETURN_MODE"):
+                timing_options["return_mode"] = op_module.BENCH_RETURN_MODE
             latency_ms = _ops_latency_ms(
-                op_module, op, args, kwargs, ncu_enabled)
+                op_module, op, args, kwargs, ncu_enabled, timing_options)
             if ncu_enabled:
                 # NCU 子进程会用 build_inputs 再分配一份实参。大 E MoE（如
                 # e256_h7168 权重单份就 ~22GB）主、子进程两份叠加会超显存，导致
@@ -969,6 +975,12 @@ def _collect_one_op_ops(op_module, ncu_enabled, report_dir,
             if hasattr(op_module, "config"):
                 cfg = op_module.config(binding, dtype)
             per_dtype[dtype_str] = _finalize_record(latency_ms, ncu, config=cfg)
+            if timing_options:
+                per_dtype[dtype_str]["timing"] = {
+                    "method": "triton.testing.do_bench",
+                    "return_mode": timing_options["return_mode"],
+                    "warmup_ms": 25, "rep_ms": 100,
+                }
 
             bn = ncu["bottleneck"]
             suffix = (f"  瓶颈={bn} ({ncu['bottleneck_util']*100:.1f}%)"
