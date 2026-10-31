@@ -1,0 +1,4694 @@
+{
+  "_environment": {
+    "schema_version": 1,
+    "collected_at_utc": "2026-10-31T03:24:45.353014+00:00",
+    "hardware": {
+      "gpu": {
+        "name": "NVIDIA H800",
+        "uuid": "afb40f3d-fc19-f064-dd8d-04757c275de2",
+        "total_memory_bytes": 85017624576,
+        "total_memory_gib": 79.18,
+        "compute_capability": "9.0",
+        "multiprocessor_count": 132,
+        "cuda_device_index": 0,
+        "driver_version": "580.105.08"
+      },
+      "cpu_model": "Intel(R) Xeon(R) Platinum 8468V",
+      "cpu_architecture": "x86_64",
+      "cpu_socket_count": 2,
+      "physical_cpu_core_count": 96,
+      "logical_cpu_count": 192,
+      "cpu_threads_per_core": 2,
+      "numa_node_count": 2,
+      "process_cpu_affinity_count": 192,
+      "hypervisor_vendor": null
+    },
+    "software": {
+      "os": "Linux",
+      "os_release": "5.15.0-78-generic",
+      "machine": "x86_64",
+      "python": "3.12.3",
+      "packages": {
+        "torch": "2.11.0+cu130",
+        "triton": "3.6.0",
+        "vllm": null,
+        "sglang": "0.5.11"
+      },
+      "torch_cuda_version": "13.0",
+      "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Aug_20_01:58:59_PM_PDT_2025\nCuda compilation tools, release 13.0, V13.0.88\nBuild cuda_13.0.r13.0/compiler.36424714_0",
+      "ncu_version": "NVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2025 NVIDIA Corporation\nVersion 2025.3.1.0 (build 36398880) (public-release)"
+    },
+    "source": {
+      "git_commit": null,
+      "git_branch": null,
+      "git_dirty": null
+    },
+    "run": {
+      "repo": "sglang_qwen36",
+      "device": "0",
+      "ncu_enabled": true,
+      "report_dir": "/workspace/reset-20261031/ncu-qwen36",
+      "output_path": "/workspace/reset-20261031/qwen36-raw.json",
+      "op_timeout_seconds": 1800,
+      "reference_chip": "H800",
+      "only": null,
+      "whitelist": null,
+      "blacklist": null,
+      "selected_ops": [
+        "chunk_gated_delta_rule_fwd",
+        "_fused_moe_kernel_sequence",
+        "fused_recurrent_gated_delta_rule_packed_decode",
+        "gemma_fused_add_rmsnorm",
+        "gemma_rmsnorm",
+        "select_experts",
+        "silu_and_mul_out"
+      ],
+      "latency_warmup_ms": 25,
+      "latency_rep_ms": 100,
+      "ncu_warmup_calls": 3
+    },
+    "environment_variables": {
+      "CUDA_VISIBLE_DEVICES": "0",
+      "CUDA_DEVICE_ORDER": null
+    }
+  },
+  "_scaling_factors": {
+    "_note": "factor = vendor_peak / H800_peak\uff1bnull \u8868\u793a\u5206\u5b50\u6216\u5206\u6bcd\u7f3a\u5931\uff1bnominal/measured \u5404\u4e00\u5957\u3002\u4f9b flaggems-vllm \u8de8\u82af\u7247\u5f52\u4e00\u5316\u5bf9\u6bd4\u4f7f\u7528\u3002",
+    "reference_chip": "H800",
+    "source_specs": "hardware_specs.json",
+    "chips": [
+      {
+        "vendor": "nvidia",
+        "vendor_zh": "\u82f1\u4f1f\u8fbe",
+        "chip": "H800",
+        "nominal": {
+          "bandwidth_gbps": 1.0,
+          "tensor": {
+            "bf16": 1.0,
+            "fp16": 1.0,
+            "fp32": 1.0,
+            "tf32": 1.0,
+            "int8": 1.0,
+            "fp64": 1.0,
+            "fp8": 1.0
+          },
+          "vector": {
+            "bf16": 1.0,
+            "fp16": 1.0,
+            "fp32": 1.0,
+            "int8": null,
+            "fp64": 1.0,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 1.0,
+          "tensor": {
+            "bf16": 1.0,
+            "fp16": 1.0,
+            "fp32": 1.0,
+            "tf32": 1.0,
+            "int8": 1.0,
+            "fp64": 1.0,
+            "fp8": 1.0
+          },
+          "vector": {
+            "bf16": 1.0,
+            "fp16": 1.0,
+            "fp32": 1.0,
+            "int8": 1.0,
+            "fp64": 1.0,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "nvidia",
+        "vendor_zh": "\u82f1\u4f1f\u8fbe",
+        "chip": "H100",
+        "nominal": {
+          "bandwidth_gbps": 1.0,
+          "tensor": {
+            "bf16": 1.000404,
+            "fp16": 1.000404,
+            "fp32": 1.0,
+            "tf32": 1.000404,
+            "int8": 0.999949,
+            "fp64": 66.9,
+            "fp8": 0.999949
+          },
+          "vector": {
+            "bf16": 0.998507,
+            "fp16": 0.998507,
+            "fp32": 0.998507,
+            "int8": null,
+            "fp64": 33.5,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 1.0,
+          "tensor": {
+            "bf16": 0.992845,
+            "fp16": 1.043176,
+            "fp32": 0.999938,
+            "tf32": 0.964256,
+            "int8": 0.988143,
+            "fp64": 58.895238,
+            "fp8": 1.048244
+          },
+          "vector": {
+            "bf16": 0.999955,
+            "fp16": 0.99997,
+            "fp32": 0.992604,
+            "int8": 1.0003,
+            "fp64": 29.44689,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "t-head",
+        "vendor_zh": "\u5e73\u5934\u54e5",
+        "chip": "PPU-ZW810E",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.662759,
+          "tensor": {
+            "bf16": 0.058651,
+            "fp16": 0.062691,
+            "fp32": 0.538868,
+            "tf32": 0.075912,
+            "int8": 0.027883,
+            "fp64": 6.597143,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": 0.828975,
+            "fp16": 0.828837,
+            "fp32": 0.416839,
+            "int8": 0.206073,
+            "fp64": 6.120574,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "t-head",
+        "vendor_zh": "\u5e73\u5934\u54e5",
+        "chip": "m890",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.781483,
+          "tensor": {
+            "bf16": 0.281445,
+            "fp16": 0.300869,
+            "fp32": 0.257819,
+            "tf32": 0.161166,
+            "int8": null,
+            "fp64": null,
+            "fp8": 0.042014
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": 0.194236,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "enflame",
+        "vendor_zh": "\u71e7\u539f",
+        "chip": "S60",
+        "nominal": {
+          "bandwidth_gbps": 0.200597,
+          "tensor": {
+            "bf16": 0.132457,
+            "fp16": 0.132457,
+            "fp32": 0.478326,
+            "tf32": null,
+            "int8": 0.13239,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.150325,
+          "tensor": {
+            "bf16": 0.135388,
+            "fp16": 0.144762,
+            "fp32": 0.672654,
+            "tf32": null,
+            "int8": 0.134391,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": 0.026166,
+            "fp16": 0.026197,
+            "fp32": 0.029496,
+            "int8": 0.013308,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "ascend",
+        "vendor_zh": "\u534e\u4e3a",
+        "chip": "Atlas 800T A3",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": 0.760364,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.951084,
+          "tensor": {
+            "bf16": 0.761695,
+            "fp16": 0.839078,
+            "fp32": 4.098971,
+            "tf32": null,
+            "int8": 0.756027,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "metax",
+        "vendor_zh": "\u6c90\u66e6",
+        "chip": "C550",
+        "nominal": {
+          "bandwidth_gbps": 0.537313,
+          "tensor": {
+            "bf16": 0.323559,
+            "fp16": 0.323559,
+            "fp32": 0.597907,
+            "tf32": 0.323559,
+            "int8": 0.323396,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.472532,
+          "tensor": {
+            "bf16": 0.285784,
+            "fp16": 0.298125,
+            "fp32": 0.816461,
+            "tf32": 0.265815,
+            "int8": 0.291016,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": 0.136079,
+            "fp32": 0.541991,
+            "int8": 0.068039,
+            "fp64": 2.166507,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "kunlunxin",
+        "vendor_zh": "\u6606\u4ed1\u82af",
+        "chip": "P900",
+        "nominal": {
+          "bandwidth_gbps": 0.776119,
+          "tensor": {
+            "bf16": 0.353893,
+            "fp16": 0.353893,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.791,
+          "tensor": {
+            "bf16": 0.357504,
+            "fp16": 0.389264,
+            "fp32": 2.853909,
+            "tf32": 0.278234,
+            "int8": 0.33308,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "kunlunxin",
+        "vendor_zh": "\u6606\u4ed1\u82af",
+        "chip": "P800",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": 0.032261,
+            "fp16": 0.03449,
+            "fp32": null,
+            "tf32": 0.062035,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "mthreads",
+        "vendor_zh": "\u6469\u5c14",
+        "chip": "MTT-S5000",
+        "nominal": {
+          "bandwidth_gbps": 0.477612,
+          "tensor": {
+            "bf16": 0.434783,
+            "fp16": 0.434783,
+            "fp32": 0.433483,
+            "tf32": 0.434783,
+            "int8": 0.434563,
+            "fp64": 14.5,
+            "fp8": 0.434563
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.423867,
+          "tensor": {
+            "bf16": 0.46863,
+            "fp16": 0.499849,
+            "fp32": 0.585391,
+            "tf32": 0.449552,
+            "int8": 0.463452,
+            "fp64": 13.533333,
+            "fp8": 0.504517
+          },
+          "vector": {
+            "bf16": 0.285102,
+            "fp16": 0.284926,
+            "fp32": 0.255336,
+            "int8": 0.095037,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "hygon",
+        "vendor_zh": "\u6d77\u5149",
+        "chip": "BW1000",
+        "nominal": {
+          "bandwidth_gbps": 0.537313,
+          "tensor": {
+            "bf16": 0.485339,
+            "fp16": 0.485339,
+            "fp32": 0.896861,
+            "tf32": 0.485339,
+            "int8": 0.485093,
+            "fp64": 30.0,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.47352,
+          "tensor": {
+            "bf16": 0.494279,
+            "fp16": 0.526445,
+            "fp32": 1.253704,
+            "tf32": 0.475373,
+            "int8": 0.490587,
+            "fp64": 29.009524,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": 0.109955,
+            "fp16": 0.45465,
+            "fp32": 0.228884,
+            "int8": 0.114093,
+            "fp64": 14.488038,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "iluvatar",
+        "vendor_zh": "\u5929\u6570",
+        "chip": "BI-V150",
+        "nominal": {
+          "bandwidth_gbps": 0.477612,
+          "tensor": {
+            "bf16": 0.258847,
+            "fp16": 0.258847,
+            "fp32": 0.956652,
+            "tf32": null,
+            "int8": 0.388075,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.356378,
+          "tensor": {
+            "bf16": 0.220302,
+            "fp16": 0.234676,
+            "fp32": 0.940123,
+            "tf32": null,
+            "int8": 0.391076,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": 0.461253,
+            "fp16": 0.469367,
+            "fp32": 0.230722,
+            "int8": 0.11987,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "tsingmicro",
+        "vendor_zh": "\u6e05\u5fae\u667a\u80fd",
+        "chip": "TX8110",
+        "nominal": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": null,
+          "tensor": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "tf32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "tsingmicro",
+        "vendor_zh": "\u6e05\u5fae\u667a\u80fd",
+        "chip": "REX1032",
+        "nominal": {
+          "bandwidth_gbps": 0.238806,
+          "tensor": {
+            "bf16": 0.517695,
+            "fp16": 0.517695,
+            "fp32": 0.179372,
+            "tf32": 1.035389,
+            "int8": 0.517433,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.197353,
+          "tensor": {
+            "bf16": 0.525497,
+            "fp16": 0.561805,
+            "fp32": 0.251029,
+            "tf32": 0.892402,
+            "int8": 0.521583,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      },
+      {
+        "vendor": "cambricon",
+        "vendor_zh": "\u5bd2\u6b66\u7eaa",
+        "chip": "MLU590-M9DE",
+        "nominal": {
+          "bandwidth_gbps": 0.671642,
+          "tensor": {
+            "bf16": 0.33367,
+            "fp16": 0.33367,
+            "fp32": 1.233184,
+            "tf32": 0.33367,
+            "int8": 0.333502,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        },
+        "measured": {
+          "bandwidth_gbps": 0.625387,
+          "tensor": {
+            "bf16": 0.316304,
+            "fp16": 0.338258,
+            "fp32": 1.604938,
+            "tf32": 0.307205,
+            "int8": 0.312064,
+            "fp64": null,
+            "fp8": null
+          },
+          "vector": {
+            "bf16": null,
+            "fp16": null,
+            "fp32": null,
+            "int8": null,
+            "fp64": null,
+            "fp8": null
+          }
+        }
+      }
+    ]
+  },
+  "chunk_gated_delta_rule_fwd": {
+    "native_api": "ops.chunk_gated_delta_rule_fwd",
+    "shapes": {
+      "qwen36-v2-8a89a0d11f0df5a8b2307ce7a15f8f3bd71ebde2a833ec394f991c0422583487": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "q": {
+                "shape": [
+                  1,
+                  20,
+                  4,
+                  128
+                ],
+                "stride": [
+                  10240,
+                  512,
+                  128,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "k": {
+                "shape": [
+                  1,
+                  20,
+                  4,
+                  128
+                ],
+                "stride": [
+                  10240,
+                  512,
+                  128,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "v": {
+                "shape": [
+                  1,
+                  20,
+                  12,
+                  128
+                ],
+                "stride": [
+                  30720,
+                  1536,
+                  128,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "g": {
+                "shape": [
+                  1,
+                  20,
+                  12
+                ],
+                "stride": [
+                  240,
+                  12,
+                  1
+                ],
+                "dtype": "torch.float32",
+                "storage_offset": 0
+              },
+              "beta": {
+                "shape": [
+                  1,
+                  20,
+                  12
+                ],
+                "stride": [
+                  240,
+                  12,
+                  1
+                ],
+                "dtype": "torch.float32",
+                "storage_offset": 0
+              },
+              "scale": {
+                "scalar": 0.08838834764831845
+              },
+              "initial_state": {
+                "shape": [
+                  1381,
+                  12,
+                  128,
+                  128
+                ],
+                "stride": [
+                  196608,
+                  16384,
+                  128,
+                  1
+                ],
+                "dtype": "torch.float32",
+                "storage_offset": 0
+              },
+              "initial_state_indices": {
+                "shape": [
+                  1
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.int32",
+                "storage_offset": 0
+              },
+              "cu_seqlens": {
+                "shape": [
+                  2
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.int32",
+                "storage_offset": 0
+              },
+              "chunk_indices": {
+                "shape": [
+                  1,
+                  2
+                ],
+                "stride": [
+                  2,
+                  1
+                ],
+                "dtype": "torch.int32",
+                "storage_offset": 0
+              }
+            },
+            "parameters": {
+              "model": "27b",
+              "tokens": 20,
+              "role": "default",
+              "seed": 0,
+              "variant": "documented",
+              "source": "SGLang v0.5.11; Qwen3.6 TP=4 workload",
+              "input_distribution": "seeded FP32 N(0,0.5), cast to BF16; see builder for weights/gates",
+              "input_dtypes": {
+                "q": "torch.bfloat16",
+                "k": "torch.bfloat16",
+                "v": "torch.bfloat16",
+                "g": "torch.float32",
+                "beta": "torch.float32",
+                "initial_state": "torch.float32",
+                "initial_state_indices": "torch.int32",
+                "cu_seqlens": "torch.int32",
+                "chunk_indices": "torch.int32"
+              },
+              "scale": 0.08838834764831845,
+              "normalized_qk": true,
+              "l2_eps": 1e-06,
+              "chunk_size": 64,
+              "suppression_level": 0,
+              "initial_state_indices": [
+                1
+              ],
+              "cu_seqlens": [
+                0,
+                20
+              ],
+              "state_fill": 0.03125,
+              "active_state_std": 0.1
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
+            }
+          },
+          "T_us": 160.60799360275269,
+          "latency_ms": 0.16060799360275269,
+          "F_cuda": 2072160.0,
+          "F_tensor": 101449728.0,
+          "B_mem": 1678336.0,
+          "U_cuda": 0.38995357142857145,
+          "U_tensor": 0.31127457142857146,
+          "U_mem": 1.0763765714285713,
+          "U_bottle_neck": 1.0763765714285713,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 7,
+          "per_kernel": [
+            {
+              "name": "chunk_local_cumsum_scalar_kernel",
+              "F_cuda": 12384.0,
+              "F_tensor": 0.0,
+              "B_mem": 4608.0,
+              "U_cuda": 0.100925,
+              "U_tensor": 0.0,
+              "U_mem": 0.040121,
+              "T_us": 13.456682163768262
+            },
+            {
+              "name": "void at::vectorized_elementwise_kernel<8, at::FillFunctor<c10::BFloat16>, std::array<char *, 1>>(int, T2, T3)",
+              "F_cuda": 0.0,
+              "F_tensor": 0.0,
+              "B_mem": 4096.0,
+              "U_cuda": 0.024055,
+              "U_tensor": 0.0,
+              "U_mem": 0.051335,
+              "T_us": 9.344918169283515
+            },
+            {
+              "name": "chunk_gated_delta_rule_fwd_kkt_solve_kernel",
+              "F_cuda": 638304.0,
+              "F_tensor": 3932160.0,
+              "B_mem": 74496.0,
+              "U_cuda": 0.272109,
+              "U_tensor": 0.145001,
+              "U_mem": 0.174277,
+              "T_us": 49.83956356951209
+            },
+            {
+              "name": "recompute_w_u_fwd_kernel",
+              "F_cuda": 301056.0,
+              "F_tensor": 25165824.0,
+              "B_mem": 130816.0,
+              "U_cuda": 0.412094,
+              "U_tensor": 0.427976,
+              "U_mem": 0.541681,
+              "T_us": 28.28395232569811
+            },
+            {
+              "name": "chunk_gated_delta_rule_fwd_kernel_h_blockdim64",
+              "F_cuda": 817152.0,
+              "F_tensor": 50331648.0,
+              "B_mem": 950272.0,
+              "U_cuda": 1.515111,
+              "U_tensor": 0.919119,
+              "U_mem": 4.145818,
+              "T_us": 26.664166509688965
+            },
+            {
+              "name": "void at::vectorized_elementwise_kernel<8, at::FillFunctor<c10::BFloat16>, std::array<char *, 1>>(int, T2, T3)",
+              "F_cuda": 0.0,
+              "F_tensor": 0.0,
+              "B_mem": 4096.0,
+              "U_cuda": 0.047659,
+              "U_tensor": 0.0,
+              "U_mem": 0.050916,
+              "T_us": 9.469517078207296
+            },
+            {
+              "name": "chunk_fwd_kernel_o",
+              "F_cuda": 303264.0,
+              "F_tensor": 22020096.0,
+              "B_mem": 509952.0,
+              "U_cuda": 0.357722,
+              "U_tensor": 0.686826,
+              "U_mem": 2.530488,
+              "T_us": 23.54919378659446
+            }
+          ],
+          "flops_cuda_core": 2072160.0,
+          "flops_tensor_core": 101449728.0,
+          "memory_bytes": 1678336.0,
+          "util_cuda_core": 0.0038995357142857148,
+          "util_tensor_core": 0.0031127457142857144,
+          "util_memory_bw": 0.010763765714285714,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.010763765714285714,
+          "cuda_flops": 2072160.0,
+          "sm_utilization": 0.011249842857142858,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/chunk_gated_delta_rule_fwd_qxwxexnx3x6x-xvx2x-x8xax8x9xax0xdx1x1xfx0xdxfx5xax8xbx2x3x0x7xcxex7xax1x5xfx8xfx3xbxdx7x1xexbxdxex2xax8x3x3xexcx3x9x4xfx9x9x1xcx0x4x2x2x5x8x3x4x8x7_bfloat16.ncu-rep",
+          "timing": {
+            "schema": "flaggems.reset-excluded/v1",
+            "method": "device_event_median",
+            "reset_excluded": true,
+            "cache_policy": "restore_then_flush_256MiB_before_call",
+            "cache_bytes": 268435456,
+            "ncu_cache_control": "all",
+            "warmup_ms": 25,
+            "rep_ms": 100,
+            "max_samples": 10000
+          }
+        }
+      },
+      "qwen36-v2-a286ec58424d5b7bf8c100d41d76c9d3f3bc822b4782b7fbabb04b42e9f2fec9": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "q": {
+                "shape": [
+                  1,
+                  20,
+                  4,
+                  128
+                ],
+                "stride": [
+                  10240,
+                  512,
+                  128,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "k": {
+                "shape": [
+                  1,
+                  20,
+                  4,
+                  128
+                ],
+                "stride": [
+                  10240,
+                  512,
+                  128,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "v": {
+                "shape": [
+                  1,
+                  20,
+                  8,
+                  128
+                ],
+                "stride": [
+                  20480,
+                  1024,
+                  128,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "g": {
+                "shape": [
+                  1,
+                  20,
+                  8
+                ],
+                "stride": [
+                  160,
+                  8,
+                  1
+                ],
+                "dtype": "torch.float32",
+                "storage_offset": 0
+              },
+              "beta": {
+                "shape": [
+                  1,
+                  20,
+                  8
+                ],
+                "stride": [
+                  160,
+                  8,
+                  1
+                ],
+                "dtype": "torch.float32",
+                "storage_offset": 0
+              },
+              "scale": {
+                "scalar": 0.08838834764831845
+              },
+              "initial_state": {
+                "shape": [
+                  3193,
+                  8,
+                  128,
+                  128
+                ],
+                "stride": [
+                  131072,
+                  16384,
+                  128,
+                  1
+                ],
+                "dtype": "torch.float32",
+                "storage_offset": 0
+              },
+              "initial_state_indices": {
+                "shape": [
+                  1
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.int32",
+                "storage_offset": 0
+              },
+              "cu_seqlens": {
+                "shape": [
+                  2
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.int32",
+                "storage_offset": 0
+              },
+              "chunk_indices": {
+                "shape": [
+                  1,
+                  2
+                ],
+                "stride": [
+                  2,
+                  1
+                ],
+                "dtype": "torch.int32",
+                "storage_offset": 0
+              }
+            },
+            "parameters": {
+              "model": "35b",
+              "tokens": 20,
+              "role": "default",
+              "seed": 0,
+              "variant": "documented",
+              "source": "SGLang v0.5.11; Qwen3.6 TP=4 workload",
+              "input_distribution": "seeded FP32 N(0,0.5), cast to BF16; see builder for weights/gates",
+              "input_dtypes": {
+                "q": "torch.bfloat16",
+                "k": "torch.bfloat16",
+                "v": "torch.bfloat16",
+                "g": "torch.float32",
+                "beta": "torch.float32",
+                "initial_state": "torch.float32",
+                "initial_state_indices": "torch.int32",
+                "cu_seqlens": "torch.int32",
+                "chunk_indices": "torch.int32"
+              },
+              "scale": 0.08838834764831845,
+              "normalized_qk": true,
+              "l2_eps": 1e-06,
+              "chunk_size": 64,
+              "suppression_level": 0,
+              "initial_state_indices": [
+                1
+              ],
+              "cu_seqlens": [
+                0,
+                20
+              ],
+              "state_fill": 0.03125,
+              "active_state_std": 0.1
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
+            }
+          },
+          "T_us": 222.75200486183167,
+          "latency_ms": 0.22275200486183167,
+          "F_cuda": 1808000.0,
+          "F_tensor": 70254592.0,
+          "B_mem": 1188864.0,
+          "U_cuda": 0.2404,
+          "U_tensor": 0.216095,
+          "U_mem": 0.7652254285714285,
+          "U_bottle_neck": 0.7652254285714285,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 7,
+          "per_kernel": [
+            {
+              "name": "chunk_local_cumsum_scalar_kernel",
+              "F_cuda": 9280.0,
+              "F_tensor": 0.0,
+              "B_mem": 4608.0,
+              "U_cuda": 0.049918,
+              "U_tensor": 0.0,
+              "U_mem": 0.037513,
+              "T_us": 19.10252092401987
+            },
+            {
+              "name": "void at::vectorized_elementwise_kernel<8, at::FillFunctor<c10::BFloat16>, std::array<char *, 1>>(int, T2, T3)",
+              "F_cuda": 0.0,
+              "F_tensor": 0.0,
+              "B_mem": 4096.0,
+              "U_cuda": 0.016269,
+              "U_tensor": 0.0,
+              "U_mem": 0.052192,
+              "T_us": 12.458165820012956
+            },
+            {
+              "name": "chunk_gated_delta_rule_fwd_kkt_solve_kernel",
+              "F_cuda": 851072.0,
+              "F_tensor": 5242880.0,
+              "B_mem": 72192.0,
+              "U_cuda": 0.286022,
+              "U_tensor": 0.173785,
+              "U_mem": 0.155643,
+              "T_us": 71.92514400087481
+            },
+            {
+              "name": "recompute_w_u_fwd_kernel",
+              "F_cuda": 200704.0,
+              "F_tensor": 16777216.0,
+              "B_mem": 99072.0,
+              "U_cuda": 0.217661,
+              "U_tensor": 0.252133,
+              "U_mem": 0.37734,
+              "T_us": 40.86278388964249
+            },
+            {
+              "name": "chunk_gated_delta_rule_fwd_kernel_h_blockdim64",
+              "F_cuda": 544768.0,
+              "F_tensor": 33554432.0,
+              "B_mem": 647168.0,
+              "U_cuda": 0.878769,
+              "U_tensor": 0.628393,
+              "U_mem": 2.906549,
+              "T_us": 34.71675541843611
+            },
+            {
+              "name": "void at::vectorized_elementwise_kernel<8, at::FillFunctor<c10::BFloat16>, std::array<char *, 1>>(int, T2, T3)",
+              "F_cuda": 0.0,
+              "F_tensor": 0.0,
+              "B_mem": 4096.0,
+              "U_cuda": 0.032267,
+              "U_tensor": 0.0,
+              "U_mem": 0.051975,
+              "T_us": 12.458165820012956
+            },
+            {
+              "name": "chunk_fwd_kernel_o",
+              "F_cuda": 202176.0,
+              "F_tensor": 14680064.0,
+              "B_mem": 357632.0,
+              "U_cuda": 0.201894,
+              "U_tensor": 0.458354,
+              "U_mem": 1.775366,
+              "T_us": 31.228468988832482
+            }
+          ],
+          "flops_cuda_core": 1808000.0,
+          "flops_tensor_core": 70254592.0,
+          "memory_bytes": 1188864.0,
+          "util_cuda_core": 0.002404,
+          "util_tensor_core": 0.00216095,
+          "util_memory_bw": 0.007652254285714285,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.007652254285714285,
+          "cuda_flops": 1808000.0,
+          "sm_utilization": 0.008032461428571428,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/chunk_gated_delta_rule_fwd_qxwxexnx3x6x-xvx2x-xax2x8x6xexcx5x8x4x2x4xdx5xbx7xbxfx8xcx1x0x0xdx4x1xdx7x6xcx9xdx3xfx3xbxcx8x2x2xbx4x7x8x2xbx7xfxbxaxbxbx0x4xbx4x2xex9xfx2xfxexcx9_bfloat16.ncu-rep",
+          "timing": {
+            "schema": "flaggems.reset-excluded/v1",
+            "method": "device_event_median",
+            "reset_excluded": true,
+            "cache_policy": "restore_then_flush_256MiB_before_call",
+            "cache_bytes": 268435456,
+            "ncu_cache_control": "all",
+            "warmup_ms": 25,
+            "rep_ms": 100,
+            "max_samples": 10000
+          }
+        }
+      }
+    }
+  },
+  "_fused_moe_kernel_sequence": {
+    "native_api": "ops.fused_moe_kernel_sequence",
+    "shapes": {
+      "qwen36-v2-2915c7e890a5374bdaf1d9bc817eb3ec01c2631b855b471e3c514150fedeeef2": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "hidden_states": {
+                "shape": [
+                  20,
+                  2048
+                ],
+                "stride": [
+                  2048,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "w1": {
+                "shape": [
+                  256,
+                  256,
+                  2048
+                ],
+                "stride": [
+                  524288,
+                  2048,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "w2": {
+                "shape": [
+                  256,
+                  2048,
+                  128
+                ],
+                "stride": [
+                  262144,
+                  128,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "topk_weights": {
+                "shape": [
+                  20,
+                  8
+                ],
+                "stride": [
+                  8,
+                  1
+                ],
+                "dtype": "torch.float32",
+                "storage_offset": 0
+              },
+              "topk_ids": {
+                "shape": [
+                  20,
+                  8
+                ],
+                "stride": [
+                  8,
+                  1
+                ],
+                "dtype": "torch.int32",
+                "storage_offset": 0
+              },
+              "sorted_token_ids": {
+                "shape": [
+                  2560
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.int32",
+                "storage_offset": 0
+              },
+              "expert_ids": {
+                "shape": [
+                  160
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.int32",
+                "storage_offset": 0
+              },
+              "num_tokens_post_padded": {
+                "shape": [
+                  1
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.int32",
+                "storage_offset": 0
+              },
+              "config": {
+                "scalar": {
+                  "BLOCK_SIZE_M": 16,
+                  "BLOCK_SIZE_N": 32,
+                  "BLOCK_SIZE_K": 64,
+                  "GROUP_SIZE_M": 1
+                }
+              },
+              "down_config": {
+                "scalar": null
+              },
+              "down_moe_use_tma": {
+                "scalar": false
+              },
+              "b1": {
+                "scalar": null
+              },
+              "b2": {
+                "scalar": null
+              },
+              "use_fp8_w8a8": {
+                "scalar": false
+              },
+              "use_int8_w8a8": {
+                "scalar": false
+              },
+              "use_int8_w8a16": {
+                "scalar": false
+              },
+              "use_int4_w4a16": {
+                "scalar": false
+              },
+              "per_channel_quant": {
+                "scalar": false
+              },
+              "w1_scale": {
+                "scalar": null
+              },
+              "w2_scale": {
+                "scalar": null
+              },
+              "w1_zp": {
+                "scalar": null
+              },
+              "w2_zp": {
+                "scalar": null
+              },
+              "a1_scale": {
+                "scalar": null
+              },
+              "a2_scale": {
+                "scalar": null
+              },
+              "block_shape": {
+                "scalar": null
+              },
+              "activation": {
+                "scalar": "silu"
+              },
+              "is_gated": {
+                "scalar": true
+              },
+              "no_combine": {
+                "scalar": false
+              },
+              "inplace": {
+                "scalar": true
+              },
+              "apply_router_weight_on_input": {
+                "scalar": false
+              },
+              "routed_scaling_factor": {
+                "scalar": null
+              },
+              "gemm1_alpha": {
+                "scalar": null
+              },
+              "gemm1_limit": {
+                "scalar": null
+              },
+              "filter_expert": {
+                "scalar": false
+              },
+              "hooks": {
+                "scalar": null
+              }
+            },
+            "parameters": {
+              "model": "35b",
+              "tokens": 20,
+              "role": "default",
+              "seed": 0,
+              "variant": "documented",
+              "source": "SGLang v0.5.11; Qwen3.6 TP=4 workload",
+              "input_distribution": "seeded FP32 N(0,0.5), cast to BF16; see builder for weights/gates",
+              "input_dtypes": {
+                "hidden_states": "torch.bfloat16",
+                "w1": "torch.bfloat16",
+                "w2": "torch.bfloat16",
+                "topk_weights": "torch.float32",
+                "topk_ids": "torch.int32",
+                "sorted_token_ids": "torch.int32",
+                "expert_ids": "torch.int32",
+                "num_tokens_post_padded": "torch.int32"
+              },
+              "num_experts": 256,
+              "intermediate_size": 128,
+              "top_k": 8,
+              "config": {
+                "BLOCK_SIZE_M": 16,
+                "BLOCK_SIZE_N": 32,
+                "BLOCK_SIZE_K": 64,
+                "GROUP_SIZE_M": 1
+              },
+              "down_config": null,
+              "down_moe_use_tma": false,
+              "activation": "silu",
+              "is_gated": true,
+              "inplace": true,
+              "no_combine": false,
+              "apply_router_weight_on_input": false,
+              "routed_scaling_factor": null,
+              "filter_expert": false,
+              "quantized": false
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
+            }
+          },
+          "T_us": 145.6640064716339,
+          "latency_ms": 0.1456640064716339,
+          "F_cuda": 4543488.0,
+          "F_tensor": 2667577344.0,
+          "B_mem": 172478720.0,
+          "U_cuda": 7.1139399999999995,
+          "U_tensor": 3.4585875,
+          "U_mem": 36.06580375,
+          "U_bottle_neck": 36.06580375,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 4,
+          "per_kernel": [
+            {
+              "name": "fused_moe_kernel",
+              "F_cuda": 0.0,
+              "F_tensor": 1778384896.0,
+              "B_mem": 113658624.0,
+              "U_cuda": 4.55433,
+              "U_tensor": 7.581362,
+              "U_mem": 76.341718,
+              "T_us": 79.44268800889111
+            },
+            {
+              "name": "void <unnamed>::act_and_mul_kernel<__nv_bfloat16, 0, 1, 0>(<unnamed>::ActivationParams)",
+              "F_cuda": 87040.0,
+              "F_tensor": 0.0,
+              "B_mem": 86784.0,
+              "U_cuda": 0.122156,
+              "U_tensor": 0.004986,
+              "U_mem": 0.681708,
+              "T_us": 6.868243920077041
+            },
+            {
+              "name": "fused_moe_kernel",
+              "F_cuda": 3473408.0,
+              "F_tensor": 889192448.0,
+              "B_mem": 58074624.0,
+              "U_cuda": 21.978526,
+              "U_tensor": 6.248002,
+              "U_mem": 63.981837,
+              "T_us": 48.478355002543786
+            },
+            {
+              "name": "triton_per_fused_copy__mul_sum_0",
+              "F_cuda": 983040.0,
+              "F_tensor": 0.0,
+              "B_mem": 658688.0,
+              "U_cuda": 1.800748,
+              "U_tensor": 0.0,
+              "U_mem": 3.257952,
+              "T_us": 10.874719540121982
+            }
+          ],
+          "flops_cuda_core": 4543488.0,
+          "flops_tensor_core": 2667577344.0,
+          "memory_bytes": 172478720.0,
+          "util_cuda_core": 0.07113939999999999,
+          "util_tensor_core": 0.034585875,
+          "util_memory_bw": 0.36065803750000003,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.36065803750000003,
+          "cuda_flops": 4543488.0,
+          "sm_utilization": 0.2273620475,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/_fused_moe_kernel_sequence_qxwxexnx3x6x-xvx2x-x2x9x1x5xcx7xex8x9x0xax5x3x7x4xbxdxaxfx1xdx9xbxcx8x1x7xexbx3xexcx0x1xcx2x6x3x1xbx8x5x5xbx4x7x1xex3xcx5x1x4x1x5x0xfxexdxexexexfx2_bfloat16.ncu-rep",
+          "timing": {
+            "schema": "flaggems.reset-excluded/v1",
+            "method": "device_event_median",
+            "reset_excluded": true,
+            "cache_policy": "restore_then_flush_256MiB_before_call",
+            "cache_bytes": 268435456,
+            "ncu_cache_control": "all",
+            "warmup_ms": 25,
+            "rep_ms": 100,
+            "max_samples": 10000
+          }
+        }
+      },
+      "qwen36-v2-3fb1ae614fdb3c14886ab842d1367e0c91aa7092c7d1ca9e0e1c0e78e2b7fa2a": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "hidden_states": {
+                "shape": [
+                  1,
+                  2048
+                ],
+                "stride": [
+                  2048,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "w1": {
+                "shape": [
+                  256,
+                  256,
+                  2048
+                ],
+                "stride": [
+                  524288,
+                  2048,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "w2": {
+                "shape": [
+                  256,
+                  2048,
+                  128
+                ],
+                "stride": [
+                  262144,
+                  128,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "topk_weights": {
+                "shape": [
+                  1,
+                  8
+                ],
+                "stride": [
+                  8,
+                  1
+                ],
+                "dtype": "torch.float32",
+                "storage_offset": 0
+              },
+              "topk_ids": {
+                "shape": [
+                  1,
+                  8
+                ],
+                "stride": [
+                  8,
+                  1
+                ],
+                "dtype": "torch.int32",
+                "storage_offset": 0
+              },
+              "sorted_token_ids": {
+                "shape": [
+                  128
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.int32",
+                "storage_offset": 0
+              },
+              "expert_ids": {
+                "shape": [
+                  8
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.int32",
+                "storage_offset": 0
+              },
+              "num_tokens_post_padded": {
+                "shape": [
+                  1
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.int32",
+                "storage_offset": 0
+              },
+              "config": {
+                "scalar": {
+                  "BLOCK_SIZE_M": 16,
+                  "BLOCK_SIZE_N": 32,
+                  "BLOCK_SIZE_K": 64,
+                  "GROUP_SIZE_M": 1
+                }
+              },
+              "down_config": {
+                "scalar": null
+              },
+              "down_moe_use_tma": {
+                "scalar": false
+              },
+              "b1": {
+                "scalar": null
+              },
+              "b2": {
+                "scalar": null
+              },
+              "use_fp8_w8a8": {
+                "scalar": false
+              },
+              "use_int8_w8a8": {
+                "scalar": false
+              },
+              "use_int8_w8a16": {
+                "scalar": false
+              },
+              "use_int4_w4a16": {
+                "scalar": false
+              },
+              "per_channel_quant": {
+                "scalar": false
+              },
+              "w1_scale": {
+                "scalar": null
+              },
+              "w2_scale": {
+                "scalar": null
+              },
+              "w1_zp": {
+                "scalar": null
+              },
+              "w2_zp": {
+                "scalar": null
+              },
+              "a1_scale": {
+                "scalar": null
+              },
+              "a2_scale": {
+                "scalar": null
+              },
+              "block_shape": {
+                "scalar": null
+              },
+              "activation": {
+                "scalar": "silu"
+              },
+              "is_gated": {
+                "scalar": true
+              },
+              "no_combine": {
+                "scalar": false
+              },
+              "inplace": {
+                "scalar": true
+              },
+              "apply_router_weight_on_input": {
+                "scalar": false
+              },
+              "routed_scaling_factor": {
+                "scalar": null
+              },
+              "gemm1_alpha": {
+                "scalar": null
+              },
+              "gemm1_limit": {
+                "scalar": null
+              },
+              "filter_expert": {
+                "scalar": false
+              },
+              "hooks": {
+                "scalar": null
+              }
+            },
+            "parameters": {
+              "model": "35b",
+              "tokens": 1,
+              "role": "default",
+              "seed": 0,
+              "variant": "documented",
+              "source": "SGLang v0.5.11; Qwen3.6 TP=4 workload",
+              "input_distribution": "seeded FP32 N(0,0.5), cast to BF16; see builder for weights/gates",
+              "input_dtypes": {
+                "hidden_states": "torch.bfloat16",
+                "w1": "torch.bfloat16",
+                "w2": "torch.bfloat16",
+                "topk_weights": "torch.float32",
+                "topk_ids": "torch.int32",
+                "sorted_token_ids": "torch.int32",
+                "expert_ids": "torch.int32",
+                "num_tokens_post_padded": "torch.int32"
+              },
+              "num_experts": 256,
+              "intermediate_size": 128,
+              "top_k": 8,
+              "config": {
+                "BLOCK_SIZE_M": 16,
+                "BLOCK_SIZE_N": 32,
+                "BLOCK_SIZE_K": 64,
+                "GROUP_SIZE_M": 1
+              },
+              "down_config": null,
+              "down_moe_use_tma": false,
+              "activation": "silu",
+              "is_gated": true,
+              "inplace": true,
+              "no_combine": false,
+              "apply_router_weight_on_input": false,
+              "routed_scaling_factor": null,
+              "filter_expert": false,
+              "quantized": false
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
+            }
+          },
+          "T_us": 145.50399780273438,
+          "latency_ms": 0.14550399780273438,
+          "F_cuda": 315904.0,
+          "F_tensor": 201326592.0,
+          "B_mem": 12658176.0,
+          "U_cuda": 1.7885362499999997,
+          "U_tensor": 0.90092575,
+          "U_mem": 9.042632,
+          "U_bottle_neck": 9.042632,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 4,
+          "per_kernel": [
+            {
+              "name": "fused_moe_kernel",
+              "F_cuda": 0.0,
+              "F_tensor": 134217728.0,
+              "B_mem": 8402688.0,
+              "U_cuda": 0.948037,
+              "U_tensor": 1.647268,
+              "U_mem": 16.231011,
+              "T_us": 74.9988657470963
+            },
+            {
+              "name": "void <unnamed>::act_and_mul_kernel<__nv_bfloat16, 0, 1, 0>(<unnamed>::ActivationParams)",
+              "F_cuda": 4608.0,
+              "F_tensor": 0.0,
+              "B_mem": 9216.0,
+              "U_cuda": 0.006952,
+              "U_tensor": 0.000488,
+              "U_mem": 0.071023,
+              "T_us": 18.904672770962293
+            },
+            {
+              "name": "fused_moe_kernel",
+              "F_cuda": 262144.0,
+              "F_tensor": 67108864.0,
+              "B_mem": 4209408.0,
+              "U_cuda": 6.112333,
+              "U_tensor": 1.955947,
+              "U_mem": 19.604874,
+              "T_us": 31.14622317183132
+            },
+            {
+              "name": "triton_per_fused_copy__mul_sum_0",
+              "F_cuda": 49152.0,
+              "F_tensor": 0.0,
+              "B_mem": 36864.0,
+              "U_cuda": 0.086823,
+              "U_tensor": 0.0,
+              "U_mem": 0.26362,
+              "T_us": 20.45423611284445
+            }
+          ],
+          "flops_cuda_core": 315904.0,
+          "flops_tensor_core": 201326592.0,
+          "memory_bytes": 12658176.0,
+          "util_cuda_core": 0.017885362499999998,
+          "util_tensor_core": 0.0090092575,
+          "util_memory_bw": 0.09042631999999999,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.09042631999999999,
+          "cuda_flops": 315904.0,
+          "sm_utilization": 0.055362102499999996,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/_fused_moe_kernel_sequence_qxwxexnx3x6x-xvx2x-x3xfxbx1xaxex6x1x4xfxdxbx3xcx1x4x8x8x6xaxbx8x4x2xdx1x3x6x7xex0xcx9x1xaxax7x0x9x2xcx7xdx1xcxax9xex0xex1xcx0xex7x8xex2xbx7xfxax2xa_bfloat16.ncu-rep",
+          "timing": {
+            "schema": "flaggems.reset-excluded/v1",
+            "method": "device_event_median",
+            "reset_excluded": true,
+            "cache_policy": "restore_then_flush_256MiB_before_call",
+            "cache_bytes": 268435456,
+            "ncu_cache_control": "all",
+            "warmup_ms": 25,
+            "rep_ms": 100,
+            "max_samples": 10000
+          }
+        }
+      }
+    }
+  },
+  "fused_recurrent_gated_delta_rule_packed_decode": {
+    "native_api": "ops.fused_recurrent_gated_delta_rule_packed_decode",
+    "shapes": {
+      "qwen36-v2-c4ef433b93639b1de65c3202b67f12edcc21016e319ef8d2dcef57810eb4f7f2": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "mixed_qkv": {
+                "shape": [
+                  1,
+                  2560
+                ],
+                "stride": [
+                  2560,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "a": {
+                "shape": [
+                  1,
+                  12
+                ],
+                "stride": [
+                  12,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "b": {
+                "shape": [
+                  1,
+                  12
+                ],
+                "stride": [
+                  12,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "A_log": {
+                "shape": [
+                  12
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.float32",
+                "storage_offset": 0
+              },
+              "dt_bias": {
+                "shape": [
+                  12
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "scale": {
+                "scalar": 0.08838834764831845
+              },
+              "initial_state": {
+                "shape": [
+                  1381,
+                  12,
+                  128,
+                  128
+                ],
+                "stride": [
+                  196608,
+                  16384,
+                  128,
+                  1
+                ],
+                "dtype": "torch.float32",
+                "storage_offset": 0
+              },
+              "out": {
+                "shape": [
+                  1,
+                  1,
+                  12,
+                  128
+                ],
+                "stride": [
+                  1536,
+                  1536,
+                  128,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "ssm_state_indices": {
+                "shape": [
+                  1
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.int32",
+                "storage_offset": 0
+              },
+              "use_qk_l2norm_in_kernel": {
+                "scalar": true
+              }
+            },
+            "parameters": {
+              "model": "27b",
+              "tokens": 1,
+              "role": "default",
+              "seed": 0,
+              "variant": "documented",
+              "source": "SGLang v0.5.11; Qwen3.6 TP=4 workload",
+              "input_distribution": "seeded FP32 N(0,0.5), cast to BF16; see builder for weights/gates",
+              "input_dtypes": {
+                "mixed_qkv": "torch.bfloat16",
+                "a": "torch.bfloat16",
+                "b": "torch.bfloat16",
+                "A_log": "torch.float32",
+                "dt_bias": "torch.bfloat16",
+                "initial_state": "torch.float32",
+                "out": "torch.bfloat16",
+                "ssm_state_indices": "torch.int32"
+              },
+              "scale": 0.08838834764831845,
+              "use_qk_l2norm_in_kernel": true,
+              "ssm_state_indices": [
+                1
+              ],
+              "state_fill": 0.03125,
+              "active_state_std": 0.1
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
+            }
+          },
+          "T_us": 8.352000266313553,
+          "latency_ms": 0.008352000266313553,
+          "F_cuda": 1986048.0,
+          "F_tensor": 0.0,
+          "B_mem": 821504.0,
+          "U_cuda": 0.772053,
+          "U_tensor": 0.003082,
+          "U_mem": 3.365143,
+          "U_bottle_neck": 3.365143,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 1,
+          "per_kernel": [
+            {
+              "name": "fused_recurrent_gated_delta_rule_packed_decode_kernel",
+              "F_cuda": 1986048.0,
+              "F_tensor": 0.0,
+              "B_mem": 821504.0,
+              "U_cuda": 0.772053,
+              "U_tensor": 0.003082,
+              "U_mem": 3.365143,
+              "T_us": 8.352000266313553
+            }
+          ],
+          "flops_cuda_core": 1986048.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 821504.0,
+          "util_cuda_core": 0.00772053,
+          "util_tensor_core": 3.082e-05,
+          "util_memory_bw": 0.03365143,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.03365143,
+          "cuda_flops": 1986048.0,
+          "sm_utilization": 0.01467055,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/fused_recurrent_gated_delta_rule_packed_decode_qxwxexnx3x6x-xvx2x-xcx4xexfx4x3x3xbx9x3x6x3x9xbx1xdxex6x5xcx3x2x0x2xbx6x7xfx1x2xexdxcxcx2x1x0x1x6xex3x1x9xexfx8xdx2xdxcxexfx5x7x8x1x0xexbx4xfx7xfx2_bfloat16.ncu-rep",
+          "timing": {
+            "schema": "flaggems.reset-excluded/v1",
+            "method": "device_event_median",
+            "reset_excluded": true,
+            "cache_policy": "restore_then_flush_256MiB_before_call",
+            "cache_bytes": 268435456,
+            "ncu_cache_control": "all",
+            "warmup_ms": 25,
+            "rep_ms": 100,
+            "max_samples": 10000
+          }
+        }
+      },
+      "qwen36-v2-6b8c949fd8d07966a4628a24a61552f163aa78954455fc151865680e871adaf5": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "mixed_qkv": {
+                "shape": [
+                  1,
+                  2048
+                ],
+                "stride": [
+                  2048,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "a": {
+                "shape": [
+                  1,
+                  8
+                ],
+                "stride": [
+                  8,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "b": {
+                "shape": [
+                  1,
+                  8
+                ],
+                "stride": [
+                  8,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "A_log": {
+                "shape": [
+                  8
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.float32",
+                "storage_offset": 0
+              },
+              "dt_bias": {
+                "shape": [
+                  8
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "scale": {
+                "scalar": 0.08838834764831845
+              },
+              "initial_state": {
+                "shape": [
+                  3193,
+                  8,
+                  128,
+                  128
+                ],
+                "stride": [
+                  131072,
+                  16384,
+                  128,
+                  1
+                ],
+                "dtype": "torch.float32",
+                "storage_offset": 0
+              },
+              "out": {
+                "shape": [
+                  1,
+                  1,
+                  8,
+                  128
+                ],
+                "stride": [
+                  1024,
+                  1024,
+                  128,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "ssm_state_indices": {
+                "shape": [
+                  1
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.int32",
+                "storage_offset": 0
+              },
+              "use_qk_l2norm_in_kernel": {
+                "scalar": true
+              }
+            },
+            "parameters": {
+              "model": "35b",
+              "tokens": 1,
+              "role": "default",
+              "seed": 0,
+              "variant": "documented",
+              "source": "SGLang v0.5.11; Qwen3.6 TP=4 workload",
+              "input_distribution": "seeded FP32 N(0,0.5), cast to BF16; see builder for weights/gates",
+              "input_dtypes": {
+                "mixed_qkv": "torch.bfloat16",
+                "a": "torch.bfloat16",
+                "b": "torch.bfloat16",
+                "A_log": "torch.float32",
+                "dt_bias": "torch.bfloat16",
+                "initial_state": "torch.float32",
+                "out": "torch.bfloat16",
+                "ssm_state_indices": "torch.int32"
+              },
+              "scale": 0.08838834764831845,
+              "use_qk_l2norm_in_kernel": true,
+              "ssm_state_indices": [
+                1
+              ],
+              "state_fill": 0.03125,
+              "active_state_std": 0.1
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
+            }
+          },
+          "T_us": 8.25599953532219,
+          "latency_ms": 0.00825599953532219,
+          "F_cuda": 1324032.0,
+          "F_tensor": 0.0,
+          "B_mem": 558336.0,
+          "U_cuda": 0.511001,
+          "U_tensor": 0.002048,
+          "U_mem": 2.237566,
+          "U_bottle_neck": 2.237566,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 1,
+          "per_kernel": [
+            {
+              "name": "fused_recurrent_gated_delta_rule_packed_decode_kernel",
+              "F_cuda": 1324032.0,
+              "F_tensor": 0.0,
+              "B_mem": 558336.0,
+              "U_cuda": 0.511001,
+              "U_tensor": 0.002048,
+              "U_mem": 2.237566,
+              "T_us": 8.25599953532219
+            }
+          ],
+          "flops_cuda_core": 1324032.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 558336.0,
+          "util_cuda_core": 0.005110010000000001,
+          "util_tensor_core": 2.048e-05,
+          "util_memory_bw": 0.022375660000000002,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.022375660000000002,
+          "cuda_flops": 1324032.0,
+          "sm_utilization": 0.00974895,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/fused_recurrent_gated_delta_rule_packed_decode_qxwxexnx3x6x-xvx2x-x6xbx8xcx9x4x9xfxdx8xdx0x7x9x6x6xax4x6x2x8xax2x4xax6x1x5x5x2xfx1x6x3xaxax7x8x9x5x4x4x5x5xfxcx1x5x1x8x6x5x6x8x0xex8x7x1xaxdxaxfx5_bfloat16.ncu-rep",
+          "timing": {
+            "schema": "flaggems.reset-excluded/v1",
+            "method": "device_event_median",
+            "reset_excluded": true,
+            "cache_policy": "restore_then_flush_256MiB_before_call",
+            "cache_bytes": 268435456,
+            "ncu_cache_control": "all",
+            "warmup_ms": 25,
+            "rep_ms": 100,
+            "max_samples": 10000
+          }
+        }
+      }
+    }
+  },
+  "gemma_fused_add_rmsnorm": {
+    "native_api": "ops.gemma_fused_add_rmsnorm",
+    "shapes": {
+      "qwen36-v2-c97c757a676da06fabdfab4c2ff1b7a42b48657457703466b87a0d9689ac0efb": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "input": {
+                "shape": [
+                  20,
+                  5120
+                ],
+                "stride": [
+                  5120,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "residual": {
+                "shape": [
+                  20,
+                  5120
+                ],
+                "stride": [
+                  5120,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "weight": {
+                "shape": [
+                  5120
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "eps": {
+                "scalar": 1e-06
+              },
+              "enable_pdl": {
+                "scalar": null
+              }
+            },
+            "parameters": {
+              "model": "27b",
+              "tokens": 20,
+              "role": "default",
+              "seed": 0,
+              "variant": "documented",
+              "source": "SGLang v0.5.11; Qwen3.6 TP=4 workload",
+              "input_distribution": "seeded FP32 N(0,0.5), cast to BF16; see builder for weights/gates",
+              "input_dtypes": {
+                "input": "torch.bfloat16",
+                "residual": "torch.bfloat16",
+                "weight": "torch.bfloat16"
+              },
+              "eps": 1e-06,
+              "enable_pdl": null,
+              "weight_std": 0.1
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
+            }
+          },
+          "T_us": 6.783999968320131,
+          "latency_ms": 0.006783999968320131,
+          "F_cuda": 707200.0,
+          "F_tensor": 0.0,
+          "B_mem": 432896.0,
+          "U_cuda": 0.738969,
+          "U_tensor": 0.0,
+          "U_mem": 2.652799,
+          "U_bottle_neck": 2.652799,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 1,
+          "per_kernel": [
+            {
+              "name": "void FusedAddRMSNormKernel<8, __nv_bfloat16>(T2 *, T2 *, T2 *, unsigned int, unsigned int, unsigned int, float, float)",
+              "F_cuda": 707200.0,
+              "F_tensor": 0.0,
+              "B_mem": 432896.0,
+              "U_cuda": 0.738969,
+              "U_tensor": 0.0,
+              "U_mem": 2.652799,
+              "T_us": 6.783999968320131
+            }
+          ],
+          "flops_cuda_core": 707200.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 432896.0,
+          "util_cuda_core": 0.00738969,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.026527989999999998,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.026527989999999998,
+          "cuda_flops": 707200.0,
+          "sm_utilization": 0.02591058,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_fused_add_rmsnorm_qxwxexnx3x6x-xvx2x-xcx9x7xcx7x5x7xax6x7x6xdxax0x6xfxaxbxdxfxaxbx4xcx2xfxfx1xbx7xax4x2xbx4x8x6x5x7x4x5x7x7x0x3x4x6x6xbx8x7xax0xdx9x6x8x9xaxcx0xexfxb_bfloat16.ncu-rep",
+          "timing": {
+            "schema": "flaggems.reset-excluded/v1",
+            "method": "device_event_median",
+            "reset_excluded": true,
+            "cache_policy": "restore_then_flush_256MiB_before_call",
+            "cache_bytes": 268435456,
+            "ncu_cache_control": "all",
+            "warmup_ms": 25,
+            "rep_ms": 100,
+            "max_samples": 10000
+          }
+        }
+      },
+      "qwen36-v2-454566ab781dfe123271b8c10c5699aa751fadbe3c879ecaa6cacf0e3c2fe7e6": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "input": {
+                "shape": [
+                  1,
+                  5120
+                ],
+                "stride": [
+                  5120,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "residual": {
+                "shape": [
+                  1,
+                  5120
+                ],
+                "stride": [
+                  5120,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "weight": {
+                "shape": [
+                  5120
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "eps": {
+                "scalar": 1e-06
+              },
+              "enable_pdl": {
+                "scalar": null
+              }
+            },
+            "parameters": {
+              "model": "27b",
+              "tokens": 1,
+              "role": "default",
+              "seed": 0,
+              "variant": "documented",
+              "source": "SGLang v0.5.11; Qwen3.6 TP=4 workload",
+              "input_distribution": "seeded FP32 N(0,0.5), cast to BF16; see builder for weights/gates",
+              "input_dtypes": {
+                "input": "torch.bfloat16",
+                "residual": "torch.bfloat16",
+                "weight": "torch.bfloat16"
+              },
+              "eps": 1e-06,
+              "enable_pdl": null,
+              "weight_std": 0.1
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
+            }
+          },
+          "T_us": 5.791999865323305,
+          "latency_ms": 0.005791999865323305,
+          "F_cuda": 35360.0,
+          "F_tensor": 0.0,
+          "B_mem": 43776.0,
+          "U_cuda": 0.037426,
+          "U_tensor": 0.0,
+          "U_mem": 0.272501,
+          "U_bottle_neck": 0.272501,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 1,
+          "per_kernel": [
+            {
+              "name": "void FusedAddRMSNormKernel<8, __nv_bfloat16>(T2 *, T2 *, T2 *, unsigned int, unsigned int, unsigned int, float, float)",
+              "F_cuda": 35360.0,
+              "F_tensor": 0.0,
+              "B_mem": 43776.0,
+              "U_cuda": 0.037426,
+              "U_tensor": 0.0,
+              "U_mem": 0.272501,
+              "T_us": 5.791999865323305
+            }
+          ],
+          "flops_cuda_core": 35360.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 43776.0,
+          "util_cuda_core": 0.00037426,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.00272501,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.00272501,
+          "cuda_flops": 35360.0,
+          "sm_utilization": 0.00131228,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_fused_add_rmsnorm_qxwxexnx3x6x-xvx2x-x4x5x4x5x6x6xaxbx7x8x1xdxfxex1x2x3x2x7x1xbx8xcx1x0xcx5x6x9x9xaxax7x5x1xfxaxdxbxex3xcx8x7x9xexcxaxax6xcxaxcxfx0xex3xcx2xfxex7xex6_bfloat16.ncu-rep",
+          "timing": {
+            "schema": "flaggems.reset-excluded/v1",
+            "method": "device_event_median",
+            "reset_excluded": true,
+            "cache_policy": "restore_then_flush_256MiB_before_call",
+            "cache_bytes": 268435456,
+            "ncu_cache_control": "all",
+            "warmup_ms": 25,
+            "rep_ms": 100,
+            "max_samples": 10000
+          }
+        }
+      },
+      "qwen36-v2-dddf608f5799404a7d81a894dd11e50c638f3126112aa10c454c996dafe6cccd": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "input": {
+                "shape": [
+                  20,
+                  2048
+                ],
+                "stride": [
+                  2048,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "residual": {
+                "shape": [
+                  20,
+                  2048
+                ],
+                "stride": [
+                  2048,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "weight": {
+                "shape": [
+                  2048
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "eps": {
+                "scalar": 1e-06
+              },
+              "enable_pdl": {
+                "scalar": null
+              }
+            },
+            "parameters": {
+              "model": "35b",
+              "tokens": 20,
+              "role": "default",
+              "seed": 0,
+              "variant": "documented",
+              "source": "SGLang v0.5.11; Qwen3.6 TP=4 workload",
+              "input_distribution": "seeded FP32 N(0,0.5), cast to BF16; see builder for weights/gates",
+              "input_dtypes": {
+                "input": "torch.bfloat16",
+                "residual": "torch.bfloat16",
+                "weight": "torch.bfloat16"
+              },
+              "eps": 1e-06,
+              "enable_pdl": null,
+              "weight_std": 0.1
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
+            }
+          },
+          "T_us": 5.535999778658152,
+          "latency_ms": 0.005535999778658152,
+          "F_cuda": 284800.0,
+          "F_tensor": 0.0,
+          "B_mem": 180992.0,
+          "U_cuda": 0.323249,
+          "U_tensor": 0.0,
+          "U_mem": 1.206649,
+          "U_bottle_neck": 1.206649,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 1,
+          "per_kernel": [
+            {
+              "name": "void FusedAddRMSNormKernel<8, __nv_bfloat16>(T2 *, T2 *, T2 *, unsigned int, unsigned int, unsigned int, float, float)",
+              "F_cuda": 284800.0,
+              "F_tensor": 0.0,
+              "B_mem": 180992.0,
+              "U_cuda": 0.323249,
+              "U_tensor": 0.0,
+              "U_mem": 1.206649,
+              "T_us": 5.535999778658152
+            }
+          ],
+          "flops_cuda_core": 284800.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 180992.0,
+          "util_cuda_core": 0.00323249,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.012066490000000001,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.012066490000000001,
+          "cuda_flops": 284800.0,
+          "sm_utilization": 0.0113324,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_fused_add_rmsnorm_qxwxexnx3x6x-xvx2x-xdxdxdxfx6x0x8xfx5x7x9x9x4x0x4xax7xdx8x1xax8x9x4xdxdx1x1xex5x0xcx6x3x8xfx3x1x2x6x1x1x2xaxax1x0xcx4x5x4xcx9x9x6xdxaxfxex6xcxcxcxd_bfloat16.ncu-rep",
+          "timing": {
+            "schema": "flaggems.reset-excluded/v1",
+            "method": "device_event_median",
+            "reset_excluded": true,
+            "cache_policy": "restore_then_flush_256MiB_before_call",
+            "cache_bytes": 268435456,
+            "ncu_cache_control": "all",
+            "warmup_ms": 25,
+            "rep_ms": 100,
+            "max_samples": 10000
+          }
+        }
+      },
+      "qwen36-v2-58f3f6a1a1f145cb80c9a418bd47d91ccbf2966086706175a8c71c9d66d24507": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "input": {
+                "shape": [
+                  1,
+                  2048
+                ],
+                "stride": [
+                  2048,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "residual": {
+                "shape": [
+                  1,
+                  2048
+                ],
+                "stride": [
+                  2048,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "weight": {
+                "shape": [
+                  2048
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "eps": {
+                "scalar": 1e-06
+              },
+              "enable_pdl": {
+                "scalar": null
+              }
+            },
+            "parameters": {
+              "model": "35b",
+              "tokens": 1,
+              "role": "default",
+              "seed": 0,
+              "variant": "documented",
+              "source": "SGLang v0.5.11; Qwen3.6 TP=4 workload",
+              "input_distribution": "seeded FP32 N(0,0.5), cast to BF16; see builder for weights/gates",
+              "input_dtypes": {
+                "input": "torch.bfloat16",
+                "residual": "torch.bfloat16",
+                "weight": "torch.bfloat16"
+              },
+              "eps": 1e-06,
+              "enable_pdl": null,
+              "weight_std": 0.1
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
+            }
+          },
+          "T_us": 5.119999870657921,
+          "latency_ms": 0.005119999870657921,
+          "F_cuda": 14240.0,
+          "F_tensor": 0.0,
+          "B_mem": 25344.0,
+          "U_cuda": 0.015838,
+          "U_tensor": 0.0,
+          "U_mem": 0.165885,
+          "U_bottle_neck": 0.165885,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 1,
+          "per_kernel": [
+            {
+              "name": "void FusedAddRMSNormKernel<8, __nv_bfloat16>(T2 *, T2 *, T2 *, unsigned int, unsigned int, unsigned int, float, float)",
+              "F_cuda": 14240.0,
+              "F_tensor": 0.0,
+              "B_mem": 25344.0,
+              "U_cuda": 0.015838,
+              "U_tensor": 0.0,
+              "U_mem": 0.165885,
+              "T_us": 5.119999870657921
+            }
+          ],
+          "flops_cuda_core": 14240.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 25344.0,
+          "util_cuda_core": 0.00015838,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0016588500000000001,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.0016588500000000001,
+          "cuda_flops": 14240.0,
+          "sm_utilization": 0.00055526,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_fused_add_rmsnorm_qxwxexnx3x6x-xvx2x-x5x8xfx3xfx6xax1xax1xfx1x4x5xcxbx8x0xcx9xax4x1x8xbxdx4x7xdx9x1xcxcxbxfx2x9x6x6x0x8x6x7x0x6x1x7x5xax8xcx7x1xcx9xdx6x6xdx2x4x5x0x7_bfloat16.ncu-rep",
+          "timing": {
+            "schema": "flaggems.reset-excluded/v1",
+            "method": "device_event_median",
+            "reset_excluded": true,
+            "cache_policy": "restore_then_flush_256MiB_before_call",
+            "cache_bytes": 268435456,
+            "ncu_cache_control": "all",
+            "warmup_ms": 25,
+            "rep_ms": 100,
+            "max_samples": 10000
+          }
+        }
+      }
+    }
+  },
+  "gemma_rmsnorm": {
+    "native_api": "ops.gemma_rmsnorm",
+    "shapes": {
+      "qwen36-v1-0d363d1ad16d38f2745b5d16f39effe8103b6460a5a511d3bf924886285e4c70": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "input": {
+                "shape": [
+                  20,
+                  5120
+                ],
+                "stride": [
+                  5120,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "weight": {
+                "shape": [
+                  5120
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "eps": {
+                "scalar": 1e-06
+              },
+              "out": {
+                "scalar": null
+              },
+              "enable_pdl": {
+                "scalar": null
+              }
+            },
+            "parameters": {
+              "model": "27b",
+              "tokens": 20,
+              "role": "hidden",
+              "seed": 0,
+              "variant": "documented",
+              "source": "SGLang v0.5.11; Qwen3.6 TP=4 workload",
+              "input_distribution": "seeded FP32 N(0,0.5), cast to BF16; see builder for weights/gates",
+              "input_dtypes": {
+                "input": "torch.bfloat16",
+                "weight": "torch.bfloat16"
+              },
+              "eps": 1e-06,
+              "enable_pdl": null,
+              "weight_std": 0.1
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
+            }
+          },
+          "T_us": 6.207999773323536,
+          "latency_ms": 0.006207999773323536,
+          "F_cuda": 604800.0,
+          "F_tensor": 0.0,
+          "B_mem": 227072.0,
+          "U_cuda": 0.8116980000000001,
+          "U_tensor": 0.0,
+          "U_mem": 1.403126,
+          "U_bottle_neck": 1.403126,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 1,
+          "per_kernel": [
+            {
+              "name": "void RMSNormKernel<8, __nv_bfloat16>(T2 *, T2 *, T2 *, unsigned int, unsigned int, unsigned int, float, float)",
+              "F_cuda": 604800.0,
+              "F_tensor": 0.0,
+              "B_mem": 227072.0,
+              "U_cuda": 0.811698,
+              "U_tensor": 0.0,
+              "U_mem": 1.403126,
+              "T_us": 6.207999773323536
+            }
+          ],
+          "flops_cuda_core": 604800.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 227072.0,
+          "util_cuda_core": 0.008116980000000001,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.01403126,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.01403126,
+          "cuda_flops": 604800.0,
+          "sm_utilization": 0.02195924,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-x0xdx3x6x3xdx1xaxdx1x6xdx3x8xfx2x7x4x5xbx5xdx1x6xfx3x9xexfxfxex8x1x0x3xbx6x4x6x0xax5xax5x1x1xdx3xbxfx9x2x4x8x8x6x2x8x5xex4xcx7x0_bfloat16.ncu-rep",
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "median",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        }
+      },
+      "qwen36-v1-b1930f3ad0838224e482b38b94888c7429c83e23809b47d09602fd326958ead0": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "input": {
+                "shape": [
+                  120,
+                  256
+                ],
+                "stride": [
+                  256,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "weight": {
+                "shape": [
+                  256
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "eps": {
+                "scalar": 1e-06
+              },
+              "out": {
+                "scalar": null
+              },
+              "enable_pdl": {
+                "scalar": null
+              }
+            },
+            "parameters": {
+              "model": "27b",
+              "tokens": 20,
+              "role": "q",
+              "seed": 0,
+              "variant": "documented",
+              "source": "SGLang v0.5.11; Qwen3.6 TP=4 workload",
+              "input_distribution": "seeded FP32 N(0,0.5), cast to BF16; see builder for weights/gates",
+              "input_dtypes": {
+                "input": "torch.bfloat16",
+                "weight": "torch.bfloat16"
+              },
+              "eps": 1e-06,
+              "enable_pdl": null,
+              "weight_std": 0.1
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
+            }
+          },
+          "T_us": 5.119999870657921,
+          "latency_ms": 0.005119999870657921,
+          "F_cuda": 199680.0,
+          "F_tensor": 0.0,
+          "B_mem": 74240.0,
+          "U_cuda": 0.294134,
+          "U_tensor": 0.0,
+          "U_mem": 0.516382,
+          "U_bottle_neck": 0.516382,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 1,
+          "per_kernel": [
+            {
+              "name": "void RMSNormKernel<8, __nv_bfloat16>(T2 *, T2 *, T2 *, unsigned int, unsigned int, unsigned int, float, float)",
+              "F_cuda": 199680.0,
+              "F_tensor": 0.0,
+              "B_mem": 74240.0,
+              "U_cuda": 0.294134,
+              "U_tensor": 0.0,
+              "U_mem": 0.516382,
+              "T_us": 5.119999870657921
+            }
+          ],
+          "flops_cuda_core": 199680.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 74240.0,
+          "util_cuda_core": 0.00294134,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.00516382,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.00516382,
+          "cuda_flops": 199680.0,
+          "sm_utilization": 0.00798841,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-xbx1x9x3x0xfx3xaxdx0x8x3x8x2x2x4xex4x8x2xbx3x8xbx9x4x8x8x8xcx7x4x2x9xcx8x3xex2x3x8x0x9xbx4x7xdx0x9x6x0x2xfxdx3x2x6x9x5x8xexaxdx0_bfloat16.ncu-rep",
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "median",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        }
+      },
+      "qwen36-v1-e5127e312629f507e2541988b1caaab1bee7b93766e10919458791b2d92796a0": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "input": {
+                "shape": [
+                  20,
+                  256
+                ],
+                "stride": [
+                  3584,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 3072
+              },
+              "weight": {
+                "shape": [
+                  256
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "eps": {
+                "scalar": 1e-06
+              },
+              "out": {
+                "scalar": null
+              },
+              "enable_pdl": {
+                "scalar": null
+              }
+            },
+            "parameters": {
+              "model": "27b",
+              "tokens": 20,
+              "role": "k",
+              "seed": 0,
+              "variant": "documented",
+              "source": "SGLang v0.5.11; Qwen3.6 TP=4 workload",
+              "input_distribution": "seeded FP32 N(0,0.5), cast to BF16; see builder for weights/gates",
+              "input_dtypes": {
+                "input": "torch.bfloat16",
+                "weight": "torch.bfloat16"
+              },
+              "eps": 1e-06,
+              "enable_pdl": null,
+              "weight_std": 0.1,
+              "input_stride": [
+                3584,
+                1
+              ]
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
+            }
+          },
+          "T_us": 5.759999854490161,
+          "latency_ms": 0.005759999854490161,
+          "F_cuda": 33280.0,
+          "F_tensor": 0.0,
+          "B_mem": 23040.0,
+          "U_cuda": 0.05043199999999999,
+          "U_tensor": 0.0,
+          "U_mem": 0.164666,
+          "U_bottle_neck": 0.164666,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 1,
+          "per_kernel": [
+            {
+              "name": "void RMSNormKernel<8, __nv_bfloat16>(T2 *, T2 *, T2 *, unsigned int, unsigned int, unsigned int, float, float)",
+              "F_cuda": 33280.0,
+              "F_tensor": 0.0,
+              "B_mem": 23040.0,
+              "U_cuda": 0.050432,
+              "U_tensor": 0.0,
+              "U_mem": 0.164666,
+              "T_us": 5.759999854490161
+            }
+          ],
+          "flops_cuda_core": 33280.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 23040.0,
+          "util_cuda_core": 0.0005043199999999999,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.00164666,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.00164666,
+          "cuda_flops": 33280.0,
+          "sm_utilization": 0.0013697000000000002,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-xex5x1x2x7xex3x1x2x6x2x9xfx5x0x7xex2x5x4x1x9x8x8xbx1xcxaxaxaxbx1xbxexex7xbx9x3x7x6x6xex1x0x9x1x9x4x5x8x7x9x1xbx2xdx9x2x7x9x6xax0_bfloat16.ncu-rep",
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "median",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        }
+      },
+      "qwen36-v1-f9bdb3dcdd9b2f8a03cfe5ba8546461e8681e873876eca594f5320652f3ef38e": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "input": {
+                "shape": [
+                  1,
+                  5120
+                ],
+                "stride": [
+                  5120,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "weight": {
+                "shape": [
+                  5120
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "eps": {
+                "scalar": 1e-06
+              },
+              "out": {
+                "scalar": null
+              },
+              "enable_pdl": {
+                "scalar": null
+              }
+            },
+            "parameters": {
+              "model": "27b",
+              "tokens": 1,
+              "role": "hidden",
+              "seed": 0,
+              "variant": "documented",
+              "source": "SGLang v0.5.11; Qwen3.6 TP=4 workload",
+              "input_distribution": "seeded FP32 N(0,0.5), cast to BF16; see builder for weights/gates",
+              "input_dtypes": {
+                "input": "torch.bfloat16",
+                "weight": "torch.bfloat16"
+              },
+              "eps": 1e-06,
+              "enable_pdl": null,
+              "weight_std": 0.1
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
+            }
+          },
+          "T_us": 5.439999978989363,
+          "latency_ms": 0.005439999978989363,
+          "F_cuda": 30240.0,
+          "F_tensor": 0.0,
+          "B_mem": 32768.0,
+          "U_cuda": 0.043024,
+          "U_tensor": 0.0,
+          "U_mem": 0.214938,
+          "U_bottle_neck": 0.214938,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 1,
+          "per_kernel": [
+            {
+              "name": "void RMSNormKernel<8, __nv_bfloat16>(T2 *, T2 *, T2 *, unsigned int, unsigned int, unsigned int, float, float)",
+              "F_cuda": 30240.0,
+              "F_tensor": 0.0,
+              "B_mem": 32768.0,
+              "U_cuda": 0.043024,
+              "U_tensor": 0.0,
+              "U_mem": 0.214938,
+              "T_us": 5.439999978989363
+            }
+          ],
+          "flops_cuda_core": 30240.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 32768.0,
+          "util_cuda_core": 0.00043024,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0021493799999999998,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.0021493799999999998,
+          "cuda_flops": 30240.0,
+          "sm_utilization": 0.00116395,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-xfx9xbxdxbx3xdxcxdxdx9xbx2xfx8xax0x3xcxfxex5xbxax8x5x4x6x4x6x1xex8x6x8x1xex8x7x3x8x7x6xexcxax5x9x4xfx5x3x2x0x6x5x2xfx3xexfx3x8xe_bfloat16.ncu-rep",
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "median",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        }
+      },
+      "qwen36-v1-12cf8886db345e79babca639a2af3c7ab32e8cf78e24bc39161f27decef3deac": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "input": {
+                "shape": [
+                  6,
+                  256
+                ],
+                "stride": [
+                  256,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "weight": {
+                "shape": [
+                  256
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "eps": {
+                "scalar": 1e-06
+              },
+              "out": {
+                "scalar": null
+              },
+              "enable_pdl": {
+                "scalar": null
+              }
+            },
+            "parameters": {
+              "model": "27b",
+              "tokens": 1,
+              "role": "q",
+              "seed": 0,
+              "variant": "documented",
+              "source": "SGLang v0.5.11; Qwen3.6 TP=4 workload",
+              "input_distribution": "seeded FP32 N(0,0.5), cast to BF16; see builder for weights/gates",
+              "input_dtypes": {
+                "input": "torch.bfloat16",
+                "weight": "torch.bfloat16"
+              },
+              "eps": 1e-06,
+              "enable_pdl": null,
+              "weight_std": 0.1
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
+            }
+          },
+          "T_us": 4.767999984323978,
+          "latency_ms": 0.004767999984323978,
+          "F_cuda": 9984.0,
+          "F_tensor": 0.0,
+          "B_mem": 15872.0,
+          "U_cuda": 0.014865000000000001,
+          "U_tensor": 0.0,
+          "U_mem": 0.11225399999999999,
+          "U_bottle_neck": 0.11225399999999999,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 1,
+          "per_kernel": [
+            {
+              "name": "void RMSNormKernel<8, __nv_bfloat16>(T2 *, T2 *, T2 *, unsigned int, unsigned int, unsigned int, float, float)",
+              "F_cuda": 9984.0,
+              "F_tensor": 0.0,
+              "B_mem": 15872.0,
+              "U_cuda": 0.014865,
+              "U_tensor": 0.0,
+              "U_mem": 0.112254,
+              "T_us": 4.767999984323978
+            }
+          ],
+          "flops_cuda_core": 9984.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 15872.0,
+          "util_cuda_core": 0.00014865,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.00112254,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.00112254,
+          "cuda_flops": 9984.0,
+          "sm_utilization": 0.00040372,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-x1x2xcxfx8x8x8x6xdxbx3x4x5xex7x9xbxaxbxcxax6x3x9xax2xaxfx3xcx7xaxbx3x2xex8xcxfx7x8xex2x4xbxcx3x9x1x6x1xfx2x7xdxexcxexfx3xdxexaxc_bfloat16.ncu-rep",
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "median",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        }
+      },
+      "qwen36-v1-f21fdc5f87fed7f6a7edb3f7c75cb2d8fcb5c1170f12a9811d1662cebdedac3d": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "input": {
+                "shape": [
+                  1,
+                  256
+                ],
+                "stride": [
+                  3584,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 3072
+              },
+              "weight": {
+                "shape": [
+                  256
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "eps": {
+                "scalar": 1e-06
+              },
+              "out": {
+                "scalar": null
+              },
+              "enable_pdl": {
+                "scalar": null
+              }
+            },
+            "parameters": {
+              "model": "27b",
+              "tokens": 1,
+              "role": "k",
+              "seed": 0,
+              "variant": "documented",
+              "source": "SGLang v0.5.11; Qwen3.6 TP=4 workload",
+              "input_distribution": "seeded FP32 N(0,0.5), cast to BF16; see builder for weights/gates",
+              "input_dtypes": {
+                "input": "torch.bfloat16",
+                "weight": "torch.bfloat16"
+              },
+              "eps": 1e-06,
+              "enable_pdl": null,
+              "weight_std": 0.1,
+              "input_stride": [
+                3584,
+                1
+              ]
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
+            }
+          },
+          "T_us": 4.991999827325344,
+          "latency_ms": 0.004991999827325344,
+          "F_cuda": 1664.0,
+          "F_tensor": 0.0,
+          "B_mem": 13312.0,
+          "U_cuda": 0.002462,
+          "U_tensor": 0.0,
+          "U_mem": 0.093337,
+          "U_bottle_neck": 0.093337,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 1,
+          "per_kernel": [
+            {
+              "name": "void RMSNormKernel<8, __nv_bfloat16>(T2 *, T2 *, T2 *, unsigned int, unsigned int, unsigned int, float, float)",
+              "F_cuda": 1664.0,
+              "F_tensor": 0.0,
+              "B_mem": 13312.0,
+              "U_cuda": 0.002462,
+              "U_tensor": 0.0,
+              "U_mem": 0.093337,
+              "T_us": 4.991999827325344
+            }
+          ],
+          "flops_cuda_core": 1664.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 13312.0,
+          "util_cuda_core": 2.462e-05,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.00093337,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.00093337,
+          "cuda_flops": 1664.0,
+          "sm_utilization": 6.687e-05,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-xfx2x1xfxdxcx5xfx8x7xfxexdx7xfx6xax7xexdxbx3xfx7xcx7x5xcxbx2xdx8xfxcxbx5xcx1x1x7x0xfx1x2xax9x8x1x1xdx1x6x6x2xcxexbxdxexdxaxcx3xd_bfloat16.ncu-rep",
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "median",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        }
+      },
+      "qwen36-v1-1844c76fe075ed9b3364ed36c7ce8a6306784b6e06c4fcb4d2b62d09178b5df4": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "input": {
+                "shape": [
+                  20,
+                  2048
+                ],
+                "stride": [
+                  2048,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "weight": {
+                "shape": [
+                  2048
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "eps": {
+                "scalar": 1e-06
+              },
+              "out": {
+                "scalar": null
+              },
+              "enable_pdl": {
+                "scalar": null
+              }
+            },
+            "parameters": {
+              "model": "35b",
+              "tokens": 20,
+              "role": "hidden",
+              "seed": 0,
+              "variant": "documented",
+              "source": "SGLang v0.5.11; Qwen3.6 TP=4 workload",
+              "input_distribution": "seeded FP32 N(0,0.5), cast to BF16; see builder for weights/gates",
+              "input_dtypes": {
+                "input": "torch.bfloat16",
+                "weight": "torch.bfloat16"
+              },
+              "eps": 1e-06,
+              "enable_pdl": null,
+              "weight_std": 0.1
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
+            }
+          },
+          "T_us": 5.535999778658152,
+          "latency_ms": 0.005535999778658152,
+          "F_cuda": 243840.0,
+          "F_tensor": 0.0,
+          "B_mem": 98560.0,
+          "U_cuda": 0.3762,
+          "U_tensor": 0.0,
+          "U_mem": 0.70194,
+          "U_bottle_neck": 0.70194,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 1,
+          "per_kernel": [
+            {
+              "name": "void RMSNormKernel<8, __nv_bfloat16>(T2 *, T2 *, T2 *, unsigned int, unsigned int, unsigned int, float, float)",
+              "F_cuda": 243840.0,
+              "F_tensor": 0.0,
+              "B_mem": 98560.0,
+              "U_cuda": 0.3762,
+              "U_tensor": 0.0,
+              "U_mem": 0.70194,
+              "T_us": 5.535999778658152
+            }
+          ],
+          "flops_cuda_core": 243840.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 98560.0,
+          "util_cuda_core": 0.0037619999999999997,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0070194,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.0070194,
+          "cuda_flops": 243840.0,
+          "sm_utilization": 0.010189239999999999,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-x1x8x4x4xcx7x6xfxex0x7x5xexdx9xbx3x3x6x4xexdx3x6xcx7xcxex8xax6x3x0x6x7x8x4xbx6xex0x6xcx4xfxcxbx4xdx2xbx6x2xdx0x9x1x7x8xbx5xdxfx4_bfloat16.ncu-rep",
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "median",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        }
+      },
+      "qwen36-v1-e9360543ad3becec65b9127f8e01e124081fa8c91e68a2d4e3c2f6e7b3f078ad": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "input": {
+                "shape": [
+                  80,
+                  256
+                ],
+                "stride": [
+                  256,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "weight": {
+                "shape": [
+                  256
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "eps": {
+                "scalar": 1e-06
+              },
+              "out": {
+                "scalar": null
+              },
+              "enable_pdl": {
+                "scalar": null
+              }
+            },
+            "parameters": {
+              "model": "35b",
+              "tokens": 20,
+              "role": "q",
+              "seed": 0,
+              "variant": "documented",
+              "source": "SGLang v0.5.11; Qwen3.6 TP=4 workload",
+              "input_distribution": "seeded FP32 N(0,0.5), cast to BF16; see builder for weights/gates",
+              "input_dtypes": {
+                "input": "torch.bfloat16",
+                "weight": "torch.bfloat16"
+              },
+              "eps": 1e-06,
+              "enable_pdl": null,
+              "weight_std": 0.1
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
+            }
+          },
+          "T_us": 5.0559998489916325,
+          "latency_ms": 0.0050559998489916325,
+          "F_cuda": 133120.0,
+          "F_tensor": 0.0,
+          "B_mem": 53760.0,
+          "U_cuda": 0.189468,
+          "U_tensor": 0.0,
+          "U_mem": 0.36297,
+          "U_bottle_neck": 0.36297,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 1,
+          "per_kernel": [
+            {
+              "name": "void RMSNormKernel<8, __nv_bfloat16>(T2 *, T2 *, T2 *, unsigned int, unsigned int, unsigned int, float, float)",
+              "F_cuda": 133120.0,
+              "F_tensor": 0.0,
+              "B_mem": 53760.0,
+              "U_cuda": 0.189468,
+              "U_tensor": 0.0,
+              "U_mem": 0.36297,
+              "T_us": 5.0559998489916325
+            }
+          ],
+          "flops_cuda_core": 133120.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 53760.0,
+          "util_cuda_core": 0.00189468,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0036297,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.0036297,
+          "cuda_flops": 133120.0,
+          "sm_utilization": 0.00514578,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-xex9x3x6x0x5x4x3xaxdx3xbxexcxexcx6x5xbx9x1x2x7xfx8xex0x1xex1x2x4x0x8x1xfxax8xcx9x1xex6x8xax2xdx4xex3xcx2xfx6xex7xbx3xfx0x7x8xaxd_bfloat16.ncu-rep",
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "median",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        }
+      },
+      "qwen36-v1-05f706300a11e2194181e8dfc03bf1cc9e63d86db551c76797ad4799d98a4b2a": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "input": {
+                "shape": [
+                  20,
+                  256
+                ],
+                "stride": [
+                  2560,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 2048
+              },
+              "weight": {
+                "shape": [
+                  256
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "eps": {
+                "scalar": 1e-06
+              },
+              "out": {
+                "scalar": null
+              },
+              "enable_pdl": {
+                "scalar": null
+              }
+            },
+            "parameters": {
+              "model": "35b",
+              "tokens": 20,
+              "role": "k",
+              "seed": 0,
+              "variant": "documented",
+              "source": "SGLang v0.5.11; Qwen3.6 TP=4 workload",
+              "input_distribution": "seeded FP32 N(0,0.5), cast to BF16; see builder for weights/gates",
+              "input_dtypes": {
+                "input": "torch.bfloat16",
+                "weight": "torch.bfloat16"
+              },
+              "eps": 1e-06,
+              "enable_pdl": null,
+              "weight_std": 0.1,
+              "input_stride": [
+                2560,
+                1
+              ]
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
+            }
+          },
+          "T_us": 4.9600000493228436,
+          "latency_ms": 0.0049600000493228436,
+          "F_cuda": 33280.0,
+          "F_tensor": 0.0,
+          "B_mem": 23296.0,
+          "U_cuda": 0.048706,
+          "U_tensor": 0.0,
+          "U_mem": 0.161485,
+          "U_bottle_neck": 0.161485,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 1,
+          "per_kernel": [
+            {
+              "name": "void RMSNormKernel<8, __nv_bfloat16>(T2 *, T2 *, T2 *, unsigned int, unsigned int, unsigned int, float, float)",
+              "F_cuda": 33280.0,
+              "F_tensor": 0.0,
+              "B_mem": 23296.0,
+              "U_cuda": 0.048706,
+              "U_tensor": 0.0,
+              "U_mem": 0.161485,
+              "T_us": 4.9600000493228436
+            }
+          ],
+          "flops_cuda_core": 33280.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 23296.0,
+          "util_cuda_core": 0.00048706,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.00161485,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.00161485,
+          "cuda_flops": 33280.0,
+          "sm_utilization": 0.0013228,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-x0x5xfx7x0x6x3x0x0xax1x1xex2x1x9x4x1x8x1xex8xdxfxcx0x3xbxfx1xcxcx9xex6x3xdx8x6xdxbx5x5x1xcx7x6x7x9x7xaxdx4x7x9x9xdx9x8xax4xbx2xa_bfloat16.ncu-rep",
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "median",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        }
+      },
+      "qwen36-v1-4537386831c0321fd997941c384e62be0fbcb7b888ce87563e5ad1e6a9a4c17b": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "input": {
+                "shape": [
+                  1,
+                  2048
+                ],
+                "stride": [
+                  2048,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "weight": {
+                "shape": [
+                  2048
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "eps": {
+                "scalar": 1e-06
+              },
+              "out": {
+                "scalar": null
+              },
+              "enable_pdl": {
+                "scalar": null
+              }
+            },
+            "parameters": {
+              "model": "35b",
+              "tokens": 1,
+              "role": "hidden",
+              "seed": 0,
+              "variant": "documented",
+              "source": "SGLang v0.5.11; Qwen3.6 TP=4 workload",
+              "input_distribution": "seeded FP32 N(0,0.5), cast to BF16; see builder for weights/gates",
+              "input_dtypes": {
+                "input": "torch.bfloat16",
+                "weight": "torch.bfloat16"
+              },
+              "eps": 1e-06,
+              "enable_pdl": null,
+              "weight_std": 0.1
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
+            }
+          },
+          "T_us": 5.535999778658152,
+          "latency_ms": 0.005535999778658152,
+          "F_cuda": 12192.0,
+          "F_tensor": 0.0,
+          "B_mem": 20736.0,
+          "U_cuda": 0.018944,
+          "U_tensor": 0.0,
+          "U_mem": 0.148722,
+          "U_bottle_neck": 0.148722,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 1,
+          "per_kernel": [
+            {
+              "name": "void RMSNormKernel<8, __nv_bfloat16>(T2 *, T2 *, T2 *, unsigned int, unsigned int, unsigned int, float, float)",
+              "F_cuda": 12192.0,
+              "F_tensor": 0.0,
+              "B_mem": 20736.0,
+              "U_cuda": 0.018944,
+              "U_tensor": 0.0,
+              "U_mem": 0.148722,
+              "T_us": 5.535999778658152
+            }
+          ],
+          "flops_cuda_core": 12192.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 20736.0,
+          "util_cuda_core": 0.00018944,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.00148722,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.00148722,
+          "cuda_flops": 12192.0,
+          "sm_utilization": 0.00051308,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-x4x5x3x7x3x8x6x8x3x1xcx0x3x2x1xfxdx9x9x7x9x4x1xcx3x8x4xex6x2xbxex0xfxbxcxbx7xbx8x8x8xcxex8x7x5x6x3xex5xaxdx1xex6xax9xax4xcx1x7xb_bfloat16.ncu-rep",
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "median",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        }
+      },
+      "qwen36-v1-4012ca254c1d3fd1b7706ea4734f960fe9f7381400232d9aac9264a542870fb2": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "input": {
+                "shape": [
+                  4,
+                  256
+                ],
+                "stride": [
+                  256,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "weight": {
+                "shape": [
+                  256
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "eps": {
+                "scalar": 1e-06
+              },
+              "out": {
+                "scalar": null
+              },
+              "enable_pdl": {
+                "scalar": null
+              }
+            },
+            "parameters": {
+              "model": "35b",
+              "tokens": 1,
+              "role": "q",
+              "seed": 0,
+              "variant": "documented",
+              "source": "SGLang v0.5.11; Qwen3.6 TP=4 workload",
+              "input_distribution": "seeded FP32 N(0,0.5), cast to BF16; see builder for weights/gates",
+              "input_dtypes": {
+                "input": "torch.bfloat16",
+                "weight": "torch.bfloat16"
+              },
+              "eps": 1e-06,
+              "enable_pdl": null,
+              "weight_std": 0.1
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
+            }
+          },
+          "T_us": 5.024000070989132,
+          "latency_ms": 0.005024000070989132,
+          "F_cuda": 6656.0,
+          "F_tensor": 0.0,
+          "B_mem": 15104.0,
+          "U_cuda": 0.01028,
+          "U_tensor": 0.0,
+          "U_mem": 0.109911,
+          "U_bottle_neck": 0.109911,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 1,
+          "per_kernel": [
+            {
+              "name": "void RMSNormKernel<8, __nv_bfloat16>(T2 *, T2 *, T2 *, unsigned int, unsigned int, unsigned int, float, float)",
+              "F_cuda": 6656.0,
+              "F_tensor": 0.0,
+              "B_mem": 15104.0,
+              "U_cuda": 0.01028,
+              "U_tensor": 0.0,
+              "U_mem": 0.109911,
+              "T_us": 5.024000070989132
+            }
+          ],
+          "flops_cuda_core": 6656.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 15104.0,
+          "util_cuda_core": 0.00010279999999999999,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.00109911,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.00109911,
+          "cuda_flops": 6656.0,
+          "sm_utilization": 0.00027919,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-x4x0x1x2xcxax2x5x4xcx1xdx3xfxdx1xbx7x7x0x6xexax4x7x3x4xfx9x6x0xfxex9xfx7x3x8x1x4x0x0x2x3x2xdx9xaxaxcx9x2x6x4xax5x4x2x8x7x0xfxbx2_bfloat16.ncu-rep",
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "median",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        }
+      },
+      "qwen36-v1-7ee8316f235f273cb8c304e5dca7560571eb8f940cb7fc7d4a7ccee6437a46c1": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "input": {
+                "shape": [
+                  1,
+                  256
+                ],
+                "stride": [
+                  2560,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 2048
+              },
+              "weight": {
+                "shape": [
+                  256
+                ],
+                "stride": [
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "eps": {
+                "scalar": 1e-06
+              },
+              "out": {
+                "scalar": null
+              },
+              "enable_pdl": {
+                "scalar": null
+              }
+            },
+            "parameters": {
+              "model": "35b",
+              "tokens": 1,
+              "role": "k",
+              "seed": 0,
+              "variant": "documented",
+              "source": "SGLang v0.5.11; Qwen3.6 TP=4 workload",
+              "input_distribution": "seeded FP32 N(0,0.5), cast to BF16; see builder for weights/gates",
+              "input_dtypes": {
+                "input": "torch.bfloat16",
+                "weight": "torch.bfloat16"
+              },
+              "eps": 1e-06,
+              "enable_pdl": null,
+              "weight_std": 0.1,
+              "input_stride": [
+                2560,
+                1
+              ]
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
+            }
+          },
+          "T_us": 4.9600000493228436,
+          "latency_ms": 0.0049600000493228436,
+          "F_cuda": 1664.0,
+          "F_tensor": 0.0,
+          "B_mem": 13568.0,
+          "U_cuda": 0.002494,
+          "U_tensor": 0.0,
+          "U_mem": 0.096294,
+          "U_bottle_neck": 0.096294,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 1,
+          "per_kernel": [
+            {
+              "name": "void RMSNormKernel<8, __nv_bfloat16>(T2 *, T2 *, T2 *, unsigned int, unsigned int, unsigned int, float, float)",
+              "F_cuda": 1664.0,
+              "F_tensor": 0.0,
+              "B_mem": 13568.0,
+              "U_cuda": 0.002494,
+              "U_tensor": 0.0,
+              "U_mem": 0.096294,
+              "T_us": 4.9600000493228436
+            }
+          ],
+          "flops_cuda_core": 1664.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 13568.0,
+          "util_cuda_core": 2.4940000000000002e-05,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.00096294,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.00096294,
+          "cuda_flops": 1664.0,
+          "sm_utilization": 6.773e-05,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-x7xexex8x3x1x6xfx2x3x5xfx2x7x3xcxbx8xcx3x0x4xex5xdxcxax7x5x6x0x5x7x1xexbx8xfx9x4x0xcxbx7xfxcx7xdx4xax7xcxcxexex6x4x3x7xax4x6xcx1_bfloat16.ncu-rep",
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "median",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        }
+      }
+    }
+  },
+  "select_experts": {
+    "native_api": "ops.select_experts",
+    "shapes": {
+      "qwen36-v1-36c9716365299f7cec2eee9c06b4cb02fe8585ef6d7bbfd40f8fcfb42374ed10": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "hidden_states": {
+                "shape": [
+                  20,
+                  2048
+                ],
+                "stride": [
+                  2048,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "router_logits": {
+                "shape": [
+                  20,
+                  256
+                ],
+                "stride": [
+                  256,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "topk_config": {
+                "scalar": {
+                  "top_k": 8,
+                  "use_grouped_topk": false,
+                  "topk_group": null,
+                  "num_expert_group": null,
+                  "renormalize": true,
+                  "num_fused_shared_experts": 0,
+                  "custom_routing_function": null,
+                  "correction_bias": null,
+                  "torch_native": false,
+                  "routed_scaling_factor": null,
+                  "apply_routed_scaling_factor_on_output": false,
+                  "fused_shared_experts_scaling_factor": null,
+                  "output_format": null,
+                  "scoring_func": "softmax"
+                }
+              },
+              "layer_id": {
+                "scalar": 0
+              },
+              "num_token_non_padded": {
+                "scalar": null
+              },
+              "expert_location_dispatch_info": {
+                "scalar": null
+              }
+            },
+            "parameters": {
+              "model": "35b",
+              "tokens": 20,
+              "role": "default",
+              "seed": 0,
+              "variant": "documented",
+              "source": "SGLang v0.5.11; Qwen3.6 TP=4 workload",
+              "input_distribution": "seeded FP32 N(0,0.5), cast to BF16; see builder for weights/gates",
+              "input_dtypes": {
+                "hidden_states": "torch.bfloat16",
+                "router_logits": "torch.bfloat16"
+              },
+              "topk_config": {
+                "top_k": 8,
+                "use_grouped_topk": false,
+                "topk_group": null,
+                "num_expert_group": null,
+                "renormalize": true,
+                "num_fused_shared_experts": 0,
+                "custom_routing_function": null,
+                "correction_bias": null,
+                "torch_native": false,
+                "routed_scaling_factor": null,
+                "apply_routed_scaling_factor_on_output": false,
+                "fused_shared_experts_scaling_factor": null,
+                "output_format": null,
+                "scoring_func": "softmax"
+              },
+              "layer_id": 0,
+              "num_token_non_padded": null,
+              "expert_location_dispatch_info": null,
+              "logits_range": [
+                -8.0,
+                7.9375
+              ]
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
+            }
+          },
+          "T_us": 7.199999876320362,
+          "latency_ms": 0.007199999876320362,
+          "F_cuda": 24000.0,
+          "F_tensor": 0.0,
+          "B_mem": 20224.0,
+          "U_cuda": 0.087555,
+          "U_tensor": 0.0,
+          "U_mem": 0.09198,
+          "U_bottle_neck": 0.09198,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 1,
+          "per_kernel": [
+            {
+              "name": "void topkGatingSoftmax<__nv_bfloat16, 8, 256, 4, 16>(const T1 *, const bool *, float *, int, int *, int, int, int, bool, float, const float *)",
+              "F_cuda": 24000.0,
+              "F_tensor": 0.0,
+              "B_mem": 20224.0,
+              "U_cuda": 0.087555,
+              "U_tensor": 0.0,
+              "U_mem": 0.09198,
+              "T_us": 7.199999876320362
+            }
+          ],
+          "flops_cuda_core": 24000.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 20224.0,
+          "util_cuda_core": 0.0008755499999999999,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0009198,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.0009198,
+          "cuda_flops": 24000.0,
+          "sm_utilization": 0.0048391400000000005,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/select_experts_qxwxexnx3x6x-xvx1x-x3x6xcx9x7x1x6x3x6x5x2x9x9xfx7xcxexcx2xexexex9xcx0x6xbx4xcxbx0x2xfxex8x5x8x5xexfx6xdx7xbxbxfxdx4x0xfx8xfxcxfxbx4x2x3x7x4xexdx1x0_bfloat16.ncu-rep",
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "median",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        }
+      },
+      "qwen36-v1-5261af0a0d76fed8fd5d23f4256b25fb3f0316cf7c976ab17ac9b37b2403984e": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "hidden_states": {
+                "shape": [
+                  1,
+                  2048
+                ],
+                "stride": [
+                  2048,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "router_logits": {
+                "shape": [
+                  1,
+                  256
+                ],
+                "stride": [
+                  256,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "topk_config": {
+                "scalar": {
+                  "top_k": 8,
+                  "use_grouped_topk": false,
+                  "topk_group": null,
+                  "num_expert_group": null,
+                  "renormalize": true,
+                  "num_fused_shared_experts": 0,
+                  "custom_routing_function": null,
+                  "correction_bias": null,
+                  "torch_native": false,
+                  "routed_scaling_factor": null,
+                  "apply_routed_scaling_factor_on_output": false,
+                  "fused_shared_experts_scaling_factor": null,
+                  "output_format": null,
+                  "scoring_func": "softmax"
+                }
+              },
+              "layer_id": {
+                "scalar": 0
+              },
+              "num_token_non_padded": {
+                "scalar": null
+              },
+              "expert_location_dispatch_info": {
+                "scalar": null
+              }
+            },
+            "parameters": {
+              "model": "35b",
+              "tokens": 1,
+              "role": "default",
+              "seed": 0,
+              "variant": "documented",
+              "source": "SGLang v0.5.11; Qwen3.6 TP=4 workload",
+              "input_distribution": "seeded FP32 N(0,0.5), cast to BF16; see builder for weights/gates",
+              "input_dtypes": {
+                "hidden_states": "torch.bfloat16",
+                "router_logits": "torch.bfloat16"
+              },
+              "topk_config": {
+                "top_k": 8,
+                "use_grouped_topk": false,
+                "topk_group": null,
+                "num_expert_group": null,
+                "renormalize": true,
+                "num_fused_shared_experts": 0,
+                "custom_routing_function": null,
+                "correction_bias": null,
+                "torch_native": false,
+                "routed_scaling_factor": null,
+                "apply_routed_scaling_factor_on_output": false,
+                "fused_shared_experts_scaling_factor": null,
+                "output_format": null,
+                "scoring_func": "softmax"
+              },
+              "layer_id": 0,
+              "num_token_non_padded": null,
+              "expert_location_dispatch_info": null,
+              "logits_range": [
+                -8.0,
+                7.9375
+              ]
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
+            }
+          },
+          "T_us": 6.752000190317631,
+          "latency_ms": 0.006752000190317631,
+          "F_cuda": 1200.0,
+          "F_tensor": 0.0,
+          "B_mem": 10240.0,
+          "U_cuda": 0.004842,
+          "U_tensor": 0.0,
+          "U_mem": 0.050916,
+          "U_bottle_neck": 0.050916,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 1,
+          "per_kernel": [
+            {
+              "name": "void topkGatingSoftmax<__nv_bfloat16, 8, 256, 4, 16>(const T1 *, const bool *, float *, int, int *, int, int, int, bool, float, const float *)",
+              "F_cuda": 1200.0,
+              "F_tensor": 0.0,
+              "B_mem": 10240.0,
+              "U_cuda": 0.004842,
+              "U_tensor": 0.0,
+              "U_mem": 0.050916,
+              "T_us": 6.752000190317631
+            }
+          ],
+          "flops_cuda_core": 1200.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 10240.0,
+          "util_cuda_core": 4.842e-05,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.00050916,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.00050916,
+          "cuda_flops": 1200.0,
+          "sm_utilization": 0.00026672,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/select_experts_qxwxexnx3x6x-xvx1x-x5x2x6x1xaxfx0xax0xdx7x6xfxexdx8xfxdx5xdx2x3xfx4x2x5x6xbx2x5xfxbx3xfx0x3x1x6xcxfx7xcx9x7x6xaxbx1x7xaxcx9xbx3x7xbx2x4x0x3x9x8x4xe_bfloat16.ncu-rep",
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "median",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        }
+      }
+    }
+  },
+  "silu_and_mul_out": {
+    "native_api": "ops.silu_and_mul_out",
+    "shapes": {
+      "qwen36-v1-3f6cd76735a0f25796bb0b339b113c58b7c8af6d26986c57d9615f589b834732": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "input": {
+                "shape": [
+                  20,
+                  8704
+                ],
+                "stride": [
+                  8704,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "out": {
+                "shape": [
+                  20,
+                  4352
+                ],
+                "stride": [
+                  4352,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              }
+            },
+            "parameters": {
+              "model": "27b",
+              "tokens": 20,
+              "role": "default",
+              "seed": 0,
+              "variant": "documented",
+              "source": "SGLang v0.5.11; Qwen3.6 TP=4 workload",
+              "input_distribution": "seeded FP32 N(0,0.5), cast to BF16; see builder for weights/gates",
+              "input_dtypes": {
+                "input": "torch.bfloat16",
+                "out": "torch.bfloat16"
+              }
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
+            }
+          },
+          "T_us": 5.472000222653151,
+          "latency_ms": 0.0054720002226531506,
+          "F_cuda": 348160.0,
+          "F_tensor": 0.0,
+          "B_mem": 355072.0,
+          "U_cuda": 0.616239,
+          "U_tensor": 0.0,
+          "U_mem": 3.048084,
+          "U_bottle_neck": 3.048084,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 1,
+          "per_kernel": [
+            {
+              "name": "void act_and_mul_kernel<__nv_bfloat16, &silu<float>>(T1 *, const T1 *, int)",
+              "F_cuda": 348160.0,
+              "F_tensor": 0.0,
+              "B_mem": 355072.0,
+              "U_cuda": 0.616239,
+              "U_tensor": 0.0,
+              "U_mem": 3.048084,
+              "T_us": 5.472000222653151
+            }
+          ],
+          "flops_cuda_core": 348160.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 355072.0,
+          "util_cuda_core": 0.00616239,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.03048084,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.03048084,
+          "cuda_flops": 348160.0,
+          "sm_utilization": 0.01900696,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/silu_and_mul_out_qxwxexnx3x6x-xvx1x-x3xfx6xcxdx7x6x7x3x5xax0xfx2x5x7x9x6xbxbx0xbx3x3x9xbx1x1x3xcx5x8xbx7xcx8xaxfx6xdx2x6x9x8x6xcx5x7xdx9x6x1x5xfx5x8x9xbx8x3x4x7x3x2_bfloat16.ncu-rep",
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "median",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        }
+      },
+      "qwen36-v1-1eb8c14e93e5d6acffa8da7afe1e68ca53107292f8462294cb06da9f6ab061e7": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "input": {
+                "shape": [
+                  1,
+                  8704
+                ],
+                "stride": [
+                  8704,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "out": {
+                "shape": [
+                  1,
+                  4352
+                ],
+                "stride": [
+                  4352,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              }
+            },
+            "parameters": {
+              "model": "27b",
+              "tokens": 1,
+              "role": "default",
+              "seed": 0,
+              "variant": "documented",
+              "source": "SGLang v0.5.11; Qwen3.6 TP=4 workload",
+              "input_distribution": "seeded FP32 N(0,0.5), cast to BF16; see builder for weights/gates",
+              "input_dtypes": {
+                "input": "torch.bfloat16",
+                "out": "torch.bfloat16"
+              }
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
+            }
+          },
+          "T_us": 4.863999783992767,
+          "latency_ms": 0.004863999783992767,
+          "F_cuda": 17408.0,
+          "F_tensor": 0.0,
+          "B_mem": 24320.0,
+          "U_cuda": 0.032233,
+          "U_tensor": 0.0,
+          "U_mem": 0.21812999999999996,
+          "U_bottle_neck": 0.21812999999999996,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 1,
+          "per_kernel": [
+            {
+              "name": "void act_and_mul_kernel<__nv_bfloat16, &silu<float>>(T1 *, const T1 *, int)",
+              "F_cuda": 17408.0,
+              "F_tensor": 0.0,
+              "B_mem": 24320.0,
+              "U_cuda": 0.032233,
+              "U_tensor": 0.0,
+              "U_mem": 0.21813,
+              "T_us": 4.863999783992767
+            }
+          ],
+          "flops_cuda_core": 17408.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 24320.0,
+          "util_cuda_core": 0.00032232999999999996,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0021812999999999997,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.0021812999999999997,
+          "cuda_flops": 17408.0,
+          "sm_utilization": 0.00099418,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/silu_and_mul_out_qxwxexnx3x6x-xvx1x-x1xexbx8xcx1x4xex9x3xex5xdx6xaxcxfxfxax8xdxax7xaxfxex1xex6x8xcxax5x3x1x0x7x2x9x2xfx8x4x6x2x2x9x4xcxbx0x6xdxax9xfx6xaxbx0x6x1xex7_bfloat16.ncu-rep",
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "median",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        }
+      },
+      "qwen36-v1-800e062b15fec740031ff2cfa54254355811fa5072c751d55bf74fa5281eb6d6": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "input": {
+                "shape": [
+                  20,
+                  256
+                ],
+                "stride": [
+                  256,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "out": {
+                "shape": [
+                  20,
+                  128
+                ],
+                "stride": [
+                  128,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              }
+            },
+            "parameters": {
+              "model": "35b",
+              "tokens": 20,
+              "role": "default",
+              "seed": 0,
+              "variant": "documented",
+              "source": "SGLang v0.5.11; Qwen3.6 TP=4 workload",
+              "input_distribution": "seeded FP32 N(0,0.5), cast to BF16; see builder for weights/gates",
+              "input_dtypes": {
+                "input": "torch.bfloat16",
+                "out": "torch.bfloat16"
+              }
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
+            }
+          },
+          "T_us": 5.0559998489916325,
+          "latency_ms": 0.0050559998489916325,
+          "F_cuda": 10240.0,
+          "F_tensor": 0.0,
+          "B_mem": 17152.0,
+          "U_cuda": 0.040877,
+          "U_tensor": 0.0,
+          "U_mem": 0.164668,
+          "U_bottle_neck": 0.164668,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 1,
+          "per_kernel": [
+            {
+              "name": "void act_and_mul_kernel<__nv_bfloat16, &silu<float>>(T1 *, const T1 *, int)",
+              "F_cuda": 10240.0,
+              "F_tensor": 0.0,
+              "B_mem": 17152.0,
+              "U_cuda": 0.040877,
+              "U_tensor": 0.0,
+              "U_mem": 0.164668,
+              "T_us": 5.0559998489916325
+            }
+          ],
+          "flops_cuda_core": 10240.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 17152.0,
+          "util_cuda_core": 0.00040877,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0016466800000000002,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.0016466800000000002,
+          "cuda_flops": 10240.0,
+          "sm_utilization": 0.0012725800000000002,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/silu_and_mul_out_qxwxexnx3x6x-xvx1x-x8x0x0xex0x6x2xbx1x5xfxexcx7x4x0x0x3x1xfxfx2xcxfxax5x4x2x5x4x3x5x5x8x1x1xfxax5x0x7x2xcx7x5x1xdx5x5xbxfx7x4xfxax5x2x8x1xexbx6xdx6_bfloat16.ncu-rep",
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "median",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        }
+      },
+      "qwen36-v1-aecd85a9393996326c94c2ea36aa72ce6e1887a6e4f51b7d6e4b6bc60b0bf0f0": {
+        "torch.bfloat16": {
+          "config": {
+            "inputs": {
+              "input": {
+                "shape": [
+                  1,
+                  256
+                ],
+                "stride": [
+                  256,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              },
+              "out": {
+                "shape": [
+                  1,
+                  128
+                ],
+                "stride": [
+                  128,
+                  1
+                ],
+                "dtype": "torch.bfloat16",
+                "storage_offset": 0
+              }
+            },
+            "parameters": {
+              "model": "35b",
+              "tokens": 1,
+              "role": "default",
+              "seed": 0,
+              "variant": "documented",
+              "source": "SGLang v0.5.11; Qwen3.6 TP=4 workload",
+              "input_distribution": "seeded FP32 N(0,0.5), cast to BF16; see builder for weights/gates",
+              "input_dtypes": {
+                "input": "torch.bfloat16",
+                "out": "torch.bfloat16"
+              }
+            },
+            "source": {
+              "upstream": "sglang v0.5.11",
+              "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
+            }
+          },
+          "T_us": 4.511999897658825,
+          "latency_ms": 0.004511999897658825,
+          "F_cuda": 512.0,
+          "F_tensor": 0.0,
+          "B_mem": 7424.0,
+          "U_cuda": 0.002159,
+          "U_tensor": 0.0,
+          "U_mem": 0.0759,
+          "U_bottle_neck": 0.0759,
+          "bottle_neck_unit": "mem",
+          "num_kernels": 1,
+          "per_kernel": [
+            {
+              "name": "void act_and_mul_kernel<__nv_bfloat16, &silu<float>>(T1 *, const T1 *, int)",
+              "F_cuda": 512.0,
+              "F_tensor": 0.0,
+              "B_mem": 7424.0,
+              "U_cuda": 0.002159,
+              "U_tensor": 0.0,
+              "U_mem": 0.0759,
+              "T_us": 4.511999897658825
+            }
+          ],
+          "flops_cuda_core": 512.0,
+          "flops_tensor_core": 0.0,
+          "memory_bytes": 7424.0,
+          "util_cuda_core": 2.1589999999999998e-05,
+          "util_tensor_core": 0.0,
+          "util_memory_bw": 0.0007589999999999999,
+          "bottleneck": "memory_bw",
+          "bottleneck_util": 0.0007589999999999999,
+          "cuda_flops": 512.0,
+          "sm_utilization": 6.721e-05,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/silu_and_mul_out_qxwxexnx3x6x-xvx1x-xaxexcxdx8x5xax9x3x9x3x9x9x6x3x2x6xcx9x4xcx2xexax3x6xaxax7x2xcxex6xex1x8x8x7xax6xex4xfx5x1xbx7xdx6xex4xbx6xbxcx6x0xbx0xbxfx0xfx0_bfloat16.ncu-rep",
+          "timing": {
+            "method": "triton.testing.do_bench",
+            "return_mode": "median",
+            "warmup_ms": 25,
+            "rep_ms": 100
+          }
+        }
+      }
+    }
+  },
+  "_provenance": {
+    "schema": "sglang.reset-excluded-collection/v1",
+    "raw_artifact_sha256": "23a787682d7cceb9a3d2b3536ac14d348ba84605173c57d756ccee473fb38703",
+    "sglang_source_commit": "b674fd7cacb86f2483d35ceb296f8d1edef04f74",
+    "ops_source_commit": "a8c24305f03ecf2b8783227b3593a5dcffe3d76c",
+    "source_files": {
+      "sglang/benchmark/op_benchmark.py": "f396b6e71d38efa08a5fe3077af93c61caa1fefcea2bdfa08d98b0f13c3746e1",
+      "sglang/benchmark/performance_utils.py": "71ad73c463ed94a24196b404f65cf842775ae2126fb296f4014de481715c364e",
+      "sglang/src/flaggems_sglang/reference/mrotary_embedding_cases.py": "06f4cbd5f2b4ea2ba8da0aabf27bdc03f6c2e8c9ab560687a04dabce67938c98",
+      "sglang/src/flaggems_sglang/reference/native/mrotary_embedding.py": "3d925d9da864bdcdb93cf802e1566a01e773ab3598c3e967b144ec92a67847e7",
+      "sglang/src/flaggems_sglang/reference/qwen36.py": "5f4c2271086ab176093238d7590d778c5265410269a13a0e551b379bc75f9c4c",
+      "sglang/src/flaggems_sglang/testing/qwen36_workloads.py": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9",
+      "sglang/src/flaggems_sglang/testing/reset_timing.json": "3c1ff7ea1209d6e9648ee7b696a89f058c985fa5d052144703a5cef2931a63a0",
+      "sglang/src/flaggems_sglang/testing/reset_timing.py": "a947e09a60a42993431d903563094194746d67f9faa0d7cc42efe28fd830f9ab",
+      "sglang/verification/qwen36-native-sources.json": "301bd96d6320e32e51e4191d1baf03a23f3f598da37c96484843e14ed20bd9e5",
+      "sglang/verification/qwen36-native-wheels.json": "d50ca036e1bee1175e4053d6756f643d8faf0ce08e59c2000271aa032defde2b",
+      "sglang/verification/qwen36_common.py": "ccda250c9d713da3781d111b73cdce3450416d13f06f9a9a604aee9255811386",
+      "sglang/verification/qwen36_native.py": "e264922e519dfabd943cab8f2f54a392d7bd69b071c8102d8c3fd2af83e9d6aa",
+      "ops-baseline/ops/sglang/mrotary_embedding.py": "d843642f4a7572401aa3fb2f7fe887884607d57374a1c4e3f1a65b5dde52f426",
+      "ops-baseline/ops/sglang_qwen36/_qwen36.py": "2186f045263f87e0f8332ce1c0de3311887e9706b235e0b36b4a3961e9a1e7c9",
+      "ops-baseline/ops/sglang_qwen36/chunk_gated_delta_rule_fwd.py": "706a98ef3541822516d491101983c38cb3eb72e1889252532dffb2abf32c6abf",
+      "ops-baseline/ops/sglang_qwen36/fused_moe_kernel_sequence.py": "0fcb597514cc2de2741e1ebea73772e81fdfd203f9294b53a1b03d610508bf47",
+      "ops-baseline/ops/sglang_qwen36/fused_recurrent_gated_delta_rule_packed_decode.py": "e0a0e0b4c35d9e5133d41decd73d098eaa522e2538ee1d2d8b469218ce4b1931",
+      "ops-baseline/ops/sglang_qwen36/gemma_fused_add_rmsnorm.py": "0d56ff998ef812514db026b4d458d8853165ee585eaf13395e66fc311db54f95",
+      "ops-baseline/ops/sglang_qwen36/gemma_rmsnorm.py": "7add27ca487ca05833a02ecf261b0662140b1cc86e5169c0970e2bcd3d4a6261",
+      "ops-baseline/ops/sglang_qwen36/select_experts.py": "4d5c30275d347db93694c1735baa63b231540b0c696271b0c5c67815701c050e",
+      "ops-baseline/ops/sglang_qwen36/silu_and_mul_out.py": "0f3dafa6d67dc97e3dc7806c6091c241f376f3380bb3cb3689b7566e5674281d",
+      "ops-baseline/tools/collect_baseline_nvidia.py": "ab40e5e9e202982369eed3d39475b8addee4bb8b5c3340488cddefcf902341d0",
+      "ops-baseline/tools/hardware_specs.json": "8c1c23e1059f19e7f7e9f6886bb343ea6824e2b19cc52a77fbb804776b98c08c"
+    },
+    "full_source_manifest_sha256": "58eec0542e90edaf681dba95165204fe5eeb836214095268ba3fcb59b58cfbbc",
+    "timing_spec_sha256": "3c1ff7ea1209d6e9648ee7b696a89f058c985fa5d052144703a5cef2931a63a0",
+    "base_image_id": "sha256:44d0a652ab0ec4735ab836fd05a280dc8684bcdd8d082332e236febca5bb8f1c",
+    "native_upstream": {
+      "version": "v0.5.11",
+      "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900"
+    },
+    "functional_probe_cases": 16,
+    "functional_probe_calls_per_case": 8
+  }
+}
