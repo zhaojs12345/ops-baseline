@@ -28,3 +28,15 @@ def key_shape(binding):
 
 def config(binding, dtype):
     return _qwen36.config(OP_NAME, binding, dtype)
+
+
+def make_input_reset(**inputs):
+    return _qwen36.make_input_reset(OP_NAME, inputs)
+
+
+def time_with_reset(fn, reset):
+    return _qwen36.time_with_reset(fn, reset)
+
+
+def timing_contract():
+    return _qwen36.timing_contract()

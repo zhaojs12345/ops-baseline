@@ -85,3 +85,24 @@ def config(binding, dtype):
             ).hexdigest(),
         ),
     )
+
+
+def _reset_module():
+    root = Path(os.environ["FLAGGEMS_SGLANG_SOURCE"])
+    path = root / "src/flaggems_sglang/testing/reset_timing.py"
+    spec = importlib.util.spec_from_file_location("_mrope_reset", path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def make_input_reset(**inputs):
+    return _reset_module().capture_reset(OP_NAME, inputs)
+
+
+def time_with_reset(fn, reset):
+    return _reset_module().measure_with_reset(fn, reset, torch.cuda)
+
+
+def timing_contract():
+    return dict(_reset_module().TIMING)

@@ -21,9 +21,16 @@ python tools/collect_baseline_nvidia.py --repo sglang_qwen36 --device 0 \
 
 The functions selected by the native adapter include CUDA/FlashInfer and Triton
 implementations. TopK's native configuration is prepared outside the timer.
-Each profile selects median `triton.testing.do_bench` timing, matching the CUDA
-benchmark path. Other target backends retain their existing timers (Ascend uses
-`do_bench_npu`). Keys hash full tensor geometry (including stride and storage offset),
+Read-only profiles retain median `triton.testing.do_bench` latency. Read-write
+profiles use the companion checkout's shared `measure_with_reset`: every call
+starts from the original values, and device events bracket only the native
+operator. Restoration plus a 256 MiB cache flush precede each event interval.
+NCU warmups also restore the original input; restoration/cache preparation and
+synchronization stay outside the target NVTX range. NCU cache control is `all`.
+The same helper is used by target benchmarks. Other recipes without this
+opt-in retain their existing timer and NCU argument-rebuild behavior.
+
+Keys hash full tensor geometry (including stride and storage offset),
 scalar/configuration ABI and timing mode. GDN pools retain their documented full
 sizes. Configuration records contain input geometry, upstream revision and the
 shared workload source SHA256. Collection `_environment` describes the actual
@@ -33,7 +40,15 @@ Pass the resulting JSON through target FlagGems-sglang benchmark `--base-data`.
 Only equal configuration keys should match; locally timed Torch reference-as-
 candidate results validate the pipeline, not an optimized kernel.
 
-## Published H800 snapshot
+## Timing migration status
+
+The checked-in snapshots below are historical and await recollection after the
+reset-excluded timing migration. Ten Qwen read-write keys and six mRoPE keys
+have changed; old read-write measurements must not be used under the new keys.
+The eighteen read-only Qwen keys remain unchanged. Do not merge this migration
+until fresh native H800 latency/NCU records have been collected and reviewed.
+
+## Historical H800 snapshot
 
 `op_sglang_qwen36_h800_perf_baseline.json` contains all seven interfaces and 28
 core records collected on H800 with median latency and NCU counters. Each record

@@ -12,9 +12,7 @@ import torch
 def common():
     source = os.environ.get("FLAGGEMS_SGLANG_SOURCE")
     if not source:
-        raise RuntimeError(
-            "Set FLAGGEMS_SGLANG_SOURCE to the pinned workload checkout"
-        )
+        raise RuntimeError("Set FLAGGEMS_SGLANG_SOURCE to the pinned workload checkout")
     path = Path(source) / "verification/qwen36_common.py"
     spec = importlib.util.spec_from_file_location("_baseline_qwen36", path)
     module = importlib.util.module_from_spec(spec)
@@ -72,3 +70,21 @@ def config(operator, row, dtype):
             workload_sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
         ),
     )
+
+
+def reset_module():
+    return common().load(
+        "src/flaggems_sglang/testing/reset_timing.py", "_baseline_reset"
+    )
+
+
+def make_input_reset(operator, inputs):
+    return reset_module().capture_reset(operator, inputs)
+
+
+def time_with_reset(fn, reset):
+    return reset_module().measure_with_reset(fn, reset, torch.cuda)
+
+
+def timing_contract():
+    return dict(reset_module().TIMING)
