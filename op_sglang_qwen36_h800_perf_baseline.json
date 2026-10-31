@@ -1,7 +1,7 @@
 {
   "_environment": {
     "schema_version": 1,
-    "collected_at_utc": "2026-10-29T17:21:36.932835+00:00",
+    "collected_at_utc": "2026-10-31T03:24:45.353014+00:00",
     "hardware": {
       "gpu": {
         "name": "NVIDIA H800",
@@ -47,8 +47,8 @@
       "repo": "sglang_qwen36",
       "device": "0",
       "ncu_enabled": true,
-      "report_dir": "/workspace/qwen36-ncu-v2",
-      "output_path": "/workspace/op_sglang_qwen36_h800_perf_baseline_v2.json",
+      "report_dir": "/workspace/reset-20261031/ncu-qwen36",
+      "output_path": "/workspace/reset-20261031/qwen36-raw.json",
       "op_timeout_seconds": 1800,
       "reference_chip": "H800",
       "only": null,
@@ -757,7 +757,7 @@
   "chunk_gated_delta_rule_fwd": {
     "native_api": "ops.chunk_gated_delta_rule_fwd",
     "shapes": {
-      "qwen36-v1-cbd85e19d3e4cfdfee0eb017672dc8776b318127352f87ce795c2f40d24879ab": {
+      "qwen36-v2-8a89a0d11f0df5a8b2307ce7a15f8f3bd71ebde2a833ec394f991c0422583487": {
         "torch.bfloat16": {
           "config": {
             "inputs": {
@@ -926,222 +926,117 @@
             "source": {
               "upstream": "sglang v0.5.11",
               "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
-              "workload_sha256": "e438926097e31684f71f3d15e8f094888b9774936ad5ef682093bc9c08db6a05"
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
             }
           },
-          "T_us": 152.43200212717056,
-          "latency_ms": 0.15243200212717056,
-          "F_cuda": 2075488.0,
+          "T_us": 160.60799360275269,
+          "latency_ms": 0.16060799360275269,
+          "F_cuda": 2072160.0,
           "F_tensor": 101449728.0,
-          "B_mem": 1796608.0,
-          "U_cuda": 0.1586277222222222,
-          "U_tensor": 0.12493066666666666,
-          "U_mem": 0.49589777777777777,
-          "U_bottle_neck": 0.49589777777777777,
+          "B_mem": 1678336.0,
+          "U_cuda": 0.38995357142857145,
+          "U_tensor": 0.31127457142857146,
+          "U_mem": 1.0763765714285713,
+          "U_bottle_neck": 1.0763765714285713,
           "bottle_neck_unit": "mem",
-          "num_kernels": 18,
+          "num_kernels": 7,
           "per_kernel": [
             {
               "name": "chunk_local_cumsum_scalar_kernel",
               "F_cuda": 12384.0,
               "F_tensor": 0.0,
               "B_mem": 4608.0,
-              "U_cuda": 0.100505,
+              "U_cuda": 0.100925,
               "U_tensor": 0.0,
-              "U_mem": 0.03995,
-              "T_us": 7.157676621623661
+              "U_mem": 0.040121,
+              "T_us": 13.456682163768262
             },
             {
               "name": "void at::vectorized_elementwise_kernel<8, at::FillFunctor<c10::BFloat16>, std::array<char *, 1>>(int, T2, T3)",
               "F_cuda": 0.0,
               "F_tensor": 0.0,
-              "B_mem": 3840.0,
-              "U_cuda": 0.021913,
+              "B_mem": 4096.0,
+              "U_cuda": 0.024055,
               "U_tensor": 0.0,
-              "U_mem": 0.043605,
-              "T_us": 5.500807033284851
+              "U_mem": 0.051335,
+              "T_us": 9.344918169283515
             },
             {
               "name": "chunk_gated_delta_rule_fwd_kkt_solve_kernel",
               "F_cuda": 638304.0,
               "F_tensor": 3932160.0,
-              "B_mem": 74240.0,
-              "U_cuda": 0.274604,
-              "U_tensor": 0.14633,
-              "U_mem": 0.175188,
-              "T_us": 26.178539495753206
+              "B_mem": 74496.0,
+              "U_cuda": 0.272109,
+              "U_tensor": 0.145001,
+              "U_mem": 0.174277,
+              "T_us": 49.83956356951209
             },
             {
               "name": "recompute_w_u_fwd_kernel",
               "F_cuda": 301056.0,
               "F_tensor": 25165824.0,
               "B_mem": 130816.0,
-              "U_cuda": 0.412196,
-              "U_tensor": 0.428082,
-              "U_mem": 0.539485,
-              "T_us": 15.044375862116402
-            },
-            {
-              "name": "void at::unrolled_elementwise_kernel<at::CUDAFunctor_add<int>, std::array<char *, 3>, 4, TrivialOffsetCalculator<2, unsigned int>, TrivialOffsetCalculator<1, unsigned int>, memory::LoadWithoutCast, memory::StoreWithoutCast>(int, T1, T2, T4, T5, T6, T7)",
-              "F_cuda": 256.0,
-              "F_tensor": 0.0,
-              "B_mem": 3840.0,
-              "U_cuda": 0.004851,
-              "U_tensor": 0.000347,
-              "U_mem": 0.041778,
-              "T_us": 5.76590616741906
-            },
-            {
-              "name": "void at::vectorized_elementwise_kernel<4, at::CUDAFunctorOnSelf_add<int>, std::array<char *, 2>>(int, T2, T3)",
-              "F_cuda": 512.0,
-              "F_tensor": 0.0,
-              "B_mem": 5120.0,
-              "U_cuda": 0.005498,
-              "U_tensor": 0.000666,
-              "U_mem": 0.053056,
-              "T_us": 5.964730518019718
-            },
-            {
-              "name": "void at::vectorized_elementwise_kernel<4, at::CUDAFunctorOnSelf_add<int>, std::array<char *, 2>>(int, T2, T3)",
-              "F_cuda": 512.0,
-              "F_tensor": 0.0,
-              "B_mem": 4864.0,
-              "U_cuda": 0.005655,
-              "U_tensor": 0.000685,
-              "U_mem": 0.052106,
-              "T_us": 5.832180950952613
-            },
-            {
-              "name": "void at::vectorized_elementwise_kernel<4, at::BUnaryFunctor<int, int, int, binary_internal::div_floor_kernel_cuda(at::TensorIteratorBase &)::[lambda() (instance 1)]::operator ()() const::[lambda() (instance 3)]::operator ()() const::[lambda(int, int) (instance 1)]>, std::array<char *, 2>>(int, T2, T3)",
-              "F_cuda": 256.0,
-              "F_tensor": 0.0,
-              "B_mem": 14336.0,
-              "U_cuda": 0.006906,
-              "U_tensor": 0.000299,
-              "U_mem": 0.134202,
-              "T_us": 6.693753136888795
-            },
-            {
-              "name": "void at::<unnamed>::CatArrayBatchedCopy_alignedK_contig<at::<unnamed>::OpaqueType<4>, unsigned int, 1, 128, 1, 16>(T1 *, at::<unnamed>::CatArrInputTensorMetadata<T1, T2, T4, T5>, at::<unnamed>::TensorSizeStride<T2, 4>, int, T2)",
-              "F_cuda": 512.0,
-              "F_tensor": 0.0,
-              "B_mem": 4096.0,
-              "U_cuda": 0.001477,
-              "U_tensor": 0.000657,
-              "U_mem": 0.042176,
-              "T_us": 6.0972800850868225
-            },
-            {
-              "name": "void at::unrolled_elementwise_kernel<at::direct_copy_kernel_cuda(at::TensorIteratorBase &)::[lambda() (instance 3)]::operator ()() const::[lambda() (instance 4)]::operator ()() const::[lambda(long) (instance 1)], std::array<char *, 2>, 4, TrivialOffsetCalculator<1, unsigned int>, TrivialOffsetCalculator<1, unsigned int>, memory::LoadWithCast<1>, memory::StoreWithCast<1>>(int, T1, T2, T4, T5, T6, T7)",
-              "F_cuda": 0.0,
-              "F_tensor": 0.0,
-              "B_mem": 33280.0,
-              "U_cuda": 0.000479,
-              "U_tensor": 0.0,
-              "U_mem": 0.3073,
-              "T_us": 6.760027920422347
-            },
-            {
-              "name": "void at_cuda_detail::DeviceScanInitKernel<at_cuda_detail::ScanTileState<long, 1>>(T1, int)",
-              "F_cuda": 0.0,
-              "F_tensor": 0.0,
-              "B_mem": 3072.0,
-              "U_cuda": 0.001089,
-              "U_tensor": 0.0,
-              "U_mem": 0.037802,
-              "T_us": 5.0368835485499845
-            },
-            {
-              "name": "void at_cuda_detail::DeviceScanKernel<at_cuda_detail::policy_hub<long, long, long, unsigned int, std::plus<long>>::Policy1000, const long *, long *, at_cuda_detail::ScanTileState<long, 1>, std::plus<long>, at_cuda_detail::NullType, unsigned int, long, 0, at_cuda_detail::NullType>(T2, T3, T4, int, T5, T6, T7)",
-              "F_cuda": 0.0,
-              "F_tensor": 0.0,
-              "B_mem": 25344.0,
-              "U_cuda": 0.007942,
-              "U_tensor": 0.0,
-              "U_mem": 0.217563,
-              "T_us": 7.290226188690767
+              "U_cuda": 0.412094,
+              "U_tensor": 0.427976,
+              "U_mem": 0.541681,
+              "T_us": 28.28395232569811
             },
             {
               "name": "chunk_gated_delta_rule_fwd_kernel_h_blockdim64",
               "F_cuda": 817152.0,
               "F_tensor": 50331648.0,
-              "B_mem": 951040.0,
-              "U_cuda": 1.574353,
-              "U_tensor": 0.955058,
-              "U_mem": 4.331856,
-              "T_us": 13.6526054079118
-            },
-            {
-              "name": "void at::vectorized_elementwise_kernel<4, at::CUDAFunctorOnSelf_add<int>, std::array<char *, 2>>(int, T2, T3)",
-              "F_cuda": 512.0,
-              "F_tensor": 0.0,
-              "B_mem": 4864.0,
-              "U_cuda": 0.00575,
-              "U_tensor": 0.000697,
-              "U_mem": 0.053061,
-              "T_us": 5.699631383885508
-            },
-            {
-              "name": "void at::vectorized_elementwise_kernel<4, at::CUDAFunctorOnSelf_add<int>, std::array<char *, 2>>(int, T2, T3)",
-              "F_cuda": 512.0,
-              "F_tensor": 0.0,
-              "B_mem": 5120.0,
-              "U_cuda": 0.005564,
-              "U_tensor": 0.000674,
-              "U_mem": 0.053972,
-              "T_us": 5.898455734486166
-            },
-            {
-              "name": "void at::vectorized_elementwise_kernel<4, at::BUnaryFunctor<int, int, int, binary_internal::div_floor_kernel_cuda(at::TensorIteratorBase &)::[lambda() (instance 1)]::operator ()() const::[lambda() (instance 3)]::operator ()() const::[lambda(int, int) (instance 1)]>, std::array<char *, 2>>(int, T2, T3)",
-              "F_cuda": 256.0,
-              "F_tensor": 0.0,
-              "B_mem": 14080.0,
-              "U_cuda": 0.00687,
-              "U_tensor": 0.000297,
-              "U_mem": 0.130406,
-              "T_us": 6.693753136888795
+              "B_mem": 950272.0,
+              "U_cuda": 1.515111,
+              "U_tensor": 0.919119,
+              "U_mem": 4.145818,
+              "T_us": 26.664166509688965
             },
             {
               "name": "void at::vectorized_elementwise_kernel<8, at::FillFunctor<c10::BFloat16>, std::array<char *, 1>>(int, T2, T3)",
               "F_cuda": 0.0,
               "F_tensor": 0.0,
-              "B_mem": 3840.0,
-              "U_cuda": 0.047272,
+              "B_mem": 4096.0,
+              "U_cuda": 0.047659,
               "U_tensor": 0.0,
-              "U_mem": 0.046969,
-              "T_us": 5.0368835485499845
+              "U_mem": 0.050916,
+              "T_us": 9.469517078207296
             },
             {
               "name": "chunk_fwd_kernel_o",
               "F_cuda": 303264.0,
               "F_tensor": 22020096.0,
-              "B_mem": 510208.0,
-              "U_cuda": 0.372375,
-              "U_tensor": 0.71496,
-              "U_mem": 2.625685,
-              "T_us": 12.128285386640094
+              "B_mem": 509952.0,
+              "U_cuda": 0.357722,
+              "U_tensor": 0.686826,
+              "U_mem": 2.530488,
+              "T_us": 23.54919378659446
             }
           ],
-          "flops_cuda_core": 2075488.0,
+          "flops_cuda_core": 2072160.0,
           "flops_tensor_core": 101449728.0,
-          "memory_bytes": 1796608.0,
-          "util_cuda_core": 0.001586277222222222,
-          "util_tensor_core": 0.0012493066666666667,
-          "util_memory_bw": 0.004958977777777778,
+          "memory_bytes": 1678336.0,
+          "util_cuda_core": 0.0038995357142857148,
+          "util_tensor_core": 0.0031127457142857144,
+          "util_memory_bw": 0.010763765714285714,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.004958977777777778,
-          "cuda_flops": 2075488.0,
-          "sm_utilization": 0.004599581111111111,
-          "report_path": "/workspace/qwen36-ncu-v2/chunk_gated_delta_rule_fwd_qxwxexnx3x6x-xvx1x-xcxbxdx8x5xex1x9xdx3xex4xcxfxdxfxexex0xexbx0x1x7x6x7x2xdxcx8x7x7x6xbx3x1x8x1x2x7x3x5x2xfx8x7xcxex7x9x5xcx2xfx4x0xdx2x4x8x7x9xaxb_bfloat16.ncu-rep",
+          "bottleneck_util": 0.010763765714285714,
+          "cuda_flops": 2072160.0,
+          "sm_utilization": 0.011249842857142858,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/chunk_gated_delta_rule_fwd_qxwxexnx3x6x-xvx2x-x8xax8x9xax0xdx1x1xfx0xdxfx5xax8xbx2x3x0x7xcxex7xax1x5xfx8xfx3xbxdx7x1xexbxdxex2xax8x3x3xexcx3x9x4xfx9x9x1xcx0x4x2x2x5x8x3x4x8x7_bfloat16.ncu-rep",
           "timing": {
-            "method": "triton.testing.do_bench",
-            "return_mode": "median",
+            "schema": "flaggems.reset-excluded/v1",
+            "method": "device_event_median",
+            "reset_excluded": true,
+            "cache_policy": "restore_then_flush_256MiB_before_call",
+            "cache_bytes": 268435456,
+            "ncu_cache_control": "all",
             "warmup_ms": 25,
-            "rep_ms": 100
+            "rep_ms": 100,
+            "max_samples": 10000
           }
         }
       },
-      "qwen36-v1-cf2a3c57eb42964e247e6c0cff17ae65602394cdf85ccf2c1f86bb7a7be795cf": {
+      "qwen36-v2-a286ec58424d5b7bf8c100d41d76c9d3f3bc822b4782b7fbabb04b42e9f2fec9": {
         "torch.bfloat16": {
           "config": {
             "inputs": {
@@ -1310,218 +1205,113 @@
             "source": {
               "upstream": "sglang v0.5.11",
               "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
-              "workload_sha256": "e438926097e31684f71f3d15e8f094888b9774936ad5ef682093bc9c08db6a05"
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
             }
           },
-          "T_us": 214.63999897241592,
-          "latency_ms": 0.21463999897241592,
-          "F_cuda": 1811328.0,
+          "T_us": 222.75200486183167,
+          "latency_ms": 0.22275200486183167,
+          "F_cuda": 1808000.0,
           "F_tensor": 70254592.0,
-          "B_mem": 1307648.0,
-          "U_cuda": 0.09653305555555555,
-          "U_tensor": 0.08481077777777778,
-          "U_mem": 0.3619987777777778,
-          "U_bottle_neck": 0.3619987777777778,
+          "B_mem": 1188864.0,
+          "U_cuda": 0.2404,
+          "U_tensor": 0.216095,
+          "U_mem": 0.7652254285714285,
+          "U_bottle_neck": 0.7652254285714285,
           "bottle_neck_unit": "mem",
-          "num_kernels": 18,
+          "num_kernels": 7,
           "per_kernel": [
             {
               "name": "chunk_local_cumsum_scalar_kernel",
               "F_cuda": 9280.0,
               "F_tensor": 0.0,
               "B_mem": 4608.0,
-              "U_cuda": 0.048157,
+              "U_cuda": 0.049918,
               "U_tensor": 0.0,
-              "U_mem": 0.036058,
-              "T_us": 10.904657018073628
+              "U_mem": 0.037513,
+              "T_us": 19.10252092401987
             },
             {
               "name": "void at::vectorized_elementwise_kernel<8, at::FillFunctor<c10::BFloat16>, std::array<char *, 1>>(int, T2, T3)",
               "F_cuda": 0.0,
               "F_tensor": 0.0,
               "B_mem": 4096.0,
-              "U_cuda": 0.016139,
+              "U_cuda": 0.016269,
               "U_tensor": 0.0,
-              "U_mem": 0.051787,
-              "T_us": 6.815410636296018
+              "U_mem": 0.052192,
+              "T_us": 12.458165820012956
             },
             {
               "name": "chunk_gated_delta_rule_fwd_kkt_solve_kernel",
               "F_cuda": 851072.0,
               "F_tensor": 5242880.0,
               "B_mem": 72192.0,
-              "U_cuda": 0.291851,
-              "U_tensor": 0.177327,
-              "U_mem": 0.15907,
-              "T_us": 38.6206602723441
+              "U_cuda": 0.286022,
+              "U_tensor": 0.173785,
+              "U_mem": 0.155643,
+              "T_us": 71.92514400087481
             },
             {
               "name": "recompute_w_u_fwd_kernel",
               "F_cuda": 200704.0,
               "F_tensor": 16777216.0,
-              "B_mem": 99584.0,
-              "U_cuda": 0.217673,
-              "U_tensor": 0.252146,
-              "U_mem": 0.378464,
-              "T_us": 22.354546887050937
-            },
-            {
-              "name": "void at::unrolled_elementwise_kernel<at::CUDAFunctor_add<int>, std::array<char *, 3>, 4, TrivialOffsetCalculator<2, unsigned int>, TrivialOffsetCalculator<1, unsigned int>, memory::LoadWithoutCast, memory::StoreWithoutCast>(int, T1, T2, T4, T5, T6, T7)",
-              "F_cuda": 256.0,
-              "F_tensor": 0.0,
-              "B_mem": 3584.0,
-              "U_cuda": 0.004944,
-              "U_tensor": 0.000353,
-              "U_mem": 0.039344,
-              "T_us": 7.815004196286099
-            },
-            {
-              "name": "void at::vectorized_elementwise_kernel<4, at::CUDAFunctorOnSelf_add<int>, std::array<char *, 2>>(int, T2, T3)",
-              "F_cuda": 512.0,
-              "F_tensor": 0.0,
-              "B_mem": 5376.0,
-              "U_cuda": 0.005618,
-              "U_tensor": 0.000681,
-              "U_mem": 0.057365,
-              "T_us": 8.08762062173794
-            },
-            {
-              "name": "void at::vectorized_elementwise_kernel<4, at::CUDAFunctorOnSelf_add<int>, std::array<char *, 2>>(int, T2, T3)",
-              "F_cuda": 512.0,
-              "F_tensor": 0.0,
-              "B_mem": 5120.0,
-              "U_cuda": 0.005785,
-              "U_tensor": 0.000701,
-              "U_mem": 0.05651,
-              "T_us": 7.815004196286099
-            },
-            {
-              "name": "void at::vectorized_elementwise_kernel<4, at::BUnaryFunctor<int, int, int, binary_internal::div_floor_kernel_cuda(at::TensorIteratorBase &)::[lambda() (instance 1)]::operator ()() const::[lambda() (instance 3)]::operator ()() const::[lambda(int, int) (instance 1)]>, std::array<char *, 2>>(int, T2, T3)",
-              "F_cuda": 256.0,
-              "F_tensor": 0.0,
-              "B_mem": 14080.0,
-              "U_cuda": 0.006778,
-              "U_tensor": 0.000293,
-              "U_mem": 0.130011,
-              "T_us": 9.359830607179864
-            },
-            {
-              "name": "void at::<unnamed>::CatArrayBatchedCopy_alignedK_contig<at::<unnamed>::OpaqueType<4>, unsigned int, 1, 128, 1, 16>(T1 *, at::<unnamed>::CatArrInputTensorMetadata<T1, T2, T4, T5>, at::<unnamed>::TensorSizeStride<T2, 4>, int, T2)",
-              "F_cuda": 512.0,
-              "F_tensor": 0.0,
-              "B_mem": 4352.0,
-              "U_cuda": 0.001431,
-              "U_tensor": 0.000636,
-              "U_mem": 0.043121,
-              "T_us": 8.541981330824342
-            },
-            {
-              "name": "void at::unrolled_elementwise_kernel<at::direct_copy_kernel_cuda(at::TensorIteratorBase &)::[lambda() (instance 3)]::operator ()() const::[lambda() (instance 4)]::operator ()() const::[lambda(long) (instance 1)], std::array<char *, 2>, 4, TrivialOffsetCalculator<1, unsigned int>, TrivialOffsetCalculator<1, unsigned int>, memory::LoadWithCast<1>, memory::StoreWithCast<1>>(int, T1, T2, T4, T5, T6, T7)",
-              "F_cuda": 0.0,
-              "F_tensor": 0.0,
-              "B_mem": 33280.0,
-              "U_cuda": 0.000489,
-              "U_tensor": 0.0,
-              "U_mem": 0.312982,
-              "T_us": 9.087214181728024
-            },
-            {
-              "name": "void at_cuda_detail::DeviceScanInitKernel<at_cuda_detail::ScanTileState<long, 1>>(T1, int)",
-              "F_cuda": 0.0,
-              "F_tensor": 0.0,
-              "B_mem": 2816.0,
-              "U_cuda": 0.001101,
-              "U_tensor": 0.0,
-              "U_mem": 0.035148,
-              "T_us": 6.906282778113297
-            },
-            {
-              "name": "void at_cuda_detail::DeviceScanKernel<at_cuda_detail::policy_hub<long, long, long, unsigned int, std::plus<long>>::Policy1000, const long *, long *, at_cuda_detail::ScanTileState<long, 1>, std::plus<long>, at_cuda_detail::NullType, unsigned int, long, 0, at_cuda_detail::NullType>(T2, T3, T4, int, T5, T6, T7)",
-              "F_cuda": 0.0,
-              "F_tensor": 0.0,
-              "B_mem": 25344.0,
-              "U_cuda": 0.007794,
-              "U_tensor": 0.0,
-              "U_mem": 0.212775,
-              "T_us": 10.177679883535387
+              "B_mem": 99072.0,
+              "U_cuda": 0.217661,
+              "U_tensor": 0.252133,
+              "U_mem": 0.37734,
+              "T_us": 40.86278388964249
             },
             {
               "name": "chunk_gated_delta_rule_fwd_kernel_h_blockdim64",
               "F_cuda": 544768.0,
               "F_tensor": 33554432.0,
-              "B_mem": 647424.0,
-              "U_cuda": 0.873697,
-              "U_tensor": 0.624766,
-              "U_mem": 2.900229,
-              "T_us": 19.083149781628848
-            },
-            {
-              "name": "void at::vectorized_elementwise_kernel<4, at::CUDAFunctorOnSelf_add<int>, std::array<char *, 2>>(int, T2, T3)",
-              "F_cuda": 512.0,
-              "F_tensor": 0.0,
-              "B_mem": 5376.0,
-              "U_cuda": 0.005532,
-              "U_tensor": 0.000671,
-              "U_mem": 0.056549,
-              "T_us": 8.178492763555221
-            },
-            {
-              "name": "void at::vectorized_elementwise_kernel<4, at::CUDAFunctorOnSelf_add<int>, std::array<char *, 2>>(int, T2, T3)",
-              "F_cuda": 512.0,
-              "F_tensor": 0.0,
-              "B_mem": 5120.0,
-              "U_cuda": 0.005808,
-              "U_tensor": 0.000704,
-              "U_mem": 0.056155,
-              "T_us": 7.815004196286099
-            },
-            {
-              "name": "void at::vectorized_elementwise_kernel<4, at::BUnaryFunctor<int, int, int, binary_internal::div_floor_kernel_cuda(at::TensorIteratorBase &)::[lambda() (instance 1)]::operator ()() const::[lambda() (instance 3)]::operator ()() const::[lambda(int, int) (instance 1)]>, std::array<char *, 2>>(int, T2, T3)",
-              "F_cuda": 256.0,
-              "F_tensor": 0.0,
-              "B_mem": 14080.0,
-              "U_cuda": 0.006739,
-              "U_tensor": 0.000291,
-              "U_mem": 0.128601,
-              "T_us": 9.359830607179864
+              "B_mem": 647168.0,
+              "U_cuda": 0.878769,
+              "U_tensor": 0.628393,
+              "U_mem": 2.906549,
+              "T_us": 34.71675541843611
             },
             {
               "name": "void at::vectorized_elementwise_kernel<8, at::FillFunctor<c10::BFloat16>, std::array<char *, 1>>(int, T2, T3)",
               "F_cuda": 0.0,
               "F_tensor": 0.0,
-              "B_mem": 3840.0,
-              "U_cuda": 0.031905,
+              "B_mem": 4096.0,
+              "U_cuda": 0.032267,
               "U_tensor": 0.0,
-              "U_mem": 0.04788,
-              "T_us": 6.906282778113297
+              "U_mem": 0.051975,
+              "T_us": 12.458165820012956
             },
             {
               "name": "chunk_fwd_kernel_o",
               "F_cuda": 202176.0,
               "F_tensor": 14680064.0,
-              "B_mem": 357376.0,
-              "U_cuda": 0.206154,
-              "U_tensor": 0.468025,
-              "U_mem": 1.813929,
-              "T_us": 16.811346236196844
+              "B_mem": 357632.0,
+              "U_cuda": 0.201894,
+              "U_tensor": 0.458354,
+              "U_mem": 1.775366,
+              "T_us": 31.228468988832482
             }
           ],
-          "flops_cuda_core": 1811328.0,
+          "flops_cuda_core": 1808000.0,
           "flops_tensor_core": 70254592.0,
-          "memory_bytes": 1307648.0,
-          "util_cuda_core": 0.0009653305555555555,
-          "util_tensor_core": 0.0008481077777777778,
-          "util_memory_bw": 0.003619987777777778,
+          "memory_bytes": 1188864.0,
+          "util_cuda_core": 0.002404,
+          "util_tensor_core": 0.00216095,
+          "util_memory_bw": 0.007652254285714285,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.003619987777777778,
-          "cuda_flops": 1811328.0,
-          "sm_utilization": 0.003242647222222222,
-          "report_path": "/workspace/qwen36-ncu-v2/chunk_gated_delta_rule_fwd_qxwxexnx3x6x-xvx1x-xcxfx2xax3xcx5x7xexbx4x2x9x6x4xex2x4x7xex6xcx0xcxfxfx1x7xaxex6x5x6x0x2x3x9x4xcxdxfx8x5xcxcxfx2xcx1xfx8x6xbxbx7xax7xbxex7x9x5xcxf_bfloat16.ncu-rep",
+          "bottleneck_util": 0.007652254285714285,
+          "cuda_flops": 1808000.0,
+          "sm_utilization": 0.008032461428571428,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/chunk_gated_delta_rule_fwd_qxwxexnx3x6x-xvx2x-xax2x8x6xexcx5x8x4x2x4xdx5xbx7xbxfx8xcx1x0x0xdx4x1xdx7x6xcx9xdx3xfx3xbxcx8x2x2xbx4x7x8x2xbx7xfxbxaxbxbx0x4xbx4x2xex9xfx2xfxexcx9_bfloat16.ncu-rep",
           "timing": {
-            "method": "triton.testing.do_bench",
-            "return_mode": "median",
+            "schema": "flaggems.reset-excluded/v1",
+            "method": "device_event_median",
+            "reset_excluded": true,
+            "cache_policy": "restore_then_flush_256MiB_before_call",
+            "cache_bytes": 268435456,
+            "ncu_cache_control": "all",
             "warmup_ms": 25,
-            "rep_ms": 100
+            "rep_ms": 100,
+            "max_samples": 10000
           }
         }
       }
@@ -1530,7 +1320,7 @@
   "_fused_moe_kernel_sequence": {
     "native_api": "ops.fused_moe_kernel_sequence",
     "shapes": {
-      "qwen36-v1-29ef549df361c89dacf2eda8f5c2b9868dc178165428e0bebcbecbcd3ae6407a": {
+      "qwen36-v2-2915c7e890a5374bdaf1d9bc817eb3ec01c2631b855b471e3c514150fedeeef2": {
         "torch.bfloat16": {
           "config": {
             "inputs": {
@@ -1756,18 +1546,18 @@
             "source": {
               "upstream": "sglang v0.5.11",
               "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
-              "workload_sha256": "e438926097e31684f71f3d15e8f094888b9774936ad5ef682093bc9c08db6a05"
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
             }
           },
-          "T_us": 144.01599764823914,
-          "latency_ms": 0.14401599764823914,
+          "T_us": 145.6640064716339,
+          "latency_ms": 0.1456640064716339,
           "F_cuda": 4543488.0,
           "F_tensor": 2667577344.0,
-          "B_mem": 172595200.0,
-          "U_cuda": 7.3810864999999986,
-          "U_tensor": 3.5565225,
-          "U_mem": 37.06111325,
-          "U_bottle_neck": 37.06111325,
+          "B_mem": 172478720.0,
+          "U_cuda": 7.1139399999999995,
+          "U_tensor": 3.4585875,
+          "U_mem": 36.06580375,
+          "U_bottle_neck": 36.06580375,
           "bottle_neck_unit": "mem",
           "num_kernels": 4,
           "per_kernel": [
@@ -1775,63 +1565,68 @@
               "name": "fused_moe_kernel",
               "F_cuda": 0.0,
               "F_tensor": 1778384896.0,
-              "B_mem": 113617152.0,
-              "U_cuda": 4.609983,
-              "U_tensor": 7.674004,
-              "U_mem": 77.283413,
-              "T_us": 79.1683772156118
+              "B_mem": 113658624.0,
+              "U_cuda": 4.55433,
+              "U_tensor": 7.581362,
+              "U_mem": 76.341718,
+              "T_us": 79.44268800889111
             },
             {
               "name": "void <unnamed>::act_and_mul_kernel<__nv_bfloat16, 0, 1, 0>(<unnamed>::ActivationParams)",
               "F_cuda": 87040.0,
               "F_tensor": 0.0,
               "B_mem": 86784.0,
-              "U_cuda": 0.122839,
-              "U_tensor": 0.005014,
-              "U_mem": 0.684793,
-              "T_us": 6.871653456351425
+              "U_cuda": 0.122156,
+              "U_tensor": 0.004986,
+              "U_mem": 0.681708,
+              "T_us": 6.868243920077041
             },
             {
               "name": "fused_moe_kernel",
               "F_cuda": 3473408.0,
               "F_tensor": 889192448.0,
-              "B_mem": 58232832.0,
-              "U_cuda": 23.030562,
-              "U_tensor": 6.547072,
-              "U_mem": 67.105636,
-              "T_us": 46.77343949281223
+              "B_mem": 58074624.0,
+              "U_cuda": 21.978526,
+              "U_tensor": 6.248002,
+              "U_mem": 63.981837,
+              "T_us": 48.478355002543786
             },
             {
               "name": "triton_per_fused_copy__mul_sum_0",
               "F_cuda": 983040.0,
               "F_tensor": 0.0,
-              "B_mem": 658432.0,
-              "U_cuda": 1.760962,
+              "B_mem": 658688.0,
+              "U_cuda": 1.800748,
               "U_tensor": 0.0,
-              "U_mem": 3.170611,
-              "T_us": 11.202527483463669
+              "U_mem": 3.257952,
+              "T_us": 10.874719540121982
             }
           ],
           "flops_cuda_core": 4543488.0,
           "flops_tensor_core": 2667577344.0,
-          "memory_bytes": 172595200.0,
-          "util_cuda_core": 0.07381086499999999,
-          "util_tensor_core": 0.035565225,
-          "util_memory_bw": 0.3706111325,
+          "memory_bytes": 172478720.0,
+          "util_cuda_core": 0.07113939999999999,
+          "util_tensor_core": 0.034585875,
+          "util_memory_bw": 0.36065803750000003,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.3706111325,
+          "bottleneck_util": 0.36065803750000003,
           "cuda_flops": 4543488.0,
-          "sm_utilization": 0.23459277750000002,
-          "report_path": "/workspace/qwen36-ncu-v2/_fused_moe_kernel_sequence_qxwxexnx3x6x-xvx1x-x2x9xexfx5x4x9xdxfx3x6x1xcx8x9xdxaxcxfx2xexdxax8xfx5xcx2xbx9x8x6x8xdxcx1x7x8x1x6x5x4x2x8xex0xbxexbxcxbxexcxbxcxdx3xaxex6x4x0x7xa_bfloat16.ncu-rep",
+          "sm_utilization": 0.2273620475,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/_fused_moe_kernel_sequence_qxwxexnx3x6x-xvx2x-x2x9x1x5xcx7xex8x9x0xax5x3x7x4xbxdxaxfx1xdx9xbxcx8x1x7xexbx3xexcx0x1xcx2x6x3x1xbx8x5x5xbx4x7x1xex3xcx5x1x4x1x5x0xfxexdxexexexfx2_bfloat16.ncu-rep",
           "timing": {
-            "method": "triton.testing.do_bench",
-            "return_mode": "median",
+            "schema": "flaggems.reset-excluded/v1",
+            "method": "device_event_median",
+            "reset_excluded": true,
+            "cache_policy": "restore_then_flush_256MiB_before_call",
+            "cache_bytes": 268435456,
+            "ncu_cache_control": "all",
             "warmup_ms": 25,
-            "rep_ms": 100
+            "rep_ms": 100,
+            "max_samples": 10000
           }
         }
       },
-      "qwen36-v1-552abc5808927d7b33095b0f1089ba465fdcae172a93939e664fbd4497ce9099": {
+      "qwen36-v2-3fb1ae614fdb3c14886ab842d1367e0c91aa7092c7d1ca9e0e1c0e78e2b7fa2a": {
         "torch.bfloat16": {
           "config": {
             "inputs": {
@@ -2057,18 +1852,18 @@
             "source": {
               "upstream": "sglang v0.5.11",
               "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
-              "workload_sha256": "e438926097e31684f71f3d15e8f094888b9774936ad5ef682093bc9c08db6a05"
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
             }
           },
-          "T_us": 138.84800672531128,
-          "latency_ms": 0.13884800672531128,
+          "T_us": 145.50399780273438,
+          "latency_ms": 0.14550399780273438,
           "F_cuda": 315904.0,
           "F_tensor": 201326592.0,
-          "B_mem": 12655872.0,
-          "U_cuda": 1.8156205,
-          "U_tensor": 0.9105565,
-          "U_mem": 9.12103425,
-          "U_bottle_neck": 9.12103425,
+          "B_mem": 12658176.0,
+          "U_cuda": 1.7885362499999997,
+          "U_tensor": 0.90092575,
+          "U_mem": 9.042632,
+          "U_bottle_neck": 9.042632,
           "bottle_neck_unit": "mem",
           "num_kernels": 4,
           "per_kernel": [
@@ -2076,59 +1871,64 @@
               "name": "fused_moe_kernel",
               "F_cuda": 0.0,
               "F_tensor": 134217728.0,
-              "B_mem": 8402944.0,
-              "U_cuda": 0.950812,
-              "U_tensor": 1.652089,
-              "U_mem": 16.286916,
-              "T_us": 72.42937147359311
+              "B_mem": 8402688.0,
+              "U_cuda": 0.948037,
+              "U_tensor": 1.647268,
+              "U_mem": 16.231011,
+              "T_us": 74.9988657470963
             },
             {
               "name": "void <unnamed>::act_and_mul_kernel<__nv_bfloat16, 0, 1, 0>(<unnamed>::ActivationParams)",
               "F_cuda": 4608.0,
               "F_tensor": 0.0,
-              "B_mem": 8960.0,
-              "U_cuda": 0.007631,
-              "U_tensor": 0.000535,
-              "U_mem": 0.075797,
-              "T_us": 16.679793015702977
+              "B_mem": 9216.0,
+              "U_cuda": 0.006952,
+              "U_tensor": 0.000488,
+              "U_mem": 0.071023,
+              "T_us": 18.904672770962293
             },
             {
               "name": "fused_moe_kernel",
               "F_cuda": 262144.0,
               "F_tensor": 67108864.0,
-              "B_mem": 4207104.0,
-              "U_cuda": 6.217506,
-              "U_tensor": 1.989602,
-              "U_mem": 19.859339,
-              "T_us": 29.903412703827865
+              "B_mem": 4209408.0,
+              "U_cuda": 6.112333,
+              "U_tensor": 1.955947,
+              "U_mem": 19.604874,
+              "T_us": 31.14622317183132
             },
             {
               "name": "triton_per_fused_copy__mul_sum_0",
               "F_cuda": 49152.0,
               "F_tensor": 0.0,
               "B_mem": 36864.0,
-              "U_cuda": 0.086533,
+              "U_cuda": 0.086823,
               "U_tensor": 0.0,
-              "U_mem": 0.262085,
-              "T_us": 19.835429532187323
+              "U_mem": 0.26362,
+              "T_us": 20.45423611284445
             }
           ],
           "flops_cuda_core": 315904.0,
           "flops_tensor_core": 201326592.0,
-          "memory_bytes": 12655872.0,
-          "util_cuda_core": 0.018156205,
-          "util_tensor_core": 0.009105565,
-          "util_memory_bw": 0.09121034249999999,
+          "memory_bytes": 12658176.0,
+          "util_cuda_core": 0.017885362499999998,
+          "util_tensor_core": 0.0090092575,
+          "util_memory_bw": 0.09042631999999999,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.09121034249999999,
+          "bottleneck_util": 0.09042631999999999,
           "cuda_flops": 315904.0,
-          "sm_utilization": 0.056147499999999996,
-          "report_path": "/workspace/qwen36-ncu-v2/_fused_moe_kernel_sequence_qxwxexnx3x6x-xvx1x-x5x5x2xaxbxcx5x8x0x8x9x2x7xdx7xbx3x3x0x9x5xbx0xfx1x0x8x9xbxax4x6x5xfxdxcxaxex1x7x2xax9x3x9x3x9xex6x6x4xfxbxdx4x4x9x7xcxex9x0x9x9_bfloat16.ncu-rep",
+          "sm_utilization": 0.055362102499999996,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/_fused_moe_kernel_sequence_qxwxexnx3x6x-xvx2x-x3xfxbx1xaxex6x1x4xfxdxbx3xcx1x4x8x8x6xaxbx8x4x2xdx1x3x6x7xex0xcx9x1xaxax7x0x9x2xcx7xdx1xcxax9xex0xex1xcx0xex7x8xex2xbx7xfxax2xa_bfloat16.ncu-rep",
           "timing": {
-            "method": "triton.testing.do_bench",
-            "return_mode": "median",
+            "schema": "flaggems.reset-excluded/v1",
+            "method": "device_event_median",
+            "reset_excluded": true,
+            "cache_policy": "restore_then_flush_256MiB_before_call",
+            "cache_bytes": 268435456,
+            "ncu_cache_control": "all",
             "warmup_ms": 25,
-            "rep_ms": 100
+            "rep_ms": 100,
+            "max_samples": 10000
           }
         }
       }
@@ -2137,7 +1937,7 @@
   "fused_recurrent_gated_delta_rule_packed_decode": {
     "native_api": "ops.fused_recurrent_gated_delta_rule_packed_decode",
     "shapes": {
-      "qwen36-v1-153669d221deb467c562d14079bcbc0ed9e7a221819a4f98d3f2d369d252c680": {
+      "qwen36-v2-c4ef433b93639b1de65c3202b67f12edcc21016e319ef8d2dcef57810eb4f7f2": {
         "torch.bfloat16": {
           "config": {
             "inputs": {
@@ -2275,18 +2075,18 @@
             "source": {
               "upstream": "sglang v0.5.11",
               "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
-              "workload_sha256": "e438926097e31684f71f3d15e8f094888b9774936ad5ef682093bc9c08db6a05"
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
             }
           },
-          "T_us": 8.0960001796484,
-          "latency_ms": 0.0080960001796484,
+          "T_us": 8.352000266313553,
+          "latency_ms": 0.008352000266313553,
           "F_cuda": 1986048.0,
           "F_tensor": 0.0,
           "B_mem": 821504.0,
-          "U_cuda": 0.772024,
+          "U_cuda": 0.772053,
           "U_tensor": 0.003082,
-          "U_mem": 3.326078,
-          "U_bottle_neck": 3.326078,
+          "U_mem": 3.365143,
+          "U_bottle_neck": 3.365143,
           "bottle_neck_unit": "mem",
           "num_kernels": 1,
           "per_kernel": [
@@ -2295,32 +2095,37 @@
               "F_cuda": 1986048.0,
               "F_tensor": 0.0,
               "B_mem": 821504.0,
-              "U_cuda": 0.772024,
+              "U_cuda": 0.772053,
               "U_tensor": 0.003082,
-              "U_mem": 3.326078,
-              "T_us": 8.0960001796484
+              "U_mem": 3.365143,
+              "T_us": 8.352000266313553
             }
           ],
           "flops_cuda_core": 1986048.0,
           "flops_tensor_core": 0.0,
           "memory_bytes": 821504.0,
-          "util_cuda_core": 0.007720240000000001,
+          "util_cuda_core": 0.00772053,
           "util_tensor_core": 3.082e-05,
-          "util_memory_bw": 0.03326078,
+          "util_memory_bw": 0.03365143,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.03326078,
+          "bottleneck_util": 0.03365143,
           "cuda_flops": 1986048.0,
-          "sm_utilization": 0.01467,
-          "report_path": "/workspace/qwen36-ncu-v2/fused_recurrent_gated_delta_rule_packed_decode_qxwxexnx3x6x-xvx1x-x1x5x3x6x6x9xdx2x2x1xdxexbx4x6x7xcx5x6x2xdx1x4x0x7x9xbxcxbxcx0xexdx9xex7xax2x2x1x8x1x9xax4xfx9x8xdx3xfx2xdx3x6x9xdx2x5x2xcx6x8x0_bfloat16.ncu-rep",
+          "sm_utilization": 0.01467055,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/fused_recurrent_gated_delta_rule_packed_decode_qxwxexnx3x6x-xvx2x-xcx4xexfx4x3x3xbx9x3x6x3x9xbx1xdxex6x5xcx3x2x0x2xbx6x7xfx1x2xexdxcxcx2x1x0x1x6xex3x1x9xexfx8xdx2xdxcxexfx5x7x8x1x0xexbx4xfx7xfx2_bfloat16.ncu-rep",
           "timing": {
-            "method": "triton.testing.do_bench",
-            "return_mode": "median",
+            "schema": "flaggems.reset-excluded/v1",
+            "method": "device_event_median",
+            "reset_excluded": true,
+            "cache_policy": "restore_then_flush_256MiB_before_call",
+            "cache_bytes": 268435456,
+            "ncu_cache_control": "all",
             "warmup_ms": 25,
-            "rep_ms": 100
+            "rep_ms": 100,
+            "max_samples": 10000
           }
         }
       },
-      "qwen36-v1-642e842c3e6f26553e402575a1be725521b9b6f8159c1918551d7d4fadc979c0": {
+      "qwen36-v2-6b8c949fd8d07966a4628a24a61552f163aa78954455fc151865680e871adaf5": {
         "torch.bfloat16": {
           "config": {
             "inputs": {
@@ -2458,18 +2263,18 @@
             "source": {
               "upstream": "sglang v0.5.11",
               "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
-              "workload_sha256": "e438926097e31684f71f3d15e8f094888b9774936ad5ef682093bc9c08db6a05"
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
             }
           },
-          "T_us": 16.736000776290894,
-          "latency_ms": 0.016736000776290894,
+          "T_us": 8.25599953532219,
+          "latency_ms": 0.00825599953532219,
           "F_cuda": 1324032.0,
           "F_tensor": 0.0,
-          "B_mem": 558080.0,
-          "U_cuda": 0.5223,
-          "U_tensor": 0.002093,
-          "U_mem": 2.306195,
-          "U_bottle_neck": 2.306195,
+          "B_mem": 558336.0,
+          "U_cuda": 0.511001,
+          "U_tensor": 0.002048,
+          "U_mem": 2.237566,
+          "U_bottle_neck": 2.237566,
           "bottle_neck_unit": "mem",
           "num_kernels": 1,
           "per_kernel": [
@@ -2477,29 +2282,34 @@
               "name": "fused_recurrent_gated_delta_rule_packed_decode_kernel",
               "F_cuda": 1324032.0,
               "F_tensor": 0.0,
-              "B_mem": 558080.0,
-              "U_cuda": 0.5223,
-              "U_tensor": 0.002093,
-              "U_mem": 2.306195,
-              "T_us": 16.736000776290894
+              "B_mem": 558336.0,
+              "U_cuda": 0.511001,
+              "U_tensor": 0.002048,
+              "U_mem": 2.237566,
+              "T_us": 8.25599953532219
             }
           ],
           "flops_cuda_core": 1324032.0,
           "flops_tensor_core": 0.0,
-          "memory_bytes": 558080.0,
-          "util_cuda_core": 0.005223,
-          "util_tensor_core": 2.0929999999999998e-05,
-          "util_memory_bw": 0.02306195,
+          "memory_bytes": 558336.0,
+          "util_cuda_core": 0.005110010000000001,
+          "util_tensor_core": 2.048e-05,
+          "util_memory_bw": 0.022375660000000002,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.02306195,
+          "bottleneck_util": 0.022375660000000002,
           "cuda_flops": 1324032.0,
-          "sm_utilization": 0.009964530000000001,
-          "report_path": "/workspace/qwen36-ncu-v2/fused_recurrent_gated_delta_rule_packed_decode_qxwxexnx3x6x-xvx1x-x6x4x2xex8x4x2xcx3xex6xfx2x6x5x5x3xex4x0x2x5x7x5xax1xbxex7x2x5x5x2x1xbx9xbx6xfx8x1x5x9xcx1x9x1x8x5x5x1xdx7xdx4xfxaxdxcx9x7x9xcx0_bfloat16.ncu-rep",
+          "sm_utilization": 0.00974895,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/fused_recurrent_gated_delta_rule_packed_decode_qxwxexnx3x6x-xvx2x-x6xbx8xcx9x4x9xfxdx8xdx0x7x9x6x6xax4x6x2x8xax2x4xax6x1x5x5x2xfx1x6x3xaxax7x8x9x5x4x4x5x5xfxcx1x5x1x8x6x5x6x8x0xex8x7x1xaxdxaxfx5_bfloat16.ncu-rep",
           "timing": {
-            "method": "triton.testing.do_bench",
-            "return_mode": "median",
+            "schema": "flaggems.reset-excluded/v1",
+            "method": "device_event_median",
+            "reset_excluded": true,
+            "cache_policy": "restore_then_flush_256MiB_before_call",
+            "cache_bytes": 268435456,
+            "ncu_cache_control": "all",
             "warmup_ms": 25,
-            "rep_ms": 100
+            "rep_ms": 100,
+            "max_samples": 10000
           }
         }
       }
@@ -2508,7 +2318,7 @@
   "gemma_fused_add_rmsnorm": {
     "native_api": "ops.gemma_fused_add_rmsnorm",
     "shapes": {
-      "qwen36-v1-8a34293eef06d104de5982bfe29b52f0f5c81cf14337b4f71960e5bc7ca230c6": {
+      "qwen36-v2-c97c757a676da06fabdfab4c2ff1b7a42b48657457703466b87a0d9689ac0efb": {
         "torch.bfloat16": {
           "config": {
             "inputs": {
@@ -2573,18 +2383,18 @@
             "source": {
               "upstream": "sglang v0.5.11",
               "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
-              "workload_sha256": "e438926097e31684f71f3d15e8f094888b9774936ad5ef682093bc9c08db6a05"
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
             }
           },
-          "T_us": 6.175999995321035,
-          "latency_ms": 0.006175999995321035,
+          "T_us": 6.783999968320131,
+          "latency_ms": 0.006783999968320131,
           "F_cuda": 707200.0,
           "F_tensor": 0.0,
           "B_mem": 432896.0,
-          "U_cuda": 0.730031,
+          "U_cuda": 0.738969,
           "U_tensor": 0.0,
-          "U_mem": 2.64881,
-          "U_bottle_neck": 2.64881,
+          "U_mem": 2.652799,
+          "U_bottle_neck": 2.652799,
           "bottle_neck_unit": "mem",
           "num_kernels": 1,
           "per_kernel": [
@@ -2593,32 +2403,37 @@
               "F_cuda": 707200.0,
               "F_tensor": 0.0,
               "B_mem": 432896.0,
-              "U_cuda": 0.730031,
+              "U_cuda": 0.738969,
               "U_tensor": 0.0,
-              "U_mem": 2.64881,
-              "T_us": 6.175999995321035
+              "U_mem": 2.652799,
+              "T_us": 6.783999968320131
             }
           ],
           "flops_cuda_core": 707200.0,
           "flops_tensor_core": 0.0,
           "memory_bytes": 432896.0,
-          "util_cuda_core": 0.00730031,
+          "util_cuda_core": 0.00738969,
           "util_tensor_core": 0.0,
-          "util_memory_bw": 0.0264881,
+          "util_memory_bw": 0.026527989999999998,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.0264881,
+          "bottleneck_util": 0.026527989999999998,
           "cuda_flops": 707200.0,
-          "sm_utilization": 0.02559717,
-          "report_path": "/workspace/qwen36-ncu-v2/gemma_fused_add_rmsnorm_qxwxexnx3x6x-xvx1x-x8xax3x4x2x9x3xexexfx0x6xdx1x0x4xdxex5x9x8x2xbxfxex2x9xbx5x2xfx0xfx5xcx8x1xcxfx1x4x3x3x7xbx4xfx7x1x9x6x0xex5xbxcx7xcxax2x3x0xcx6_bfloat16.ncu-rep",
+          "sm_utilization": 0.02591058,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_fused_add_rmsnorm_qxwxexnx3x6x-xvx2x-xcx9x7xcx7x5x7xax6x7x6xdxax0x6xfxaxbxdxfxaxbx4xcx2xfxfx1xbx7xax4x2xbx4x8x6x5x7x4x5x7x7x0x3x4x6x6xbx8x7xax0xdx9x6x8x9xaxcx0xexfxb_bfloat16.ncu-rep",
           "timing": {
-            "method": "triton.testing.do_bench",
-            "return_mode": "median",
+            "schema": "flaggems.reset-excluded/v1",
+            "method": "device_event_median",
+            "reset_excluded": true,
+            "cache_policy": "restore_then_flush_256MiB_before_call",
+            "cache_bytes": 268435456,
+            "ncu_cache_control": "all",
             "warmup_ms": 25,
-            "rep_ms": 100
+            "rep_ms": 100,
+            "max_samples": 10000
           }
         }
       },
-      "qwen36-v1-4fb229184ca79ade9ee1db36e4101c8a54eba89214f0a95a738296e3158f0ae8": {
+      "qwen36-v2-454566ab781dfe123271b8c10c5699aa751fadbe3c879ecaa6cacf0e3c2fe7e6": {
         "torch.bfloat16": {
           "config": {
             "inputs": {
@@ -2683,18 +2498,18 @@
             "source": {
               "upstream": "sglang v0.5.11",
               "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
-              "workload_sha256": "e438926097e31684f71f3d15e8f094888b9774936ad5ef682093bc9c08db6a05"
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
             }
           },
-          "T_us": 5.663999821990728,
-          "latency_ms": 0.005663999821990728,
+          "T_us": 5.791999865323305,
+          "latency_ms": 0.005791999865323305,
           "F_cuda": 35360.0,
           "F_tensor": 0.0,
-          "B_mem": 43520.0,
-          "U_cuda": 0.036619,
+          "B_mem": 43776.0,
+          "U_cuda": 0.037426,
           "U_tensor": 0.0,
-          "U_mem": 0.267565,
-          "U_bottle_neck": 0.267565,
+          "U_mem": 0.272501,
+          "U_bottle_neck": 0.272501,
           "bottle_neck_unit": "mem",
           "num_kernels": 1,
           "per_kernel": [
@@ -2702,33 +2517,38 @@
               "name": "void FusedAddRMSNormKernel<8, __nv_bfloat16>(T2 *, T2 *, T2 *, unsigned int, unsigned int, unsigned int, float, float)",
               "F_cuda": 35360.0,
               "F_tensor": 0.0,
-              "B_mem": 43520.0,
-              "U_cuda": 0.036619,
+              "B_mem": 43776.0,
+              "U_cuda": 0.037426,
               "U_tensor": 0.0,
-              "U_mem": 0.267565,
-              "T_us": 5.663999821990728
+              "U_mem": 0.272501,
+              "T_us": 5.791999865323305
             }
           ],
           "flops_cuda_core": 35360.0,
           "flops_tensor_core": 0.0,
-          "memory_bytes": 43520.0,
-          "util_cuda_core": 0.00036618999999999996,
+          "memory_bytes": 43776.0,
+          "util_cuda_core": 0.00037426,
           "util_tensor_core": 0.0,
-          "util_memory_bw": 0.00267565,
+          "util_memory_bw": 0.00272501,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.00267565,
+          "bottleneck_util": 0.00272501,
           "cuda_flops": 35360.0,
-          "sm_utilization": 0.00128396,
-          "report_path": "/workspace/qwen36-ncu-v2/gemma_fused_add_rmsnorm_qxwxexnx3x6x-xvx1x-x4xfxbx2x2x9x1x8x4xcxax7x9xaxdxex9xexex1xdxbx3x6xex4x1x0x1xcx8xax5x4xexbxax8x9x2x1x4xfx0xax9x5xax7x3x8x2x9x6xex3x1x5x8xfx0xaxex8_bfloat16.ncu-rep",
+          "sm_utilization": 0.00131228,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_fused_add_rmsnorm_qxwxexnx3x6x-xvx2x-x4x5x4x5x6x6xaxbx7x8x1xdxfxex1x2x3x2x7x1xbx8xcx1x0xcx5x6x9x9xaxax7x5x1xfxaxdxbxex3xcx8x7x9xexcxaxax6xcxaxcxfx0xex3xcx2xfxex7xex6_bfloat16.ncu-rep",
           "timing": {
-            "method": "triton.testing.do_bench",
-            "return_mode": "median",
+            "schema": "flaggems.reset-excluded/v1",
+            "method": "device_event_median",
+            "reset_excluded": true,
+            "cache_policy": "restore_then_flush_256MiB_before_call",
+            "cache_bytes": 268435456,
+            "ncu_cache_control": "all",
             "warmup_ms": 25,
-            "rep_ms": 100
+            "rep_ms": 100,
+            "max_samples": 10000
           }
         }
       },
-      "qwen36-v1-ea1389ceeeb186c652f9800b686031bfb3607ff0039aeebcf58c19e53b26c85e": {
+      "qwen36-v2-dddf608f5799404a7d81a894dd11e50c638f3126112aa10c454c996dafe6cccd": {
         "torch.bfloat16": {
           "config": {
             "inputs": {
@@ -2793,18 +2613,18 @@
             "source": {
               "upstream": "sglang v0.5.11",
               "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
-              "workload_sha256": "e438926097e31684f71f3d15e8f094888b9774936ad5ef682093bc9c08db6a05"
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
             }
           },
-          "T_us": 5.375999957323074,
-          "latency_ms": 0.005375999957323074,
+          "T_us": 5.535999778658152,
+          "latency_ms": 0.005535999778658152,
           "F_cuda": 284800.0,
           "F_tensor": 0.0,
           "B_mem": 180992.0,
-          "U_cuda": 0.321529,
+          "U_cuda": 0.323249,
           "U_tensor": 0.0,
-          "U_mem": 1.21461,
-          "U_bottle_neck": 1.21461,
+          "U_mem": 1.206649,
+          "U_bottle_neck": 1.206649,
           "bottle_neck_unit": "mem",
           "num_kernels": 1,
           "per_kernel": [
@@ -2813,32 +2633,37 @@
               "F_cuda": 284800.0,
               "F_tensor": 0.0,
               "B_mem": 180992.0,
-              "U_cuda": 0.321529,
+              "U_cuda": 0.323249,
               "U_tensor": 0.0,
-              "U_mem": 1.21461,
-              "T_us": 5.375999957323074
+              "U_mem": 1.206649,
+              "T_us": 5.535999778658152
             }
           ],
           "flops_cuda_core": 284800.0,
           "flops_tensor_core": 0.0,
           "memory_bytes": 180992.0,
-          "util_cuda_core": 0.00321529,
+          "util_cuda_core": 0.00323249,
           "util_tensor_core": 0.0,
-          "util_memory_bw": 0.0121461,
+          "util_memory_bw": 0.012066490000000001,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.0121461,
+          "bottleneck_util": 0.012066490000000001,
           "cuda_flops": 284800.0,
-          "sm_utilization": 0.01127211,
-          "report_path": "/workspace/qwen36-ncu-v2/gemma_fused_add_rmsnorm_qxwxexnx3x6x-xvx1x-xexax1x3x8x9xcxexexexbx1x8x6xcx6x5x2xfx9x8x0x0xbx6x8x6x0x3x1xbxfxbx3x6x0x7xfxfx0x0x3x9xaxexexbxcxfx5x8xcx1x9xex5x3xbx2x6xcx8x5xe_bfloat16.ncu-rep",
+          "sm_utilization": 0.0113324,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_fused_add_rmsnorm_qxwxexnx3x6x-xvx2x-xdxdxdxfx6x0x8xfx5x7x9x9x4x0x4xax7xdx8x1xax8x9x4xdxdx1x1xex5x0xcx6x3x8xfx3x1x2x6x1x1x2xaxax1x0xcx4x5x4xcx9x9x6xdxaxfxex6xcxcxcxd_bfloat16.ncu-rep",
           "timing": {
-            "method": "triton.testing.do_bench",
-            "return_mode": "median",
+            "schema": "flaggems.reset-excluded/v1",
+            "method": "device_event_median",
+            "reset_excluded": true,
+            "cache_policy": "restore_then_flush_256MiB_before_call",
+            "cache_bytes": 268435456,
+            "ncu_cache_control": "all",
             "warmup_ms": 25,
-            "rep_ms": 100
+            "rep_ms": 100,
+            "max_samples": 10000
           }
         }
       },
-      "qwen36-v1-0a5fa2adc4dfde1c66206a3e0bece9e01e4c6e8fb346b2dc0eab2abe02b7d881": {
+      "qwen36-v2-58f3f6a1a1f145cb80c9a418bd47d91ccbf2966086706175a8c71c9d66d24507": {
         "torch.bfloat16": {
           "config": {
             "inputs": {
@@ -2903,18 +2728,18 @@
             "source": {
               "upstream": "sglang v0.5.11",
               "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
-              "workload_sha256": "e438926097e31684f71f3d15e8f094888b9774936ad5ef682093bc9c08db6a05"
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
             }
           },
-          "T_us": 6.032000062987208,
-          "latency_ms": 0.006032000062987208,
+          "T_us": 5.119999870657921,
+          "latency_ms": 0.005119999870657921,
           "F_cuda": 14240.0,
           "F_tensor": 0.0,
-          "B_mem": 25088.0,
-          "U_cuda": 0.015947,
+          "B_mem": 25344.0,
+          "U_cuda": 0.015838,
           "U_tensor": 0.0,
-          "U_mem": 0.167533,
-          "U_bottle_neck": 0.167533,
+          "U_mem": 0.165885,
+          "U_bottle_neck": 0.165885,
           "bottle_neck_unit": "mem",
           "num_kernels": 1,
           "per_kernel": [
@@ -2922,29 +2747,34 @@
               "name": "void FusedAddRMSNormKernel<8, __nv_bfloat16>(T2 *, T2 *, T2 *, unsigned int, unsigned int, unsigned int, float, float)",
               "F_cuda": 14240.0,
               "F_tensor": 0.0,
-              "B_mem": 25088.0,
-              "U_cuda": 0.015947,
+              "B_mem": 25344.0,
+              "U_cuda": 0.015838,
               "U_tensor": 0.0,
-              "U_mem": 0.167533,
-              "T_us": 6.032000062987208
+              "U_mem": 0.165885,
+              "T_us": 5.119999870657921
             }
           ],
           "flops_cuda_core": 14240.0,
           "flops_tensor_core": 0.0,
-          "memory_bytes": 25088.0,
-          "util_cuda_core": 0.00015947,
+          "memory_bytes": 25344.0,
+          "util_cuda_core": 0.00015838,
           "util_tensor_core": 0.0,
-          "util_memory_bw": 0.0016753299999999998,
+          "util_memory_bw": 0.0016588500000000001,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.0016753299999999998,
+          "bottleneck_util": 0.0016588500000000001,
           "cuda_flops": 14240.0,
-          "sm_utilization": 0.00055908,
-          "report_path": "/workspace/qwen36-ncu-v2/gemma_fused_add_rmsnorm_qxwxexnx3x6x-xvx1x-x0xax5xfxax2xaxdxcx4xdxfxdxex1xcx6x6x2x0x6xax3xex0xbxexcxex9xex0x1xex4xcx6xex8xfxbx3x4x6xbx2xdxcx0xexaxbx2xaxbxex0x2xbx7xdx8x8x1_bfloat16.ncu-rep",
+          "sm_utilization": 0.00055526,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_fused_add_rmsnorm_qxwxexnx3x6x-xvx2x-x5x8xfx3xfx6xax1xax1xfx1x4x5xcxbx8x0xcx9xax4x1x8xbxdx4x7xdx9x1xcxcxbxfx2x9x6x6x0x8x6x7x0x6x1x7x5xax8xcx7x1xcx9xdx6x6xdx2x4x5x0x7_bfloat16.ncu-rep",
           "timing": {
-            "method": "triton.testing.do_bench",
-            "return_mode": "median",
+            "schema": "flaggems.reset-excluded/v1",
+            "method": "device_event_median",
+            "reset_excluded": true,
+            "cache_policy": "restore_then_flush_256MiB_before_call",
+            "cache_bytes": 268435456,
+            "ncu_cache_control": "all",
             "warmup_ms": 25,
-            "rep_ms": 100
+            "rep_ms": 100,
+            "max_samples": 10000
           }
         }
       }
@@ -3008,18 +2838,18 @@
             "source": {
               "upstream": "sglang v0.5.11",
               "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
-              "workload_sha256": "e438926097e31684f71f3d15e8f094888b9774936ad5ef682093bc9c08db6a05"
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
             }
           },
-          "T_us": 6.112000206485391,
-          "latency_ms": 0.006112000206485391,
+          "T_us": 6.207999773323536,
+          "latency_ms": 0.006207999773323536,
           "F_cuda": 604800.0,
           "F_tensor": 0.0,
-          "B_mem": 227584.0,
-          "U_cuda": 0.8160309999999998,
+          "B_mem": 227072.0,
+          "U_cuda": 0.8116980000000001,
           "U_tensor": 0.0,
-          "U_mem": 1.422491,
-          "U_bottle_neck": 1.422491,
+          "U_mem": 1.403126,
+          "U_bottle_neck": 1.403126,
           "bottle_neck_unit": "mem",
           "num_kernels": 1,
           "per_kernel": [
@@ -3027,24 +2857,24 @@
               "name": "void RMSNormKernel<8, __nv_bfloat16>(T2 *, T2 *, T2 *, unsigned int, unsigned int, unsigned int, float, float)",
               "F_cuda": 604800.0,
               "F_tensor": 0.0,
-              "B_mem": 227584.0,
-              "U_cuda": 0.816031,
+              "B_mem": 227072.0,
+              "U_cuda": 0.811698,
               "U_tensor": 0.0,
-              "U_mem": 1.422491,
-              "T_us": 6.112000206485391
+              "U_mem": 1.403126,
+              "T_us": 6.207999773323536
             }
           ],
           "flops_cuda_core": 604800.0,
           "flops_tensor_core": 0.0,
-          "memory_bytes": 227584.0,
-          "util_cuda_core": 0.008160309999999999,
+          "memory_bytes": 227072.0,
+          "util_cuda_core": 0.008116980000000001,
           "util_tensor_core": 0.0,
-          "util_memory_bw": 0.01422491,
+          "util_memory_bw": 0.01403126,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.01422491,
+          "bottleneck_util": 0.01403126,
           "cuda_flops": 604800.0,
-          "sm_utilization": 0.02207647,
-          "report_path": "/workspace/qwen36-ncu-v2/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-x0xdx3x6x3xdx1xaxdx1x6xdx3x8xfx2x7x4x5xbx5xdx1x6xfx3x9xexfxfxex8x1x0x3xbx6x4x6x0xax5xax5x1x1xdx3xbxfx9x2x4x8x8x6x2x8x5xex4xcx7x0_bfloat16.ncu-rep",
+          "sm_utilization": 0.02195924,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-x0xdx3x6x3xdx1xaxdx1x6xdx3x8xfx2x7x4x5xbx5xdx1x6xfx3x9xexfxfxex8x1x0x3xbx6x4x6x0xax5xax5x1x1xdx3xbxfx9x2x4x8x8x6x2x8x5xex4xcx7x0_bfloat16.ncu-rep",
           "timing": {
             "method": "triton.testing.do_bench",
             "return_mode": "median",
@@ -3108,18 +2938,18 @@
             "source": {
               "upstream": "sglang v0.5.11",
               "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
-              "workload_sha256": "e438926097e31684f71f3d15e8f094888b9774936ad5ef682093bc9c08db6a05"
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
             }
           },
-          "T_us": 5.247999913990498,
-          "latency_ms": 0.005247999913990498,
+          "T_us": 5.119999870657921,
+          "latency_ms": 0.005119999870657921,
           "F_cuda": 199680.0,
           "F_tensor": 0.0,
           "B_mem": 74240.0,
-          "U_cuda": 0.289142,
+          "U_cuda": 0.294134,
           "U_tensor": 0.0,
-          "U_mem": 0.514039,
-          "U_bottle_neck": 0.514039,
+          "U_mem": 0.516382,
+          "U_bottle_neck": 0.516382,
           "bottle_neck_unit": "mem",
           "num_kernels": 1,
           "per_kernel": [
@@ -3128,23 +2958,23 @@
               "F_cuda": 199680.0,
               "F_tensor": 0.0,
               "B_mem": 74240.0,
-              "U_cuda": 0.289142,
+              "U_cuda": 0.294134,
               "U_tensor": 0.0,
-              "U_mem": 0.514039,
-              "T_us": 5.247999913990498
+              "U_mem": 0.516382,
+              "T_us": 5.119999870657921
             }
           ],
           "flops_cuda_core": 199680.0,
           "flops_tensor_core": 0.0,
           "memory_bytes": 74240.0,
-          "util_cuda_core": 0.00289142,
+          "util_cuda_core": 0.00294134,
           "util_tensor_core": 0.0,
-          "util_memory_bw": 0.00514039,
+          "util_memory_bw": 0.00516382,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.00514039,
+          "bottleneck_util": 0.00516382,
           "cuda_flops": 199680.0,
-          "sm_utilization": 0.00785284,
-          "report_path": "/workspace/qwen36-ncu-v2/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-xbx1x9x3x0xfx3xaxdx0x8x3x8x2x2x4xex4x8x2xbx3x8xbx9x4x8x8x8xcx7x4x2x9xcx8x3xex2x3x8x0x9xbx4x7xdx0x9x6x0x2xfxdx3x2x6x9x5x8xexaxdx0_bfloat16.ncu-rep",
+          "sm_utilization": 0.00798841,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-xbx1x9x3x0xfx3xaxdx0x8x3x8x2x2x4xex4x8x2xbx3x8xbx9x4x8x8x8xcx7x4x2x9xcx8x3xex2x3x8x0x9xbx4x7xdx0x9x6x0x2xfxdx3x2x6x9x5x8xexaxdx0_bfloat16.ncu-rep",
           "timing": {
             "method": "triton.testing.do_bench",
             "return_mode": "median",
@@ -3212,18 +3042,18 @@
             "source": {
               "upstream": "sglang v0.5.11",
               "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
-              "workload_sha256": "e438926097e31684f71f3d15e8f094888b9774936ad5ef682093bc9c08db6a05"
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
             }
           },
-          "T_us": 5.535999778658152,
-          "latency_ms": 0.005535999778658152,
+          "T_us": 5.759999854490161,
+          "latency_ms": 0.005759999854490161,
           "F_cuda": 33280.0,
           "F_tensor": 0.0,
           "B_mem": 23040.0,
-          "U_cuda": 0.048014,
+          "U_cuda": 0.05043199999999999,
           "U_tensor": 0.0,
-          "U_mem": 0.158183,
-          "U_bottle_neck": 0.158183,
+          "U_mem": 0.164666,
+          "U_bottle_neck": 0.164666,
           "bottle_neck_unit": "mem",
           "num_kernels": 1,
           "per_kernel": [
@@ -3232,23 +3062,23 @@
               "F_cuda": 33280.0,
               "F_tensor": 0.0,
               "B_mem": 23040.0,
-              "U_cuda": 0.048014,
+              "U_cuda": 0.050432,
               "U_tensor": 0.0,
-              "U_mem": 0.158183,
-              "T_us": 5.535999778658152
+              "U_mem": 0.164666,
+              "T_us": 5.759999854490161
             }
           ],
           "flops_cuda_core": 33280.0,
           "flops_tensor_core": 0.0,
           "memory_bytes": 23040.0,
-          "util_cuda_core": 0.00048014,
+          "util_cuda_core": 0.0005043199999999999,
           "util_tensor_core": 0.0,
-          "util_memory_bw": 0.00158183,
+          "util_memory_bw": 0.00164666,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.00158183,
+          "bottleneck_util": 0.00164666,
           "cuda_flops": 33280.0,
-          "sm_utilization": 0.00130402,
-          "report_path": "/workspace/qwen36-ncu-v2/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-xex5x1x2x7xex3x1x2x6x2x9xfx5x0x7xex2x5x4x1x9x8x8xbx1xcxaxaxaxbx1xbxexex7xbx9x3x7x6x6xex1x0x9x1x9x4x5x8x7x9x1xbx2xdx9x2x7x9x6xax0_bfloat16.ncu-rep",
+          "sm_utilization": 0.0013697000000000002,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-xex5x1x2x7xex3x1x2x6x2x9xfx5x0x7xex2x5x4x1x9x8x8xbx1xcxaxaxaxbx1xbxexex7xbx9x3x7x6x6xex1x0x9x1x9x4x5x8x7x9x1xbx2xdx9x2x7x9x6xax0_bfloat16.ncu-rep",
           "timing": {
             "method": "triton.testing.do_bench",
             "return_mode": "median",
@@ -3312,18 +3142,18 @@
             "source": {
               "upstream": "sglang v0.5.11",
               "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
-              "workload_sha256": "e438926097e31684f71f3d15e8f094888b9774936ad5ef682093bc9c08db6a05"
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
             }
           },
-          "T_us": 5.504000000655651,
-          "latency_ms": 0.005504000000655651,
+          "T_us": 5.439999978989363,
+          "latency_ms": 0.005439999978989363,
           "F_cuda": 30240.0,
           "F_tensor": 0.0,
           "B_mem": 32768.0,
-          "U_cuda": 0.043711,
+          "U_cuda": 0.043024,
           "U_tensor": 0.0,
-          "U_mem": 0.21978000000000003,
-          "U_bottle_neck": 0.21978000000000003,
+          "U_mem": 0.214938,
+          "U_bottle_neck": 0.214938,
           "bottle_neck_unit": "mem",
           "num_kernels": 1,
           "per_kernel": [
@@ -3332,23 +3162,23 @@
               "F_cuda": 30240.0,
               "F_tensor": 0.0,
               "B_mem": 32768.0,
-              "U_cuda": 0.043711,
+              "U_cuda": 0.043024,
               "U_tensor": 0.0,
-              "U_mem": 0.21978,
-              "T_us": 5.504000000655651
+              "U_mem": 0.214938,
+              "T_us": 5.439999978989363
             }
           ],
           "flops_cuda_core": 30240.0,
           "flops_tensor_core": 0.0,
           "memory_bytes": 32768.0,
-          "util_cuda_core": 0.00043711,
+          "util_cuda_core": 0.00043024,
           "util_tensor_core": 0.0,
-          "util_memory_bw": 0.0021978,
+          "util_memory_bw": 0.0021493799999999998,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.0021978,
+          "bottleneck_util": 0.0021493799999999998,
           "cuda_flops": 30240.0,
-          "sm_utilization": 0.00118252,
-          "report_path": "/workspace/qwen36-ncu-v2/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-xfx9xbxdxbx3xdxcxdxdx9xbx2xfx8xax0x3xcxfxex5xbxax8x5x4x6x4x6x1xex8x6x8x1xex8x7x3x8x7x6xexcxax5x9x4xfx5x3x2x0x6x5x2xfx3xexfx3x8xe_bfloat16.ncu-rep",
+          "sm_utilization": 0.00116395,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-xfx9xbxdxbx3xdxcxdxdx9xbx2xfx8xax0x3xcxfxex5xbxax8x5x4x6x4x6x1xex8x6x8x1xex8x7x3x8x7x6xexcxax5x9x4xfx5x3x2x0x6x5x2xfx3xexfx3x8xe_bfloat16.ncu-rep",
           "timing": {
             "method": "triton.testing.do_bench",
             "return_mode": "median",
@@ -3412,18 +3242,18 @@
             "source": {
               "upstream": "sglang v0.5.11",
               "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
-              "workload_sha256": "e438926097e31684f71f3d15e8f094888b9774936ad5ef682093bc9c08db6a05"
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
             }
           },
-          "T_us": 5.0559998489916325,
-          "latency_ms": 0.0050559998489916325,
+          "T_us": 4.767999984323978,
+          "latency_ms": 0.004767999984323978,
           "F_cuda": 9984.0,
           "F_tensor": 0.0,
           "B_mem": 15872.0,
-          "U_cuda": 0.015029,
+          "U_cuda": 0.014865000000000001,
           "U_tensor": 0.0,
-          "U_mem": 0.114781,
-          "U_bottle_neck": 0.114781,
+          "U_mem": 0.11225399999999999,
+          "U_bottle_neck": 0.11225399999999999,
           "bottle_neck_unit": "mem",
           "num_kernels": 1,
           "per_kernel": [
@@ -3432,23 +3262,23 @@
               "F_cuda": 9984.0,
               "F_tensor": 0.0,
               "B_mem": 15872.0,
-              "U_cuda": 0.015029,
+              "U_cuda": 0.014865,
               "U_tensor": 0.0,
-              "U_mem": 0.114781,
-              "T_us": 5.0559998489916325
+              "U_mem": 0.112254,
+              "T_us": 4.767999984323978
             }
           ],
           "flops_cuda_core": 9984.0,
           "flops_tensor_core": 0.0,
           "memory_bytes": 15872.0,
-          "util_cuda_core": 0.00015029,
+          "util_cuda_core": 0.00014865,
           "util_tensor_core": 0.0,
-          "util_memory_bw": 0.00114781,
+          "util_memory_bw": 0.00112254,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.00114781,
+          "bottleneck_util": 0.00112254,
           "cuda_flops": 9984.0,
-          "sm_utilization": 0.00040819,
-          "report_path": "/workspace/qwen36-ncu-v2/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-x1x2xcxfx8x8x8x6xdxbx3x4x5xex7x9xbxaxbxcxax6x3x9xax2xaxfx3xcx7xaxbx3x2xex8xcxfx7x8xex2x4xbxcx3x9x1x6x1xfx2x7xdxexcxexfx3xdxexaxc_bfloat16.ncu-rep",
+          "sm_utilization": 0.00040372,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-x1x2xcxfx8x8x8x6xdxbx3x4x5xex7x9xbxaxbxcxax6x3x9xax2xaxfx3xcx7xaxbx3x2xex8xcxfx7x8xex2x4xbxcx3x9x1x6x1xfx2x7xdxexcxexfx3xdxexaxc_bfloat16.ncu-rep",
           "timing": {
             "method": "triton.testing.do_bench",
             "return_mode": "median",
@@ -3516,18 +3346,18 @@
             "source": {
               "upstream": "sglang v0.5.11",
               "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
-              "workload_sha256": "e438926097e31684f71f3d15e8f094888b9774936ad5ef682093bc9c08db6a05"
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
             }
           },
-          "T_us": 5.119999870657921,
-          "latency_ms": 0.005119999870657921,
+          "T_us": 4.991999827325344,
+          "latency_ms": 0.004991999827325344,
           "F_cuda": 1664.0,
           "F_tensor": 0.0,
-          "B_mem": 13056.0,
-          "U_cuda": 0.002484,
+          "B_mem": 13312.0,
+          "U_cuda": 0.002462,
           "U_tensor": 0.0,
-          "U_mem": 0.093311,
-          "U_bottle_neck": 0.093311,
+          "U_mem": 0.093337,
+          "U_bottle_neck": 0.093337,
           "bottle_neck_unit": "mem",
           "num_kernels": 1,
           "per_kernel": [
@@ -3535,24 +3365,24 @@
               "name": "void RMSNormKernel<8, __nv_bfloat16>(T2 *, T2 *, T2 *, unsigned int, unsigned int, unsigned int, float, float)",
               "F_cuda": 1664.0,
               "F_tensor": 0.0,
-              "B_mem": 13056.0,
-              "U_cuda": 0.002484,
+              "B_mem": 13312.0,
+              "U_cuda": 0.002462,
               "U_tensor": 0.0,
-              "U_mem": 0.093311,
-              "T_us": 5.119999870657921
+              "U_mem": 0.093337,
+              "T_us": 4.991999827325344
             }
           ],
           "flops_cuda_core": 1664.0,
           "flops_tensor_core": 0.0,
-          "memory_bytes": 13056.0,
-          "util_cuda_core": 2.484e-05,
+          "memory_bytes": 13312.0,
+          "util_cuda_core": 2.462e-05,
           "util_tensor_core": 0.0,
-          "util_memory_bw": 0.00093311,
+          "util_memory_bw": 0.00093337,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.00093311,
+          "bottleneck_util": 0.00093337,
           "cuda_flops": 1664.0,
-          "sm_utilization": 6.746000000000001e-05,
-          "report_path": "/workspace/qwen36-ncu-v2/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-xfx2x1xfxdxcx5xfx8x7xfxexdx7xfx6xax7xexdxbx3xfx7xcx7x5xcxbx2xdx8xfxcxbx5xcx1x1x7x0xfx1x2xax9x8x1x1xdx1x6x6x2xcxexbxdxexdxaxcx3xd_bfloat16.ncu-rep",
+          "sm_utilization": 6.687e-05,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-xfx2x1xfxdxcx5xfx8x7xfxexdx7xfx6xax7xexdxbx3xfx7xcx7x5xcxbx2xdx8xfxcxbx5xcx1x1x7x0xfx1x2xax9x8x1x1xdx1x6x6x2xcxexbxdxexdxaxcx3xd_bfloat16.ncu-rep",
           "timing": {
             "method": "triton.testing.do_bench",
             "return_mode": "median",
@@ -3616,18 +3446,18 @@
             "source": {
               "upstream": "sglang v0.5.11",
               "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
-              "workload_sha256": "e438926097e31684f71f3d15e8f094888b9774936ad5ef682093bc9c08db6a05"
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
             }
           },
-          "T_us": 5.247999913990498,
-          "latency_ms": 0.005247999913990498,
+          "T_us": 5.535999778658152,
+          "latency_ms": 0.005535999778658152,
           "F_cuda": 243840.0,
           "F_tensor": 0.0,
-          "B_mem": 98304.0,
-          "U_cuda": 0.372343,
+          "B_mem": 98560.0,
+          "U_cuda": 0.3762,
           "U_tensor": 0.0,
-          "U_mem": 0.697674,
-          "U_bottle_neck": 0.697674,
+          "U_mem": 0.70194,
+          "U_bottle_neck": 0.70194,
           "bottle_neck_unit": "mem",
           "num_kernels": 1,
           "per_kernel": [
@@ -3635,24 +3465,24 @@
               "name": "void RMSNormKernel<8, __nv_bfloat16>(T2 *, T2 *, T2 *, unsigned int, unsigned int, unsigned int, float, float)",
               "F_cuda": 243840.0,
               "F_tensor": 0.0,
-              "B_mem": 98304.0,
-              "U_cuda": 0.372343,
+              "B_mem": 98560.0,
+              "U_cuda": 0.3762,
               "U_tensor": 0.0,
-              "U_mem": 0.697674,
-              "T_us": 5.247999913990498
+              "U_mem": 0.70194,
+              "T_us": 5.535999778658152
             }
           ],
           "flops_cuda_core": 243840.0,
           "flops_tensor_core": 0.0,
-          "memory_bytes": 98304.0,
-          "util_cuda_core": 0.00372343,
+          "memory_bytes": 98560.0,
+          "util_cuda_core": 0.0037619999999999997,
           "util_tensor_core": 0.0,
-          "util_memory_bw": 0.00697674,
+          "util_memory_bw": 0.0070194,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.00697674,
+          "bottleneck_util": 0.0070194,
           "cuda_flops": 243840.0,
-          "sm_utilization": 0.01008475,
-          "report_path": "/workspace/qwen36-ncu-v2/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-x1x8x4x4xcx7x6xfxex0x7x5xexdx9xbx3x3x6x4xexdx3x6xcx7xcxex8xax6x3x0x6x7x8x4xbx6xex0x6xcx4xfxcxbx4xdx2xbx6x2xdx0x9x1x7x8xbx5xdxfx4_bfloat16.ncu-rep",
+          "sm_utilization": 0.010189239999999999,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-x1x8x4x4xcx7x6xfxex0x7x5xexdx9xbx3x3x6x4xexdx3x6xcx7xcxex8xax6x3x0x6x7x8x4xbx6xex0x6xcx4xfxcxbx4xdx2xbx6x2xdx0x9x1x7x8xbx5xdxfx4_bfloat16.ncu-rep",
           "timing": {
             "method": "triton.testing.do_bench",
             "return_mode": "median",
@@ -3716,18 +3546,18 @@
             "source": {
               "upstream": "sglang v0.5.11",
               "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
-              "workload_sha256": "e438926097e31684f71f3d15e8f094888b9774936ad5ef682093bc9c08db6a05"
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
             }
           },
-          "T_us": 5.08800009265542,
-          "latency_ms": 0.00508800009265542,
+          "T_us": 5.0559998489916325,
+          "latency_ms": 0.0050559998489916325,
           "F_cuda": 133120.0,
           "F_tensor": 0.0,
           "B_mem": 53760.0,
-          "U_cuda": 0.19184,
+          "U_cuda": 0.189468,
           "U_tensor": 0.0,
-          "U_mem": 0.371182,
-          "U_bottle_neck": 0.371182,
+          "U_mem": 0.36297,
+          "U_bottle_neck": 0.36297,
           "bottle_neck_unit": "mem",
           "num_kernels": 1,
           "per_kernel": [
@@ -3736,23 +3566,23 @@
               "F_cuda": 133120.0,
               "F_tensor": 0.0,
               "B_mem": 53760.0,
-              "U_cuda": 0.19184,
+              "U_cuda": 0.189468,
               "U_tensor": 0.0,
-              "U_mem": 0.371182,
-              "T_us": 5.08800009265542
+              "U_mem": 0.36297,
+              "T_us": 5.0559998489916325
             }
           ],
           "flops_cuda_core": 133120.0,
           "flops_tensor_core": 0.0,
           "memory_bytes": 53760.0,
-          "util_cuda_core": 0.0019184,
+          "util_cuda_core": 0.00189468,
           "util_tensor_core": 0.0,
-          "util_memory_bw": 0.0037118200000000002,
+          "util_memory_bw": 0.0036297,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.0037118200000000002,
+          "bottleneck_util": 0.0036297,
           "cuda_flops": 133120.0,
-          "sm_utilization": 0.00521021,
-          "report_path": "/workspace/qwen36-ncu-v2/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-xex9x3x6x0x5x4x3xaxdx3xbxexcxexcx6x5xbx9x1x2x7xfx8xex0x1xex1x2x4x0x8x1xfxax8xcx9x1xex6x8xax2xdx4xex3xcx2xfx6xex7xbx3xfx0x7x8xaxd_bfloat16.ncu-rep",
+          "sm_utilization": 0.00514578,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-xex9x3x6x0x5x4x3xaxdx3xbxexcxexcx6x5xbx9x1x2x7xfx8xex0x1xex1x2x4x0x8x1xfxax8xcx9x1xex6x8xax2xdx4xex3xcx2xfx6xex7xbx3xfx0x7x8xaxd_bfloat16.ncu-rep",
           "timing": {
             "method": "triton.testing.do_bench",
             "return_mode": "median",
@@ -3820,18 +3650,18 @@
             "source": {
               "upstream": "sglang v0.5.11",
               "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
-              "workload_sha256": "e438926097e31684f71f3d15e8f094888b9774936ad5ef682093bc9c08db6a05"
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
             }
           },
-          "T_us": 5.311999935656786,
-          "latency_ms": 0.005311999935656786,
+          "T_us": 4.9600000493228436,
+          "latency_ms": 0.0049600000493228436,
           "F_cuda": 33280.0,
           "F_tensor": 0.0,
-          "B_mem": 23040.0,
-          "U_cuda": 0.05023999999999999,
+          "B_mem": 23296.0,
+          "U_cuda": 0.048706,
           "U_tensor": 0.0,
-          "U_mem": 0.166076,
-          "U_bottle_neck": 0.166076,
+          "U_mem": 0.161485,
+          "U_bottle_neck": 0.161485,
           "bottle_neck_unit": "mem",
           "num_kernels": 1,
           "per_kernel": [
@@ -3839,24 +3669,24 @@
               "name": "void RMSNormKernel<8, __nv_bfloat16>(T2 *, T2 *, T2 *, unsigned int, unsigned int, unsigned int, float, float)",
               "F_cuda": 33280.0,
               "F_tensor": 0.0,
-              "B_mem": 23040.0,
-              "U_cuda": 0.05024,
+              "B_mem": 23296.0,
+              "U_cuda": 0.048706,
               "U_tensor": 0.0,
-              "U_mem": 0.166076,
-              "T_us": 5.311999935656786
+              "U_mem": 0.161485,
+              "T_us": 4.9600000493228436
             }
           ],
           "flops_cuda_core": 33280.0,
           "flops_tensor_core": 0.0,
-          "memory_bytes": 23040.0,
-          "util_cuda_core": 0.0005024,
+          "memory_bytes": 23296.0,
+          "util_cuda_core": 0.00048706,
           "util_tensor_core": 0.0,
-          "util_memory_bw": 0.00166076,
+          "util_memory_bw": 0.00161485,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.00166076,
+          "bottleneck_util": 0.00161485,
           "cuda_flops": 33280.0,
-          "sm_utilization": 0.0013644899999999999,
-          "report_path": "/workspace/qwen36-ncu-v2/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-x0x5xfx7x0x6x3x0x0xax1x1xex2x1x9x4x1x8x1xex8xdxfxcx0x3xbxfx1xcxcx9xex6x3xdx8x6xdxbx5x5x1xcx7x6x7x9x7xaxdx4x7x9x9xdx9x8xax4xbx2xa_bfloat16.ncu-rep",
+          "sm_utilization": 0.0013228,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-x0x5xfx7x0x6x3x0x0xax1x1xex2x1x9x4x1x8x1xex8xdxfxcx0x3xbxfx1xcxcx9xex6x3xdx8x6xdxbx5x5x1xcx7x6x7x9x7xaxdx4x7x9x9xdx9x8xax4xbx2xa_bfloat16.ncu-rep",
           "timing": {
             "method": "triton.testing.do_bench",
             "return_mode": "median",
@@ -3920,18 +3750,18 @@
             "source": {
               "upstream": "sglang v0.5.11",
               "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
-              "workload_sha256": "e438926097e31684f71f3d15e8f094888b9774936ad5ef682093bc9c08db6a05"
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
             }
           },
-          "T_us": 5.632000043988228,
-          "latency_ms": 0.005632000043988228,
+          "T_us": 5.535999778658152,
+          "latency_ms": 0.005535999778658152,
           "F_cuda": 12192.0,
           "F_tensor": 0.0,
           "B_mem": 20736.0,
-          "U_cuda": 0.018834,
+          "U_cuda": 0.018944,
           "U_tensor": 0.0,
-          "U_mem": 0.148897,
-          "U_bottle_neck": 0.148897,
+          "U_mem": 0.148722,
+          "U_bottle_neck": 0.148722,
           "bottle_neck_unit": "mem",
           "num_kernels": 1,
           "per_kernel": [
@@ -3940,23 +3770,23 @@
               "F_cuda": 12192.0,
               "F_tensor": 0.0,
               "B_mem": 20736.0,
-              "U_cuda": 0.018834,
+              "U_cuda": 0.018944,
               "U_tensor": 0.0,
-              "U_mem": 0.148897,
-              "T_us": 5.632000043988228
+              "U_mem": 0.148722,
+              "T_us": 5.535999778658152
             }
           ],
           "flops_cuda_core": 12192.0,
           "flops_tensor_core": 0.0,
           "memory_bytes": 20736.0,
-          "util_cuda_core": 0.00018834,
+          "util_cuda_core": 0.00018944,
           "util_tensor_core": 0.0,
-          "util_memory_bw": 0.00148897,
+          "util_memory_bw": 0.00148722,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.00148897,
+          "bottleneck_util": 0.00148722,
           "cuda_flops": 12192.0,
-          "sm_utilization": 0.00051012,
-          "report_path": "/workspace/qwen36-ncu-v2/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-x4x5x3x7x3x8x6x8x3x1xcx0x3x2x1xfxdx9x9x7x9x4x1xcx3x8x4xex6x2xbxex0xfxbxcxbx7xbx8x8x8xcxex8x7x5x6x3xex5xaxdx1xex6xax9xax4xcx1x7xb_bfloat16.ncu-rep",
+          "sm_utilization": 0.00051308,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-x4x5x3x7x3x8x6x8x3x1xcx0x3x2x1xfxdx9x9x7x9x4x1xcx3x8x4xex6x2xbxex0xfxbxcxbx7xbx8x8x8xcxex8x7x5x6x3xex5xaxdx1xex6xax9xax4xcx1x7xb_bfloat16.ncu-rep",
           "timing": {
             "method": "triton.testing.do_bench",
             "return_mode": "median",
@@ -4020,18 +3850,18 @@
             "source": {
               "upstream": "sglang v0.5.11",
               "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
-              "workload_sha256": "e438926097e31684f71f3d15e8f094888b9774936ad5ef682093bc9c08db6a05"
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
             }
           },
-          "T_us": 5.472000222653151,
-          "latency_ms": 0.0054720002226531506,
+          "T_us": 5.024000070989132,
+          "latency_ms": 0.005024000070989132,
           "F_cuda": 6656.0,
           "F_tensor": 0.0,
           "B_mem": 15104.0,
-          "U_cuda": 0.009336,
+          "U_cuda": 0.01028,
           "U_tensor": 0.0,
-          "U_mem": 0.10130500000000002,
-          "U_bottle_neck": 0.10130500000000002,
+          "U_mem": 0.109911,
+          "U_bottle_neck": 0.109911,
           "bottle_neck_unit": "mem",
           "num_kernels": 1,
           "per_kernel": [
@@ -4040,23 +3870,23 @@
               "F_cuda": 6656.0,
               "F_tensor": 0.0,
               "B_mem": 15104.0,
-              "U_cuda": 0.009336,
+              "U_cuda": 0.01028,
               "U_tensor": 0.0,
-              "U_mem": 0.101305,
-              "T_us": 5.472000222653151
+              "U_mem": 0.109911,
+              "T_us": 5.024000070989132
             }
           ],
           "flops_cuda_core": 6656.0,
           "flops_tensor_core": 0.0,
           "memory_bytes": 15104.0,
-          "util_cuda_core": 9.336e-05,
+          "util_cuda_core": 0.00010279999999999999,
           "util_tensor_core": 0.0,
-          "util_memory_bw": 0.0010130500000000001,
+          "util_memory_bw": 0.00109911,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.0010130500000000001,
+          "bottleneck_util": 0.00109911,
           "cuda_flops": 6656.0,
-          "sm_utilization": 0.00025357,
-          "report_path": "/workspace/qwen36-ncu-v2/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-x4x0x1x2xcxax2x5x4xcx1xdx3xfxdx1xbx7x7x0x6xexax4x7x3x4xfx9x6x0xfxex9xfx7x3x8x1x4x0x0x2x3x2xdx9xaxaxcx9x2x6x4xax5x4x2x8x7x0xfxbx2_bfloat16.ncu-rep",
+          "sm_utilization": 0.00027919,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-x4x0x1x2xcxax2x5x4xcx1xdx3xfxdx1xbx7x7x0x6xexax4x7x3x4xfx9x6x0xfxex9xfx7x3x8x1x4x0x0x2x3x2xdx9xaxaxcx9x2x6x4xax5x4x2x8x7x0xfxbx2_bfloat16.ncu-rep",
           "timing": {
             "method": "triton.testing.do_bench",
             "return_mode": "median",
@@ -4124,18 +3954,18 @@
             "source": {
               "upstream": "sglang v0.5.11",
               "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
-              "workload_sha256": "e438926097e31684f71f3d15e8f094888b9774936ad5ef682093bc9c08db6a05"
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
             }
           },
-          "T_us": 5.504000000655651,
-          "latency_ms": 0.005504000000655651,
+          "T_us": 4.9600000493228436,
+          "latency_ms": 0.0049600000493228436,
           "F_cuda": 1664.0,
           "F_tensor": 0.0,
-          "B_mem": 13312.0,
-          "U_cuda": 0.002337,
+          "B_mem": 13568.0,
+          "U_cuda": 0.002494,
           "U_tensor": 0.0,
-          "U_mem": 0.089286,
-          "U_bottle_neck": 0.089286,
+          "U_mem": 0.096294,
+          "U_bottle_neck": 0.096294,
           "bottle_neck_unit": "mem",
           "num_kernels": 1,
           "per_kernel": [
@@ -4143,24 +3973,24 @@
               "name": "void RMSNormKernel<8, __nv_bfloat16>(T2 *, T2 *, T2 *, unsigned int, unsigned int, unsigned int, float, float)",
               "F_cuda": 1664.0,
               "F_tensor": 0.0,
-              "B_mem": 13312.0,
-              "U_cuda": 0.002337,
+              "B_mem": 13568.0,
+              "U_cuda": 0.002494,
               "U_tensor": 0.0,
-              "U_mem": 0.089286,
-              "T_us": 5.504000000655651
+              "U_mem": 0.096294,
+              "T_us": 4.9600000493228436
             }
           ],
           "flops_cuda_core": 1664.0,
           "flops_tensor_core": 0.0,
-          "memory_bytes": 13312.0,
-          "util_cuda_core": 2.337e-05,
+          "memory_bytes": 13568.0,
+          "util_cuda_core": 2.4940000000000002e-05,
           "util_tensor_core": 0.0,
-          "util_memory_bw": 0.0008928600000000001,
+          "util_memory_bw": 0.00096294,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.0008928600000000001,
+          "bottleneck_util": 0.00096294,
           "cuda_flops": 1664.0,
-          "sm_utilization": 6.347e-05,
-          "report_path": "/workspace/qwen36-ncu-v2/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-x7xexex8x3x1x6xfx2x3x5xfx2x7x3xcxbx8xcx3x0x4xex5xdxcxax7x5x6x0x5x7x1xexbx8xfx9x4x0xcxbx7xfxcx7xdx4xax7xcxcxexex6x4x3x7xax4x6xcx1_bfloat16.ncu-rep",
+          "sm_utilization": 6.773e-05,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/gemma_rmsnorm_qxwxexnx3x6x-xvx1x-x7xexex8x3x1x6xfx2x3x5xfx2x7x3xcxbx8xcx3x0x4xex5xdxcxax7x5x6x0x5x7x1xexbx8xfx9x4x0xcxbx7xfxcx7xdx4xax7xcxcxexex6x4x3x7xax4x6xcx1_bfloat16.ncu-rep",
           "timing": {
             "method": "triton.testing.do_bench",
             "return_mode": "median",
@@ -4269,18 +4099,18 @@
             "source": {
               "upstream": "sglang v0.5.11",
               "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
-              "workload_sha256": "e438926097e31684f71f3d15e8f094888b9774936ad5ef682093bc9c08db6a05"
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
             }
           },
-          "T_us": 7.040000054985285,
-          "latency_ms": 0.007040000054985285,
+          "T_us": 7.199999876320362,
+          "latency_ms": 0.007199999876320362,
           "F_cuda": 24000.0,
           "F_tensor": 0.0,
-          "B_mem": 19968.0,
-          "U_cuda": 0.09544,
+          "B_mem": 20224.0,
+          "U_cuda": 0.087555,
           "U_tensor": 0.0,
-          "U_mem": 0.099005,
-          "U_bottle_neck": 0.099005,
+          "U_mem": 0.09198,
+          "U_bottle_neck": 0.09198,
           "bottle_neck_unit": "mem",
           "num_kernels": 1,
           "per_kernel": [
@@ -4288,24 +4118,24 @@
               "name": "void topkGatingSoftmax<__nv_bfloat16, 8, 256, 4, 16>(const T1 *, const bool *, float *, int, int *, int, int, int, bool, float, const float *)",
               "F_cuda": 24000.0,
               "F_tensor": 0.0,
-              "B_mem": 19968.0,
-              "U_cuda": 0.09544,
+              "B_mem": 20224.0,
+              "U_cuda": 0.087555,
               "U_tensor": 0.0,
-              "U_mem": 0.099005,
-              "T_us": 7.040000054985285
+              "U_mem": 0.09198,
+              "T_us": 7.199999876320362
             }
           ],
           "flops_cuda_core": 24000.0,
           "flops_tensor_core": 0.0,
-          "memory_bytes": 19968.0,
-          "util_cuda_core": 0.0009544,
+          "memory_bytes": 20224.0,
+          "util_cuda_core": 0.0008755499999999999,
           "util_tensor_core": 0.0,
-          "util_memory_bw": 0.00099005,
+          "util_memory_bw": 0.0009198,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.00099005,
+          "bottleneck_util": 0.0009198,
           "cuda_flops": 24000.0,
-          "sm_utilization": 0.0052749400000000005,
-          "report_path": "/workspace/qwen36-ncu-v2/select_experts_qxwxexnx3x6x-xvx1x-x3x6xcx9x7x1x6x3x6x5x2x9x9xfx7xcxexcx2xexexex9xcx0x6xbx4xcxbx0x2xfxex8x5x8x5xexfx6xdx7xbxbxfxdx4x0xfx8xfxcxfxbx4x2x3x7x4xexdx1x0_bfloat16.ncu-rep",
+          "sm_utilization": 0.0048391400000000005,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/select_experts_qxwxexnx3x6x-xvx1x-x3x6xcx9x7x1x6x3x6x5x2x9x9xfx7xcxexcx2xexexex9xcx0x6xbx4xcxbx0x2xfxex8x5x8x5xexfx6xdx7xbxbxfxdx4x0xfx8xfxcxfxbx4x2x3x7x4xexdx1x0_bfloat16.ncu-rep",
           "timing": {
             "method": "triton.testing.do_bench",
             "return_mode": "median",
@@ -4409,18 +4239,18 @@
             "source": {
               "upstream": "sglang v0.5.11",
               "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
-              "workload_sha256": "e438926097e31684f71f3d15e8f094888b9774936ad5ef682093bc9c08db6a05"
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
             }
           },
-          "T_us": 7.199999876320362,
-          "latency_ms": 0.007199999876320362,
+          "T_us": 6.752000190317631,
+          "latency_ms": 0.006752000190317631,
           "F_cuda": 1200.0,
           "F_tensor": 0.0,
-          "B_mem": 10496.0,
-          "U_cuda": 0.004833,
+          "B_mem": 10240.0,
+          "U_cuda": 0.004842,
           "U_tensor": 0.0,
-          "U_mem": 0.052062,
-          "U_bottle_neck": 0.052062,
+          "U_mem": 0.050916,
+          "U_bottle_neck": 0.050916,
           "bottle_neck_unit": "mem",
           "num_kernels": 1,
           "per_kernel": [
@@ -4428,24 +4258,24 @@
               "name": "void topkGatingSoftmax<__nv_bfloat16, 8, 256, 4, 16>(const T1 *, const bool *, float *, int, int *, int, int, int, bool, float, const float *)",
               "F_cuda": 1200.0,
               "F_tensor": 0.0,
-              "B_mem": 10496.0,
-              "U_cuda": 0.004833,
+              "B_mem": 10240.0,
+              "U_cuda": 0.004842,
               "U_tensor": 0.0,
-              "U_mem": 0.052062,
-              "T_us": 7.199999876320362
+              "U_mem": 0.050916,
+              "T_us": 6.752000190317631
             }
           ],
           "flops_cuda_core": 1200.0,
           "flops_tensor_core": 0.0,
-          "memory_bytes": 10496.0,
-          "util_cuda_core": 4.832999999999999e-05,
+          "memory_bytes": 10240.0,
+          "util_cuda_core": 4.842e-05,
           "util_tensor_core": 0.0,
-          "util_memory_bw": 0.00052062,
+          "util_memory_bw": 0.00050916,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.00052062,
+          "bottleneck_util": 0.00050916,
           "cuda_flops": 1200.0,
-          "sm_utilization": 0.00026622,
-          "report_path": "/workspace/qwen36-ncu-v2/select_experts_qxwxexnx3x6x-xvx1x-x5x2x6x1xaxfx0xax0xdx7x6xfxexdx8xfxdx5xdx2x3xfx4x2x5x6xbx2x5xfxbx3xfx0x3x1x6xcxfx7xcx9x7x6xaxbx1x7xaxcx9xbx3x7xbx2x4x0x3x9x8x4xe_bfloat16.ncu-rep",
+          "sm_utilization": 0.00026672,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/select_experts_qxwxexnx3x6x-xvx1x-x5x2x6x1xaxfx0xax0xdx7x6xfxexdx8xfxdx5xdx2x3xfx4x2x5x6xbx2x5xfxbx3xfx0x3x1x6xcxfx7xcx9x7x6xaxbx1x7xaxcx9xbx3x7xbx2x4x0x3x9x8x4xe_bfloat16.ncu-rep",
           "timing": {
             "method": "triton.testing.do_bench",
             "return_mode": "median",
@@ -4504,18 +4334,18 @@
             "source": {
               "upstream": "sglang v0.5.11",
               "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
-              "workload_sha256": "e438926097e31684f71f3d15e8f094888b9774936ad5ef682093bc9c08db6a05"
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
             }
           },
-          "T_us": 5.504000000655651,
-          "latency_ms": 0.005504000000655651,
+          "T_us": 5.472000222653151,
+          "latency_ms": 0.0054720002226531506,
           "F_cuda": 348160.0,
           "F_tensor": 0.0,
           "B_mem": 355072.0,
-          "U_cuda": 0.608007,
+          "U_cuda": 0.616239,
           "U_tensor": 0.0,
-          "U_mem": 3.014169,
-          "U_bottle_neck": 3.014169,
+          "U_mem": 3.048084,
+          "U_bottle_neck": 3.048084,
           "bottle_neck_unit": "mem",
           "num_kernels": 1,
           "per_kernel": [
@@ -4524,23 +4354,23 @@
               "F_cuda": 348160.0,
               "F_tensor": 0.0,
               "B_mem": 355072.0,
-              "U_cuda": 0.608007,
+              "U_cuda": 0.616239,
               "U_tensor": 0.0,
-              "U_mem": 3.014169,
-              "T_us": 5.504000000655651
+              "U_mem": 3.048084,
+              "T_us": 5.472000222653151
             }
           ],
           "flops_cuda_core": 348160.0,
           "flops_tensor_core": 0.0,
           "memory_bytes": 355072.0,
-          "util_cuda_core": 0.00608007,
+          "util_cuda_core": 0.00616239,
           "util_tensor_core": 0.0,
-          "util_memory_bw": 0.03014169,
+          "util_memory_bw": 0.03048084,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.03014169,
+          "bottleneck_util": 0.03048084,
           "cuda_flops": 348160.0,
-          "sm_utilization": 0.01875305,
-          "report_path": "/workspace/qwen36-ncu-v2/silu_and_mul_out_qxwxexnx3x6x-xvx1x-x3xfx6xcxdx7x6x7x3x5xax0xfx2x5x7x9x6xbxbx0xbx3x3x9xbx1x1x3xcx5x8xbx7xcx8xaxfx6xdx2x6x9x8x6xcx5x7xdx9x6x1x5xfx5x8x9xbx8x3x4x7x3x2_bfloat16.ncu-rep",
+          "sm_utilization": 0.01900696,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/silu_and_mul_out_qxwxexnx3x6x-xvx1x-x3xfx6xcxdx7x6x7x3x5xax0xfx2x5x7x9x6xbxbx0xbx3x3x9xbx1x1x3xcx5x8xbx7xcx8xaxfx6xdx2x6x9x8x6xcx5x7xdx9x6x1x5xfx5x8x9xbx8x3x4x7x3x2_bfloat16.ncu-rep",
           "timing": {
             "method": "triton.testing.do_bench",
             "return_mode": "median",
@@ -4594,7 +4424,7 @@
             "source": {
               "upstream": "sglang v0.5.11",
               "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
-              "workload_sha256": "e438926097e31684f71f3d15e8f094888b9774936ad5ef682093bc9c08db6a05"
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
             }
           },
           "T_us": 4.863999783992767,
@@ -4602,10 +4432,10 @@
           "F_cuda": 17408.0,
           "F_tensor": 0.0,
           "B_mem": 24320.0,
-          "U_cuda": 0.031806,
+          "U_cuda": 0.032233,
           "U_tensor": 0.0,
-          "U_mem": 0.217332,
-          "U_bottle_neck": 0.217332,
+          "U_mem": 0.21812999999999996,
+          "U_bottle_neck": 0.21812999999999996,
           "bottle_neck_unit": "mem",
           "num_kernels": 1,
           "per_kernel": [
@@ -4614,23 +4444,23 @@
               "F_cuda": 17408.0,
               "F_tensor": 0.0,
               "B_mem": 24320.0,
-              "U_cuda": 0.031806,
+              "U_cuda": 0.032233,
               "U_tensor": 0.0,
-              "U_mem": 0.217332,
+              "U_mem": 0.21813,
               "T_us": 4.863999783992767
             }
           ],
           "flops_cuda_core": 17408.0,
           "flops_tensor_core": 0.0,
           "memory_bytes": 24320.0,
-          "util_cuda_core": 0.00031806,
+          "util_cuda_core": 0.00032232999999999996,
           "util_tensor_core": 0.0,
-          "util_memory_bw": 0.00217332,
+          "util_memory_bw": 0.0021812999999999997,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.00217332,
+          "bottleneck_util": 0.0021812999999999997,
           "cuda_flops": 17408.0,
-          "sm_utilization": 0.00098101,
-          "report_path": "/workspace/qwen36-ncu-v2/silu_and_mul_out_qxwxexnx3x6x-xvx1x-x1xexbx8xcx1x4xex9x3xex5xdx6xaxcxfxfxax8xdxax7xaxfxex1xex6x8xcxax5x3x1x0x7x2x9x2xfx8x4x6x2x2x9x4xcxbx0x6xdxax9xfx6xaxbx0x6x1xex7_bfloat16.ncu-rep",
+          "sm_utilization": 0.00099418,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/silu_and_mul_out_qxwxexnx3x6x-xvx1x-x1xexbx8xcx1x4xex9x3xex5xdx6xaxcxfxfxax8xdxax7xaxfxex1xex6x8xcxax5x3x1x0x7x2x9x2xfx8x4x6x2x2x9x4xcxbx0x6xdxax9xfx6xaxbx0x6x1xex7_bfloat16.ncu-rep",
           "timing": {
             "method": "triton.testing.do_bench",
             "return_mode": "median",
@@ -4684,18 +4514,18 @@
             "source": {
               "upstream": "sglang v0.5.11",
               "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
-              "workload_sha256": "e438926097e31684f71f3d15e8f094888b9774936ad5ef682093bc9c08db6a05"
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
             }
           },
-          "T_us": 4.656000062823296,
-          "latency_ms": 0.004656000062823296,
+          "T_us": 5.0559998489916325,
+          "latency_ms": 0.0050559998489916325,
           "F_cuda": 10240.0,
           "F_tensor": 0.0,
           "B_mem": 17152.0,
-          "U_cuda": 0.041492,
+          "U_cuda": 0.040877,
           "U_tensor": 0.0,
-          "U_mem": 0.170501,
-          "U_bottle_neck": 0.170501,
+          "U_mem": 0.164668,
+          "U_bottle_neck": 0.164668,
           "bottle_neck_unit": "mem",
           "num_kernels": 1,
           "per_kernel": [
@@ -4704,23 +4534,23 @@
               "F_cuda": 10240.0,
               "F_tensor": 0.0,
               "B_mem": 17152.0,
-              "U_cuda": 0.041492,
+              "U_cuda": 0.040877,
               "U_tensor": 0.0,
-              "U_mem": 0.170501,
-              "T_us": 4.656000062823296
+              "U_mem": 0.164668,
+              "T_us": 5.0559998489916325
             }
           ],
           "flops_cuda_core": 10240.0,
           "flops_tensor_core": 0.0,
           "memory_bytes": 17152.0,
-          "util_cuda_core": 0.00041492,
+          "util_cuda_core": 0.00040877,
           "util_tensor_core": 0.0,
-          "util_memory_bw": 0.00170501,
+          "util_memory_bw": 0.0016466800000000002,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.00170501,
+          "bottleneck_util": 0.0016466800000000002,
           "cuda_flops": 10240.0,
-          "sm_utilization": 0.0012917400000000002,
-          "report_path": "/workspace/qwen36-ncu-v2/silu_and_mul_out_qxwxexnx3x6x-xvx1x-x8x0x0xex0x6x2xbx1x5xfxexcx7x4x0x0x3x1xfxfx2xcxfxax5x4x2x5x4x3x5x5x8x1x1xfxax5x0x7x2xcx7x5x1xdx5x5xbxfx7x4xfxax5x2x8x1xexbx6xdx6_bfloat16.ncu-rep",
+          "sm_utilization": 0.0012725800000000002,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/silu_and_mul_out_qxwxexnx3x6x-xvx1x-x8x0x0xex0x6x2xbx1x5xfxexcx7x4x0x0x3x1xfxfx2xcxfxax5x4x2x5x4x3x5x5x8x1x1xfxax5x0x7x2xcx7x5x1xdx5x5xbxfx7x4xfxax5x2x8x1xexbx6xdx6_bfloat16.ncu-rep",
           "timing": {
             "method": "triton.testing.do_bench",
             "return_mode": "median",
@@ -4774,18 +4604,18 @@
             "source": {
               "upstream": "sglang v0.5.11",
               "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
-              "workload_sha256": "e438926097e31684f71f3d15e8f094888b9774936ad5ef682093bc9c08db6a05"
+              "workload_sha256": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9"
             }
           },
-          "T_us": 5.08800009265542,
-          "latency_ms": 0.00508800009265542,
+          "T_us": 4.511999897658825,
+          "latency_ms": 0.004511999897658825,
           "F_cuda": 512.0,
           "F_tensor": 0.0,
           "B_mem": 7424.0,
-          "U_cuda": 0.00214,
+          "U_cuda": 0.002159,
           "U_tensor": 0.0,
-          "U_mem": 0.075521,
-          "U_bottle_neck": 0.075521,
+          "U_mem": 0.0759,
+          "U_bottle_neck": 0.0759,
           "bottle_neck_unit": "mem",
           "num_kernels": 1,
           "per_kernel": [
@@ -4794,23 +4624,23 @@
               "F_cuda": 512.0,
               "F_tensor": 0.0,
               "B_mem": 7424.0,
-              "U_cuda": 0.00214,
+              "U_cuda": 0.002159,
               "U_tensor": 0.0,
-              "U_mem": 0.075521,
-              "T_us": 5.08800009265542
+              "U_mem": 0.0759,
+              "T_us": 4.511999897658825
             }
           ],
           "flops_cuda_core": 512.0,
           "flops_tensor_core": 0.0,
           "memory_bytes": 7424.0,
-          "util_cuda_core": 2.14e-05,
+          "util_cuda_core": 2.1589999999999998e-05,
           "util_tensor_core": 0.0,
-          "util_memory_bw": 0.0007552100000000001,
+          "util_memory_bw": 0.0007589999999999999,
           "bottleneck": "memory_bw",
-          "bottleneck_util": 0.0007552100000000001,
+          "bottleneck_util": 0.0007589999999999999,
           "cuda_flops": 512.0,
-          "sm_utilization": 6.661e-05,
-          "report_path": "/workspace/qwen36-ncu-v2/silu_and_mul_out_qxwxexnx3x6x-xvx1x-xaxexcxdx8x5xax9x3x9x3x9x9x6x3x2x6xcx9x4xcx2xexax3x6xaxax7x2xcxex6xex1x8x8x7xax6xex4xfx5x1xbx7xdx6xex4xbx6xbxcx6x0xbx0xbxfx0xfx0_bfloat16.ncu-rep",
+          "sm_utilization": 6.721e-05,
+          "report_path": "/workspace/reset-20261031/ncu-qwen36/silu_and_mul_out_qxwxexnx3x6x-xvx1x-xaxexcxdx8x5xax9x3x9x3x9x9x6x3x2x6xcx9x4xcx2xexax3x6xaxax7x2xcxex6xex1x8x8x7xax6xex4xfx5x1xbx7xdx6xex4xbx6xbxcx6x0xbx0xbxfx0xfx0_bfloat16.ncu-rep",
           "timing": {
             "method": "triton.testing.do_bench",
             "return_mode": "median",
@@ -4822,72 +4652,43 @@
     }
   },
   "_provenance": {
-    "schema": "sglang-qwen36-collection/v1",
-    "raw_artifact_sha256": "4efd29794bdd1a3950a70a08f1e3dbdd3c8a18263404ffc8679a9192cba350d0",
-    "ops_source_commit": "4f28e7b9eebcd5ae5c5a3536aff299c7ace6abad",
-    "sglang_source_commit": "e20f65a076f66687c88cf3d1a845778642f8f127",
+    "schema": "sglang.reset-excluded-collection/v1",
+    "raw_artifact_sha256": "23a787682d7cceb9a3d2b3536ac14d348ba84605173c57d756ccee473fb38703",
+    "sglang_source_commit": "b674fd7cacb86f2483d35ceb296f8d1edef04f74",
+    "ops_source_commit": "a8c24305f03ecf2b8783227b3593a5dcffe3d76c",
     "source_files": {
-      "ops-baseline/ops/sglang_qwen36/fused_moe_kernel_sequence.py": "ee034143ef9f0170595824e4573bf31597645b61c6b8329f6081f50abea18a62",
-      "ops-baseline/ops/sglang_qwen36/silu_and_mul_out.py": "ef4a8bad01b9006e4e290693802c3f0368062d8879e035a3d6896ec449a96847",
-      "ops-baseline/ops/sglang_qwen36/_qwen36.py": "261e42d34975868dfb47dd882e7b9622067a35c3742b8a534a54936ad33f6f97",
-      "ops-baseline/ops/sglang_qwen36/chunk_gated_delta_rule_fwd.py": "b71b665b2d0b6d5fdbcf81c635462624786d91a85f2f3b2af493e55853689914",
-      "ops-baseline/ops/sglang_qwen36/gemma_rmsnorm.py": "d783f5106082a6f5a559a97ff48d83d5144816fa429d783d70fe4d9d17d07c8c",
-      "ops-baseline/ops/sglang_qwen36/fused_recurrent_gated_delta_rule_packed_decode.py": "e52d4b52994d542602c8ed0eb5b5a5d7fb37a886211c671cd172f16ac1368ff0",
-      "ops-baseline/ops/sglang_qwen36/gemma_fused_add_rmsnorm.py": "5a7e6454adeaf871ebf1cb0edaa8b93b732deea9c663ad7d5d0374c43134a57c",
-      "ops-baseline/ops/sglang_qwen36/select_experts.py": "24209973edf0e13c9cc250e7427a0a397033c00ab7708f7e04d50bd9df49d811",
-      "ops-baseline/tools/collect_baseline_nvidia.py": "2018a6122028c58d59385cb295e567ea168325da78fcc600b80d78b37fd4f7ea",
-      "ops-baseline/tools/collection_process.py": "5f5d7374c30fe3fab4d2ad7b1444f03b5e8aac06ea17dd12b99a62b1fe12d1b7",
-      "ops-baseline/tools/collection_environment.py": "94f2d211f11e19843d74aa10ac66db67839fcd2840f1ac483ae4ea29553fe683",
-      "ops-baseline/tools/hardware_specs.json": "8c1c23e1059f19e7f7e9f6886bb343ea6824e2b19cc52a77fbb804776b98c08c",
-      "sglang-suite/verification/qwen36_common.py": "9ee3cf13053fef8b0a86e4da0dcdd4bf21a7ccfa5634f22d0185f96823d01689",
-      "sglang-suite/verification/qwen36_native.py": "e264922e519dfabd943cab8f2f54a392d7bd69b071c8102d8c3fd2af83e9d6aa",
-      "sglang-suite/verification/qwen36-native-sources.json": "301bd96d6320e32e51e4191d1baf03a23f3f598da37c96484843e14ed20bd9e5",
-      "sglang-suite/src/flaggems_sglang/testing/qwen36_workloads.py": "e438926097e31684f71f3d15e8f094888b9774936ad5ef682093bc9c08db6a05"
+      "sglang/benchmark/op_benchmark.py": "f396b6e71d38efa08a5fe3077af93c61caa1fefcea2bdfa08d98b0f13c3746e1",
+      "sglang/benchmark/performance_utils.py": "71ad73c463ed94a24196b404f65cf842775ae2126fb296f4014de481715c364e",
+      "sglang/src/flaggems_sglang/reference/mrotary_embedding_cases.py": "06f4cbd5f2b4ea2ba8da0aabf27bdc03f6c2e8c9ab560687a04dabce67938c98",
+      "sglang/src/flaggems_sglang/reference/native/mrotary_embedding.py": "3d925d9da864bdcdb93cf802e1566a01e773ab3598c3e967b144ec92a67847e7",
+      "sglang/src/flaggems_sglang/reference/qwen36.py": "5f4c2271086ab176093238d7590d778c5265410269a13a0e551b379bc75f9c4c",
+      "sglang/src/flaggems_sglang/testing/qwen36_workloads.py": "4f9e5ec8d1c52bcc9f39d5f8668864968067a862f28858d22873f583b603a7f9",
+      "sglang/src/flaggems_sglang/testing/reset_timing.json": "3c1ff7ea1209d6e9648ee7b696a89f058c985fa5d052144703a5cef2931a63a0",
+      "sglang/src/flaggems_sglang/testing/reset_timing.py": "a947e09a60a42993431d903563094194746d67f9faa0d7cc42efe28fd830f9ab",
+      "sglang/verification/qwen36-native-sources.json": "301bd96d6320e32e51e4191d1baf03a23f3f598da37c96484843e14ed20bd9e5",
+      "sglang/verification/qwen36-native-wheels.json": "d50ca036e1bee1175e4053d6756f643d8faf0ce08e59c2000271aa032defde2b",
+      "sglang/verification/qwen36_common.py": "ccda250c9d713da3781d111b73cdce3450416d13f06f9a9a604aee9255811386",
+      "sglang/verification/qwen36_native.py": "e264922e519dfabd943cab8f2f54a392d7bd69b071c8102d8c3fd2af83e9d6aa",
+      "ops-baseline/ops/sglang/mrotary_embedding.py": "d843642f4a7572401aa3fb2f7fe887884607d57374a1c4e3f1a65b5dde52f426",
+      "ops-baseline/ops/sglang_qwen36/_qwen36.py": "2186f045263f87e0f8332ce1c0de3311887e9706b235e0b36b4a3961e9a1e7c9",
+      "ops-baseline/ops/sglang_qwen36/chunk_gated_delta_rule_fwd.py": "706a98ef3541822516d491101983c38cb3eb72e1889252532dffb2abf32c6abf",
+      "ops-baseline/ops/sglang_qwen36/fused_moe_kernel_sequence.py": "0fcb597514cc2de2741e1ebea73772e81fdfd203f9294b53a1b03d610508bf47",
+      "ops-baseline/ops/sglang_qwen36/fused_recurrent_gated_delta_rule_packed_decode.py": "e0a0e0b4c35d9e5133d41decd73d098eaa522e2538ee1d2d8b469218ce4b1931",
+      "ops-baseline/ops/sglang_qwen36/gemma_fused_add_rmsnorm.py": "0d56ff998ef812514db026b4d458d8853165ee585eaf13395e66fc311db54f95",
+      "ops-baseline/ops/sglang_qwen36/gemma_rmsnorm.py": "7add27ca487ca05833a02ecf261b0662140b1cc86e5169c0970e2bcd3d4a6261",
+      "ops-baseline/ops/sglang_qwen36/select_experts.py": "4d5c30275d347db93694c1735baa63b231540b0c696271b0c5c67815701c050e",
+      "ops-baseline/ops/sglang_qwen36/silu_and_mul_out.py": "0f3dafa6d67dc97e3dc7806c6091c241f376f3380bb3cb3689b7566e5674281d",
+      "ops-baseline/tools/collect_baseline_nvidia.py": "ab40e5e9e202982369eed3d39475b8addee4bb8b5c3340488cddefcf902341d0",
+      "ops-baseline/tools/hardware_specs.json": "8c1c23e1059f19e7f7e9f6886bb343ea6824e2b19cc52a77fbb804776b98c08c"
     },
+    "full_source_manifest_sha256": "58eec0542e90edaf681dba95165204fe5eeb836214095268ba3fcb59b58cfbbc",
+    "timing_spec_sha256": "3c1ff7ea1209d6e9648ee7b696a89f058c985fa5d052144703a5cef2931a63a0",
     "base_image_id": "sha256:44d0a652ab0ec4735ab836fd05a280dc8684bcdd8d082332e236febca5bb8f1c",
     "native_upstream": {
-      "repository": "https://github.com/sgl-project/sglang",
-      "tag": "v0.5.11",
-      "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900",
-      "entries": {
-        "gemma_rmsnorm": {
-          "module": "sgl_kernel.elementwise",
-          "function": "gemma_rmsnorm",
-          "ast_sha256": "5c51482edc708e858d066f06f06be532dcf30c9610ee8a4e9260baa63a563b68"
-        },
-        "gemma_fused_add_rmsnorm": {
-          "module": "sgl_kernel.elementwise",
-          "function": "gemma_fused_add_rmsnorm",
-          "ast_sha256": "7904c4130ab32db7f80b15dcc13d830abe85334ef8120129a81a5e47765867a8"
-        },
-        "silu_and_mul_out": {
-          "module": "sgl_kernel.elementwise",
-          "function": "silu_and_mul",
-          "ast_sha256": "411a3f4edf19f40d33bacf11b3cc5b3bce461c57e25fbdbece9947eeb893587e"
-        },
-        "chunk_gated_delta_rule_fwd": {
-          "module": "sglang.srt.layers.attention.fla.chunk",
-          "function": "chunk_gated_delta_rule_fwd",
-          "ast_sha256": "a095cd788747bf1fb716d6504bc30b9cbba2f0dcb5080ef7827e2dc1d0eef857"
-        },
-        "fused_recurrent_gated_delta_rule_packed_decode": {
-          "module": "sglang.srt.layers.attention.fla.fused_recurrent",
-          "function": "fused_recurrent_gated_delta_rule_packed_decode",
-          "ast_sha256": "b8fe21d526c93603b52816e1633eb1d2d055bed925d8b03ed37795557d046a08"
-        },
-        "select_experts": {
-          "module": "sglang.srt.layers.moe.topk",
-          "function": "select_experts",
-          "ast_sha256": "c26edea584e0f90321a7afd07ab14c7a25234d89ad492bc2eea2e2ee7b463b60"
-        },
-        "_fused_moe_kernel_sequence": {
-          "module": "sglang.srt.layers.moe.moe_runner.triton_utils.fused_moe",
-          "function": "_fused_moe_kernel_sequence",
-          "ast_sha256": "7bb0fb558dc4590a05f68b5bc37f7d6fb5e092489e43b4ae9822b1faf2db3961"
-        }
-      },
-      "hash_format": "Python 3.12 ast.dump(include_attributes=False)"
+      "version": "v0.5.11",
+      "commit": "612785ffdcaf35552f1ed433a981d596ca9fe900"
     },
-    "golden_manifest_sha256": "d37d49f2dab3c14108acdd0ad730cb1d11d32424f7c19f5b03045ae377ca4ece"
+    "functional_probe_cases": 16,
+    "functional_probe_calls_per_case": 8
   }
 }

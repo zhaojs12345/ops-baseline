@@ -40,21 +40,25 @@ Pass the resulting JSON through target FlagGems-sglang benchmark `--base-data`.
 Only equal configuration keys should match; locally timed Torch reference-as-
 candidate results validate the pipeline, not an optimized kernel.
 
-## Timing migration status
+## Published H800 snapshot
 
-The checked-in snapshots below are historical and await recollection after the
-reset-excluded timing migration. Ten Qwen read-write keys and six mRoPE keys
-have changed; old read-write measurements must not be used under the new keys.
-The eighteen read-only Qwen keys remain unchanged. Do not merge this migration
-until fresh native H800 latency/NCU records have been collected and reviewed.
-
-## Historical H800 snapshot
+Both this snapshot (28 cases) and `op_sglang_mrotary_h800_perf_baseline.json`
+(6 cases) were freshly collected on H800 after the timing fix. Ten Qwen
+read-write keys and six mRoPE keys now include the reset-excluded timing
+contract. Eighteen read-only Qwen keys remain unchanged. The original SGLang
+implementations generated every latency/NCU record; no Torch timing substitute
+was used. Seven target backends matched all 34 keys and timed their local
+reference-as-candidate. These are pipeline checks, not optimized kernels.
+Kunlunxin P800 comparisons retain raw ratios (`factor=None`) because its
+memory-bandwidth factor is absent. See `reset_timing_validation.json` for
+exact collected source revisions, checks and retained evidence hashes.
 
 `op_sglang_qwen36_h800_perf_baseline.json` contains all seven interfaces and 28
 core records collected on H800 with median latency and NCU counters. Each record
 has a positive kernel count and retained raw `.ncu-rep` evidence. `_provenance`
 binds the raw collection hash, exact remote/local source file hashes and Git
-revisions, original native source specification and golden dataset manifest.
+revisions, original native source revision, shared timing specification and complete
+source-manifest hash.
 The collector's Git fields remain null for the tar-staged remote checkout;
 verified source provenance is recorded separately rather than inventing Git
 state on that host.
